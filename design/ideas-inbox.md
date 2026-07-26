@@ -22,3 +22,26 @@ Implications to design through (Producer: propose units against these, cite T9/I
   a rules.md section and playtest-on-paper procedures.
 - Interacts with every race identity (e.g. a materials race that fortifies
   chokepoints vs an intelligence race that sees more of the graph).
+
+## 2026-07-26 (later) — Homeworlds, discovery, wormhole control
+
+> "the game starts on homeworlds and players can 'discover' new worlds by
+> opening wormholes of various lengths, but discovering unexplored worlds is
+> cheaper and easier than opening a wormhole to an enemy world. wormholes can
+> be restricted in various ways; direction, team, unit types. Worm holes can
+> be closed."
+
+Implications to design through (extends the spatial-layer entry above):
+- Each player begins on a HOMEWORLD — the anchor node of their side of the graph;
+  presumably where the first generator lives and a likely win-condition target.
+- The map GROWS during play: discovery is an action. Opening a wormhole to an
+  unexplored world is the cheap/easy expansion route; punching a wormhole toward
+  an enemy world costs more — so aggression pays a toll and turtling/expansion
+  have real economy.
+- Wormholes are typed, not plain edges: restrictable by direction (one-way),
+  team (allied-only passage), and unit type (e.g. Biology-only, no vehicles).
+  Restriction effects become a whole card design space (locks, keys, tolls).
+- Wormholes can be CLOSED — edges are destructible, so the graph topology is
+  itself a battlefield: cut a chokepoint, strand a fleet, seal your flank.
+- Combos with race identity: the Concord discovering more cheaply (Signal),
+  the Communion bending wormhole rules (Skein), the Reach fortifying them.
