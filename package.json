@@ -1,0 +1,7 @@
+{
+  "name": "cardgame",
+  "version": "0.1.0",
+  "description": "Galactic civilizations TCG — rules engine and card database",
+  "scripts": { "test": "node --test" },
+  "license": "UNLICENSED"
+}
