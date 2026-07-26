@@ -16,7 +16,7 @@ The Cindral Reach began as asteroid-belt mining clans and became an empire that 
 - **Line-Fleet Discipline** — Materials units get stronger for every other copy of them you control.
 - **Ancestral Plating** — equipment attached to a Cindral unit can't be stripped by non-Materials effects.
 - **The Long Refit** — a Materials generator that survives three turns starts producing bonus points.
-- **Cinderborn Levy** — spend leftover Mass points to deploy a lesser unit for free.
+- **Cinderborn Levy** — spend leftover Materials points to deploy a lesser unit for free.
 
 ## Visual Identity
 

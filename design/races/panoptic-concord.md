@@ -13,10 +13,10 @@ The Panoptic Concord is a post-scarcity civilization of archivists, brokers, and
 ## Signature Hooks
 
 - **Foreknowledge Ledger** — look at the top card of any opponent's deck at the start of each of your turns.
-- **Contract Rewrite** — pay Signal points to swap the cost of a card in your hand with a card in an opponent's hand.
+- **Contract Rewrite** — pay Intelligence points to swap the cost of a card in your hand with a card in an opponent's hand.
 - **Panoptic Relay** — Intelligence generators can be built anywhere you have vision of, even in enemy territory.
 - **Whisper Network** — reveal a card from hand once per turn to blunt an opponent's next play.
-- **Dead Drop** — bank unused Signal points between turns instead of losing them, up to a cap.
+- **Dead Drop** — bank unused Intelligence points between turns instead of losing them, up to a cap.
 
 ## Visual Identity
 

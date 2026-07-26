@@ -14,7 +14,7 @@ The Starweave Communion is less a state than a scattered faith: star-touched pil
 
 - **Unwritten Clause** — once per game, cast a Magic card as though it had been played a turn ago, retroactively changing the board.
 - **Skein-Bound Oath** — Magic creatures can't be targeted the turn they enter play.
-- **Prophesied Ruin** — pay extra Skein points to destroy a permanent and draw a card named after what it used to be.
+- **Prophesied Ruin** — pay extra Magic points to destroy a permanent and draw a card named after what it used to be.
 - **Pilgrim's Gambit** — sacrifice a generator to resolve a Magic card without paying its cost.
 - **Echo of the First Weave** — cast Magic spells from your graveyard at double cost, but they can't be countered.
 
