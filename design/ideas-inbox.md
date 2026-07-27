@@ -5,7 +5,7 @@ this file when proposing design units; each idea graduates into rules.md /
 world.md / card designs through a unit that cites it. Ideas are never deleted —
 mark them `[incorporated: <unit-name>]` when a shipped unit lands them.
 
-## 2026-07-26 — Spatial layer: planets, wormholes, generator placement
+## 2026-07-26 — Spatial layer: planets, wormholes, generator placement [incorporated: cardgame-spatial-battlefield-rules]
 
 > "planets are nodes on a graph connected by wormholes of variable lengths.
 > Generators are built on planets."
@@ -23,7 +23,7 @@ Implications to design through (Producer: propose units against these, cite T9/I
 - Interacts with every race identity (e.g. a materials race that fortifies
   chokepoints vs an intelligence race that sees more of the graph).
 
-## 2026-07-26 (later) — Homeworlds, discovery, wormhole control
+## 2026-07-26 (later) — Homeworlds, discovery, wormhole control [incorporated: cardgame-spatial-battlefield-rules]
 
 > "the game starts on homeworlds and players can 'discover' new worlds by
 > opening wormholes of various lengths, but discovering unexplored worlds is
