@@ -98,9 +98,9 @@ redefine it.
   the Fount Point cost of opening that Wormhole (Section 8.3) and of an
   Assault that uses it (Section 8.6).
 - **Control (of a Planet)** — a Planet is controlled by whichever challenger
-  most recently built a Generator on it, Discovered it, or Captured it
-  (Section 8.1, Section 8.6); a Planet on the graph controlled by neither
-  challenger is Neutral.
+  most recently built a Generator on it or Captured it (Section 8.1, Section
+  8.6); Discovering a Planet does not by itself grant control of it (Section
+  8.3). A Planet on the graph controlled by neither challenger is Neutral.
 - **Homeworld** — the one Planet each challenger controls from the start of
   the game (Section 8.2): the anchor of their side of the battlefield graph,
   and the Planet their first Generator must be built on.
@@ -112,6 +112,15 @@ redefine it.
 - **Closure** — the permanent removal of a Wormhole from the battlefield
   graph (Section 8.5); a Closed Wormhole cannot be traversed, restricted, or
   reopened.
+- **Assault** — an action a challenger may take against a Planet they do not
+  control, along a qualifying path of Wormholes, costing Fount Points equal
+  to the summed Length of that path; an Assault either Blockades or Captures
+  its target (Section 8.6).
+- **Blockade** — the state of a Planet under Assault that halts the Fount
+  Point production of every Generator on it until cleared (Section 8.6).
+- **Capture** — the result of a further Assault against an already-Blockaded
+  Planet: control passes to the assaulting challenger and every Generator on
+  the Planet is destroyed (Section 8.6).
 
 ## 3. Zones
 
@@ -353,10 +362,11 @@ the five zones (Section 3) a card is in.
   tracked by this section, and Length has no effect beyond the two costs just
   named unless a future card or rule says otherwise.
 - A Planet is **controlled** by whichever challenger most recently built a
-  Generator on it, Discovered it, or Captured it (Section 8.6). A Planet on
-  the graph controlled by neither challenger is **Neutral**. Each
-  challenger's Homeworld is controlled by them from the start of the game and
-  can never become Neutral or change control (Section 8.2, Section 8.6).
+  Generator on it or Captured it (Section 8.6); Discovering a Planet does not
+  by itself grant control of it (Section 8.3). A Planet on the graph
+  controlled by neither challenger is **Neutral**. Each challenger's
+  Homeworld is controlled by them from the start of the game and can never
+  become Neutral or change control (Section 8.2, Section 8.6).
 - Two Planets are **adjacent** if a Wormhole that is not Closed (Section 8.5)
   connects them directly. A **path** between two Planets is an unbroken
   sequence of adjacent Planets.
