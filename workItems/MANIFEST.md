@@ -143,3 +143,10 @@ Append-only requirements traceability log — one section per archived work item
 - AC2 [inferred]: Every card uses the canonical template from rules.md Section 9.1 in order (Cost line, then Type line, then Rules text, and, only for Permanents, an optional Stats/counters line after Rules text). — no receipt (escalated before receipt computation)
 - AC3 [inferred]: Each card's rules text names at least one of: Discovery, Restriction, Closure, Assault, Blockade, or Capture, and cites the specific rules.md Section 8 subsection number that defines the named term. — no receipt (escalated before receipt computation)
 - AC4 [inferred] (held_out): No two Frontier Set cards name the same race, and a new test/design-frontier-cards.test.js asserts this alongside the count, template-order, and spatial-term-citation checks above. — no receipt (escalated before receipt computation)
+
+## 2026-07-28-cardgame-combat-resolution-rules-cardgame-rules-combat-resolution-blocked-damage-multi-block-assignment-lethal-destruction.md
+
+- AC1 [paraphrase]: design/rules.md contains a new numbered top-level section titled 'Combat Resolution' appended after the current last top-level section, and every previously-existing section keeps its original number and title unchanged. — no receipt (escalated before receipt computation)
+- AC2 [inferred]: The Combat Resolution section states that a blocked attacker deals its combat strength as damage to its blocker(s) rather than to the non-active player's Core Integrity. — no receipt (escalated before receipt computation)
+- AC3 [inferred]: The Combat Resolution section states who chooses the damage assignment order when a single attacker has more than one blocker. — no receipt (escalated before receipt computation)
+- AC4 [inferred] (held_out): The Combat Resolution section states that a Unit with accumulated damage at least equal to its combat strength is destroyed and moved to its owner's Wreck, and states when marked damage on Units is cleared; a new test/design-combat.test.js asserts both facts alongside the section-numbering and blocked-damage checks above. — no receipt (escalated before receipt computation)
