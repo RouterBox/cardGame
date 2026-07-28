@@ -319,4 +319,17 @@ function main() {
   console.log(`Rendered ${cards.length} card(s) into ${path.relative(REPO_ROOT, OUT_DIR).split(path.sep).join('/')}/`);
 }
 
-main();
+if (require.main === module) {
+  main();
+}
+
+module.exports = {
+  INNER_X,
+  INNER_Y,
+  INNER_WIDTH,
+  NAME_SLOT_HEIGHT,
+  ART_WINDOW_HEIGHT,
+  loadAllCards,
+  renderCardSvg,
+  escapeXml,
+};
