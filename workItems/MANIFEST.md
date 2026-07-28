@@ -43,3 +43,12 @@ Append-only requirements traceability log — one section per archived work item
 - AC3 [paraphrase]: Every required field of the rules.md Section 9 card template (Name, Cost line, Type line, Rules text, Stats/counters line for Permanents) is mapped to exactly one skeleton zone, and the mapping is stated in the document. — PASS
 - AC4 [inferred]: The variables section states how frame identity is driven by the card's Fount(s), including the rendering rule for cards with more than one Fount in their cost. — PASS
 - AC5 [inferred] (held_out): At least two named cards from design/cards/alpha-set.md appear as worked examples walked through the anatomy zone by zone, at least one of which is one of the set's multi-type/multi-cost cards. — PASS
+
+## 2026-07-28-cardgame-design-browser-site-cardgame-tool-design-shelf-browser-website-read-what-we-have-from-the-phone.md
+
+- AC1 [user]: Running `node tools/build-site.js` exits 0 and produces `site/index.html` plus one HTML page for every markdown file under `design/` (recursively) and for `gamePlan.md`. — no receipt (escalated before receipt computation)
+- AC2 [user]: The index page links to every generated page, grouped into named sections covering at least World, Races, Characters, Cards, and Rules, with each link's text taken from the source file's first H1 heading. — no receipt (escalated before receipt computation)
+- AC3 [paraphrase]: Generated pages render markdown structure as real HTML — a page generated from a design doc containing a table, a bulleted list, and a blockquote contains corresponding table/ul/blockquote elements, not raw markdown syntax. — no receipt (escalated before receipt computation)
+- AC4 [inferred]: Every generated page contains a nav element linking back to index.html, and pages contain no external resource references (no http/https URLs in src or href of assets; document links to other generated pages are relative). — no receipt (escalated before receipt computation)
+- AC5 [inferred]: The generator is deterministic — running it twice in a row produces identical bytes for every file in site/ (verifiable by hashing). — no receipt (escalated before receipt computation)
+- AC6 [inferred] (held_out): The site contains no JavaScript that implements game behavior — generated pages are readable documents only; any script tag present is limited to navigation/display conveniences, and none of the generator's code interprets game rules. — no receipt (escalated before receipt computation)
