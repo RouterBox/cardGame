@@ -171,3 +171,10 @@ Append-only requirements traceability log — one section per archived work item
 - AC2 [inferred]: node --test exercises the live-sync (non-dry-run) code path using a fake/injected Jaina client — no require('http'), require('https'), or fetch() call reaches an external host during the test run, keeping the suite network-free and deterministic like every other unit in this repo. — no receipt (escalated before receipt computation)
 - AC3 [inferred]: If JAINA_API_KEY or JAINA_PROJECT_ID is missing when the script is invoked without --dry-run, it exits 1 and prints a clear 'Jaina credentials not configured' message instead of throwing an unhandled exception or silently no-op'ing. — no receipt (escalated before receipt computation)
 - AC4 [inferred] (held_out): --dry-run mode's output and behavior are unchanged byte-for-byte from the merged dry-run unit (same NDJSON records, still makes zero client/network calls) — this unit only adds behavior to the no-flag path. — no receipt (escalated before receipt computation)
+
+## 2026-07-28-cardgame-art-live-leonardo-client-real-leonardo-art-client-for-the-card-compositing-tool.md
+
+- AC1 [inferred]: Passing --live to tools/composite-card-art.js constructs a LeonardoArtClient that sends one image-generation request per brief using LEONARDO_API_KEY; tests inject a mock HTTP transport (no real network call, no real spend) and assert the request is well-formed. — PASS
+- AC2 [paraphrase]: With no --live flag, behavior is unchanged from the merged dry-run: the deterministic mock client runs, no LEONARDO_API_KEY is read, and output is byte-identical to the existing renders/cards-composited/ baseline. — PASS
+- AC3 [inferred]: If --live is passed but LEONARDO_API_KEY is unset, the script exits non-zero with an error naming the missing env var instead of attempting a malformed request. — PASS
+- AC4 [inferred] (held_out): The live client's prompt for each card is built from that specific card's art-briefs.md section (palette, subject/scene, key visual elements) rather than a generic template, so each of the 18 cards yields a distinct prompt. — PASS
