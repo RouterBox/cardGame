@@ -3,7 +3,7 @@ const test = require('node:test');
 const assert = require('node:assert');
 const fs = require('node:fs');
 const path = require('node:path');
-const { parseSections, sectionText, findSection } = require('./helpers/markdown');
+const { parseSections, sectionText, findSection, normalizeProse } = require('./helpers/markdown');
 
 const RULES_PATH = path.join(__dirname, '..', 'design', 'rules.md');
 const FOUNTS = ['Mass', 'Bloom', 'Signal', 'Circuit', 'Tangle'];
@@ -154,7 +154,9 @@ test('AC3: each phase in Turn Structure states what a player may and may not do'
   }
   assert.ok(phaseHeadings.length > 0, 'expected at least one numbered phase sub-heading to check (see prior test)');
   for (const phase of phaseHeadings) {
-    const body = phase.lines.join('\n');
+    // Normalized: "may not" / "no player" are literal-space phrases that
+    // could otherwise be split by the rulebook's ~75-char line wrap.
+    const body = normalizeProse(phase.lines.join('\n'));
     assert.ok(/\bmay\b/i.test(body), `expected phase "${phase.title}" to state what a player MAY do`);
     assert.ok(
       /\bmay not\b|\bcannot\b|\bno player\b|\bnever\b/i.test(body),
@@ -192,7 +194,7 @@ for (const fount of FOUNTS) {
       }
     }
     assert.ok(subheading, `expected a Resources sub-heading naming the ${fount} Fount`);
-    const body = subheading.lines.join(' ').replace(/\s+/g, ' ').trim();
+    const body = normalizeProse(subheading.lines.join('\n'));
     assert.ok(
       body.length > 80,
       `expected a substantive mechanic description (>80 chars) for the ${fount} Fount, got ${body.length} chars`
@@ -215,7 +217,7 @@ test('AC4: the five Fount mechanics are distinct from one another', () => {
     for (let i = resourcesIdx + 1; i < sections.length; i++) {
       if (sections[i].level <= resourcesLevel) break;
       if (new RegExp(`\\b${fount}\\b`, 'i').test(sections[i].title)) {
-        bodies.push(sections[i].lines.join(' ').replace(/\s+/g, ' ').trim().toLowerCase());
+        bodies.push(normalizeProse(sections[i].lines.join('\n')).toLowerCase());
         break;
       }
     }
@@ -239,8 +241,11 @@ test('AC5: has a Priority & Timing section', () => {
 test('AC5: Priority & Timing defines active-player priority', () => {
   const content = readRules();
   const sections = parseSections(content);
-  const body = sectionText(sections, /priority.{0,5}timing/i);
-  assert.ok(body, 'expected a Priority & Timing section to check');
+  const rawBody = sectionText(sections, /priority.{0,5}timing/i);
+  assert.ok(rawBody, 'expected a Priority & Timing section to check');
+  // Normalized: "active player" is a literal-space phrase that could
+  // otherwise be split by the rulebook's ~75-char line wrap.
+  const body = normalizeProse(rawBody);
   assert.ok(
     /active player/i.test(body) && /priority/i.test(body),
     'expected the Priority & Timing section to define what priority means for the active player'
@@ -258,8 +263,11 @@ test('AC5: Priority & Timing defines passing', () => {
 test('AC5: Priority & Timing defines what closes a priority window', () => {
   const content = readRules();
   const sections = parseSections(content);
-  const body = sectionText(sections, /priority.{0,5}timing/i);
-  assert.ok(body, 'expected a Priority & Timing section to check');
+  const rawBody = sectionText(sections, /priority.{0,5}timing/i);
+  assert.ok(rawBody, 'expected a Priority & Timing section to check');
+  // Normalized: "priority window" is a literal-space phrase that could
+  // otherwise be split by the rulebook's ~75-char line wrap.
+  const body = normalizeProse(rawBody);
   assert.ok(
     /priority window/i.test(body) && /\bclose(s|d)?\b/i.test(body),
     'expected the Priority & Timing section to define what closes a priority window'
@@ -281,6 +289,6 @@ test('AC5: Priority & Timing resolves at least one concrete timing edge case on 
     edgeCaseHeadings.length >= 1,
     'expected at least one edge-case sub-heading under Priority & Timing (e.g. simultaneous triggers, or a response arriving during resolution)'
   );
-  const body = edgeCaseHeadings[0].lines.join(' ').replace(/\s+/g, ' ').trim();
+  const body = normalizeProse(edgeCaseHeadings[0].lines.join('\n'));
   assert.ok(body.length > 100, `expected the edge case to be resolved with substantive text (>100 chars), got ${body.length} chars`);
 });

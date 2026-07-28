@@ -3,7 +3,7 @@ const test = require('node:test');
 const assert = require('node:assert');
 const fs = require('node:fs');
 const path = require('node:path');
-const { parseSections, sectionText, findSection } = require('./helpers/markdown');
+const { parseSections, sectionText, findSection, normalizeProse } = require('./helpers/markdown');
 
 const RULES_PATH = path.join(__dirname, '..', 'design', 'rules.md');
 
@@ -22,6 +22,13 @@ function deckBody() {
   const content = readRules();
   const sections = parseSections(content);
   return sectionText(sections, /deck construction/i);
+}
+
+// Prose-phrase assertions below regex-match against normalized text so a
+// phrase split across the rulebook's ~75-char line wrap still matches.
+function deckProse() {
+  const body = deckBody();
+  return body === null ? null : normalizeProse(body);
 }
 
 // ---------------------------------------------------------------------------
@@ -99,7 +106,7 @@ test('AC1: Deck Construction is appended immediately after Section 10', () => {
 // ---------------------------------------------------------------------------
 
 test('AC2: states a fixed minimum Archive size at the start of a game', () => {
-  const body = deckBody();
+  const body = deckProse();
   assert.ok(body, 'expected a Deck Construction section');
   assert.ok(/\barchive\b/i.test(body), 'expected the section to discuss the Archive');
   assert.ok(
@@ -118,7 +125,7 @@ test('AC2: states a fixed minimum Archive size at the start of a game', () => {
 // ---------------------------------------------------------------------------
 
 test('AC3: states a maximum number of copies of any one uniquely-named card', () => {
-  const body = deckBody();
+  const body = deckProse();
   assert.ok(body, 'expected a Deck Construction section');
   assert.ok(
     /may not contain more than 3 cards sharing the same name/i.test(body),
@@ -133,13 +140,13 @@ test('AC3: states a maximum number of copies of any one uniquely-named card', ()
 // ---------------------------------------------------------------------------
 
 test('AC4: cross-references Section 10.1 by section number', () => {
-  const body = deckBody();
+  const body = deckProse();
   assert.ok(body, 'expected a Deck Construction section');
   assert.ok(/section 10\.1/i.test(body), 'expected an explicit cross-reference to Section 10.1');
 });
 
 test('AC4: the cross-reference ties the minimum Archive size to the draw-with-empty-Archive condition', () => {
-  const body = deckBody();
+  const body = deckProse();
   assert.ok(body, 'expected a Deck Construction section');
   assert.ok(/section 10\.1/i.test(body), 'expected an explicit cross-reference to Section 10.1');
   assert.ok(

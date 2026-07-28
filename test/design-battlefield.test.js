@@ -3,7 +3,7 @@ const test = require('node:test');
 const assert = require('node:assert');
 const fs = require('node:fs');
 const path = require('node:path');
-const { parseSections, sectionText, findSection } = require('./helpers/markdown');
+const { parseSections, sectionText, findSection, normalizeProse } = require('./helpers/markdown');
 
 const RULES_PATH = path.join(__dirname, '..', 'design', 'rules.md');
 
@@ -22,6 +22,13 @@ function battlefieldBody() {
   const content = readRules();
   const sections = parseSections(content);
   return sectionText(sections, /spatial battlefield/i);
+}
+
+// Prose-phrase assertions below regex-match against normalized text so a
+// phrase split across the rulebook's ~75-char line wrap still matches.
+function battlefieldProse() {
+  const body = battlefieldBody();
+  return body === null ? null : normalizeProse(body);
 }
 
 // ---------------------------------------------------------------------------
@@ -57,7 +64,7 @@ test('AC1: covers planets as graph nodes and wormholes as edges with a length at
 });
 
 test('AC1: covers homeworld start', () => {
-  const body = battlefieldBody();
+  const body = battlefieldProse();
   assert.ok(/homeworld/i.test(body), 'expected homeworld rules');
   assert.ok(
     /begins? the game controlling|start(s|ing)? the game/i.test(body),
@@ -66,7 +73,7 @@ test('AC1: covers homeworld start', () => {
 });
 
 test('AC1: discovering an unexplored world costs less than discovering toward an enemy/contested world', () => {
-  const body = battlefieldBody();
+  const body = battlefieldProse();
   assert.ok(
     /frontier discovery/i.test(body) && /contested discovery/i.test(body),
     'expected both a Frontier and a Contested Discovery variant'
@@ -78,14 +85,14 @@ test('AC1: discovering an unexplored world costs less than discovering toward an
 });
 
 test('AC1: wormholes can be restricted by direction, team, and unit type', () => {
-  const body = battlefieldBody();
+  const body = battlefieldProse();
   assert.ok(/directional restriction|one-way/i.test(body), 'expected a direction-based restriction');
   assert.ok(/team restriction|allied/i.test(body), 'expected a team-based restriction');
   assert.ok(/unit-type restriction/i.test(body), 'expected a unit-type restriction');
 });
 
 test('AC1: wormholes can be closed, and closure removes the edge from the graph', () => {
-  const body = battlefieldBody();
+  const body = battlefieldProse();
   assert.ok(/\bclosed\b/i.test(body) && /\bclosure\b/i.test(body), 'expected Closure rules');
   assert.ok(
     /removed from the battlefield graph|no longer adjacent/i.test(body),
@@ -101,8 +108,11 @@ test('AC1: wormholes can be closed, and closure removes the edge from the graph'
 test('AC2: the Resources section states Generators are built on a specific planet', () => {
   const content = readRules();
   const sections = parseSections(content);
-  const body = sectionText(sections, /resources/i);
-  assert.ok(body, 'expected a Resources section');
+  const rawBody = sectionText(sections, /resources/i);
+  assert.ok(rawBody, 'expected a Resources section');
+  // Normalized: "built on" is a literal-space phrase that could otherwise be
+  // split by the rulebook's ~75-char line wrap.
+  const body = normalizeProse(rawBody);
   assert.ok(
     /built on/i.test(body) && /planet/i.test(body),
     'expected Resources to state Generators are built on a specific planet'
@@ -110,7 +120,7 @@ test('AC2: the Resources section states Generators are built on a specific plane
 });
 
 test('AC2: rules state what happens to a Generator when its planet is contested (Blockaded)', () => {
-  const body = battlefieldBody();
+  const body = battlefieldProse();
   assert.ok(/blockad/i.test(body), 'expected Blockade rules');
   assert.ok(/stops? producing|does not produce/i.test(body), 'expected Blockade to halt Generator production');
 });

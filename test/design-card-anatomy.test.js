@@ -3,7 +3,7 @@ const test = require('node:test');
 const assert = require('node:assert');
 const fs = require('node:fs');
 const path = require('node:path');
-const { parseSections, sectionText, findSection } = require('./helpers/markdown');
+const { parseSections, sectionText, findSection, normalizeProse } = require('./helpers/markdown');
 
 const ANATOMY_PATH = path.join(__dirname, '..', 'design', 'cards', 'card-anatomy.md');
 const CARDS_PATH = path.join(__dirname, '..', 'design', 'cards', 'alpha-set.md');
@@ -135,8 +135,11 @@ test('AC4: The Variables ties Frame/Border color identity to the Fount(s)', () =
 });
 
 test('AC4: The Variables states a rendering rule for cards with more than one Fount', () => {
-  const body = sectionText(anatomySections, /^the variables$/i);
-  assert.ok(body, 'expected a "The Variables" section to check');
+  const rawBody = sectionText(anatomySections, /^the variables$/i);
+  assert.ok(rawBody, 'expected a "The Variables" section to check');
+  // Normalized: "more than one Fount" is a literal-space phrase that could
+  // otherwise be split by the rulebook's ~75-char line wrap.
+  const body = normalizeProse(rawBody);
   assert.ok(
     /more than one Fount/i.test(body),
     'expected an explicit statement covering cards with more than one Fount in their cost'
@@ -162,13 +165,19 @@ for (const treatment of REQUIRED_TREATMENTS) {
     assert.ok(body, 'expected a "The Layers" section to check');
     const nameRe = new RegExp(`\\*\\*${escapeRegExp(treatment)}\\*\\*`);
     assert.ok(nameRe.test(body), `expected a bolded "${treatment}" treatment`);
-    assert.ok(/layer swap/i.test(body), 'expected treatments to be described as a "layer swap"');
+    // Normalized: "layer swap" is a literal-space phrase that could
+    // otherwise be split by the rulebook's ~75-char line wrap.
+    assert.ok(/layer swap/i.test(normalizeProse(body)), 'expected treatments to be described as a "layer swap"');
   });
 }
 
 test('AC2: The Layers states an explicit cohesion rule about what may not change', () => {
-  const body = sectionText(anatomySections, /^the layers$/i);
-  assert.ok(body, 'expected a "The Layers" section to check');
+  const rawBody = sectionText(anatomySections, /^the layers$/i);
+  assert.ok(rawBody, 'expected a "The Layers" section to check');
+  // Normalized: "cohesion rule" and the phrase below are literal-space
+  // phrases that could otherwise be split by the rulebook's ~75-char line
+  // wrap.
+  const body = normalizeProse(rawBody);
   assert.ok(/cohesion rule/i.test(body), 'expected an explicit "Cohesion rule" statement');
   assert.ok(
     /may never change in content/i.test(body),

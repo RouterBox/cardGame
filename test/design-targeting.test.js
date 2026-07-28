@@ -3,7 +3,7 @@ const test = require('node:test');
 const assert = require('node:assert');
 const fs = require('node:fs');
 const path = require('node:path');
-const { parseSections, sectionText, findSection } = require('./helpers/markdown');
+const { parseSections, sectionText, findSection, normalizeProse } = require('./helpers/markdown');
 
 const RULES_PATH = path.join(__dirname, '..', 'design', 'rules.md');
 
@@ -24,6 +24,13 @@ function topLevelSections(content) {
 
 function targetingBody() {
   return sectionText(rulesSections(), /^13\.\s+targeting/i);
+}
+
+// Prose-phrase assertions below regex-match against normalized text so a
+// phrase split across the rulebook's ~75-char line wrap still matches.
+function targetingProse() {
+  const body = targetingBody();
+  return body === null ? null : normalizeProse(body);
 }
 
 // ---------------------------------------------------------------------------
@@ -75,7 +82,7 @@ test('AC1: "13. Targeting" is a level-2 heading with a non-empty body', () => {
 // ---------------------------------------------------------------------------
 
 test('AC2: Targeting states a target is chosen when the card/ability is added to the Queue, not when it resolves', () => {
-  const body = targetingBody();
+  const body = targetingProse();
   assert.ok(body, 'expected a Targeting section body');
   assert.ok(
     /target is chosen[^.]*added to the Queue/i.test(body),
@@ -88,7 +95,7 @@ test('AC2: Targeting states a target is chosen when the card/ability is added to
 });
 
 test('AC2: Targeting states a target must be legal at the moment it is chosen', () => {
-  const body = targetingBody();
+  const body = targetingProse();
   assert.ok(body, 'expected a Targeting section body');
   assert.ok(
     /must be a legal target at that moment/i.test(body),
@@ -103,7 +110,7 @@ test('AC2: Targeting states a target must be legal at the moment it is chosen', 
 // ---------------------------------------------------------------------------
 
 test('AC3: Targeting states target legality is rechecked immediately before the entry resolves', () => {
-  const body = targetingBody();
+  const body = targetingProse();
   assert.ok(body, 'expected a Targeting section body');
   assert.ok(
     /rechecked immediately before the entry[^.]*resolves/i.test(body),
@@ -112,7 +119,7 @@ test('AC3: Targeting states target legality is rechecked immediately before the 
 });
 
 test('AC3: Targeting states an entry with exactly one illegal target at recheck fizzles: does nothing and is removed from the Queue', () => {
-  const body = targetingBody();
+  const body = targetingProse();
   assert.ok(body, 'expected a Targeting section body');
   assert.ok(
     /exactly one target[^.]*not a legal target[^.]*fizzles/i.test(body),

@@ -34,4 +34,12 @@ function sectionText(sections, titleRegex) {
   return body;
 }
 
-module.exports = { parseSections, findSection, sectionText };
+// Collapses all whitespace runs (including newlines from the rulebook's
+// ~75-char line wrapping) to a single space and trims the ends. Lets prose
+// regex assertions match phrases regardless of where the source markdown
+// happens to wrap a line.
+function normalizeProse(text) {
+  return text.replace(/\s+/g, ' ').trim();
+}
+
+module.exports = { parseSections, findSection, sectionText, normalizeProse };

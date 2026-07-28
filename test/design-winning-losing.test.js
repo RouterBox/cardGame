@@ -3,7 +3,7 @@ const test = require('node:test');
 const assert = require('node:assert');
 const fs = require('node:fs');
 const path = require('node:path');
-const { parseSections, sectionText, findSection } = require('./helpers/markdown');
+const { parseSections, sectionText, findSection, normalizeProse } = require('./helpers/markdown');
 
 const RULES_PATH = path.join(__dirname, '..', 'design', 'rules.md');
 
@@ -22,6 +22,13 @@ function endgameBody() {
   const content = readRules();
   const sections = parseSections(content);
   return sectionText(sections, /winning.{0,5}losing/i);
+}
+
+// Prose-phrase assertions below regex-match against normalized text so a
+// phrase split across the rulebook's ~75-char line wrap still matches.
+function endgameProse() {
+  const body = endgameBody();
+  return body === null ? null : normalizeProse(body);
 }
 
 // ---------------------------------------------------------------------------
@@ -60,14 +67,14 @@ test('AC1: no existing numbered section is removed or renumbered (Sections 1-9 r
 });
 
 test('AC1: defines a player-elimination condition tied to Core Integrity reaching 0', () => {
-  const body = endgameBody();
+  const body = endgameProse();
   assert.ok(body, 'expected a Winning & Losing Conditions section');
   assert.ok(/eliminat/i.test(body), 'expected elimination language');
   assert.ok(/core integrity/i.test(body) && /reduced to 0|reaches? 0/i.test(body), 'expected an elimination condition tied to Core Integrity reaching 0');
 });
 
 test('AC1: cross-references Section 8\'s Capture rule by section number rather than restating it', () => {
-  const body = endgameBody();
+  const body = endgameProse();
   assert.ok(body, 'expected a Winning & Losing Conditions section');
   assert.ok(/section 8\.\d/i.test(body), 'expected an explicit cross-reference to a Section 8.x subsection');
   assert.ok(/captur/i.test(body), 'expected the section to discuss Capture in relation to elimination');
@@ -80,7 +87,7 @@ test('AC1: cross-references Section 8\'s Capture rule by section number rather t
 // ---------------------------------------------------------------------------
 
 test('AC2: states the game ends when a single challenger remains un-eliminated', () => {
-  const body = endgameBody();
+  const body = endgameProse();
   assert.ok(body, 'expected a Winning & Losing Conditions section');
   assert.ok(
     /only one challenger remains|one challenger remains un-eliminated/i.test(body),
@@ -89,14 +96,14 @@ test('AC2: states the game ends when a single challenger remains un-eliminated',
 });
 
 test('AC2: states an explicit draw condition', () => {
-  const body = endgameBody();
+  const body = endgameProse();
   assert.ok(body, 'expected a Winning & Losing Conditions section');
   assert.ok(/\bdraw\b/i.test(body), 'expected a draw result to be named');
   assert.ok(/same instant|simultaneous/i.test(body), 'expected the draw to be tied to simultaneous elimination');
 });
 
 test('AC2: states how turns proceed once a challenger is eliminated', () => {
-  const body = endgameBody();
+  const body = endgameProse();
   assert.ok(body, 'expected a Winning & Losing Conditions section');
   assert.ok(
     /no further turn|does not continue/i.test(body),
@@ -181,7 +188,7 @@ test('AC4: the Glossary/Vocabulary section precedes the Winning & Losing Conditi
 // ---------------------------------------------------------------------------
 
 test('AC5: does not claim a Homeworld can be Captured (must stay consistent with Section 8.2/8.6)', () => {
-  const body = endgameBody();
+  const body = endgameProse();
   assert.ok(body, 'expected a Winning & Losing Conditions section');
   assert.ok(
     /may not be captured/i.test(body),

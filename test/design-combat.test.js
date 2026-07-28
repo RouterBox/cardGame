@@ -3,7 +3,7 @@ const test = require('node:test');
 const assert = require('node:assert');
 const fs = require('node:fs');
 const path = require('node:path');
-const { parseSections, sectionText, findSection } = require('./helpers/markdown');
+const { parseSections, sectionText, findSection, normalizeProse } = require('./helpers/markdown');
 
 const RULES_PATH = path.join(__dirname, '..', 'design', 'rules.md');
 
@@ -24,6 +24,13 @@ function topLevelSections(content) {
 
 function combatBody() {
   return sectionText(rulesSections(), /^12\.\s+combat resolution/i);
+}
+
+// Prose-phrase assertions below regex-match against normalized text so a
+// phrase split across the rulebook's ~75-char line wrap still matches.
+function combatProse() {
+  const body = combatBody();
+  return body === null ? null : normalizeProse(body);
 }
 
 // ---------------------------------------------------------------------------
@@ -76,7 +83,7 @@ test('AC1: "12. Combat Resolution" has a non-empty section body', () => {
 // ---------------------------------------------------------------------------
 
 test('AC2: Combat Resolution states a blocked attacker deals its combat strength as damage to its blocker(s) instead of Core Integrity', () => {
-  const body = combatBody();
+  const body = combatProse();
   assert.ok(body, 'expected a Combat Resolution section body');
   assert.ok(/\bblocked\b/i.test(body) && /\bblocker/i.test(body), 'expected the section to discuss blocked attackers and blockers');
   assert.ok(
@@ -95,7 +102,7 @@ test('AC2: Combat Resolution states a blocked attacker deals its combat strength
 // ---------------------------------------------------------------------------
 
 test('AC3: Combat Resolution states the attacking/active player chooses damage assignment order among multiple blockers', () => {
-  const body = combatBody();
+  const body = combatProse();
   assert.ok(body, 'expected a Combat Resolution section body');
   assert.ok(/more than one blocker/i.test(body), 'expected the section to address the multiple-blocker case');
   assert.ok(

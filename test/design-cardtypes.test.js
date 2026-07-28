@@ -3,7 +3,7 @@ const test = require('node:test');
 const assert = require('node:assert');
 const fs = require('node:fs');
 const path = require('node:path');
-const { parseSections, sectionText, findSection } = require('./helpers/markdown');
+const { parseSections, sectionText, findSection, normalizeProse } = require('./helpers/markdown');
 
 const RULES_PATH = path.join(__dirname, '..', 'design', 'rules.md');
 
@@ -128,16 +128,22 @@ test('AC3: has a Multiple Types and Multiple Costs subsection', () => {
 
 test("AC3: states total cost across multiple Founts is a sum, paid from each Fount's own pool", () => {
   const sections = parseSections(readRules());
-  const body = sectionText(sections, /multiple types.{0,10}multiple costs/i);
-  assert.ok(body, 'expected a Multiple Types and Multiple Costs section to check');
+  const rawBody = sectionText(sections, /multiple types.{0,10}multiple costs/i);
+  assert.ok(rawBody, 'expected a Multiple Types and Multiple Costs section to check');
+  // Normalized: "MAY NOT" is a literal-space phrase that could otherwise be
+  // split by the rulebook's ~75-char line wrap.
+  const body = normalizeProse(rawBody);
   assert.ok(/\bsum\b/i.test(body), 'expected the total cost to be described as a sum');
   assert.ok(/\bMAY NOT\b/.test(body), 'expected an explicit MAY NOT on substituting one Fount for another');
 });
 
 test('AC3: states which type-specific rules apply when a card lists multiple types', () => {
   const sections = parseSections(readRules());
-  const body = sectionText(sections, /multiple types.{0,10}multiple costs/i);
-  assert.ok(body, 'expected a Multiple Types and Multiple Costs section to check');
+  const rawBody = sectionText(sections, /multiple types.{0,10}multiple costs/i);
+  assert.ok(rawBody, 'expected a Multiple Types and Multiple Costs section to check');
+  // Normalized: the phrase below is a literal-space phrase that could
+  // otherwise be split by the rulebook's ~75-char line wrap.
+  const body = normalizeProse(rawBody);
   assert.ok(
     /every rule stated for each of its listed types/i.test(body),
     'expected a stated rule for which type-specific rules apply on a multi-type card'

@@ -3,7 +3,7 @@ const test = require('node:test');
 const assert = require('node:assert');
 const fs = require('node:fs');
 const path = require('node:path');
-const { parseSections, sectionText, findSection } = require('./helpers/markdown');
+const { parseSections, sectionText, findSection, normalizeProse } = require('./helpers/markdown');
 
 const RULES_PATH = path.join(__dirname, '..', 'design', 'rules.md');
 const PLAYTEST_PATH = path.join(__dirname, '..', 'design', 'playtest-spatial.md');
@@ -45,7 +45,10 @@ test('AC1: 8.8 states whether the starting map is fixed, drafted, or symmetric',
 });
 
 test('AC1: 8.8 specifies the starting Planet count', () => {
-  const body = mapSetupBody();
+  // Normalized: "planet count is exactly two" / "exactly two planets" are
+  // literal-space phrases that could otherwise be split by the rulebook's
+  // ~75-char line wrap.
+  const body = normalizeProse(mapSetupBody() || '');
   assert.ok(body, 'expected an 8.8 Map Setup section body');
   assert.ok(
     /\btwo\b[^.]*planet|planet count is exactly two|exactly two planets/i.test(body),
