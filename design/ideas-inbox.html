@@ -89,14 +89,14 @@ section h2 { margin-top: 2rem; }
 <p>  itself a battlefield: cut a chokepoint, strand a fleet, seal your flank.</p>
 <ul><li>Combos with race identity: the Concord discovering more cheaply (Signal),</li></ul>
 <p>  the Communion bending wormhole rules (Tangle), the Reach fortifying them.</p>
-<h2>2026-07-27 — characters per race (from RouterBox, verbatim)</h2>
+<h2>2026-07-27 — characters per race (from RouterBox, verbatim) [incorporated: cardgame-race-characters]</h2>
 <blockquote><p>&quot;Also want 3 to 5 characters per race with individual but interlinking narratives.&quot;</p></blockquote>
 <p>Implications to design through:</p>
 <ul><li>3–5 named characters for EACH of the five races (15–25 total).</li><li>Each character carries an INDIVIDUAL narrative — their own story, wants,</li></ul>
 <p>  and arc — usable later as legendary/hero card identities and art briefs.</p>
 <ul><li>The narratives INTERLINK: characters reference and collide with characters</li></ul>
 <p>  from other races, so the roster reads as one connected galaxy-scale story,   not five isolated cast lists.</p>
-<h2>2026-07-28 — card anatomy as layered compound object (from RouterBox, verbatim)</h2>
+<h2>2026-07-28 — card anatomy as layered compound object (from RouterBox, verbatim) [incorporated: cardgame-card-anatomy-skeleton]</h2>
 <blockquote><p>&quot;So thinking about other tcg cards, there is usually a border/frame with name/cost/other decorating variables/ then an art field and a text field. Then premium versions of cards will do like borderless, foil, alt art, etc premium treatments. But think of those as like &#39;layers&#39; of a compound object. Only the variables vary, and the card maintain a cohesive look because of the shared skeleton/base care design.&quot;</p></blockquote>
 <p>Implications to design through:</p>
 <ul><li>A card is a COMPOUND OBJECT: one shared skeleton/base design (frame,</li></ul>
@@ -105,7 +105,7 @@ section h2 { margin-top: 2rem; }
 <p>  swapped onto the same skeleton, not separate card designs — cohesion   comes from the shared base.</p>
 <ul><li>This is the bridge from text design to graphics: the skeleton spec must</li></ul>
 <p>  exist before any art is commissioned, so art fields have known shapes,   and frame variables (e.g. Fount color identity) have defined slots.</p>
-<h2>2026-07-28 — deterministic card authoring engine + gen-AI art only in the art slot (from RouterBox, verbatim)</h2>
+<h2>2026-07-28 — deterministic card authoring engine + gen-AI art only in the art slot (from RouterBox, verbatim) [incorporated: cardgame-card-authoring-engine]</h2>
 <blockquote><p>&quot;yeah and so image generators are notoriously bad at these structured elements like text and currency symbols, etc, and will have trouble holding the card style together between runs of different cards. what you wanna use leonardo for is just the art in the art layer, but you wanna more deterministically fill out the structured elements of the card with a deterministic card authoring engine that slots in the gen ai art into that slot.&quot;</p></blockquote>
 <p>Implications to design through:</p>
 <ul><li>Division of labor: Leonardo (gen AI) produces ONLY the art-window image.</li></ul>
@@ -114,7 +114,7 @@ section h2 { margin-top: 2rem; }
 <p>  consistent card style across separate runs; determinism is what makes   the shared skeleton actually shared.</p>
 <ul><li>The card-anatomy skeleton spec is therefore also the engine&#39;s input</li></ul>
 <p>  contract: each zone the anatomy defines becomes a render slot the engine   fills from card data (alpha-set.md entries are the data source).</p>
-<h2>2026-07-28 — software gate ruling: tools yes, game implementation no (from RouterBox, verbatim)</h2>
+<h2>2026-07-28 — software gate ruling: tools yes, game implementation no (from RouterBox, verbatim) [incorporated: cardgame-design-browser-site]</h2>
 <blockquote><p>&quot;software for the game implementation is off limits but we can build tools for content generation and game authoring. For instance I think we also need a simple website to browse the game plans and concepts generated. I need to be able to see what we got without going over to my computer and picking through files and folders&quot;</p></blockquote>
 <p>Implications:</p>
 <ul><li>The software gate is now PARTIALLY open, with a clear line: game</li></ul>
