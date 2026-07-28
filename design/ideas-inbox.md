@@ -46,7 +46,7 @@ Implications to design through (extends the spatial-layer entry above):
 - Combos with race identity: the Concord discovering more cheaply (Signal),
   the Communion bending wormhole rules (Tangle), the Reach fortifying them.
 
-## 2026-07-27 — characters per race (from RouterBox, verbatim)
+## 2026-07-27 — characters per race (from RouterBox, verbatim) [incorporated: cardgame-race-characters]
 
 > "Also want 3 to 5 characters per race with individual but interlinking
 > narratives."
@@ -59,7 +59,7 @@ Implications to design through:
   from other races, so the roster reads as one connected galaxy-scale story,
   not five isolated cast lists.
 
-## 2026-07-28 — card anatomy as layered compound object (from RouterBox, verbatim)
+## 2026-07-28 — card anatomy as layered compound object (from RouterBox, verbatim) [incorporated: cardgame-card-anatomy-skeleton]
 
 > "So thinking about other tcg cards, there is usually a border/frame with
 > name/cost/other decorating variables/ then an art field and a text field.
@@ -79,7 +79,7 @@ Implications to design through:
   exist before any art is commissioned, so art fields have known shapes,
   and frame variables (e.g. Fount color identity) have defined slots.
 
-## 2026-07-28 — deterministic card authoring engine + gen-AI art only in the art slot (from RouterBox, verbatim)
+## 2026-07-28 — deterministic card authoring engine + gen-AI art only in the art slot (from RouterBox, verbatim) [incorporated: cardgame-card-authoring-engine]
 
 > "yeah and so image generators are notoriously bad at these structured
 > elements like text and currency symbols, etc, and will have trouble
@@ -101,7 +101,7 @@ Implications to design through:
   contract: each zone the anatomy defines becomes a render slot the engine
   fills from card data (alpha-set.md entries are the data source).
 
-## 2026-07-28 — software gate ruling: tools yes, game implementation no (from RouterBox, verbatim)
+## 2026-07-28 — software gate ruling: tools yes, game implementation no (from RouterBox, verbatim) [incorporated: cardgame-design-browser-site]
 
 > "software for the game implementation is off limits but we can build tools
 > for content generation and game authoring. For instance I think we also
