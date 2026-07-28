@@ -121,6 +121,16 @@ redefine it.
 - **Capture** — the result of a further Assault against an already-Blockaded
   Planet: control passes to the assaulting challenger and every Generator on
   the Planet is destroyed (Section 8.6).
+- **Eliminated** — a challenger removed from the rest of the game because
+  they have met an elimination condition (Section 10.1); an Eliminated
+  challenger takes no further turns and receives no further priority
+  (Section 10.2).
+- **Game end** — the moment, defined in Section 10.2, at which the game
+  stops: either because only one challenger remains un-Eliminated, or
+  because every challenger is Eliminated at the same instant. Nothing
+  changes in the game after Game End.
+- **Draw** — the Game End (Section 10.2) result when every challenger is
+  Eliminated at the same instant; a draw has no winner.
 - **Card Type** — one of the five categories a card may belong to: Magic,
   Technology, Intelligence, Biology, or Materials (Section 9); a card may
   belong to more than one (Section 9.7).
@@ -675,3 +685,82 @@ pool alone. Its type line lists Magic, an instant/sorcery-speed resolving
 type, and Technology, a permanent type; per the rule above, the presence
 of Technology makes the whole card a Permanent, so Reactive Turret stays
 on the Field once played rather than resolving to the Wreck.
+
+## 10. Winning & Losing Conditions
+
+Section 1 already states, in prose, the two ways a challenger's game can
+end: a challenger's home base being reduced to nothing, or a challenger
+being unable to draw a required card. This section gives those events a
+name — **Elimination** — states exactly when the game itself ends, and
+resolves a concrete edge case at the same rigor as Section 8's Blockade
+and Capture rules. Nothing in this section changes or restates any rule
+already stated in Sections 1-9; where a rule already exists, this section
+cross-references it by section number instead.
+
+### 10.1 Player Elimination
+
+A challenger is **Eliminated** the instant either of the following happens:
+
+1. Their Core Integrity is reduced to 0 (Section 2's Home base and Core
+   Integrity terms; Section 1).
+2. They are required to draw a card during their Dawn Phase (Section 5.1)
+   and their Archive holds no card to draw (Section 1).
+
+Elimination happens immediately when its condition is met — even in the
+middle of a single Queue entry's resolution (Section 6.2) or during
+another challenger's turn — and is never itself added to the Queue, so it
+cannot be responded to.
+
+Capturing a Planet (Section 8.6) is not, on its own, an elimination
+condition, and this section does not add one. A Homeworld specifically
+may not be captured (Section 8.2, Section 8.6), so Capture never reduces
+a challenger's Core Integrity directly. Capturing a non-Homeworld Planet
+does destroy every Generator on it (Section 8.6), which can starve a
+challenger of Fount Points and make it easier for their opponent to
+eventually force the Core Integrity condition above — but that later
+reduction of Core Integrity, not the Capture itself, is what would
+Eliminate them.
+
+### 10.2 Game End
+
+The game ends the instant only one challenger remains un-Eliminated
+(Section 10.1); that challenger wins immediately.
+
+Every game under this rulebook is played between exactly two challengers
+(Section 1). Because of this, Eliminating either challenger always leaves
+exactly one challenger un-Eliminated, except in the simultaneous case
+below — so Elimination and Game End are the same event: the instant one
+challenger is Eliminated, the other has already won, and no further turn
+is taken. The turn structure of Section 5 does not continue past the turn
+in which the Elimination happened, no matter which phase that turn had
+reached.
+
+If both challengers meet an elimination condition (Section 10.1) at the
+same instant, the game ends in a **draw**: neither challenger wins, and,
+as above, no further turn is taken.
+
+### 10.3 Worked Example: Simultaneous Elimination
+
+This example picks up during Reva's Main Phase (Section 5.3), with Reva's
+Core Integrity at 4 and Toma's Core Integrity at 4. One entry already sits
+in the Queue: a Fast card Toma played earlier this Main Phase, reading
+"When this resolves, deal 4 damage to each challenger."
+
+1. The Queue holds only this one entry, and both challengers have now
+   passed in succession (Section 6), so the current priority window
+   closes and the entry resolves.
+2. Resolving deals 4 damage to Reva and 4 damage to Toma, as part of the
+   same, single resolution (Section 6.2: an entry finishes resolving
+   completely before anything else happens). Reva's Core Integrity drops
+   from 4 to 0 and Toma's drops from 4 to 0, in the same instant.
+3. Both challengers meet the Core Integrity elimination condition (Section
+   10.1) at that same instant, so the game ends in a draw (Section 10.2).
+   Neither the rest of the Main Phase, nor the Conflict Phase, nor any
+   later phase of this turn is reached — the turn, and the game, end here.
+
+This confirms, on paper, that because this rules set resolves a Queue
+entry's full effect atomically before anything else happens (Section
+6.2), a single symmetric effect can Eliminate both challengers in the same
+instant, ending the game in a draw rather than letting whichever
+challenger happened to be checked first "win" a race the shared effect
+never created.
