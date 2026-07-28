@@ -31,14 +31,17 @@ const CARDS_NOT_YET_WIRED_FOR_SYNC = new Set(['frontier-set.md']);
 function loadAllCards() {
   const files = fs
     .readdirSync(CARDS_DIR, { withFileTypes: true })
-    .filter(
-      (entry) =>
-        entry.isFile() && entry.name.endsWith('.md') && !CARDS_NOT_YET_WIRED_FOR_SYNC.has(entry.name)
-    )
+    .filter((entry) => entry.isFile() && entry.name.endsWith('.md'))
     .map((entry) => entry.name)
     .sort();
   const cards = [];
   for (const file of files) {
+    if (CARDS_NOT_YET_WIRED_FOR_SYNC.has(file)) {
+      console.warn(
+        `tools/sync-cards-to-jaina.js: skipping ${file} — not yet wired for sync (see comment above CARDS_NOT_YET_WIRED_FOR_SYNC in this file).`
+      );
+      continue;
+    }
     cards.push(...loadCardsFromFile(path.join(CARDS_DIR, file)));
   }
   return cards;

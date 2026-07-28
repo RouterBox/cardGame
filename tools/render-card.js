@@ -64,14 +64,17 @@ const CARDS_NOT_YET_WIRED_FOR_RENDER = new Set(['frontier-set.md']);
 function loadAllCards() {
   const files = fs
     .readdirSync(CARDS_DIR, { withFileTypes: true })
-    .filter(
-      (entry) =>
-        entry.isFile() && entry.name.endsWith('.md') && !CARDS_NOT_YET_WIRED_FOR_RENDER.has(entry.name)
-    )
+    .filter((entry) => entry.isFile() && entry.name.endsWith('.md'))
     .map((entry) => entry.name)
     .sort();
   const cards = [];
   for (const file of files) {
+    if (CARDS_NOT_YET_WIRED_FOR_RENDER.has(file)) {
+      console.warn(
+        `tools/render-card.js: skipping ${file} — not yet wired for render (see comment above CARDS_NOT_YET_WIRED_FOR_RENDER in this file).`
+      );
+      continue;
+    }
     cards.push(...loadCardsFromFile(path.join(CARDS_DIR, file)));
   }
   return cards;
