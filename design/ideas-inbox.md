@@ -100,3 +100,20 @@ Implications to design through:
 - The card-anatomy skeleton spec is therefore also the engine's input
   contract: each zone the anatomy defines becomes a render slot the engine
   fills from card data (alpha-set.md entries are the data source).
+
+## 2026-07-28 — software gate ruling: tools yes, game implementation no (from RouterBox, verbatim)
+
+> "software for the game implementation is off limits but we can build tools
+> for content generation and game authoring. For instance I think we also
+> need a simple website to browse the game plans and concepts generated. I
+> need to be able to see what we got without going over to my computer and
+> picking through files and folders"
+
+Implications:
+- The software gate is now PARTIALLY open, with a clear line: game
+  IMPLEMENTATION (rules engine, gameplay client) stays off-limits; TOOLS
+  for content generation and game authoring are allowed — the card
+  authoring engine qualifies, as does a design-browser website.
+- First tool request: a simple website to browse the design shelf (plans,
+  world, races, characters, rules, cards) readable from the phone — no
+  file-picking on the computer.
