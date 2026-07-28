@@ -115,3 +115,10 @@ Append-only requirements traceability log — one section per archived work item
 - AC2 [paraphrase]: design/ideas-inbox.md's 'card anatomy as layered compound object' and 'deterministic card authoring engine' headings end with '[incorporated: cardgame-card-anatomy-skeleton]' and '[incorporated: cardgame-card-authoring-engine]' respectively. — no receipt (escalated before receipt computation)
 - AC3 [inferred]: design/ideas-inbox.md's 'software gate ruling' heading ends with '[incorporated: cardgame-design-browser-site]', and the 'use Jaina as the content backbone' heading remains untagged since its corresponding unit has not shipped yet. — no receipt (escalated before receipt computation)
 - AC4 [inferred] (held_out): design/ideas-inbox.md still contains exactly 6 '## ' entry headings after the edit (none added, none removed, none reordered) and every '>' verbatim quote block is byte-identical to before — this unit changes only heading-line tags. — no receipt (escalated before receipt computation)
+
+## 2026-07-28-cardgame-art-compositing-dryrun-cardgame-tool-mocked-art-compositing-pass-fills-the-art-window-from-the-written-briefs.md
+
+- AC1 [user]: tools/composite-card-art.js exists; running `node tools/composite-card-art.js` exits 0 and writes exactly one composited SVG per brief section in design/cards/art-briefs.md into renders/cards-composited/. — no receipt (escalated before receipt computation)
+- AC2 [paraphrase]: Each composited SVG's Art Window slot contains an <image> element (not the placeholder rect) positioned and sized to match the Art Window bounds defined in design/cards/card-anatomy.md. — no receipt (escalated before receipt computation)
+- AC3 [inferred]: Image generation goes through an injectable client; the default/test client is a deterministic mock that makes no network calls and requires no Leonardo API key, so `node --test` runs fully offline. — no receipt (escalated before receipt computation)
+- AC4 [inferred] (held_out): Running the script twice in a row with the mock client produces byte-identical output across all composited SVGs, verifiable by hashing. — no receipt (escalated before receipt computation)
