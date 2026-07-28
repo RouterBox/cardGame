@@ -99,3 +99,12 @@ Append-only requirements traceability log — one section per archived work item
 - AC2 [paraphrase]: design/playtest-spatial.md exists and contains a numbered step-by-step procedure that two humans can follow with physical materials (e.g. a drawn graph, tokens, index cards) to set up and play a full game using the Spatial Battlefield rules. — PASS
 - AC3 [inferred]: design/playtest-spatial.md's steps cite specific rules.md Section 8 subsection numbers (8.1 through 8.7, plus the new 8.8) at the points where each spatial mechanic first comes into play, so a playtester can cross-check any step against the exact rule text. — PASS
 - AC4 [inferred] (held_out): The new 8.8 Map Setup section does not silently redefine any term already defined in Section 2's Glossary (per rules.md's own stated convention that later sections may repeat but not redefine a term). — PASS
+
+## 2026-07-28-cardgame-design-shelf-server-design-shelf-lan-server.md
+
+- AC1 [paraphrase]: tools/serve-site.js exists and starts a Node http server that serves files from the site/ directory — no receipt (escalated before receipt computation)
+- AC2 [inferred]: An npm script named site:serve runs tools/serve-site.js — no receipt (escalated before receipt computation)
+- AC3 [paraphrase]: The server binds host 0.0.0.0 by default (overridable) so it is reachable from other devices on the same LAN, not just localhost — no receipt (escalated before receipt computation)
+- AC4 [inferred]: GET / returns HTTP 200 and the design-shelf index.html body — no receipt (escalated before receipt computation)
+- AC5 [inferred] (held_out): Requests for a nonexistent path return HTTP 404 instead of crashing the server process — no receipt (escalated before receipt computation)
+- AC6 [inferred] (held_out): Served .html and .svg files include correct Content-Type response headers — no receipt (escalated before receipt computation)
