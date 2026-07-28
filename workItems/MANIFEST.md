@@ -62,3 +62,12 @@ Append-only requirements traceability log — one section per archived work item
 - AC5 [inferred]: Ends with a short 'current era' section describing the state of the world at the point the Alpha card set is set, giving future card flavor text a fixed narrative anchor. — no receipt (escalated before receipt computation)
 - AC6 [inferred] (held_out): The file opens with a summary paragraph naming how many eras/periods it covers and which races the central conflict(s) involve, so scope is checkable without reading the full document. — no receipt (escalated before receipt computation)
 - AC7 [inferred] (held_out): No single era or event description exceeds roughly one page (about 500 words), keeping the document skimmable rather than turning into a novel. — no receipt (escalated before receipt computation)
+
+## 2026-07-28-cardgame-card-authoring-engine-cardgame-tool-deterministic-card-layout-renderer.md
+
+- AC1 [inferred]: Running `node tools/render-card.js` exits 0 and produces exactly one SVG file under renders/cards/ for every card entry found in design/cards/alpha-set.md. — PASS
+- AC2 [paraphrase]: The rendered SVG for Signal-Wrought Prototype (Cost line '1 Signal, 1 Circuit') shows a Frame/Border split into two equal vertical bands, cyan then copper left-to-right, matching card-anatomy.md's worked example. — PASS
+- AC3 [paraphrase]: The rendered SVG for Sporeknit Warden (Cost line '3 Bloom') shows a single solid green Frame/Border band and a Cost Slot pip reading '3'. — PASS
+- AC4 [paraphrase]: A Permanent card whose template includes a Stats/counters line (e.g. Sporeknit Warden) renders that text in a Stats Corner element; a Permanent card with no Stats/counters line (e.g. Signal-Wrought Prototype) contains no Stats Corner element at all, not an empty one. — PASS
+- AC5 [inferred]: The Art Window in every rendered card is a placeholder rectangle only — no illustration, no call to any image-generation service, and no game-rule logic anywhere in the script. — PASS
+- AC6 [inferred] (held_out): The generator is deterministic: running it twice in a row produces byte-identical SVG output for every file, verifiable by hashing. — PASS
