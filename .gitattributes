@@ -1,0 +1,25 @@
+# Generated-output trees (site/*.html from tools/build-site.js, renders/**/*.svg
+# from tools/render-card.js and tools/composite-card-art.js) are written by Node
+# with LF line endings. On this Windows machine core.autocrlf=true, so after every
+# rebuild git would normalize them back to CRLF on checkout/status, making
+# `git status` show phantom modifications even though no real content changed.
+# This has aborted automated merges ("local changes would be overwritten") when
+# nothing real differed.
+#
+# Judgment call: pin `* text=auto eol=lf` repo-wide vs. scope it to just the
+# generated directories. Scoping was chosen deliberately — it fixes the actual
+# problem (noisy diffs on machine-generated files) without touching line-ending
+# behavior for hand-authored markdown/JS/JSON elsewhere in the repo, which
+# avoids a repo-wide renormalization churning files unrelated to this bug.
+
+# Directory-scoped so any generated file type dropped into these trees in the
+# future is covered by default, plus explicit extension rules for the file
+# types the generators currently emit (svg, html, and md should one of the
+# tools start emitting markdown output).
+renders/** text eol=lf
+renders/**/*.svg text eol=lf
+renders/**/*.md text eol=lf
+
+site/** text eol=lf
+site/**/*.html text eol=lf
+site/**/*.md text eol=lf
