@@ -52,3 +52,13 @@ Append-only requirements traceability log — one section per archived work item
 - AC4 [inferred]: Every generated page contains a nav element linking back to index.html, and pages contain no external resource references (no http/https URLs in src or href of assets; document links to other generated pages are relative). — no receipt (escalated before receipt computation)
 - AC5 [inferred]: The generator is deterministic — running it twice in a row produces identical bytes for every file in site/ (verifiable by hashing). — no receipt (escalated before receipt computation)
 - AC6 [inferred] (held_out): The site contains no JavaScript that implements game behavior — generated pages are readable documents only; any script tag present is limited to navigation/display conveniences, and none of the generator's code interprets game rules. — no receipt (escalated before receipt computation)
+
+## 2026-07-28-cardgame-world-lore-history-cardgame-design-phase-world-lore-history.md
+
+- AC1 [user]: design/lore.md exists in the cardGame repo. — no receipt (escalated before receipt computation)
+- AC2 [paraphrase]: Contains a named timeline/history section listing at least 4 distinct eras or historical periods in the setting. — no receipt (escalated before receipt computation)
+- AC3 [inferred]: Describes at least one central conflict or turning-point event that directly involves 3 or more of the 5 races named in design/races/*.md. — no receipt (escalated before receipt computation)
+- AC4 [inferred]: References at least one Fount-related concept already defined in design/rules.md or design/world.md, so the history is grounded in existing game terms rather than inventing new mechanics. — no receipt (escalated before receipt computation)
+- AC5 [inferred]: Ends with a short 'current era' section describing the state of the world at the point the Alpha card set is set, giving future card flavor text a fixed narrative anchor. — no receipt (escalated before receipt computation)
+- AC6 [inferred] (held_out): The file opens with a summary paragraph naming how many eras/periods it covers and which races the central conflict(s) involve, so scope is checkable without reading the full document. — no receipt (escalated before receipt computation)
+- AC7 [inferred] (held_out): No single era or event description exceeds roughly one page (about 500 words), keeping the document skimmable rather than turning into a novel. — no receipt (escalated before receipt computation)
