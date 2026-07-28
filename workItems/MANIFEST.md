@@ -136,3 +136,10 @@ Append-only requirements traceability log — one section per archived work item
 - AC2 [inferred]: The Deck Construction section states a single fixed minimum number of cards an Archive/deck must contain at the start of a game. — PASS
 - AC3 [inferred]: The Deck Construction section states a maximum number of copies of any one uniquely-named card permitted in a single deck. — PASS
 - AC4 [inferred] (held_out): The Deck Construction section cross-references Section 10.1's draw-with-empty-Archive elimination condition by section number rather than restating its wording, and a new test/design-deckbuilding.test.js asserts this cross-reference alongside the numbering and content checks above. — PASS
+
+## 2026-07-28-cardgame-frontier-set-spatial-cards-cardgame-cards-frontier-set-5-cards-that-actually-use-the-spatial-battlefield-graph.md
+
+- AC1 [paraphrase]: design/cards/frontier-set.md exists and contains exactly 5 distinct named cards, one per race under design/races/. — no receipt (escalated before receipt computation)
+- AC2 [inferred]: Every card uses the canonical template from rules.md Section 9.1 in order (Cost line, then Type line, then Rules text, and, only for Permanents, an optional Stats/counters line after Rules text). — no receipt (escalated before receipt computation)
+- AC3 [inferred]: Each card's rules text names at least one of: Discovery, Restriction, Closure, Assault, Blockade, or Capture, and cites the specific rules.md Section 8 subsection number that defines the named term. — no receipt (escalated before receipt computation)
+- AC4 [inferred] (held_out): No two Frontier Set cards name the same race, and a new test/design-frontier-cards.test.js asserts this alongside the count, template-order, and spatial-term-citation checks above. — no receipt (escalated before receipt computation)
