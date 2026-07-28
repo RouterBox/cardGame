@@ -45,3 +45,16 @@ Implications to design through (extends the spatial-layer entry above):
   itself a battlefield: cut a chokepoint, strand a fleet, seal your flank.
 - Combos with race identity: the Concord discovering more cheaply (Signal),
   the Communion bending wormhole rules (Tangle), the Reach fortifying them.
+
+## 2026-07-27 — characters per race (from RouterBox, verbatim)
+
+> "Also want 3 to 5 characters per race with individual but interlinking
+> narratives."
+
+Implications to design through:
+- 3–5 named characters for EACH of the five races (15–25 total).
+- Each character carries an INDIVIDUAL narrative — their own story, wants,
+  and arc — usable later as legendary/hero card identities and art briefs.
+- The narratives INTERLINK: characters reference and collide with characters
+  from other races, so the roster reads as one connected galaxy-scale story,
+  not five isolated cast lists.
