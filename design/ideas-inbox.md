@@ -58,3 +58,23 @@ Implications to design through:
 - The narratives INTERLINK: characters reference and collide with characters
   from other races, so the roster reads as one connected galaxy-scale story,
   not five isolated cast lists.
+
+## 2026-07-28 — card anatomy as layered compound object (from RouterBox, verbatim)
+
+> "So thinking about other tcg cards, there is usually a border/frame with
+> name/cost/other decorating variables/ then an art field and a text field.
+> Then premium versions of cards will do like borderless, foil, alt art, etc
+> premium treatments. But think of those as like 'layers' of a compound
+> object. Only the variables vary, and the card maintain a cohesive look
+> because of the shared skeleton/base care design."
+
+Implications to design through:
+- A card is a COMPOUND OBJECT: one shared skeleton/base design (frame,
+  name slot, cost slot, type slot, art field, rules-text field, stats slot)
+  that every card instantiates — only the variable content differs.
+- Premium treatments (borderless, foil, alt art, extended art) are LAYERS
+  swapped onto the same skeleton, not separate card designs — cohesion
+  comes from the shared base.
+- This is the bridge from text design to graphics: the skeleton spec must
+  exist before any art is commissioned, so art fields have known shapes,
+  and frame variables (e.g. Fount color identity) have defined slots.
