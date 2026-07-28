@@ -6,7 +6,7 @@
 - title: cardGame design — Leonardo art briefs for the Alpha set (words before art, T9)
 - project: cardgame
 - completed: 2026-07-28
-- outcome: escalated
+- outcome: escalated, then hand-recovered and merged (d8fe39a) — DA NEEDS_WORK with no findings (second instance of this pattern), no-change breaker fired on the contradiction
 - start_sha: 6d2b20ddd90b958b0e7cacf6a1487aebb5ff3372
 - end_sha: 6d2b20ddd90b958b0e7cacf6a1487aebb5ff3372
 
