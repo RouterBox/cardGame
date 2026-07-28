@@ -540,6 +540,37 @@ Assault (Capture) — and that reaching an enemy Planet costs strictly more
 Fount Points the farther the qualifying path runs, exactly as Section 8.6
 states.
 
+### 8.8 Map Setup
+
+Map setup happens once, before either challenger's first turn, as part of
+general game setup — alongside shuffling each Archive and determining who
+takes the first turn — and fixes the entire starting battlefield graph
+before a single card is played.
+
+1. The starting map is fixed and symmetric, not drafted: every game played
+   under this rulebook begins from the same starting graph, never one
+   either challenger chooses, drafts, or assembles piece by piece before
+   play begins.
+2. Each challenger controls their own Homeworld from the start of the game
+   and it can never change control (Section 8.2). The starting Planet
+   count is exactly two: one Planet per challenger, that challenger's own
+   Homeworld, and no others.
+3. Each Homeworld's placement relative to the other Homeworld is simply
+   unconnected: map setup draws no Wormhole between them, so no adjacency
+   or path connects the two nodes and no distance or direction can be
+   measured across (Section 8.2, which already states the two Homeworlds
+   are never adjacent at the start of the game). No other Wormhole is
+   drawn during map setup either.
+4. Every Planet besides the two Homeworlds begins the game Unexplored
+   (Section 8.1): off the battlefield graph entirely, not named, numbered,
+   or positioned during map setup. Each one joins the graph only later,
+   one at a time, the moment some Discovery (Section 8.3) names it as a
+   destination.
+
+This is the same starting graph the worked example in Section 8.7 already
+assumes; this subsection states it as a rule of general game setup rather
+than leaving it implicit.
+
 ## 9. Card Types & Templating
 
 Every card belongs to one or more of five Card Types — Magic, Technology,
