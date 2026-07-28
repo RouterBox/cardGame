@@ -22,16 +22,7 @@ function loadCardsFromFile(absPath) {
 }
 
 function loadAllCards() {
-  const files = fs
-    .readdirSync(CARDS_DIR, { withFileTypes: true })
-    .filter((entry) => entry.isFile() && entry.name.endsWith('.md'))
-    .map((entry) => entry.name)
-    .sort();
-  const cards = [];
-  for (const file of files) {
-    cards.push(...loadCardsFromFile(path.join(CARDS_DIR, file)));
-  }
-  return cards;
+  return loadCardsFromFile(path.join(CARDS_DIR, 'alpha-set.md'));
 }
 
 // ---------------------------------------------------------------------------

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Frontier Set — Cards of the Battlefield Graph — Amaranth Expanse Design</title>
+<style>:root { color-scheme: dark light; }
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  padding: 1.25rem;
+  background: #14151a;
+  color: #e6e6ea;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-size: 17px;
+  line-height: 1.6;
+}
+main, nav { max-width: 42rem; margin-left: auto; margin-right: auto; }
+h1, h2, h3, h4, h5, h6 { line-height: 1.25; color: #f4f1ff; }
+a { color: #8ab4ff; }
+a:visited { color: #b79cff; }
+nav {
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid #34363f;
+  font-size: 0.95rem;
+}
+nav .home-link { font-weight: 600; margin-right: 0.75rem; }
+nav .section-label { color: #9a9aa5; margin-right: 0.75rem; }
+nav .siblings { margin-top: 0.4rem; }
+nav .siblings .current { font-weight: 600; color: #f4f1ff; }
+blockquote {
+  margin: 1rem 0;
+  padding: 0.25rem 1rem;
+  border-left: 3px solid #5a5d6b;
+  color: #c7c7d1;
+}
+table { border-collapse: collapse; width: 100%; margin: 1rem 0; font-size: 0.95rem; }
+th, td { border: 1px solid #34363f; padding: 0.4rem 0.6rem; text-align: left; }
+code, pre {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  background: #1e2027;
+  border-radius: 4px;
+}
+code { padding: 0.1em 0.35em; }
+pre { padding: 0.75rem; overflow-x: auto; }
+ul, ol { padding-left: 1.4rem; }
+section h2 { margin-top: 2rem; }
+@media (prefers-color-scheme: light) {
+  body { background: #fbfbfd; color: #1c1c22; }
+  a { color: #2454c7; }
+  blockquote { color: #454550; }
+  code, pre { background: #eef0f4; }
+  th, td { border-color: #d6d8e0; }
+}</style>
+</head>
+<body>
+<nav>
+<a class="home-link" href="../../index.html">&larr; Index</a>
+<span class="section-label">Cards</span>
+<div class="siblings"><a href="alpha-set.html">Alpha Set — First Cards of the Amaranth Expanse</a> &middot; <a href="art-briefs.html">Alpha Set — Art Briefs</a> &middot; <a href="card-anatomy.html">Card Anatomy — The Shared Skeleton, Variables, and Premium Layers</a> &middot; <span class="current">Frontier Set — Cards of the Battlefield Graph</span></div>
+</nav>
+<main>
+<h1>Frontier Set — Cards of the Battlefield Graph</h1>
+<h2>Summary</h2>
+<p>This file contains 5 named cards, one per race, each mechanically tied to the battlefield graph defined in <em>design/rules.md</em> Section 8: the Cindral Reach (Materials, citing Blockade, Section 8.6), the Mireth Bloom (Biology, citing Discovery, Section 8.3), the Panoptic Concord (Intelligence, citing Restriction, Section 8.4), the Starweave Communion (Magic, citing Closure, Section 8.5), and the Wrought Assembly (Technology, citing Assault and Capture, Section 8.6). Every card follows the canonical template of <em>design/rules.md</em> Section 9.1.</p>
+<h2>The Cindral Reach</h2>
+<h3>Bastion Reclamation Crew</h3>
+<p>Cost line: 2 Mass Type line: Materials — Permanent Rules text: Slow. Spent: place a Fortification counter on any Generator you control on a Planet currently under Blockade (Section 8.6, which defines Blockade).</p>
+<p><em>The Cindral Reach, Materials as doctrine: even a Planet under Blockade still gets reinforced, not abandoned.</em></p>
+<h2>The Mireth Bloom</h2>
+<h3>Frontier Spore Cluster</h3>
+<p>Cost line: 2 Bloom Type line: Biology — Permanent Rules text: Slow. Spent, usable at instant speed (any time its controller holds priority): if you have taken a Discovery action this turn (Section 8.3, which defines Discovery), place a Growth counter on this Unit. Stats/counters line: Combat strength 1. Enters with no counters.</p>
+<p><em>The Mireth Bloom grows fastest wherever a Discovery just cracked open unclaimed space.</em></p>
+<h2>The Panoptic Concord</h2>
+<h3>Wormhole Ledger</h3>
+<p>Cost line: 1 Signal Type line: Intelligence Rules text: Fast. When this resolves, look at the Restriction (Section 8.4, which defines Restriction) carried by any one Wormhole; then look at the top card of your own Archive and choose to leave it on top or move it to the bottom.</p>
+<p><em>The Panoptic Concord reads every Restriction on the battlefield graph before anyone else notices it was written.</em></p>
+<h2>The Starweave Communion</h2>
+<h3>Rite of Unmaking</h3>
+<p>Cost line: 2 Tangle Type line: Magic Rules text: Slow. When this resolves, choose a Wormhole with an endpoint at a Planet you control: it undergoes Closure (Section 8.5, which defines Closure) and is removed from the battlefield graph.</p>
+<p><em>The Starweave Communion calls this a mercy: some paths through the Tangle were never meant to stay open, and Closure just makes that true again.</em></p>
+<h2>The Wrought Assembly</h2>
+<h3>Replication Beachhead</h3>
+<p>Cost line: 2 Circuit Type line: Technology — Permanent Rules text: Slow. This permanent is a Generator attuned to the Circuit: during the Generation Phase, it produces 1 Circuit Point, added to its controller&#39;s Circuit resource pool. Spent: if you have taken an Assault action this turn that resulted in a Capture (Section 8.6, which defines Assault and Capture), create an exact token copy of this permanent, put directly onto the Field under your control.</p>
+<p><em>The Wrought Assembly, Technology as inevitability: the instant a Capture lands, the design that took the Planet is already copying itself onto it.</em></p>
+</main>
+</body>
+</html>
