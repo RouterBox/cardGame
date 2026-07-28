@@ -129,3 +129,10 @@ Append-only requirements traceability log — one section per archived work item
 - AC2 [inferred]: tools/render-card.js no longer declares its own loadCardsFromFile or loadAllCards functions; it imports both from lib/parse-card-markdown.js. — PASS
 - AC3 [inferred]: tools/sync-cards-to-jaina.js no longer declares its own loadCardsFromFile or loadAllCards functions; it imports both from lib/parse-card-markdown.js. — PASS
 - AC4 [inferred] (held_out): A new test/tools-loader-dedup.test.js statically asserts neither tools/render-card.js nor tools/sync-cards-to-jaina.js source text contains a local function declaration named loadCardsFromFile or loadAllCards, and the existing render-card/sync-cards-to-jaina/composite-card-art test suites still pass unmodified. — PASS
+
+## 2026-07-28-cardgame-deck-construction-rules-cardgame-rules-section-11-deck-construction.md
+
+- AC1 [paraphrase]: design/rules.md contains a new numbered top-level section titled 'Deck Construction', and it is the sole new section — Sections 1 through 10 remain present, in order, with their original numbers and titles unchanged. — PASS
+- AC2 [inferred]: The Deck Construction section states a single fixed minimum number of cards an Archive/deck must contain at the start of a game. — PASS
+- AC3 [inferred]: The Deck Construction section states a maximum number of copies of any one uniquely-named card permitted in a single deck. — PASS
+- AC4 [inferred] (held_out): The Deck Construction section cross-references Section 10.1's draw-with-empty-Archive elimination condition by section number rather than restating its wording, and a new test/design-deckbuilding.test.js asserts this cross-reference alongside the numbering and content checks above. — PASS
