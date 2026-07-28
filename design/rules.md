@@ -854,3 +854,106 @@ independently — an Archive can fail either one without failing the other —
 and that Section 10.1's draw-with-empty-Archive elimination condition now
 has a concrete floor to reason about: no legal Archive can ever hold fewer
 than 40 cards.
+
+## 12. Combat Resolution
+
+Section 5.4's Conflict Phase already states what happens when an attacking
+Unit is unblocked: it deals its combat strength as damage to the
+non-active player's Core Integrity. This section states the other half of
+that same event — what happens when an attacker is blocked — and states,
+for the first time in this rulebook, how the damage that combat marks
+against a Unit (Section 2's Damage) accumulates, destroys, and clears.
+Nothing in this section changes or restates any rule already stated in
+Sections 1-11; where a rule already exists, this section cross-references
+it by section number instead.
+
+### 12.1 Damage to Blockers
+
+An attacking Unit that is blocked (Section 5.4) deals its
+combat strength as damage to its blocker(s) instead of to the non-active
+player's Core Integrity. A blocked attacker never deals damage to Core Integrity, no
+matter how many blockers are declared against it or how that damage is
+divided among them (Section 12.2).
+
+Each blocking Unit also deals its own combat strength as damage to the
+attacking Unit it is blocking, at the same time. When more than one
+blocker is declared against a single attacker (Section 5.4), the attacker
+receives the combined combat strength of every one of its blockers as
+damage, marked against it exactly as any other damage (Section 2, Section
+12.3).
+
+### 12.2 Damage Assignment Order
+
+When more than one blocker is declared against a single attacker (Section
+5.4), the damage that attacker deals (Section 12.1) is still divided among
+its blockers one at a time rather than dealt to all of them at once with
+no assignment. The attacking player — the active player, who declared that
+attacker (Section 5.4) — chooses the order in which the attacker's combat
+strength is assigned among its blockers, and chooses how much of it each
+blocker receives, provided the amounts assigned across all of that
+attacker's blockers sum to exactly the attacker's combat strength. This
+mirrors the existing convention, already stated in Section 6.1's
+Simultaneous Triggers, that ties an order-choice to the acting or active
+player: there, the active player orders their own triggers before the
+non-active player's; here, the active player likewise orders how their own
+attacker's damage lands among the non-active player's blockers.
+
+### 12.3 Unit Destruction by Damage
+
+A Unit that has damage marked against it (Section 2's Damage) equal to or
+greater than its own combat strength (Section 9.1's Stats/counters line)
+is destroyed: it is removed from the Field and moved to its owner's Wreck
+(Section 3), exactly as any other destroyed permanent. This destruction
+check applies the instant qualifying damage is marked, to any Unit with
+marked damage — not only to Units attacking or blocking in the current
+Conflict Phase — since any card or ability that marks damage against a
+Unit (Section 2) can bring that Unit's marked damage up to or past its
+combat strength.
+
+### 12.4 Clearing Damage
+
+Damage marked against a Unit (Section 2) is not permanent. It clears at
+the end of the turn: at the same moment Section 5.5 already fixes for
+resource pools emptying, once the Dusk Phase's Queue is empty and both
+players have passed in succession. A Unit that survives the Conflict
+Phase with damage marked against it — because that damage was less than
+its combat strength (Section 12.3) — keeps that damage marked through the
+rest of the turn, including the Dusk Phase, and loses it only when the
+turn ends; no Unit carries marked damage into the next turn.
+
+### 12.5 Worked Example: A Multi-Blocker Exchange
+
+This example follows one Conflict Phase (Section 5.4) between Reva (active
+player) and Toma (non-active player). Reva controls Ironclad Vanguard,
+combat strength 5. Toma controls two Ready Units: Scrap Sentinel, combat
+strength 2, and Bramble Warden, combat strength 4.
+
+1. Reva declares Ironclad Vanguard as an attacker; it becomes Spent. Toma
+   declares both Scrap Sentinel and Bramble Warden as blockers against it
+   (Section 5.4).
+2. Because Ironclad Vanguard is blocked, it deals its combat strength as
+   damage to its blockers rather than to Toma's Core Integrity (Section
+   12.1). Reva, the active player, chooses the assignment order and
+   amounts: 2 damage to Scrap Sentinel first, then the remaining 3 damage
+   to Bramble Warden (Section 12.2).
+3. Scrap Sentinel now has 2 damage marked against it, equal to its own
+   combat strength of 2, so it is destroyed and moved to Toma's Wreck
+   (Section 12.3, Section 3). Bramble Warden has 3 damage marked against
+   it, less than its combat strength of 4, so it survives, carrying that
+   damage.
+4. Both of Toma's blockers also deal their combat strength as damage to
+   Ironclad Vanguard at the same time (Section 12.1): 2 from Scrap
+   Sentinel and 4 from Bramble Warden, for 6 damage total. Ironclad
+   Vanguard's combat strength is 5, so 6 damage destroys it; it is moved
+   to Reva's Wreck (Section 12.3, Section 3).
+5. The Conflict Phase ends and the turn continues to the Dusk Phase
+   (Section 5.5). Bramble Warden's 3 marked damage is not cleared yet — it
+   clears only once the turn itself ends (Section 12.4), so if anything
+   this turn still cared about Bramble Warden's marked damage, it would
+   still see 3.
+
+This confirms, on paper, that a blocked attacker's damage lands on its
+blockers rather than Core Integrity, that the active player's assignment
+choice can eliminate one blocker while sparing another sharing the same
+attacker, and that surviving damage persists until the fixed clearing
+moment this section commits to, exactly as Sections 12.1-12.4 state.
