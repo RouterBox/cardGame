@@ -117,3 +117,18 @@ Implications:
 - First tool request: a simple website to browse the design shelf (plans,
   world, races, characters, rules, cards) readable from the phone — no
   file-picking on the computer.
+
+## 2026-07-28 — use Jaina as the content backbone (from RouterBox, verbatim)
+
+> "Oh also we need to make heavy use of Jaina the whole way which was built
+> for this exact thing."
+
+Implications:
+- Jaina (RouterBox's own data platform — projects, schemas, records,
+  actions, webhooks, codegen) becomes the system of record for structured
+  game content: cards, characters, races, Founts, etc. as schema-backed
+  records instead of only markdown prose.
+- The authoring tools (card engine, design browser) should read from /
+  write to Jaina rather than inventing their own storage.
+- Markdown design docs remain the narrative/spec layer; Jaina holds the
+  structured data layer the tools consume.
