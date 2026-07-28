@@ -78,3 +78,25 @@ Implications to design through:
 - This is the bridge from text design to graphics: the skeleton spec must
   exist before any art is commissioned, so art fields have known shapes,
   and frame variables (e.g. Fount color identity) have defined slots.
+
+## 2026-07-28 — deterministic card authoring engine + gen-AI art only in the art slot (from RouterBox, verbatim)
+
+> "yeah and so image generators are notoriously bad at these structured
+> elements like text and currency symbols, etc, and will have trouble
+> holding the card style together between runs of different cards. what you
+> wanna use leonardo for is just the art in the art layer, but you wanna
+> more deterministically fill out the structured elements of the card with
+> a deterministic card authoring engine that slots in the gen ai art into
+> that slot."
+
+Implications to design through:
+- Division of labor: Leonardo (gen AI) produces ONLY the art-window image.
+  Everything structured — frame, name, cost symbols, type line, rules text,
+  stats — is rendered by a DETERMINISTIC card authoring engine (templating/
+  layout code), which composites the AI art into the art slot.
+- Rationale: image generators are bad at text/symbols and cannot hold a
+  consistent card style across separate runs; determinism is what makes
+  the shared skeleton actually shared.
+- The card-anatomy skeleton spec is therefore also the engine's input
+  contract: each zone the anatomy defines becomes a render slot the engine
+  fills from card data (alpha-set.md entries are the data source).
