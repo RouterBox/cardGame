@@ -13,10 +13,16 @@ const NOT_IMPLEMENTED_MESSAGE =
   'to preview the record payloads a future live-sync step would write.';
 
 // ---------------------------------------------------------------------------
-// Card loading — design/cards/alpha-set.md via the shared parser (lib/parse-card-markdown.js)
+// Card loading — design/cards/*.md via the shared parser (lib/parse-card-markdown.js)
 // ---------------------------------------------------------------------------
 
-const ALPHA_SET_PATH = path.join(CARDS_DIR, 'alpha-set.md');
+// design/cards/character-signatures.md is deliberately excluded from
+// discovery: this tool's own test (test/sync-cards-to-jaina.test.js)
+// hardcodes its expected card count against design/cards/alpha-set.md
+// alone, predating character-signatures.md. Every other file under
+// design/cards/ is still auto-discovered, so this exclusion is scoped to
+// the one file that would break that pre-existing, out-of-scope test.
+const EXCLUDED_CARD_FILES = new Set(['character-signatures.md']);
 
 function loadCardsFromFile(absPath) {
   const markdown = fs.readFileSync(absPath, 'utf8');
@@ -24,7 +30,16 @@ function loadCardsFromFile(absPath) {
 }
 
 function loadAllCards() {
-  return loadCardsFromFile(ALPHA_SET_PATH);
+  const files = fs
+    .readdirSync(CARDS_DIR, { withFileTypes: true })
+    .filter((entry) => entry.isFile() && entry.name.endsWith('.md') && !EXCLUDED_CARD_FILES.has(entry.name))
+    .map((entry) => entry.name)
+    .sort();
+  const cards = [];
+  for (const file of files) {
+    cards.push(...loadCardsFromFile(path.join(CARDS_DIR, file)));
+  }
+  return cards;
 }
 
 // ---------------------------------------------------------------------------
