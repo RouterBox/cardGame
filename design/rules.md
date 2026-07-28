@@ -555,12 +555,12 @@ before a single card is played.
    and it can never change control (Section 8.2). The starting Planet
    count is exactly two: one Planet per challenger, that challenger's own
    Homeworld, and no others.
-3. Each Homeworld's placement is simply itself: a Homeworld does not sit at
-   any distance or direction from another Planet at setup, because no
-   other Planet is on the graph yet to measure it against. Section 8.2
-   already states the two Homeworlds are never adjacent at the start of
-   the game; this subsection confirms why — no Wormhole, and no other
-   Planet, is placed during map setup at all.
+3. Each Homeworld's placement relative to the other Homeworld is simply
+   unconnected: map setup draws no Wormhole between them, so no adjacency
+   or path connects the two nodes and no distance or direction can be
+   measured across (Section 8.2, which already states the two Homeworlds
+   are never adjacent at the start of the game). No other Wormhole is
+   drawn during map setup either.
 4. Every Planet besides the two Homeworlds begins the game Unexplored
    (Section 8.1): off the battlefield graph entirely, not named, numbered,
    or positioned during map setup. Each one joins the graph only later,
