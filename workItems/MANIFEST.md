@@ -92,3 +92,10 @@ Append-only requirements traceability log — one section per archived work item
 - AC2 [inferred]: slug is computed with the identical slugify(name) algorithm already used in tools/render-card.js (lowercase, non-alphanumeric runs collapsed to a single hyphen, leading/trailing hyphens trimmed), so the same card produces the same slug across the card-authoring engine and this sync tool. — PASS
 - AC3 [inferred]: Without --dry-run, the script makes no Jaina API calls in this unit — it prints a message that live sync is not yet implemented and exits 1 — so no Jaina credentials or network access are required by node --test or by this unit's acceptance checks. — PASS
 - AC4 [inferred] (held_out): Running the dry-run twice in a row against unchanged markdown produces byte-identical stdout output (deterministic: no timestamps, no randomness, stable card and field ordering). — PASS
+
+## 2026-07-28-cardgame-spatial-map-setup-and-playtest-procedure-cardgame-rules-map-setup-section-playtest-on-paper-procedure-for-the-spatial-battlefield.md
+
+- AC1 [paraphrase]: design/rules.md contains a numbered '### 8.8 Map Setup' heading (or equivalent numbered subsection under Section 8) that explicitly states whether the starting map is fixed, drafted, or symmetric, and specifies the starting Planet count and their placement relative to each Homeworld. — PASS
+- AC2 [paraphrase]: design/playtest-spatial.md exists and contains a numbered step-by-step procedure that two humans can follow with physical materials (e.g. a drawn graph, tokens, index cards) to set up and play a full game using the Spatial Battlefield rules. — PASS
+- AC3 [inferred]: design/playtest-spatial.md's steps cite specific rules.md Section 8 subsection numbers (8.1 through 8.7, plus the new 8.8) at the points where each spatial mechanic first comes into play, so a playtester can cross-check any step against the exact rule text. — PASS
+- AC4 [inferred] (held_out): The new 8.8 Map Setup section does not silently redefine any term already defined in Section 2's Glossary (per rules.md's own stated convention that later sections may repeat but not redefine a term). — PASS
