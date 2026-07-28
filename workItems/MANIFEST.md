@@ -35,3 +35,11 @@ Append-only requirements traceability log — one section per archived work item
 - AC5 [inferred]: At least one card demonstrates the multi-type/multi-cost rule from rules.md Section 9.7 — a card listing more than one Card Type and drawing cost from more than one Fount. — PASS
 - AC6 [inferred] (held_out): No card's Rules text references a Fount, Card Type, zone, or template field not already defined in rules.md — every card is legible against the existing rulebook without inventing new terms. — PASS
 - AC7 [inferred] (held_out): The file opens with a short summary stating how many cards it contains and which races/Founts/types they span, so coverage is checkable without counting by hand. — PASS
+
+## 2026-07-28-cardgame-card-anatomy-skeleton-cardgame-design-card-anatomy-shared-skeleton-variable-slots-premium-layers.md
+
+- AC1 [user]: design/cards/card-anatomy.md exists and defines a shared skeleton with named zones including at minimum a frame/border, name slot, cost slot, type line, art window, and rules-text box. — PASS
+- AC2 [user]: A section on premium treatments defines at least three treatments (such as borderless, foil, alt-art) each described as a layer on the shared skeleton, and states an explicit cohesion rule about what treatments may not change. — PASS
+- AC3 [paraphrase]: Every required field of the rules.md Section 9 card template (Name, Cost line, Type line, Rules text, Stats/counters line for Permanents) is mapped to exactly one skeleton zone, and the mapping is stated in the document. — PASS
+- AC4 [inferred]: The variables section states how frame identity is driven by the card's Fount(s), including the rendering rule for cards with more than one Fount in their cost. — PASS
+- AC5 [inferred] (held_out): At least two named cards from design/cards/alpha-set.md appear as worked examples walked through the anatomy zone by zone, at least one of which is one of the set's multi-type/multi-cost cards. — PASS
