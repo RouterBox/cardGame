@@ -71,3 +71,10 @@ Append-only requirements traceability log — one section per archived work item
 - AC4 [paraphrase]: A Permanent card whose template includes a Stats/counters line (e.g. Sporeknit Warden) renders that text in a Stats Corner element; a Permanent card with no Stats/counters line (e.g. Signal-Wrought Prototype) contains no Stats Corner element at all, not an empty one. — PASS
 - AC5 [inferred]: The Art Window in every rendered card is a placeholder rectangle only — no illustration, no call to any image-generation service, and no game-rule logic anywhere in the script. — PASS
 - AC6 [inferred] (held_out): The generator is deterministic: running it twice in a row produces byte-identical SVG output for every file, verifiable by hashing. — PASS
+
+## 2026-07-28-cardgame-tools-shared-parser-dedup-cardgame-tooling-extract-shared-markdown-card-parser-module-dedup-not-growth.md
+
+- AC1 [paraphrase]: lib/parse-card-markdown.js exists and exports a parseCardMarkdown(markdown) function implementing the field-prefix parsing convention ('Cost line:', 'Type line:', 'Rules text:', 'Stats/counters line:') currently duplicated across tools/render-card.js and tools/build-site.js, plus a slugify(name) function matching the existing algorithm. — PASS
+- AC2 [inferred]: tools/render-card.js and tools/build-site.js both import parseCardMarkdown and slugify from lib/parse-card-markdown.js; grepping either file for the literal strings 'Cost line:', 'Type line:', 'Rules text:', or 'Stats/counters line:' finds no matches outside lib/parse-card-markdown.js. — PASS
+- AC3 [inferred]: node --test passes, and the existing render-card and build-site tests assert the identical output they asserted before this refactor — no behavioral change, pure extraction. — PASS
+- AC4 [inferred] (held_out): lib/parse-card-markdown.js has its own direct unit tests (not just exercised indirectly through render-card/build-site) covering at least one card with all four field-prefix lines and one card missing an optional field. — PASS
