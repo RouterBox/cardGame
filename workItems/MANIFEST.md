@@ -17,3 +17,11 @@ Append-only requirements traceability log — one section per archived work item
 - AC3 [paraphrase]: New terms (planet, wormhole, homeworld, discovery, length, closure) are defined in the glossary before substantive use, consistent with the document's glossary-first discipline. — PASS
 - AC4 [inferred]: The discovery action is integrated into the existing numbered turn-phase sequence (not bolted on as an appendix), and no new rule contradicts an existing numbered rule — the existing design-rules tests still pass unmodified. — PASS
 - AC5 [inferred] (held_out): Both 2026-07-26 entries in design/ideas-inbox.md are marked [incorporated: cardgame-spatial-battlefield-rules], and at least one worked example in the rules walks a discovery-then-blockade sequence on a small named graph. — PASS
+
+## 2026-07-28-cardgame-race-characters-cardgame-design-named-characters-per-race-with-interlinking-narratives.md
+
+- AC1 [user]: Exactly five files exist under design/characters/, one per race with basenames matching design/races/, and each contains no fewer than 3 and no more than 5 named characters. — no receipt (escalated before receipt computation)
+- AC2 [user]: Every character entry includes an individual narrative (identity paragraph with their own story and wants) and a Threads list naming at least one character from a different race's file. — no receipt (escalated before receipt computation)
+- AC3 [paraphrase]: design/characters/web.md exists, names every character from all five race files at least once, and each thread section involves characters from at least two different races. — no receipt (escalated before receipt computation)
+- AC4 [inferred]: Character names are unique across the whole roster, and every cross-race reference in a Threads list points at a character that actually exists in the named race's file. — no receipt (escalated before receipt computation)
+- AC5 [inferred] (held_out): Each character file references its race's canon from design/races/ — at least one signature hook, location, or identity element from the race file appears in the character prose — so the roster extends existing canon rather than inventing a parallel one. — no receipt (escalated before receipt computation)
