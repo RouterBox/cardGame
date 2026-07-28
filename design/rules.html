@@ -65,7 +65,7 @@ section h2 { margin-top: 2rem; }
 <h2>1. Game Concepts</h2>
 <p>Two challengers face each other, each commanding a civilization drawn from one of the five Founts described in <em>design/world.md</em>: the Mass, the Bloom, the Signal, the Circuit, and the Tangle. Each challenger brings a deck of cards representing that civilization&#39;s generators, combatants, and effects, and begins the game defending a home base.</p>
 <p>A game ends the moment one challenger&#39;s home base is reduced to nothing, or the moment a challenger must draw a card and has none left to draw. Everything else in this rulebook exists to answer one question: at any given moment, exactly what is a challenger allowed to do, and in what order?</p>
-<p>Sectionundefineddefines every term this rulebook uses before it is used anywhere else. Sectionundefinedlays out where cards physically live over the course of a game. Sectionundefinedexplains what fuels playing them. Sectionundefinedlays out the fixed sequence every turn follows. Sectionundefinedgives the fine-grained rules for who may act, and when. Sectionundefinedcloses with a fully worked example, so any rule above can be checked against a concrete case.</p>
+<p>Section 2 defines every term this rulebook uses before it is used anywhere else. Section 3 lays out where cards physically live over the course of a game. Section 4 explains what fuels playing them. Section 5 lays out the fixed sequence every turn follows. Section 6 gives the fine-grained rules for who may act, and when. Section 7 closes with a fully worked example, so any rule above can be checked against a concrete case.</p>
 <h2>2. Glossary &amp; Vocabulary</h2>
 <p>Terms below are defined once, here, before any of them is used substantively elsewhere in this document. Later sections may repeat a term but will not silently redefine it.</p>
 <ul><li><strong>Active player</strong> — the challenger whose turn it currently is. The other</li></ul>
@@ -105,7 +105,7 @@ section h2 { margin-top: 2rem; }
 <ul><li><strong>Cost</strong> — the Fount Points, and any other stated price, required to play a card</li></ul>
 <p>  or use an ability.</p>
 <ul><li><strong>Home base</strong> — a challenger&#39;s Core, tracked by Core Integrity; a challenger who</li></ul>
-<p>  reachesundefinedCore Integrity loses immediately.</p>
+<p>  reaches 0 Core Integrity loses immediately.</p>
 <ul><li><strong>Core Integrity</strong> — a numeric measure of how intact a challenger&#39;s home base</li></ul>
 <p>  is, reduced by damage dealt to it.</p>
 <ul><li><strong>Damage</strong> — a numeric amount subtracted from Core Integrity, or marked against</li></ul>
@@ -209,13 +209,13 @@ section h2 { margin-top: 2rem; }
 <h2>7. Worked Example: A Priority Exchange</h2>
 <p>This example follows one Main Phase exchange between two challengers, Reva (active player, drawing on the Circuit) and Toma (non-active player, drawing on the Tangle), continuing directly from Section 6.</p>
 <ol><li>It is Reva&#39;s Main Phase. The Queue is empty and Reva holds priority. Reva</li></ol>
-<p>   plays a Fast card that dealsundefineddamage to a Unit Toma controls. This card is    added to the Queue. Reva could act again, but instead passes.</p>
+<p>   plays a Fast card that deals 2 damage to a Unit Toma controls. This card is    added to the Queue. Reva could act again, but instead passes.</p>
 <ol><li>Priority moves to Toma. The Queue is not empty (Reva&#39;s damage effect is in</li></ol>
 <p>   it), so Toma may respond. Toma plays a Fast card of their own that would give    the threatened Unit +2 toughness. Toma&#39;s card is added above Reva&#39;s in the    Queue. Toma passes.</p>
 <ol><li>Priority returns to Reva, who has no further response and passes as well.</li></ol>
 <p>   Both challengers have now passed in succession with the Queue non-empty, so    the current priority window closes and the topmost entry resolves: Toma&#39;s +2    toughness effect resolves first, since it was added above Reva&#39;s card.</p>
 <ol><li>The Queue is not yet empty, so a new priority window opens with the active</li></ol>
-<p>   player, Reva, receiving priority again. Neither challenger acts, and both    pass in succession a second time. The window closes again; the Queue&#39;s    remaining entry, Reva&#39;sundefineddamage effect, resolves. Because Toma&#39;s Unit    already gained +2 toughness before this damage was ever marked against it,    the Unit survives.</p>
+<p>   player, Reva, receiving priority again. Neither challenger acts, and both    pass in succession a second time. The window closes again; the Queue&#39;s    remaining entry, Reva&#39;s 2 damage effect, resolves. Because Toma&#39;s Unit    already gained +2 toughness before this damage was ever marked against it,    the Unit survives.</p>
 <ol><li>The Queue is now empty and both challengers have passed, so the Main Phase</li></ol>
 <p>   priority window closes for good and play moves to the Conflict Phase.</p>
 <p>This confirms, on paper, that in this rules set the last Fast card played is always the first to resolve — exactly the ordering the Simultaneous Triggers edge case in Section 6.1 and the general passing rule both depend on.</p>
@@ -282,7 +282,7 @@ section h2 { margin-top: 2rem; }
 <p>   Toma&#39;s Assault, paid during Reva&#39;s own Main Phase). On a following turn,    Toma takes a second Assault action along the same path, this time    choosing to Capture. Control of Ordinal Reach passes to Toma immediately,    and Reva&#39;s Generator there is destroyed, moved to Reva&#39;s Wreck. Reva may    later replay a Generator, but only on a Planet Reva still controls, and    only one per turn (Section 5.3).</p>
 <p>This confirms, on paper, that a Planet&#39;s Generator can be pressured without being destroyed (Blockade) and only lost outright through a second, further Assault (Capture) — and that reaching an enemy Planet costs strictly more Fount Points the farther the qualifying path runs, exactly as Section 8.6 states.</p>
 <h2>9. Card Types &amp; Templating</h2>
-<p>Every card belongs to one or more of five Card Types — Magic, Technology, Intelligence, Biology, and Materials — and each Card Type draws its cost from exactly one Fount (Section 4) by default: Magic from the Tangle, Technology from the Circuit, Intelligence from the Signal, Biology from the Bloom, and Materials from the Mass. This section defines the five Card Types, the template every card is printed with, and the rule for a card that spans more than one Card Type or Fount. Where a Fount&#39;s own mechanic matters, this section cross-references Sectionundefinedrather than restating it.</p>
+<p>Every card belongs to one or more of five Card Types — Magic, Technology, Intelligence, Biology, and Materials — and each Card Type draws its cost from exactly one Fount (Section 4) by default: Magic from the Tangle, Technology from the Circuit, Intelligence from the Signal, Biology from the Bloom, and Materials from the Mass. This section defines the five Card Types, the template every card is printed with, and the rule for a card that spans more than one Card Type or Fount. Where a Fount&#39;s own mechanic matters, this section cross-references Section 4 rather than restating it.</p>
 <h3>9.1 The Canonical Card Template</h3>
 <p>Every card is printed with the following fields, always in this order:</p>
 <ol><li><strong>Name</strong> — the card&#39;s title.</li><li><strong>Cost line</strong> — the Fount Points required to play the card, broken out</li></ol>
@@ -296,25 +296,25 @@ section h2 { margin-top: 2rem; }
 <p>Each Card Type falls into exactly one of two behavior classes, stated on its type line by the presence or absence of the word &quot;Permanent&quot;: a <strong>permanent</strong> Card Type means the card is a Permanent (Section 2) that remains on the Field once played; an <strong>instant/sorcery-speed resolving</strong> Card Type means the card resolves once (Section 2&#39;s Resolve) and is then placed in its owner&#39;s Wreck, never remaining on the Field. A card&#39;s Fast card / Slow card status is a separate fact, stated in its rules text, and does not depend on its behavior class.</p>
 <h3>9.2 Magic — the Tangle</h3>
 <p>Magic cards draw their cost from the Tangle and are instant/sorcery-speed resolving (Section 9.1): a Magic card is never a Permanent.</p>
-<blockquote><p><strong>Cinderfall Bolt</strong> Cost line:undefinedTangle Type line: Magic Rules text: Fast. When this resolves, dealundefineddamage to any Unit.</p></blockquote>
+<blockquote><p><strong>Cinderfall Bolt</strong> Cost line: 2 Tangle Type line: Magic Rules text: Fast. When this resolves, deal 3 damage to any Unit.</p></blockquote>
 <h3>9.3 Technology — the Circuit</h3>
 <p>Technology cards draw their cost from the Circuit and are permanent (Section 9.1): a Technology card is always a Permanent, matching Section 4.4&#39;s own use of the term &quot;Technology permanent.&quot; A Technology card&#39;s abilities may still be used at instant or sorcery speed, per its own rules text — the card&#39;s permanence and the timing of its abilities are separate facts about it.</p>
-<blockquote><p><strong>Signal Relay</strong> Cost line:undefinedCircuit Type line: Technology — Permanent Rules text: Slow. Spent, usable at instant speed (any time its controller holds priority): look at the top card of your Archive; you may put it on the bottom of your Archive instead of leaving it on top.</p></blockquote>
+<blockquote><p><strong>Signal Relay</strong> Cost line: 2 Circuit Type line: Technology — Permanent Rules text: Slow. Spent, usable at instant speed (any time its controller holds priority): look at the top card of your Archive; you may put it on the bottom of your Archive instead of leaving it on top.</p></blockquote>
 <h3>9.4 Intelligence — the Signal</h3>
 <p>Intelligence cards draw their cost from the Signal and are instant/sorcery-speed resolving (Section 9.1), in the same sense as Magic (Section 9.2): never a Permanent, always resolving once to the Wreck.</p>
-<blockquote><p><strong>Foresight Ping</strong> Cost line:undefinedSignal Type line: Intelligence Rules text: Fast. When this resolves, look at the top card of your Archive; you may put it on the bottom of your Archive instead of leaving it on top.</p></blockquote>
+<blockquote><p><strong>Foresight Ping</strong> Cost line: 1 Signal Type line: Intelligence Rules text: Fast. When this resolves, look at the top card of your Archive; you may put it on the bottom of your Archive instead of leaving it on top.</p></blockquote>
 <h3>9.5 Biology — the Bloom</h3>
 <p>Biology cards draw their cost from the Bloom and are permanent (Section 9.1): every Biology card is a Unit (Section 2), and so always carries a stats/counters line stating its combat strength.</p>
-<blockquote><p><strong>Spore Warden</strong> Cost line:undefinedBloom Type line: Biology — Permanent Rules text: Slow. Stats/counters line: Combat strength 3. Enters with no counters.</p></blockquote>
+<blockquote><p><strong>Spore Warden</strong> Cost line: 3 Bloom Type line: Biology — Permanent Rules text: Slow. Stats/counters line: Combat strength 3. Enters with no counters.</p></blockquote>
 <h3>9.6 Materials — the Mass</h3>
 <p>Materials cards draw their cost from the Mass and are permanent (Section 9.1). A Materials card may be a Generator (Section 2), a Unit, or a Permanent that is neither, depending on its own rules text.</p>
-<blockquote><p><strong>Foundry Works</strong> Cost line:undefinedMass Type line: Materials — Permanent Rules text: Slow. This permanent is a Generator (Section 4) attuned to the Mass: during the Generation Phase (Section 5.2), it producesundefinedMass Point, added to its controller&#39;s Mass resource pool.</p></blockquote>
+<blockquote><p><strong>Foundry Works</strong> Cost line: 2 Mass Type line: Materials — Permanent Rules text: Slow. This permanent is a Generator (Section 4) attuned to the Mass: during the Generation Phase (Section 5.2), it produces 1 Mass Point, added to its controller&#39;s Mass resource pool.</p></blockquote>
 <h3>9.7 Multiple Types and Multiple Costs</h3>
 <p>A card may list more than one Card Type on its type line, and may draw its cost from more than one Fount on its cost line, independently of each other.</p>
 <p><strong>Cost:</strong> when a card&#39;s cost line names more than one Fount, its total cost is the sum of the Fount Points listed for each Fount, and each Fount&#39;s share MUST be paid from that Fount&#39;s own resource pool (Section 4) — a challenger MAY NOT pay one Fount&#39;s share of a cost with another Fount&#39;s points.</p>
 <p><strong>Type-specific rules:</strong> when a card lists more than one Card Type, every rule stated for each of its listed types (Sections 9.2-9.6) applies to the card at once. Because a permanent behavior class (Section 9.1) is a stronger claim than an instant/sorcery-speed resolving one, a card that lists at least one permanent Card Type (Technology, Biology, or Materials) is a Permanent, even if it also lists an instant/sorcery-speed resolving Card Type (Magic or Intelligence); a card is instant/sorcery-speed resolving only if every one of its listed Card Types is instant/sorcery-speed resolving.</p>
-<blockquote><p><strong>Reactive Turret</strong> Cost line:undefinedTangle,undefinedCircuit Type line: Magic Technology — Permanent Rules text: Slow. Spent: dealundefineddamage to any Unit.</p></blockquote>
-<p>Reactive Turret&#39;s total cost isundefinedFount Points:undefinedpaid from the Tangle resource pool andundefinedfrom the Circuit resource pool, neverundefinedfrom either pool alone. Its type line lists Magic, an instant/sorcery-speed resolving type, and Technology, a permanent type; per the rule above, the presence of Technology makes the whole card a Permanent, so Reactive Turret stays on the Field once played rather than resolving to the Wreck.</p>
+<blockquote><p><strong>Reactive Turret</strong> Cost line: 1 Tangle, 1 Circuit Type line: Magic Technology — Permanent Rules text: Slow. Spent: deal 1 damage to any Unit.</p></blockquote>
+<p>Reactive Turret&#39;s total cost is 2 Fount Points: 1 paid from the Tangle resource pool and 1 from the Circuit resource pool, never 2 from either pool alone. Its type line lists Magic, an instant/sorcery-speed resolving type, and Technology, a permanent type; per the rule above, the presence of Technology makes the whole card a Permanent, so Reactive Turret stays on the Field once played rather than resolving to the Wreck.</p>
 </main>
 </body>
 </html>
