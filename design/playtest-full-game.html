@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Full Game Playtest Procedure (On Paper) — Amaranth Expanse Design</title>
+<style>:root { color-scheme: dark light; }
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  padding: 1.25rem;
+  background: #14151a;
+  color: #e6e6ea;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-size: 17px;
+  line-height: 1.6;
+}
+main, nav { max-width: 42rem; margin-left: auto; margin-right: auto; }
+h1, h2, h3, h4, h5, h6 { line-height: 1.25; color: #f4f1ff; }
+a { color: #8ab4ff; }
+a:visited { color: #b79cff; }
+nav {
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid #34363f;
+  font-size: 0.95rem;
+}
+nav .home-link { font-weight: 600; margin-right: 0.75rem; }
+nav .section-label { color: #9a9aa5; margin-right: 0.75rem; }
+nav .siblings { margin-top: 0.4rem; }
+nav .siblings .current { font-weight: 600; color: #f4f1ff; }
+blockquote {
+  margin: 1rem 0;
+  padding: 0.25rem 1rem;
+  border-left: 3px solid #5a5d6b;
+  color: #c7c7d1;
+}
+table { border-collapse: collapse; width: 100%; margin: 1rem 0; font-size: 0.95rem; }
+th, td { border: 1px solid #34363f; padding: 0.4rem 0.6rem; text-align: left; }
+code, pre {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  background: #1e2027;
+  border-radius: 4px;
+}
+code { padding: 0.1em 0.35em; }
+pre { padding: 0.75rem; overflow-x: auto; }
+ul, ol { padding-left: 1.4rem; }
+section h2 { margin-top: 2rem; }
+@media (prefers-color-scheme: light) {
+  body { background: #fbfbfd; color: #1c1c22; }
+  a { color: #2454c7; }
+  blockquote { color: #454550; }
+  code, pre { background: #eef0f4; }
+  th, td { border-color: #d6d8e0; }
+}</style>
+</head>
+<body>
+<nav>
+<a class="home-link" href="../index.html">&larr; Index</a>
+<span class="section-label">Other</span>
+<div class="siblings"><a href="lore.html">The Long Record — A Chronicle of the Amaranth Expanse</a> &middot; <span class="current">Full Game Playtest Procedure (On Paper)</span> &middot; <a href="playtest-spatial.html">Spatial Battlefield Playtest Procedure (On Paper)</a></div>
+</nav>
+<main>
+<h1>Full Game Playtest Procedure (On Paper)</h1>
+<p>This is a step-by-step, on-paper procedure for two humans, &quot;Ada&quot; and &quot;Kestrel,&quot; to build decks, set up, and play one complete game under <em>design/rules.md</em>, from deck construction through an explicit win, using ordinary physical materials instead of a computer or software prototype. Every card named below exists by exact name in <em>design/cards/alpha-set.md</em>, <em>design/cards/character-signatures.md</em>, or <em>design/cards/frontier-set.md</em>. Every major step cites the exact rules.md section that governs it, so either playtester can stop and check the physical action just taken against the rule text itself. This procedure builds on the spatial-layer procedure already written in <em>design/playtest-spatial.md</em>, but where that document focuses narrowly on the battlefield graph, this one plays every phase of an entire game, from an empty table to a declared winner.</p>
+<p>Read &quot;What This Playtest Surfaced&quot; at the end before running this procedure — it explains, with exact numbers, why both decks below draw only from the Mass and Circuit Founts, and why Combat and Capture are demonstrated separately as Worked Examples rather than inside the numbered Procedure itself.</p>
+<h2>Materials</h2>
+<ul><li>Two sets of 40 index cards each, one set per challenger, built to the decklists in step 1</li></ul>
+<p>  below, standing in for that challenger&#39;s Archive (Section 3); shuffle each into a   face-down pile.</p>
+<ul><li>A discard area per challenger for their Wreck (Section 3), and a shared area for the Void</li></ul>
+<p>  (Section 3) — this procedure never needs the Void, but keep the area ready in case a   playtester wants to check the rule.</p>
+<ul><li>Five small piles of counters or a tally sheet, one pile per Fount (Mass, Bloom, Signal,</li></ul>
+<p>  Circuit, Tangle) per challenger, for that challenger&#39;s five resource pools (Section 4).</p>
+<ul><li>A tally sheet or a d20 per challenger, starting at 20, to track Core Integrity (Section</li></ul>
+<p>  2&#39;s Home base and Core Integrity terms). Rules.md does not fix a starting Core Integrity   value; this procedure uses 20 as a workable table number.</p>
+<ul><li>A large sheet of paper or whiteboard space for the battlefield graph, Planet index cards,</li></ul>
+<p>  and a marker, exactly as <em>design/playtest-spatial.md</em>&#39;s own Materials list already   describes (Section 8.1).</p>
+<ul><li>A way to mark a permanent Spent versus Ready (Section 2) — turning the card sideways</li></ul>
+<p>  works well.</p>
+<ul><li>A small &quot;Queue&quot; area on the table, and a token to mark who currently holds priority</li></ul>
+<p>  (Section 6).</p>
+<h2>Procedure</h2>
+<ol><li><strong>Construct two legal 40-card decks (Section 11).</strong> Only 10 of the 28 cards currently</li></ol>
+<p>   named across the three card files can ever be paid for — see &quot;What This Playtest    Surfaced&quot; for exactly why. Both decks below lean on those 10 as far as legally possible    (Section 11.2 caps any one name at 3 copies, so 10 names x 3 = 30 payable slots) and    fill the remaining 10 slots, required by Section 11.1&#39;s 40-card minimum, with cards    from the dead Founts. Build these two decks exactly as listed:</p>
+<p>   <strong>Deck A (&quot;Ada&quot;)</strong> — 40 cards:</p>
+<ul><li>3x <code>Salvage-Wrought Bastion</code> (2 Mass, Materials — Permanent, Generator)</li><li>3x <code>Line-Fleet Trooper</code> (3 Mass, Materials — Permanent, Unit, combat strength 3)</li><li>3x <code>Cinder-Forged Plating</code> (1 Mass, Materials — Permanent)</li><li>3x <code>Kordelia Vess, Salvage-Marshal of the Cinder Yards</code> (3 Mass, Materials —</li></ul>
+<p>     Permanent, Generator)</p>
+<ul><li>3x <code>Bastion Reclamation Crew</code> (2 Mass, Materials — Permanent)</li><li>3x <code>Sporeknit Warden</code> (3 Bloom — dead, no Bloom Generator exists)</li><li>3x <code>Feral Bloomcaller</code> (2 Bloom — dead)</li><li>3x <code>Rootbind Thicket</code> (2 Bloom — dead)</li><li>3x <code>Oathbreaker&#39;s Toll</code> (2 Tangle — dead, no Tangle Generator exists)</li><li>3x <code>Echo Recall</code> (2 Tangle — dead)</li><li>3x <code>Whispered Contract</code> (1 Signal — dead, no Signal Generator exists)</li><li>3x <code>Foreknowledge Cipher</code> (2 Signal — dead)</li><li>3x <code>Wrought-Bloom Graft</code> (1 Mass, 1 Bloom — dead, the Bloom share can never be paid)</li><li>1x <code>Mother-Thread Ilvex, First Voice of the Sprawl</code> (4 Bloom — dead)</li></ul>
+<p>   <strong>Deck B (&quot;Kestrel&quot;)</strong> — 40 cards:</p>
+<ul><li>3x <code>Replicant Foundry Core</code> (3 Circuit, Technology — Permanent, Generator)</li><li>3x <code>Firmware Sentinel</code> (2 Circuit, Technology — Permanent)</li><li>3x <code>Drone Cascade</code> (3 Circuit, Technology — Permanent, Unit, combat strength 3)</li><li>3x <code>Unit 0-Prime &quot;Cast-Aside&quot;, the First Flaw</code> (3 Circuit, Technology — Permanent,</li></ul>
+<p>     Unit, combat strength 3)</p>
+<ul><li>3x <code>Replication Beachhead</code> (2 Circuit, Technology — Permanent, Generator)</li><li>3x <code>Static Ambush</code> (3 Signal — dead)</li><li>3x <code>Unwritten Hour</code> (3 Tangle — dead)</li><li>3x <code>Signal-Wrought Prototype</code> (1 Signal, 1 Circuit — dead, the Signal share can never</li></ul>
+<p>     be paid)</p>
+<ul><li>3x <code>Tangle-Forged Bolt</code> (1 Tangle, 1 Mass — dead, the Tangle share can never be paid)</li><li>3x <code>Wormhole Ledger</code> (1 Signal — dead)</li><li>3x <code>Rite of Unmaking</code> (2 Tangle — dead)</li><li>3x <code>Selin Vashti Corr, Whisper-Broker of the Glass Spires</code> (2 Signal — dead)</li><li>3x <code>Meridian Aule, Star-Read Oracle of the Tangle</code> (2 Tangle — dead)</li><li>1x <code>Whispered Contract</code> (1 Signal — dead)</li></ul>
+<p>   Check each deck against Section 11.1 (at least 40 cards: both are exactly 40) and    Section 11.2 (no more than 3 copies of any one Name: confirmed above).</p>
+<ol><li><strong>Lay out the two Homeworlds.</strong> Place two Planet index cards a few inches apart: one</li></ol>
+<p>   labeled &quot;Verge Hollow&quot; for Ada, one labeled &quot;Ironreach Station&quot; for Kestrel. Put each    challenger&#39;s own token on their own Homeworld card. A Planet is a node in the    battlefield graph, and each challenger controls their own Homeworld from the start of    the game (Section 8.1, Section 8.2).</p>
+<ol><li><strong>Confirm the starting map matches Map Setup.</strong> Exactly these two cards should be on</li></ol>
+<p>   the table, no others, and no line connects them yet — the two Homeworlds are never    adjacent at the start of the game, and the starting Planet count is exactly two, one    per challenger, fixed and symmetric every time (Section 8.8).</p>
+<ol><li><strong>Shuffle, draw opening hands, and set starting trackers.</strong> Each challenger shuffles</li></ol>
+<p>   their 40-card Archive (Section 3) and draws an opening hand of 5 cards from it — 35    cards then remain in each Archive. Rules.md does not fix an opening hand size; this    procedure uses 5 as a table convention, not a rules.md citation. Set each challenger&#39;s    Core Integrity tracker to 20 (also a table convention, per the Materials list above).</p>
+<ol><li><strong>Determine who takes the first turn.</strong> Flip a coin, or use any other neutral method —</li></ol>
+<p>   determining who takes the first turn is named as part of general game setup, but no    particular method is fixed (Section 8.8). For the rest of this procedure, assume Ada    wins the flip and takes the first turn.</p>
+<ol><li><strong>Apply the one-time starting Fount Point allotment.</strong> This step is a playtest</li></ol>
+<p>   convention only — it is not stated anywhere in rules.md, and exists solely to break a    bootstrap problem the rules otherwise leave unsolved: Section 5.2 only lets an    <em>existing</em> Generator produce points, so without some starting grant, neither    challenger could ever pay for their very first Generator. Before Turn 1, Ada places 2    counters into her own Mass pool (the cost of <code>Salvage-Wrought Bastion</code>, the Generator    she intends to play first) and Kestrel places 2 counters into her own Circuit pool (the    cost of <code>Replication Beachhead</code>). Do not cite any rules.md section for this step when    playing — there isn&#39;t one.</p>
+<ol><li><strong>Turn 1 — Ada&#39;s Dawn Phase.</strong> Ada would ready any Spent permanents she controls (she</li></ol>
+<p>   controls none yet). Because this is the very first turn of the game, Ada does NOT draw    this Dawn Phase — the one stated exception in Section 5.1.</p>
+<ol><li><strong>Turn 1 — Ada&#39;s Generation Phase and Main Phase.</strong> Ada controls 0 Generators, so</li></ol>
+<p>   Generation Phase (Section 5.2) produces nothing from the Field; her Mass pool still    holds the 2 counters from step 6. In her Main Phase (Section 5.3), Ada plays    <code>Salvage-Wrought Bastion</code>, paying 2 Mass. Because this is her first Generator, it MUST    be built on her own Homeworld (Section 4.6, Section 8.2) — place it on Verge Hollow. It    enters Ready, with one Fortification counter as printed on its Stats/counters line. Ada    has no Fount Points left and passes.</p>
+<ol><li><strong>Turn 1 — Ada&#39;s Conflict Phase and Dusk Phase.</strong> Neither challenger controls a Ready</li></ol>
+<p>   Unit, so no attackers are declared (Section 5.4). No triggered ability applies; both    challengers pass in succession, Ada&#39;s already-empty Mass pool stays empty (Section    5.5), and the turn ends.</p>
+<ol><li><strong>Turn 2 — Kestrel&#39;s full turn.</strong> Dawn Phase: Kestrel draws 1 card — the first-turn</li></ol>
+<p>    exception in Section 5.1 applies only to whoever takes the game&#39;s very first turn     (Ada), not to Kestrel&#39;s own first turn, so she draws normally. Generation Phase     produces nothing from the Field (0 Generators); her Circuit pool still holds the 2     counters from step 6. Main Phase: she plays <code>Replication Beachhead</code>, paying 2 Circuit,     built on her own Homeworld, Ironreach Station, since it is her first Generator     (Section 4.6, Section 5.3, Section 8.2). Conflict Phase: nothing to declare (Section     5.4). Dusk Phase: pools already empty, turn ends (Section 5.5).</p>
+<ol><li><strong>Turn 3 — Ada&#39;s turn.</strong> Dawn Phase: Ada draws 1 card (Section 5.1 — the exception</li></ol>
+<p>    only ever applied to her very first turn). Generation Phase: <code>Salvage-Wrought Bastion</code>     produces 1 Mass Point, added to Ada&#39;s Mass pool (Section 5.2, Section 4.1). Main     Phase: Ada plays <code>Cinder-Forged Plating</code>, paying her 1 Mass Point (Section 5.3), then     activates its own Spent ability (its only cost is becoming Spent — no further Fount     Point cost), choosing <code>Salvage-Wrought Bastion</code> (a permanent she controls) as the     target the instant the ability is added to the Queue (Section 13.1). Both challengers     pass in succession; the ability resolves (Section 6), placing a second Fortification     counter on <code>Salvage-Wrought Bastion</code>. Conflict and Dusk Phases: nothing to declare,     pools empty (Section 5.4, Section 5.5).</p>
+<ol><li><strong>Turn 4 — Kestrel&#39;s turn.</strong> Dawn Phase: draws 1 (Section 5.1). Generation Phase:</li></ol>
+<p>    <code>Replication Beachhead</code> produces 1 Circuit Point (Section 5.2, Section 4.4). Main     Phase: Kestrel checks her hand for anything costing 1 Circuit or less — nothing in the     entire card pool costs that little in pure Circuit (the cheapest other Circuit card,     <code>Firmware Sentinel</code>, costs 2). She has no legal play; Section 5.3 says the active     player MAY play cards, never MUST, so she simply passes. Conflict and Dusk Phases:     nothing to declare, pools empty.</p>
+<ol><li><strong>Turn 5 — Ada&#39;s turn.</strong> Dawn and Generation Phases proceed as turn 3 (Section 5.1,</li></ol>
+<p>    Section 5.2, Section 4.1): draw 1, produce 1 Mass Point. This time, in her Main Phase,     Ada takes a Discovery action instead of playing another <code>Cinder-Forged Plating</code>     (Section 8.3): a Frontier Discovery from her Homeworld to a new Unexplored Planet,     naming it &quot;Cindral Drift,&quot; with a Wormhole of Length 1. A Frontier Discovery costs     Fount Points equal to Length, so she pays her 1 Mass Point. Cindral Drift joins the     battlefield graph as a Neutral Planet, adjacent to Verge Hollow. Conflict and Dusk     Phases: nothing to declare, pools empty.</p>
+<ol><li><strong>Turn 6 — Kestrel&#39;s turn.</strong> Repeat turn 4&#39;s shape exactly: draw 1 (Section 5.1),</li></ol>
+<p>    produce 1 Circuit Point (Section 5.2, Section 4.4), no legal Main Phase play, pass     (Section 5.3).</p>
+<ol><li><strong>Continue alternating turns in this pattern.</strong> On each further Ada turn, she draws 1</li></ol>
+<p>    card (Section 5.1), her <code>Salvage-Wrought Bastion</code> produces 1 Mass Point (Section 5.2,     Section 4.1), and she spends it in her Main Phase (Section 5.3) either on one of her     two remaining unplayed <code>Cinder-Forged Plating</code> copies (activating its Spent ability     again once played) or on another Length-1 Frontier Discovery (Section 8.3) from     whichever Planet she controls. On each further Kestrel turn, she draws 1 card (Section     5.1), produces 1 Circuit Point (Section 5.2, Section 4.4), has no legal Main Phase     play, and passes (Section 5.3). Neither challenger ever declares an attacker, since     neither ever controls a Ready Unit (Section 5.4) — see &quot;What This Playtest Surfaced&quot;     for exactly why. Keep alternating until a challenger is required to draw with an empty     Archive, picked up in the next step.</p>
+<ol><li><strong>The explicit win.</strong> Both Archives started at 40 cards, less the 5-card opening hand</li></ol>
+<p>    (step 4), leaving 35 cards apiece. Kestrel draws on every one of her own turns,     starting with her very first (Turn 2); Ada draws on every one of her own turns     <em>except</em> her very first (Turn 1&#39;s exception, Section 5.1). Because of that one-turn     head start, Kestrel always has drawn exactly one more card than Ada has, at the same     point in the game — so Kestrel empties her Archive first: on her 35th personal turn     (the game&#39;s 70th turn) her last card is drawn, and on her 36th personal turn (the     game&#39;s 72nd turn) she is required to draw during her Dawn Phase with no card left to     draw. Section 10.1&#39;s second Elimination condition Eliminates Kestrel immediately, in     the middle of that Dawn Phase, before the rest of her turn is played. Ada is now the     only challenger left un-Eliminated, so Section 10.2 ends the game immediately: Ada     wins, and no further phase or turn is played.</p>
+<h2>Worked Examples (illustrative — not reachable through steps 1-16)</h2>
+<p>The Procedure above is entirely real: every step is something the current rules and card pool genuinely support, ending in a genuine win. But it never reaches Combat or an Assault against enemy territory, for the reasons in &quot;What This Playtest Surfaced&quot; below. Rules.md resolves this same tension for its own text with constructed Worked Examples (Section 7, Section 8.7, Section 10.3, Section 12.5, Section 13.3): a hypothetical state, stated as hypothetical, used to pin down a rule concretely. The two examples below do the same for this procedure, using the same named cards, so Section 5.4/Section 12 and Section 8.6 still get an on-paper demonstration even though the scripted game above cannot reach them.</p>
+<h3>Worked Example 1: Combat Resolution (Section 5.4, Section 12)</h3>
+<p>Suppose, hypothetically, Ada controlled a Ready <code>Line-Fleet Trooper</code> (combat strength 3) and Kestrel controlled two Ready Units: a <code>Drone Cascade</code> (combat strength 3) and a <code>Unit 0-Prime &quot;Cast-Aside&quot;, the First Flaw</code> (combat strength 3).</p>
+<ul><li>Ada declares <code>Line-Fleet Trooper</code> as an attacker; it becomes Spent. Kestrel declares both</li></ul>
+<p>  <code>Drone Cascade</code> and <code>Unit 0-Prime &quot;Cast-Aside&quot;, the First Flaw</code> as blockers against it   (Section 5.4).</p>
+<ul><li>Because it is blocked, <code>Line-Fleet Trooper</code> deals its combat strength as damage to its</li></ul>
+<p>  blockers instead of Kestrel&#39;s Core Integrity (Section 12.1). Ada, the active player,   chooses the assignment: all 3 damage to <code>Drone Cascade</code> (Section 12.2).</p>
+<ul><li><code>Drone Cascade</code> has 3 damage marked against it, equal to its own combat strength, so it</li></ul>
+<p>  is destroyed and moved to Kestrel&#39;s Wreck (Section 12.3).   <code>Unit 0-Prime &quot;Cast-Aside&quot;, the First Flaw</code> takes none.</p>
+<ul><li>Both of Kestrel&#39;s blockers also deal their combat strength to <code>Line-Fleet Trooper</code> at</li></ul>
+<p>  the same time (Section 12.1): 3 from each, 6 total. Its combat strength is 3, so 6   damage destroys it too, moved to Ada&#39;s Wreck (Section 12.3).</p>
+<h3>Worked Example 2: Discovery, Blockade, and Capture (Section 8.3, Section 8.6)</h3>
+<p>Suppose, hypothetically, Ada had built a second <code>Salvage-Wrought Bastion</code> on Cindral Drift (the Planet discovered in step 13), and Kestrel had somehow amassed enough Fount Points in a single turn to reach it.</p>
+<ul><li>Kestrel takes an Assault action against Cindral Drift, along a qualifying path from a</li></ul>
+<p>  Planet she controls, paying Fount Points equal to the summed Length of that path   (Section 8.6), and chooses to Blockade. Cindral Drift is now Blockaded: starting with   Ada&#39;s next Generation Phase, its <code>Salvage-Wrought Bastion</code> stops producing Fount Points,   though it is not destroyed and Ada still controls the Planet.</p>
+<ul><li>Ada does not clear the Blockade. On a later turn, Kestrel takes a second Assault along</li></ul>
+<p>  the same path, this time choosing Capture. Control of Cindral Drift passes to Kestrel   immediately, and Ada&#39;s <code>Salvage-Wrought Bastion</code> there is destroyed, moved to her Wreck   (Section 8.6).</p>
+<h2>What This Playtest Surfaced</h2>
+<p>The Procedure above genuinely plays, and genuinely ends in a win — but it never involves a Unit, a Fount other than Mass and Circuit, an Assault, or a Blockade, and that is not this procedure&#39;s choice. It is a consequence of exactly two facts, checkable against <em>design/rules.md</em> and the three card files:</p>
+<table><thead><tr><th>Fount</th><th>Generator card(s) in the current pool</th><th>Cheapest other card in that Fount</th><th>Sustainable past the opening Generator?</th></tr></thead><tbody><tr><td>Mass</td><td><code>Salvage-Wrought Bastion</code> (2), <code>Kordelia Vess, Salvage-Marshal of the Cinder Yards</code> (3)</td><td><code>Cinder-Forged Plating</code> (1)</td><td>Yes — the only Fount with a card cheap enough to replay inside the 1-point/turn cap</td></tr><tr><td>Circuit</td><td><code>Replicant Foundry Core</code> (3), <code>Replication Beachhead</code> (2)</td><td><code>Firmware Sentinel</code> (2)</td><td>No — total lockout the instant the Generator is played</td></tr><tr><td>Bloom</td><td>none</td><td><code>Feral Bloomcaller</code> / <code>Rootbind Thicket</code> (2)</td><td>N/A — nothing ever produces Bloom</td></tr><tr><td>Signal</td><td>none</td><td><code>Whispered Contract</code> / <code>Wormhole Ledger</code> (1)</td><td>N/A — nothing ever produces Signal</td></tr><tr><td>Tangle</td><td>none</td><td><code>Oathbreaker&#39;s Toll</code> / <code>Echo Recall</code> / <code>Rite of Unmaking</code> / <code>Meridian Aule, Star-Read Oracle of the Tangle</code> (2)</td><td>N/A — nothing ever produces Tangle</td></tr></tbody></table>
+<p>Because Section 4 empties every resource pool at the end of each turn, and Section 5.2 lets only an <em>already-controlled</em> Generator produce points, and every printed Generator costs strictly more than the single-turn output of one Generator, a challenger can never field a second Generator once they have exactly one — the economy is capped, forever, at 1 Fount Point of a single Fount per turn, immediately after the opening Generator. Combined with every printed Unit costing at least 3 (the cheapest reachable one, <code>Line-Fleet Trooper</code>, is 3 Mass) and a Contested Discovery costing at least 2 (double the minimum Length of 1), this means Combat (Section 5.4, Section 12) and any Assault against an opponent&#39;s territory (Section 8.6) cannot occur through ordinary play with the 28 cards currently named across the three card files — which is exactly why the two mechanics are demonstrated above as Worked Examples instead of inside the numbered Procedure.</p>
+<p>Separately, because only 10 of those 28 named cards are ever payable at all (5 Materials + 5 Technology), and Section 11.2 caps any one of them at 3 copies, the most any legal deck can lean on payable cards is 30 slots — 10 short of the Section 11.1 minimum of 40. Every legal deck, not just the two built for this procedure, is forced to include at least 10 copies of cards that can never be cast.</p>
+<p>For a future card set or rules revision: this playtest&#39;s single clearest, most actionable finding is that Bloom, Signal, and Tangle each need at least one Generator card, and every Fount needs at least one card cheap enough (1 point) to sustain a single-Generator economy, before a full game can be expected to naturally reach Combat, Discovery past Length 1, or Capture.</p>
+</main>
+</body>
+</html>
