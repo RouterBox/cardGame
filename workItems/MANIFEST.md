@@ -122,3 +122,10 @@ Append-only requirements traceability log — one section per archived work item
 - AC2 [paraphrase]: Each composited SVG's Art Window slot contains an <image> element (not the placeholder rect) positioned and sized to match the Art Window bounds defined in design/cards/card-anatomy.md. — no receipt (escalated before receipt computation)
 - AC3 [inferred]: Image generation goes through an injectable client; the default/test client is a deterministic mock that makes no network calls and requires no Leonardo API key, so `node --test` runs fully offline. — no receipt (escalated before receipt computation)
 - AC4 [inferred] (held_out): Running the script twice in a row with the mock client produces byte-identical output across all composited SVGs, verifiable by hashing. — no receipt (escalated before receipt computation)
+
+## 2026-07-28-cardgame-tools-loader-dedup-cardgame-tools-dedupe-loadcardsfromfile-loadallcards-into-lib-parse-card-markdown-js.md
+
+- AC1 [paraphrase]: lib/parse-card-markdown.js exports loadCardsFromFile and loadAllCards, which read design/cards/*.md filenames in sorted order and parse each via parseCardMarkdown. — PASS
+- AC2 [inferred]: tools/render-card.js no longer declares its own loadCardsFromFile or loadAllCards functions; it imports both from lib/parse-card-markdown.js. — PASS
+- AC3 [inferred]: tools/sync-cards-to-jaina.js no longer declares its own loadCardsFromFile or loadAllCards functions; it imports both from lib/parse-card-markdown.js. — PASS
+- AC4 [inferred] (held_out): A new test/tools-loader-dedup.test.js statically asserts neither tools/render-card.js nor tools/sync-cards-to-jaina.js source text contains a local function declaration named loadCardsFromFile or loadAllCards, and the existing render-card/sync-cards-to-jaina/composite-card-art test suites still pass unmodified. — PASS
