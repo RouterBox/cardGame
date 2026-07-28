@@ -6,7 +6,7 @@
 - title: cardGame design — named characters per race with interlinking narratives
 - project: cardgame
 - completed: 2026-07-28
-- outcome: escalated
+- outcome: escalated, then hand-recovered and merged (2fc7b22) — escalation root cause was a test bug: web.md not excluded from the roster file listing
 - start_sha: 9e0cb755a854eb87a29c310eef122507613c6722
 - end_sha: 9e0cb755a854eb87a29c310eef122507613c6722
 
