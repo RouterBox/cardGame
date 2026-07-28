@@ -6,7 +6,7 @@
 - title: cardGame design phase — world lore & history
 - project: cardgame
 - completed: 2026-07-28
-- outcome: escalated
+- outcome: escalated, then hand-recovered and merged (2c212f2) — blind review approved with zero findings; DA NEEDS_WORK left no findings, no-change breaker fired on the contradiction
 - start_sha: 36ed8dcd1ce6306055da5e62a969e5431f50e5fe
 - end_sha: 36ed8dcd1ce6306055da5e62a969e5431f50e5fe
 
