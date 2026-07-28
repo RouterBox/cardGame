@@ -957,3 +957,105 @@ blockers rather than Core Integrity, that the active player's assignment
 choice can eliminate one blocker while sparing another sharing the same
 attacker, and that surviving damage persists until the fixed clearing
 moment this section commits to, exactly as Sections 12.1-12.4 state.
+
+## 13. Targeting
+
+Section 9's card examples — Cinderfall Bolt (Section 9.2) and Reactive
+Turret (Section 9.7) — both name a target ("any Unit") as part of
+resolving, but Section 2's Glossary never defines what a target is, when a
+challenger locks one in, or what happens if the chosen target stops being
+legal before the effect resolves. This section closes that gap. Nothing in
+this section changes or restates any rule already stated in Sections 1-12;
+where a rule already exists, this section cross-references it by section
+number instead.
+
+### 13.1 Targets and Choosing a Target
+
+- **Target** — a permanent, challenger, or other game object that a card's
+  or ability's rules text names as what its effect applies to, chosen from
+  among the game objects that meet whatever restriction that rules text
+  states (for example, Cinderfall Bolt's "any Unit", Section 9.2). Not
+  every card or ability has a target; a card or ability only has one if
+  its rules text names one.
+- **Legal target** — a game object that meets every restriction stated by
+  the targeting rules text, at the moment being checked (Section 13.2).
+
+A target is chosen the instant the targeting card or ability is
+added to the Queue (Section 2's Queue; Section 6) — never later, and never at the
+moment it resolves. This applies equally to a card a challenger plays and
+to a triggered ability that enters the Queue on its own (Section 2's
+Trigger/Triggered ability). The challenger playing the card, or
+controlling the triggered ability, chooses its target(s) as part of
+adding it to the Queue, and every target chosen
+MUST be a legal target at that moment; a card or ability that names a target but has no legal
+target available to choose MAY NOT be added to the Queue at all.
+
+Once chosen, a target is fixed: nothing in this section lets a target be
+reselected or changed after the card or ability that named it is already
+in the Queue. This matches how every other Queue entry in this rulebook
+behaves — Section 6 already treats the Queue as an ordered, fixed sequence
+of entries once something is added to it, and a target chosen at that
+same moment is no different.
+
+### 13.2 Legality Recheck and Fizzling
+
+A target's legality is not only checked once, at the moment it is chosen
+(Section 13.1). It is rechecked immediately before the entry that named
+it resolves (Section 2's Resolve; Section 6) — the last possible moment
+before its effect would apply.
+
+If an entry has exactly one target, and that target is
+not a legal target at this recheck per the definition above, the entry **fizzles**: it does nothing —
+none of its rules text takes effect — and it is still removed from the
+Queue exactly as though it had resolved (Section 2's Resolve). A fizzled
+entry never resolves against nothing, and nothing in this section lets a
+fizzled entry's controller pick a new, legal target in place of the one
+that stopped being legal — an illegal target simply ends the entry's
+effect, not its target.
+
+This section does not state a rule for an entry with more than one
+target, since no card printed under this rulebook so far has more than
+one (Section 9's examples each name at most one target); a future card
+doing so would need its own rules text to state what happens if only some
+of its targets are illegal at the recheck.
+
+### 13.3 Worked Example: A Fizzled Response
+
+This example follows one Main Phase exchange between Reva (active player)
+and Toma (non-active player), continuing in the same style as Section 7's
+worked example. Toma controls a single Unit, Scrap Sentinel, combat
+strength 2 with no damage marked against it. Reva controls no Units.
+
+1. It is Reva's Main Phase. The Queue is empty and Reva holds priority.
+   Reva plays Cinderfall Bolt (Section 9.2: Fast, "deal 3 damage to any
+   Unit"), naming Scrap Sentinel as its target — the only Unit on the
+   Field and therefore the only legal target available (Section 13.1).
+   Cinderfall Bolt is added to the Queue with Scrap Sentinel locked in as
+   its target. Reva passes.
+2. Priority moves to Toma. The Queue is not empty, so Toma may respond
+   (Section 2's Response). Toma plays a second copy of Cinderfall Bolt,
+   naming Scrap Sentinel — Toma's own Unit — as its target, and passes.
+   Toma's card, played later, sits above Reva's in the Queue (Section 6)
+   and so resolves first.
+3. Both challengers pass in succession, the priority window closes, and
+   Toma's Cinderfall Bolt resolves: it deals 3 damage to Scrap Sentinel,
+   whose combat strength is 2, destroying it (Section 12.3). Scrap
+   Sentinel is moved to Toma's Wreck (Section 3).
+4. A new priority window opens; both challengers pass again, and Reva's
+   Cinderfall Bolt — still the Queue's only entry — is about to resolve.
+   Immediately before it resolves, its target is rechecked (Section
+   13.2): Scrap Sentinel is no longer on the Field, so it is no longer a
+   legal target. Reva's Cinderfall Bolt has exactly one target and that
+   target is illegal at the recheck, so it fizzles: it deals no damage to
+   anything, and is removed from the Queue exactly as though it had
+   resolved.
+5. The Queue is now empty. Play continues to the Conflict Phase with Toma
+   controlling no Units and having taken no damage from Reva's card.
+
+This confirms, on paper, that a Fast card's target is locked in when it
+is added to the Queue (Section 13.1), not when it resolves; that a
+Response resolving first (Section 6) can remove the only legal target an
+already-queued entry had; and that losing its sole target this way
+fizzles the entry — it does nothing and leaves the Queue, rather than
+resolving against nothing or letting its controller retarget it (Section
+13.2).
