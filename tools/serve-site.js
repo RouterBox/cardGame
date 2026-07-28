@@ -8,8 +8,13 @@ const path = require('node:path');
 const REPO_ROOT = path.join(__dirname, '..');
 const SITE_DIR = path.join(REPO_ROOT, 'site');
 
-const DEFAULT_PORT = 8080;
-const DEFAULT_HOST = '0.0.0.0';
+// RouterBox 2026-07-28: serve on localhost at the next open port — not
+// 0.0.0.0. Port 0 asks the OS for a free ephemeral port, so starting the
+// shelf never collides with anything else running on this machine; the
+// startup log prints the real URL to open. PORT/HOST env vars still
+// override for anyone who wants a fixed address.
+const DEFAULT_PORT = 0;
+const DEFAULT_HOST = '127.0.0.1';
 
 const CONTENT_TYPES = {
   '.html': 'text/html; charset=utf-8',
@@ -78,7 +83,12 @@ function createServer() {
 }
 
 function resolveConfig() {
-  const port = Number(process.env.PORT) || DEFAULT_PORT;
+  // `PORT=0`/unset -> ephemeral next-open port; Number('') is 0 so an empty
+  // env var also lands on the ephemeral default. `??` (not ||) keeps an
+  // explicit 0 meaning "OS picks".
+  const port = process.env.PORT !== undefined && process.env.PORT !== ''
+    ? Number(process.env.PORT)
+    : DEFAULT_PORT;
   const host = process.env.HOST || DEFAULT_HOST;
   return { port, host };
 }
@@ -87,7 +97,10 @@ function main() {
   const { port, host } = resolveConfig();
   const server = createServer();
   server.listen(port, host, () => {
-    console.log(`Serving ${path.relative(REPO_ROOT, SITE_DIR).split(path.sep).join('/')}/ at http://${host}:${port}/`);
+    // With port 0 the OS assigns the real port at listen time — report the
+    // bound address, not the requested one, so the printed URL always works.
+    const bound = server.address().port;
+    console.log(`Serving ${path.relative(REPO_ROOT, SITE_DIR).split(path.sep).join('/')}/ at http://${host === '0.0.0.0' ? 'localhost' : host}:${bound}/`);
   });
   return server;
 }

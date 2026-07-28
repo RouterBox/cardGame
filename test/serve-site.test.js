@@ -65,29 +65,45 @@ test('AC2: package.json defines a site:serve script that runs tools/serve-site.j
 });
 
 // ---------------------------------------------------------------------------
-// AC3: the server binds host 0.0.0.0 by default (overridable)
+// AC3 (amended by RouterBox 2026-07-28): the server binds localhost at the
+// next open port by default — "I think I just want it served on
+// http://localhost:nextOpen". HOST/PORT env vars still override.
 // ---------------------------------------------------------------------------
 
-test('AC3: resolveConfig() defaults host to 0.0.0.0, overridable via HOST env var', () => {
+test('AC3: resolveConfig() defaults to localhost + ephemeral port, overridable via HOST/PORT env vars', () => {
   const originalHost = process.env.HOST;
+  const originalPort = process.env.PORT;
   try {
     delete process.env.HOST;
-    assert.strictEqual(resolveConfig().host, '0.0.0.0');
-
-    process.env.HOST = '127.0.0.1';
+    delete process.env.PORT;
     assert.strictEqual(resolveConfig().host, '127.0.0.1');
+    assert.strictEqual(resolveConfig().port, 0);
+
+    process.env.HOST = '0.0.0.0';
+    process.env.PORT = '8080';
+    assert.strictEqual(resolveConfig().host, '0.0.0.0');
+    assert.strictEqual(resolveConfig().port, 8080);
   } finally {
-    if (originalHost === undefined) delete process.env.HOST;
-    else process.env.HOST = originalHost;
+    if (originalHost === undefined) delete process.env.HOST; else process.env.HOST = originalHost;
+    if (originalPort === undefined) delete process.env.PORT; else process.env.PORT = originalPort;
   }
 });
 
-test('AC3: a server bound to 0.0.0.0 actually accepts connections from another interface', async () => {
+test('AC3: default config yields a localhost server on an OS-assigned open port', async () => {
+  const { port, host } = (() => {
+    const oh = process.env.HOST, op = process.env.PORT;
+    delete process.env.HOST; delete process.env.PORT;
+    const cfg = resolveConfig();
+    if (oh !== undefined) process.env.HOST = oh;
+    if (op !== undefined) process.env.PORT = op;
+    return cfg;
+  })();
   const server = createServer();
-  server.listen(0, '0.0.0.0');
+  server.listen(port, host);
   try {
     await waitForListening(server);
-    assert.strictEqual(server.address().address, '0.0.0.0');
+    assert.strictEqual(server.address().address, '127.0.0.1');
+    assert.ok(server.address().port > 0, 'OS must assign a real open port');
     const res = await fetch(`http://127.0.0.1:${server.address().port}/`);
     assert.strictEqual(res.status, 200);
   } finally {
