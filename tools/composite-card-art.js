@@ -94,26 +94,97 @@ function compositeArtWindow(baseSvg, href) {
 
 // ---------------------------------------------------------------------------
 // Main
+//
+// OUT_DIR is a shared, on-disk resource that multiple test files (each their
+// own OS process under `node --test`) can call main()/runCli() against
+// concurrently. The (possibly slow — a real --live run polls Leonardo per
+// brief) generation loop writes into a private, uniquely-named temp
+// directory first, so it never touches the shared path. Only the final swap
+// onto OUT_DIR (remove + rename, a couple of fast fs calls) is guarded by a
+// cross-process lock, which keeps that swap from racing another process's
+// swap (Windows in particular refuses a rename while another process is
+// touching the same directory). The lock itself self-heals: if a holder is
+// killed (SIGINT/SIGKILL/OOM) before releasing it, the lock directory goes
+// stale and a later run reclaims it instead of hanging forever.
 // ---------------------------------------------------------------------------
+
+const OUT_DIR_LOCK = `${OUT_DIR}.lock`;
+const LOCK_STALE_MS = 30000; // the guarded section is just a remove+rename, so any lock
+// older than this was abandoned by a process that died mid-swap, not one still working.
+
+async function withOutDirLock(fn) {
+  for (;;) {
+    try {
+      fs.mkdirSync(OUT_DIR_LOCK);
+      break;
+    } catch (err) {
+      if (err.code !== 'EEXIST') throw err;
+      let staleMtimeMs = null;
+      try {
+        staleMtimeMs = fs.statSync(OUT_DIR_LOCK).mtimeMs;
+      } catch (statErr) {
+        if (statErr.code !== 'ENOENT') throw statErr;
+      }
+      if (staleMtimeMs !== null && Date.now() - staleMtimeMs > LOCK_STALE_MS) {
+        fs.rmSync(OUT_DIR_LOCK, { recursive: true, force: true });
+        continue;
+      }
+      await new Promise((resolve) => setTimeout(resolve, 20));
+    }
+  }
+  try {
+    return await fn();
+  } finally {
+    fs.rmdirSync(OUT_DIR_LOCK);
+  }
+}
 
 async function main(client = createMockLeonardoClient()) {
   const briefs = loadBriefs();
   const cardsByName = new Map(loadAllCards().map((card) => [card.name, card]));
 
-  fs.rmSync(OUT_DIR, { recursive: true, force: true });
-  fs.mkdirSync(OUT_DIR, { recursive: true });
+  const tmpDir = `${OUT_DIR}.tmp-${process.pid}-${crypto.randomBytes(6).toString('hex')}`;
+  fs.mkdirSync(tmpDir, { recursive: true });
 
-  for (const brief of briefs) {
-    const card = cardsByName.get(brief.cardName);
-    if (!card) {
-      throw new Error(`art-briefs.md brief "${brief.cardName}" has no matching card in design/cards/*.md`);
+  try {
+    for (const brief of briefs) {
+      const card = cardsByName.get(brief.cardName);
+      if (!card) {
+        throw new Error(`art-briefs.md brief "${brief.cardName}" has no matching card in design/cards/*.md`);
+      }
+
+      const baseSvg = renderCardSvg(card);
+      const { href } = await client.generateArt({ cardName: card.name, brief: brief.text });
+      const compositedSvg = compositeArtWindow(baseSvg, href);
+
+      fs.writeFileSync(path.join(tmpDir, `${slugify(card.name)}.svg`), compositedSvg, 'utf8');
     }
 
-    const baseSvg = renderCardSvg(card);
-    const { href } = await client.generateArt({ cardName: card.name, brief: brief.text });
-    const compositedSvg = compositeArtWindow(baseSvg, href);
-
-    fs.writeFileSync(path.join(OUT_DIR, `${slugify(card.name)}.svg`), compositedSvg, 'utf8');
+    await withOutDirLock(async () => {
+      // Two renames instead of rm+rename: if the second rename fails partway
+      // (e.g. Windows refusing a rename while another process still holds a
+      // handle on the directory), the first rename lets us put the old
+      // OUT_DIR back rather than leaving OUT_DIR permanently missing.
+      const backupDir = `${OUT_DIR}.bak-${process.pid}-${crypto.randomBytes(6).toString('hex')}`;
+      const hadExisting = fs.existsSync(OUT_DIR);
+      if (hadExisting) {
+        fs.renameSync(OUT_DIR, backupDir);
+      }
+      try {
+        fs.renameSync(tmpDir, OUT_DIR);
+      } catch (err) {
+        if (hadExisting) {
+          fs.renameSync(backupDir, OUT_DIR);
+        }
+        throw err;
+      }
+      if (hadExisting) {
+        fs.rmSync(backupDir, { recursive: true, force: true });
+      }
+    });
+  } catch (err) {
+    fs.rmSync(tmpDir, { recursive: true, force: true });
+    throw err;
   }
 
   console.log(
@@ -121,8 +192,14 @@ async function main(client = createMockLeonardoClient()) {
   );
 }
 
+async function runCli(argv = process.argv) {
+  const useLive = argv.includes('--live');
+  const client = useLive ? require('../lib/leonardo-art-client').createLeonardoArtClient() : undefined;
+  await main(client);
+}
+
 if (require.main === module) {
-  main().catch((err) => {
+  runCli().catch((err) => {
     console.error(err.stack || err.message || String(err));
     process.exitCode = 1;
   });
@@ -130,6 +207,7 @@ if (require.main === module) {
 
 module.exports = {
   main,
+  runCli,
   createMockLeonardoClient,
   compositeArtWindow,
   loadBriefs,

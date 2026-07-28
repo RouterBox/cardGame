@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "description": "Galactic civilizations TCG — rules engine and card database",
   "scripts": {
-    "test": "node --test",
+    "test": "node --test --test-concurrency=1",
     "site:serve": "node tools/serve-site.js"
   },
   "license": "UNLICENSED"
