@@ -733,11 +733,13 @@ below — so Elimination and Game End are the same event: the instant one
 challenger is Eliminated, the other has already won, and no further turn
 is taken. The turn structure of Section 5 does not continue past the turn
 in which the Elimination happened, no matter which phase that turn had
-reached.
+reached. Since a challenger only ever holds priority as part of a turn's
+phases (Section 6), no further turn being taken also means neither
+challenger receives priority again once the game has ended.
 
 If both challengers meet an elimination condition (Section 10.1) at the
 same instant, the game ends in a **draw**: neither challenger wins, and,
-as above, no further turn is taken.
+as above, no further turn is taken and no further priority is received.
 
 ### 10.3 Worked Example: Simultaneous Elimination
 
