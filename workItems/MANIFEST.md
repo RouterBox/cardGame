@@ -108,3 +108,10 @@ Append-only requirements traceability log — one section per archived work item
 - AC4 [inferred]: GET / returns HTTP 200 and the design-shelf index.html body — no receipt (escalated before receipt computation)
 - AC5 [inferred] (held_out): Requests for a nonexistent path return HTTP 404 instead of crashing the server process — no receipt (escalated before receipt computation)
 - AC6 [inferred] (held_out): Served .html and .svg files include correct Content-Type response headers — no receipt (escalated before receipt computation)
+
+## 2026-07-28-cardgame-ideas-inbox-incorporated-tags-cardgame-design-mark-ideas-inbox-md-entries-incorporated-for-four-already-shipped-directives.md
+
+- AC1 [user]: design/ideas-inbox.md's 'characters per race' heading ends with '[incorporated: cardgame-race-characters]'. — no receipt (escalated before receipt computation)
+- AC2 [paraphrase]: design/ideas-inbox.md's 'card anatomy as layered compound object' and 'deterministic card authoring engine' headings end with '[incorporated: cardgame-card-anatomy-skeleton]' and '[incorporated: cardgame-card-authoring-engine]' respectively. — no receipt (escalated before receipt computation)
+- AC3 [inferred]: design/ideas-inbox.md's 'software gate ruling' heading ends with '[incorporated: cardgame-design-browser-site]', and the 'use Jaina as the content backbone' heading remains untagged since its corresponding unit has not shipped yet. — no receipt (escalated before receipt computation)
+- AC4 [inferred] (held_out): design/ideas-inbox.md still contains exactly 6 '## ' entry headings after the edit (none added, none removed, none reordered) and every '>' verbatim quote block is byte-identical to before — this unit changes only heading-line tags. — no receipt (escalated before receipt computation)
