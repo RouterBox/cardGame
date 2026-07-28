@@ -94,35 +94,67 @@ function compositeArtWindow(baseSvg, href) {
 
 // ---------------------------------------------------------------------------
 // Main
+//
+// OUT_DIR is a shared, on-disk resource that multiple test files (each their
+// own OS process under `node --test`) can call main()/runCli() against
+// concurrently. A cross-process lock (an atomic mkdirSync on a sibling lock
+// directory) keeps one invocation's rmSync+rewrite from racing another's.
 // ---------------------------------------------------------------------------
+
+const OUT_DIR_LOCK = `${OUT_DIR}.lock`;
+
+async function withOutDirLock(fn) {
+  for (;;) {
+    try {
+      fs.mkdirSync(OUT_DIR_LOCK);
+      break;
+    } catch (err) {
+      if (err.code !== 'EEXIST') throw err;
+      await new Promise((resolve) => setTimeout(resolve, 20));
+    }
+  }
+  try {
+    return await fn();
+  } finally {
+    fs.rmdirSync(OUT_DIR_LOCK);
+  }
+}
 
 async function main(client = createMockLeonardoClient()) {
   const briefs = loadBriefs();
   const cardsByName = new Map(loadAllCards().map((card) => [card.name, card]));
 
-  fs.rmSync(OUT_DIR, { recursive: true, force: true });
-  fs.mkdirSync(OUT_DIR, { recursive: true });
+  await withOutDirLock(async () => {
+    fs.rmSync(OUT_DIR, { recursive: true, force: true });
+    fs.mkdirSync(OUT_DIR, { recursive: true });
 
-  for (const brief of briefs) {
-    const card = cardsByName.get(brief.cardName);
-    if (!card) {
-      throw new Error(`art-briefs.md brief "${brief.cardName}" has no matching card in design/cards/*.md`);
+    for (const brief of briefs) {
+      const card = cardsByName.get(brief.cardName);
+      if (!card) {
+        throw new Error(`art-briefs.md brief "${brief.cardName}" has no matching card in design/cards/*.md`);
+      }
+
+      const baseSvg = renderCardSvg(card);
+      const { href } = await client.generateArt({ cardName: card.name, brief: brief.text });
+      const compositedSvg = compositeArtWindow(baseSvg, href);
+
+      fs.writeFileSync(path.join(OUT_DIR, `${slugify(card.name)}.svg`), compositedSvg, 'utf8');
     }
 
-    const baseSvg = renderCardSvg(card);
-    const { href } = await client.generateArt({ cardName: card.name, brief: brief.text });
-    const compositedSvg = compositeArtWindow(baseSvg, href);
+    console.log(
+      `Composited ${briefs.length} card art window(s) into ${path.relative(REPO_ROOT, OUT_DIR).split(path.sep).join('/')}/`
+    );
+  });
+}
 
-    fs.writeFileSync(path.join(OUT_DIR, `${slugify(card.name)}.svg`), compositedSvg, 'utf8');
-  }
-
-  console.log(
-    `Composited ${briefs.length} card art window(s) into ${path.relative(REPO_ROOT, OUT_DIR).split(path.sep).join('/')}/`
-  );
+async function runCli(argv = process.argv) {
+  const useLive = argv.includes('--live');
+  const client = useLive ? require('../lib/leonardo-art-client').createLeonardoArtClient() : undefined;
+  await main(client);
 }
 
 if (require.main === module) {
-  main().catch((err) => {
+  runCli().catch((err) => {
     console.error(err.stack || err.message || String(err));
     process.exitCode = 1;
   });
@@ -130,6 +162,7 @@ if (require.main === module) {
 
 module.exports = {
   main,
+  runCli,
   createMockLeonardoClient,
   compositeArtWindow,
   loadBriefs,
