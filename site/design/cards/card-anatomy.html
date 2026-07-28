@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Card Anatomy — The Shared Skeleton, Variables, and Premium Layers — Amaranth Expanse Design</title>
+<style>:root { color-scheme: dark light; }
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  padding: 1.25rem;
+  background: #14151a;
+  color: #e6e6ea;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-size: 17px;
+  line-height: 1.6;
+}
+main, nav { max-width: 42rem; margin-left: auto; margin-right: auto; }
+h1, h2, h3, h4, h5, h6 { line-height: 1.25; color: #f4f1ff; }
+a { color: #8ab4ff; }
+a:visited { color: #b79cff; }
+nav {
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid #34363f;
+  font-size: 0.95rem;
+}
+nav .home-link { font-weight: 600; margin-right: 0.75rem; }
+nav .section-label { color: #9a9aa5; margin-right: 0.75rem; }
+nav .siblings { margin-top: 0.4rem; }
+nav .siblings .current { font-weight: 600; color: #f4f1ff; }
+blockquote {
+  margin: 1rem 0;
+  padding: 0.25rem 1rem;
+  border-left: 3px solid #5a5d6b;
+  color: #c7c7d1;
+}
+table { border-collapse: collapse; width: 100%; margin: 1rem 0; font-size: 0.95rem; }
+th, td { border: 1px solid #34363f; padding: 0.4rem 0.6rem; text-align: left; }
+code, pre {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  background: #1e2027;
+  border-radius: 4px;
+}
+code { padding: 0.1em 0.35em; }
+pre { padding: 0.75rem; overflow-x: auto; }
+ul, ol { padding-left: 1.4rem; }
+section h2 { margin-top: 2rem; }
+@media (prefers-color-scheme: light) {
+  body { background: #fbfbfd; color: #1c1c22; }
+  a { color: #2454c7; }
+  blockquote { color: #454550; }
+  code, pre { background: #eef0f4; }
+  th, td { border-color: #d6d8e0; }
+}</style>
+</head>
+<body>
+<nav>
+<a class="home-link" href="../../index.html">&larr; Index</a>
+<span class="section-label">Cards</span>
+<div class="siblings"><a href="alpha-set.html">Alpha Set — First Cards of the Amaranth Expanse</a> &middot; <span class="current">Card Anatomy — The Shared Skeleton, Variables, and Premium Layers</span></div>
+</nav>
+<main>
+<h1>Card Anatomy — The Shared Skeleton, Variables, and Premium Layers</h1>
+<p>Every card in the Amaranth Expanse, no matter what it does in play or how much a premium print of it might someday be worth, is built from the same underlying shape. This document describes that shape: the skeleton every card shares, the parts of it that change from card to card, and the &quot;premium&quot; treatments (foil, alt-art, and so on) that dress the same skeleton up without ever changing what the card actually says or does. You do not need to know a single rule of this game to read this document — by the end of it you should know exactly what a physical card looks like, and why a foil version of a card and the plainest common printing of the same card are, underneath the shine, identical in every way that matters to play.</p>
+<h2>The Skeleton</h2>
+<p>Think of a card the way you&#39;d think of a car&#39;s chassis: every trim level, every paint job, every model year gets bolted onto the same underlying frame, and that shared frame is what makes them all recognizably one car line. A card&#39;s chassis is a fixed set of named zones, laid out in the same relative position on every card ever printed. Below is each zone, in the order a reader&#39;s eye naturally moves across a card — top to bottom, left to right within the top band — what it&#39;s for, and, where relevant, which field of the card&#39;s rules text it displays.</p>
+<ul><li><strong>Frame/Border</strong> — the outermost edge of the card: the printed border that frames everything else and, on the base treatment, carries the primary color-coded identity of the card&#39;s Fount(s) (see The Variables, below). Every other zone sits inside it. The Frame/Border does not itself display any single field from the card&#39;s rules-text template — it&#39;s the &quot;wrapper&quot; that makes a stack of otherwise very differently-worded cards feel like one deck.</li><li><strong>Name Slot</strong> — a band across the top of the card, above the art window, holding the card&#39;s title in the largest, most prominent lettering on the face. Displays the <strong>Name</strong> field.</li><li><strong>Cost Slot</strong> — a compact cluster of Fount-colored cost pips or numerals, positioned at the top corner opposite the Name Slot (conventionally the top-right). Displays the <strong>Cost line</strong> field.</li><li><strong>Art Window</strong> — the large rectangular window beneath the Name Slot, holding the card&#39;s illustration. This is the zone future generated art fills; nothing about its shape or position ever changes card to card, only its contents.</li><li><strong>Type Line</strong> — a horizontal band directly beneath the art window, separating the illustration from the rules text below it. Displays the <strong>Type line</strong> field.</li><li><strong>Rules-Text Box</strong> — the body of the card beneath the Type Line, holding the card&#39;s Fast/Slow timing and its abilities or effects, with any italicized flavor text set beneath that same text in the same box. Displays the <strong>Rules text</strong> field.</li><li><strong>Stats Corner</strong> — a small badge in the bottom corner of the Rules-Text Box (conventionally bottom-right), present only on cards that carry one and entirely absent from the print on cards that don&#39;t. Displays the <strong>Stats/counters line</strong> field.</li><li><strong>Set/Collector Strip</strong> — a thin strip along the very bottom edge of the card, below the Rules-Text Box, holding print-production information: which set the card belongs to, its collector number, and a rarity marker. This zone has no corresponding field in the rules.md Section 9.1 template — it exists for physical/print bookkeeping, not gameplay, and its exact content is out of scope for this document.</li></ul>
+<h3>Field → Zone Mapping</h3>
+<p>design/rules.md Section 9.1 defines the canonical text template every card&#39;s rules-relevant content is written to: Name, Cost line, Type line, Rules text, and, for Permanents only, an optional Stats/counters line. Each of those fields maps to exactly one of the skeleton zones above, and no field maps to more than one zone:</p>
+<table><thead><tr><th>rules.md Section 9.1 field</th><th>Skeleton zone</th></tr></thead><tbody><tr><td><strong>Name</strong></td><td>Name Slot</td></tr><tr><td><strong>Cost line</strong></td><td>Cost Slot</td></tr><tr><td><strong>Type line</strong></td><td>Type Line</td></tr><tr><td><strong>Rules text</strong></td><td>Rules-Text Box</td></tr><tr><td><strong>Stats/counters line</strong></td><td>Stats Corner</td></tr></tbody></table>
+<p>The Frame/Border, Art Window, and Set/Collector Strip zones carry no rules-template field — they&#39;re the &quot;border/frame ... then an art field&quot; the skeleton adds on top of the text template so a card is a physical object a player can hold, not just a block of rules text.</p>
+<h2>The Variables</h2>
+<p>The Skeleton section named eight fixed zones. Nothing about their shape or position changes from card to card — what changes is only their content, and each zone&#39;s content is driven by a specific, predictable source.</p>
+<ul><li><strong>Name Slot</strong> content is the card&#39;s Name field, verbatim, with no abbreviation or truncation.</li><li><strong>Cost Slot</strong> content is drawn directly from the Cost line: one pip or numeral per Fount named in the Cost line, each colored in that Fount&#39;s identity color (see the color table below), showing the Fount Point amount printed for that Fount.</li><li><strong>Type Line</strong> content is the Type line field, verbatim, including the word &quot;Permanent&quot; when present.</li><li><strong>Rules-Text Box</strong> content is the Rules text field, verbatim, plus any flavor text the card carries, set beneath the rules text in the same box.</li><li><strong>Stats Corner</strong> is present only when the card is a Permanent (its Type line carries the word &quot;Permanent&quot;) and its printed template includes a Stats/counters line. A Permanent with no Stats/counters line simply omits this zone from the print entirely, rather than printing it empty — the zone does not reserve visible space on a card that has nothing to put there.</li><li><strong>Art Window</strong> content is the one zone with no textual field driving it directly — its illustration brief is derived from the card&#39;s Name, Type line, and any flavor text, rather than copied from a single template field.</li></ul>
+<p><strong>Frame/Border color identity</strong> is driven by the card&#39;s Fount(s), the way <code>design/world.md</code> describes each Fount&#39;s character:</p>
+<table><thead><tr><th>Fount</th><th>Frame/Border color</th></tr></thead><tbody><tr><td>The Mass (materials)</td><td>Ash-grey</td></tr><tr><td>The Bloom (biology)</td><td>Green</td></tr><tr><td>The Signal (intelligence)</td><td>Cyan</td></tr><tr><td>The Circuit (technology)</td><td>Copper</td></tr><tr><td>The Tangle (magic)</td><td>Violet</td></tr></tbody></table>
+<p>A card whose Cost line names exactly one Fount renders its Frame/Border as a single solid band in that Fount&#39;s color. A card whose Cost line names more than one Fount does not pick a single frame color: the Frame/Border is instead split into equal vertical bands, one band per Fount named in the Cost line, ordered left-to-right in the same order the Founts are listed in the Cost line, each band colored in that Fount&#39;s own identity color from the table above. The Cost Slot&#39;s pips follow the same left-to-right ordering, so a reader can match each cost pip to its corresponding frame band at a glance.</p>
+<h2>The Layers</h2>
+<p>A card&#39;s base print is just the Skeleton with its Variables filled in. A premium treatment is a <strong>layer swap</strong>: a defined set of changes applied on top of the exact same skeleton, never a different card design. Below are the base treatment and four premium layers.</p>
+<ul><li><strong>Base Treatment</strong> — the default print described in The Skeleton and The Variables above: standard Frame/Border, a standard art crop inside the Art Window, no special finish.</li><li><strong>Borderless</strong> (layer swap) — the Frame/Border shrinks to a thin edge or disappears entirely, and the Art Window expands to bleed all the way to the card&#39;s physical edge. The Name Slot, Cost Slot, Type Line, Rules-Text Box, and Stats Corner stay in the exact same relative position and show the exact same text, simply reflowed over the expanded art. May change: the Frame/Border&#39;s size and visibility, and the Art Window&#39;s bleed extent. May not change: the content, position, or legibility of any rules-relevant zone — the Cost Slot&#39;s pips, in particular, must still read clearly against the expanded art.</li><li><strong>Foil</strong> (layer swap) — a reflective, holographic finish is applied across the Frame/Border (and, optionally, the Name Slot&#39;s lettering). No zone changes size or position at all. May change: surface finish only. May not change: the position, size, or content of any zone whatsoever.</li><li><strong>Alt-Art</strong> (layer swap) — the Art Window&#39;s illustration is swapped for an alternate illustration of the same subject matter described by the card&#39;s Name, Type line, and flavor text. Every other zone keeps the base treatment&#39;s placement and content exactly. May change: the Art Window&#39;s content only. May not change: any other zone&#39;s position or content — the replacement art must still depict a scene consistent with what the card&#39;s other zones say the card is, not unrelated art.</li><li><strong>Extended Art</strong> (layer swap) — the Art Window enlarges to bleed into the space normally occupied by the Name Slot&#39;s and Type Line&#39;s background, with those zones&#39; text set atop the art on a semi-transparent banner rather than a solid background. May change: the Art Window&#39;s bleed extent behind other zones. May not change: the legibility or content of the zones now overlaid on the art — if the art makes the Name Slot or Type Line hard to read, the layer has failed its own rule.</li></ul>
+<p><strong>Cohesion rule:</strong> across every treatment — base or premium — the Name Slot, Cost Slot, Type Line, Rules-Text Box, and Stats Corner (when present) must carry identical text content, in identical reading order, at a legible size. Only the Frame/Border, Art Window, and Set/Collector Strip zones may change between treatments. The five rules-relevant zones may never change in content across a treatment layer — only, at most, in typography or finish, never in what they say. This is what makes a $0.05 common and its foil, alt-art, borderless, or extended-art printing the same card at the table: a player reading any of them for cost, type, rules text, or stats gets the identical answer every time.</p>
+<h2>Worked Examples</h2>
+<h3>Worked Example: Sporeknit Warden (single-Fount)</h3>
+<p>Sporeknit Warden is printed in <code>design/cards/alpha-set.md</code> with Cost line &quot;3 Bloom&quot;, Type line &quot;Biology — Permanent&quot;, Rules text &quot;Slow.&quot;, and Stats/counters line &quot;Combat strength 2. Enters with one Growth counter.&quot; Walked zone by zone:</p>
+<ul><li><strong>Frame/Border:</strong> a single solid green band, since the Cost line names exactly one Fount (the Bloom).</li><li><strong>Name Slot:</strong> &quot;Sporeknit Warden&quot;.</li><li><strong>Cost Slot:</strong> one green pip reading &quot;3&quot;, matching the Cost line&#39;s single Bloom entry.</li><li><strong>Art Window:</strong> an illustration consistent with a Mireth Bloom Unit — something grown rather than built.</li><li><strong>Type Line:</strong> &quot;Biology — Permanent&quot;.</li><li><strong>Rules-Text Box:</strong> &quot;Slow.&quot; — no further ability text on this printing, plus any flavor text carried in alpha-set.md.</li><li><strong>Stats Corner:</strong> &quot;Combat strength 2. Enters with one Growth counter.&quot; — present because Sporeknit Warden&#39;s Type line carries &quot;Permanent&quot; and its template includes a Stats/counters line.</li><li><strong>Set/Collector Strip:</strong> print-production metadata (set symbol, collector number, rarity), not defined by this document.</li></ul>
+<h3>Worked Example: Signal-Wrought Prototype (multi-type, multi-cost)</h3>
+<p>Signal-Wrought Prototype is printed in <code>design/cards/alpha-set.md</code>&#39;s &quot;Multiple Types and Multiple Costs&quot; section with Cost line &quot;1 Signal,undefinedCircuit&quot;, Type line &quot;Intelligence Technology — Permanent&quot;, and Rules text &quot;Slow. Spent, usable at instant speed (any time its controller holds priority): look at the top card of your Archive; you may move it to the bottom of your Archive instead of leaving it on top.&quot; It carries no Stats/counters line. Walked zone by zone:</p>
+<ul><li><strong>Frame/Border:</strong> a split frame of two equal vertical bands, left-to-right in Cost-line order — cyan on the left for the Signal, copper on the right for the Circuit — per The Variables&#39; multi-Fount rendering rule.</li><li><strong>Name Slot:</strong> &quot;Signal-Wrought Prototype&quot;.</li><li><strong>Cost Slot:</strong> two pips, &quot;1&quot; in cyan and &quot;1&quot; in copper, shown in the same left-to-right order as the Cost line&#39;s Signal-then-Circuit listing.</li><li><strong>Art Window:</strong> an illustration consistent with the Panoptic Concord — a built object with a sensor-like, watching quality.</li><li><strong>Type Line:</strong> &quot;Intelligence Technology — Permanent&quot; — because Technology is a permanent Card Type (rules.md Section 9.1/9.7), the whole card is a Permanent even though Intelligence alone would not be.</li><li><strong>Rules-Text Box:</strong> the full Slow/instant-speed ability text above, plus this card&#39;s flavor text.</li><li><strong>Stats Corner:</strong> absent entirely from the print — Signal-Wrought Prototype&#39;s printed template carries no Stats/counters line, so per The Variables, this zone reserves no space at all.</li><li><strong>Set/Collector Strip:</strong> print-production metadata, not defined by this document.</li></ul>
+</main>
+</body>
+</html>
