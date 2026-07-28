@@ -3,10 +3,9 @@
 
 const fs = require('node:fs');
 const path = require('node:path');
-const { parseCardMarkdown, slugify } = require('../lib/parse-card-markdown');
+const { parseCardMarkdown, slugify, loadCardsFromFile, loadAllCards } = require('../lib/parse-card-markdown');
 
 const REPO_ROOT = path.join(__dirname, '..');
-const CARDS_DIR = path.join(REPO_ROOT, 'design', 'cards');
 const OUT_DIR = path.join(REPO_ROOT, 'renders', 'cards');
 
 // ---------------------------------------------------------------------------
@@ -44,41 +43,6 @@ const RULES_BOX_HEIGHT = INNER_HEIGHT - NAME_SLOT_HEIGHT - ART_WINDOW_HEIGHT - T
 const STATS_CORNER_WIDTH = 220;
 const STATS_CORNER_HEIGHT = 90;
 const STATS_CORNER_PADDING = 16;
-
-// ---------------------------------------------------------------------------
-// Card loading — design/cards/*.md via the shared parser (lib/parse-card-markdown.js)
-// ---------------------------------------------------------------------------
-
-function loadCardsFromFile(absPath) {
-  const markdown = fs.readFileSync(absPath, 'utf8');
-  return parseCardMarkdown(markdown);
-}
-
-// frontier-set.md (added by cardgame-frontier-set-spatial-cards) is deliberately
-// excluded here: test/render-card.test.js hardcodes its expected SVG count to
-// design/cards/alpha-set.md's 18 cards, so picking frontier-set.md up here would
-// break that pre-existing test. A future unit should update that test to cover
-// multi-file card sets and drop this exclusion so frontier-set.md renders too.
-const CARDS_NOT_YET_WIRED_FOR_RENDER = new Set(['frontier-set.md']);
-
-function loadAllCards() {
-  const files = fs
-    .readdirSync(CARDS_DIR, { withFileTypes: true })
-    .filter((entry) => entry.isFile() && entry.name.endsWith('.md'))
-    .map((entry) => entry.name)
-    .sort();
-  const cards = [];
-  for (const file of files) {
-    if (CARDS_NOT_YET_WIRED_FOR_RENDER.has(file)) {
-      console.warn(
-        `tools/render-card.js: skipping ${file} — not yet wired for render (see comment above CARDS_NOT_YET_WIRED_FOR_RENDER in this file).`
-      );
-      continue;
-    }
-    cards.push(...loadCardsFromFile(path.join(CARDS_DIR, file)));
-  }
-  return cards;
-}
 
 // ---------------------------------------------------------------------------
 // Cost line parsing ("1 Signal, 1 Circuit" -> ordered cost items)

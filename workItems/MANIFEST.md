@@ -122,3 +122,24 @@ Append-only requirements traceability log — one section per archived work item
 - AC2 [paraphrase]: Each composited SVG's Art Window slot contains an <image> element (not the placeholder rect) positioned and sized to match the Art Window bounds defined in design/cards/card-anatomy.md. — no receipt (escalated before receipt computation)
 - AC3 [inferred]: Image generation goes through an injectable client; the default/test client is a deterministic mock that makes no network calls and requires no Leonardo API key, so `node --test` runs fully offline. — no receipt (escalated before receipt computation)
 - AC4 [inferred] (held_out): Running the script twice in a row with the mock client produces byte-identical output across all composited SVGs, verifiable by hashing. — no receipt (escalated before receipt computation)
+
+## 2026-07-28-cardgame-tools-loader-dedup-cardgame-tools-dedupe-loadcardsfromfile-loadallcards-into-lib-parse-card-markdown-js.md
+
+- AC1 [paraphrase]: lib/parse-card-markdown.js exports loadCardsFromFile and loadAllCards, which read design/cards/*.md filenames in sorted order and parse each via parseCardMarkdown. — PASS
+- AC2 [inferred]: tools/render-card.js no longer declares its own loadCardsFromFile or loadAllCards functions; it imports both from lib/parse-card-markdown.js. — PASS
+- AC3 [inferred]: tools/sync-cards-to-jaina.js no longer declares its own loadCardsFromFile or loadAllCards functions; it imports both from lib/parse-card-markdown.js. — PASS
+- AC4 [inferred] (held_out): A new test/tools-loader-dedup.test.js statically asserts neither tools/render-card.js nor tools/sync-cards-to-jaina.js source text contains a local function declaration named loadCardsFromFile or loadAllCards, and the existing render-card/sync-cards-to-jaina/composite-card-art test suites still pass unmodified. — PASS
+
+## 2026-07-28-cardgame-deck-construction-rules-cardgame-rules-section-11-deck-construction.md
+
+- AC1 [paraphrase]: design/rules.md contains a new numbered top-level section titled 'Deck Construction', and it is the sole new section — Sections 1 through 10 remain present, in order, with their original numbers and titles unchanged. — PASS
+- AC2 [inferred]: The Deck Construction section states a single fixed minimum number of cards an Archive/deck must contain at the start of a game. — PASS
+- AC3 [inferred]: The Deck Construction section states a maximum number of copies of any one uniquely-named card permitted in a single deck. — PASS
+- AC4 [inferred] (held_out): The Deck Construction section cross-references Section 10.1's draw-with-empty-Archive elimination condition by section number rather than restating its wording, and a new test/design-deckbuilding.test.js asserts this cross-reference alongside the numbering and content checks above. — PASS
+
+## 2026-07-28-cardgame-frontier-set-spatial-cards-cardgame-cards-frontier-set-5-cards-that-actually-use-the-spatial-battlefield-graph.md
+
+- AC1 [paraphrase]: design/cards/frontier-set.md exists and contains exactly 5 distinct named cards, one per race under design/races/. — no receipt (escalated before receipt computation)
+- AC2 [inferred]: Every card uses the canonical template from rules.md Section 9.1 in order (Cost line, then Type line, then Rules text, and, only for Permanents, an optional Stats/counters line after Rules text). — no receipt (escalated before receipt computation)
+- AC3 [inferred]: Each card's rules text names at least one of: Discovery, Restriction, Closure, Assault, Blockade, or Capture, and cites the specific rules.md Section 8 subsection number that defines the named term. — no receipt (escalated before receipt computation)
+- AC4 [inferred] (held_out): No two Frontier Set cards name the same race, and a new test/design-frontier-cards.test.js asserts this alongside the count, template-order, and spatial-term-citation checks above. — no receipt (escalated before receipt computation)

@@ -797,3 +797,60 @@ entry's full effect atomically before anything else happens (Section
 instant, ending the game in a draw rather than letting whichever
 challenger happened to be checked first "win" a race the shared effect
 never created.
+
+## 11. Deck Construction
+
+*design/gamePlan.md* names one rule this rulebook has never formally stated:
+"build your deck, and play." This section states it: a fixed minimum Archive
+size, and a maximum number of copies of any one uniquely-named card. Doing so
+closes a real gap in Section 10.1 — that section's second elimination
+condition (a challenger required to draw a card during their Dawn Phase,
+Section 5.1, with no card left in their Archive) has, until now, had no
+stated floor on how large an Archive starts, so nothing has fixed how soon
+that condition could ever be reached. Nothing in this section changes or
+restates any rule already stated in Sections 1-10; where a rule already
+exists, this section cross-references it by section number instead.
+
+### 11.1 Minimum Archive Size
+
+Each challenger's Archive (Section 3) MUST contain at least 40 cards at the
+start of a game, before shuffling and before that challenger's opening hand
+is drawn from it. A challenger MAY NOT begin a game with an Archive
+containing fewer than 40 cards. This is the number Section 10.1's
+draw-with-an-empty-Archive elimination condition depends on to mean anything
+concrete: the fewer cards an Archive holds relative to how many turns a game
+runs, the sooner a challenger is forced to draw from an empty Archive and is
+Eliminated (Section 10.1) as a result. An Archive MAY contain more than 40
+cards; this section fixes a floor, not a ceiling.
+
+### 11.2 Maximum Copies of a Single Named Card
+
+A challenger's Archive MAY NOT contain more than 3 cards sharing the same Name
+(Section 9.1's Name field). This limit applies per uniquely-named card,
+independent of which Card Type(s) or Fount(s) that card lists (Section 9):
+a challenger's Archive could, for example, hold 3 copies of Spore Warden and
+3 copies of Foundry Works at once (Section 9.5, Section 9.6), but never a
+4th copy of either.
+
+### 11.3 Worked Example: A Legal and an Illegal Archive
+
+This example checks two Archives a challenger might try to bring to a game,
+built from cards already printed as examples in Section 9.
+
+1. Challenger A's Archive contains 40 cards total: 3 copies each of
+   Cinderfall Bolt, Signal Relay, Foresight Ping, Spore Warden, Foundry
+   Works, and Reactive Turret (18 cards), plus 22 further cards, none of
+   them sharing a Name with each other or with any of those six. This
+   Archive is legal: it meets the 40-card minimum (Section 11.1) exactly,
+   and no Name appears more than 3 times (Section 11.2).
+2. Challenger B's Archive contains 45 cards total, comfortably above the
+   minimum, but 4 of them are copies of Cinderfall Bolt. This Archive is
+   illegal: it clears the 40-card minimum (Section 11.1), but the 4th copy
+   of Cinderfall Bolt violates the per-Name limit (Section 11.2) regardless
+   of the Archive's total size.
+
+This confirms, on paper, that the two limits in this section are checked
+independently — an Archive can fail either one without failing the other —
+and that Section 10.1's draw-with-empty-Archive elimination condition now
+has a concrete floor to reason about: no legal Archive can ever hold fewer
+than 40 cards.
