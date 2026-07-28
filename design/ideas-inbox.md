@@ -44,4 +44,4 @@ Implications to design through (extends the spatial-layer entry above):
 - Wormholes can be CLOSED — edges are destructible, so the graph topology is
   itself a battlefield: cut a chokepoint, strand a fleet, seal your flank.
 - Combos with race identity: the Concord discovering more cheaply (Signal),
-  the Communion bending wormhole rules (Skein), the Reach fortifying them.
+  the Communion bending wormhole rules (Tangle), the Reach fortifying them.

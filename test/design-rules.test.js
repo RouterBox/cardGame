@@ -6,7 +6,7 @@ const path = require('node:path');
 const { parseSections, sectionText, findSection } = require('./helpers/markdown');
 
 const RULES_PATH = path.join(__dirname, '..', 'design', 'rules.md');
-const FOUNTS = ['Mass', 'Bloom', 'Signal', 'Circuit', 'Skein'];
+const FOUNTS = ['Mass', 'Bloom', 'Signal', 'Circuit', 'Tangle'];
 
 function readRules() {
   return fs.readFileSync(RULES_PATH, 'utf8');
@@ -164,7 +164,7 @@ test('AC3: each phase in Turn Structure states what a player may and may not do'
 });
 
 // ---------------------------------------------------------------------------
-// AC4: each of the five Founts (Mass, Bloom, Signal, Circuit, Skein) has an
+// AC4: each of the five Founts (Mass, Bloom, Signal, Circuit, Tangle) has an
 // explicit resource/mechanic rule in Resources naming the Fount, tied to a
 // mechanic — not restated flavor text.
 // ---------------------------------------------------------------------------

@@ -4,7 +4,7 @@
 
 Two challengers face each other, each commanding a civilization drawn from one of
 the five Founts described in *design/world.md*: the Mass, the Bloom, the Signal,
-the Circuit, and the Skein. Each challenger brings a deck of cards representing
+the Circuit, and the Tangle. Each challenger brings a deck of cards representing
 that civilization's generators, combatants, and effects, and begins the game
 defending a home base.
 
@@ -57,7 +57,7 @@ redefine it.
   required it; a Spent permanent cannot attack, block, or use a Spent-requiring
   ability again until it is next made Ready.
 - **Fount** — one of the five cosmic currents named in *design/world.md* (the
-  Mass, the Bloom, the Signal, the Circuit, the Skein) that a Generator draws its
+  Mass, the Bloom, the Signal, the Circuit, the Tangle) that a Generator draws its
   power from.
 - **Fount Point** — a single unit of a Fount's power, produced by a matching
   Generator and spent to pay costs.
@@ -203,12 +203,12 @@ spend Circuit Points equal to a Technology permanent's printed cost to create an
 exact token copy of that permanent, put directly onto the Field under their
 control. This is how the Circuit turns one working idea into scale.
 
-### 4.5 The Skein
+### 4.5 The Tangle
 
-Generators attuned to the Skein produce **Skein Points**. A challenger may spend
-Skein Points equal to the number of entries currently in the Queue to move one of
+Generators attuned to the Tangle produce **Tangle Points**. A challenger may spend
+Tangle Points equal to the number of entries currently in the Queue to move one of
 their own entries already in the Queue to the front, so that it resolves next,
-ahead of anything else waiting. This is how the Skein renegotiates cause and
+ahead of anything else waiting. This is how the Tangle renegotiates cause and
 effect rather than obeying it.
 
 ### 4.6 Positional Generators
@@ -324,7 +324,7 @@ resolution, only between one entry finishing and the next opening.
 
 This example follows one Main Phase exchange between two challengers, Reva
 (active player, drawing on the Circuit) and Toma (non-active player, drawing on
-the Skein), continuing directly from Section 6.
+the Tangle), continuing directly from Section 6.
 
 1. It is Reva's Main Phase. The Queue is empty and Reva holds priority. Reva
    plays a Fast card that deals 2 damage to a Unit Toma controls. This card is
@@ -544,7 +544,7 @@ states.
 
 Every card belongs to one or more of five Card Types — Magic, Technology,
 Intelligence, Biology, and Materials — and each Card Type draws its cost
-from exactly one Fount (Section 4) by default: Magic from the Skein,
+from exactly one Fount (Section 4) by default: Magic from the Tangle,
 Technology from the Circuit, Intelligence from the Signal, Biology from the
 Bloom, and Materials from the Mass. This section defines the five Card
 Types, the template every card is printed with, and the rule for a card
@@ -578,13 +578,13 @@ placed in its owner's Wreck, never remaining on the Field. A card's Fast
 card / Slow card status is a separate fact, stated in its rules text, and
 does not depend on its behavior class.
 
-### 9.2 Magic — the Skein
+### 9.2 Magic — the Tangle
 
-Magic cards draw their cost from the Skein and are instant/sorcery-speed
+Magic cards draw their cost from the Tangle and are instant/sorcery-speed
 resolving (Section 9.1): a Magic card is never a Permanent.
 
 > **Cinderfall Bolt**
-> Cost line: 2 Skein
+> Cost line: 2 Tangle
 > Type line: Magic
 > Rules text: Fast. When this resolves, deal 3 damage to any Unit.
 
@@ -665,11 +665,11 @@ resolving only if every one of its listed Card Types is
 instant/sorcery-speed resolving.
 
 > **Reactive Turret**
-> Cost line: 1 Skein, 1 Circuit
+> Cost line: 1 Tangle, 1 Circuit
 > Type line: Magic Technology — Permanent
 > Rules text: Slow. Spent: deal 1 damage to any Unit.
 
-Reactive Turret's total cost is 2 Fount Points: 1 paid from the Skein
+Reactive Turret's total cost is 2 Fount Points: 1 paid from the Tangle
 resource pool and 1 from the Circuit resource pool, never 2 from either
 pool alone. Its type line lists Magic, an instant/sorcery-speed resolving
 type, and Technology, a permanent type; per the rule above, the presence

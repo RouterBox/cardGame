@@ -19,7 +19,7 @@ function topLevelSections(content) {
 }
 
 const TYPES = [
-  { name: 'Magic', fount: 'Skein', behavior: 'resolving' },
+  { name: 'Magic', fount: 'Tangle', behavior: 'resolving' },
   { name: 'Technology', fount: 'Circuit', behavior: 'permanent' },
   { name: 'Intelligence', fount: 'Signal', behavior: 'resolving' },
   { name: 'Biology', fount: 'Bloom', behavior: 'permanent' },
@@ -150,7 +150,7 @@ test('AC3: gives a worked multi-type example card with more than one Fount and m
   assert.ok(body, 'expected a Multiple Types and Multiple Costs section to check');
   const costMatch = body.match(/Cost line:\s*([^\n]+)/);
   assert.ok(costMatch, 'expected a worked example cost line');
-  const founts = ['Mass', 'Bloom', 'Signal', 'Circuit', 'Skein'].filter((f) =>
+  const founts = ['Mass', 'Bloom', 'Signal', 'Circuit', 'Tangle'].filter((f) =>
     new RegExp(`\\b${f}\\b`).test(costMatch[1])
   );
   assert.ok(founts.length >= 2, `expected the example's cost line to name at least 2 Founts, got: ${costMatch[1]}`);
