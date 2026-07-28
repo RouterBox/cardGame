@@ -3,10 +3,9 @@
 
 const fs = require('node:fs');
 const path = require('node:path');
-const { parseCardMarkdown, slugify } = require('../lib/parse-card-markdown');
+const { parseCardMarkdown, slugify, loadCardsFromFile, loadAllCards } = require('../lib/parse-card-markdown');
 
 const REPO_ROOT = path.join(__dirname, '..');
-const CARDS_DIR = path.join(REPO_ROOT, 'design', 'cards');
 const OUT_DIR = path.join(REPO_ROOT, 'renders', 'cards');
 
 // ---------------------------------------------------------------------------
@@ -44,28 +43,6 @@ const RULES_BOX_HEIGHT = INNER_HEIGHT - NAME_SLOT_HEIGHT - ART_WINDOW_HEIGHT - T
 const STATS_CORNER_WIDTH = 220;
 const STATS_CORNER_HEIGHT = 90;
 const STATS_CORNER_PADDING = 16;
-
-// ---------------------------------------------------------------------------
-// Card loading — design/cards/*.md via the shared parser (lib/parse-card-markdown.js)
-// ---------------------------------------------------------------------------
-
-function loadCardsFromFile(absPath) {
-  const markdown = fs.readFileSync(absPath, 'utf8');
-  return parseCardMarkdown(markdown);
-}
-
-function loadAllCards() {
-  const files = fs
-    .readdirSync(CARDS_DIR, { withFileTypes: true })
-    .filter((entry) => entry.isFile() && entry.name.endsWith('.md'))
-    .map((entry) => entry.name)
-    .sort();
-  const cards = [];
-  for (const file of files) {
-    cards.push(...loadCardsFromFile(path.join(CARDS_DIR, file)));
-  }
-  return cards;
-}
 
 // ---------------------------------------------------------------------------
 // Cost line parsing ("1 Signal, 1 Circuit" -> ordered cost items)
