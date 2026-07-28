@@ -25,3 +25,13 @@ Append-only requirements traceability log — one section per archived work item
 - AC3 [paraphrase]: design/characters/web.md exists, names every character from all five race files at least once, and each thread section involves characters from at least two different races. — no receipt (escalated before receipt computation)
 - AC4 [inferred]: Character names are unique across the whole roster, and every cross-race reference in a Threads list points at a character that actually exists in the named race's file. — no receipt (escalated before receipt computation)
 - AC5 [inferred] (held_out): Each character file references its race's canon from design/races/ — at least one signature hook, location, or identity element from the race file appears in the character prose — so the roster extends existing canon rather than inventing a parallel one. — no receipt (escalated before receipt computation)
+
+## 2026-07-28-cardgame-alpha-set-starter-cards-cardgame-design-phase-4-alpha-set-starter-cards.md
+
+- AC1 [user]: design/cards/alpha-set.md exists in the cardGame repo and contains at least 15 distinct named cards. — PASS
+- AC2 [user]: Every card uses the canonical template from rules.md Section 9.1 in order (Name, Cost line, Type line, Rules text, and for Permanents an optional Stats/counters line) with no required field missing. — PASS
+- AC3 [paraphrase]: The set includes at least one card for each of the five Card Types (Magic, Technology, Intelligence, Biology, Materials) and at least one card costed from each of the five Founts. — PASS
+- AC4 [inferred]: Each of the five races (design/races/*.md) has at least one card in the set whose Rules text or flavor ties back to that race's own primary Fount strength as named in its race file. — PASS
+- AC5 [inferred]: At least one card demonstrates the multi-type/multi-cost rule from rules.md Section 9.7 — a card listing more than one Card Type and drawing cost from more than one Fount. — PASS
+- AC6 [inferred] (held_out): No card's Rules text references a Fount, Card Type, zone, or template field not already defined in rules.md — every card is legible against the existing rulebook without inventing new terms. — PASS
+- AC7 [inferred] (held_out): The file opens with a short summary stating how many cards it contains and which races/Founts/types they span, so coverage is checkable without counting by hand. — PASS
