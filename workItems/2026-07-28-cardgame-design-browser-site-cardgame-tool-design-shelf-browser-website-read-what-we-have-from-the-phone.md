@@ -6,7 +6,7 @@
 - title: cardGame tool — design-shelf browser website (read what we have from the phone)
 - project: cardgame
 - completed: 2026-07-28
-- outcome: escalated
+- outcome: escalated, then hand-recovered and merged (46dfada) — cycle-2 fix was correct; committed site/ output lagged the renderer fix, tripping the no-change breaker
 - start_sha: fcaa2ccd22cd7fc136c0d3affa8a30b8e436ff46
 - end_sha: fcaa2ccd22cd7fc136c0d3affa8a30b8e436ff46
 
