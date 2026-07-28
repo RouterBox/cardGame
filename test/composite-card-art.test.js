@@ -216,6 +216,13 @@ test('AC3: image generation is injected via a client argument — a custom clien
     svg.includes('data:image/png;base64,AAAA'),
     `expected "${firstTitle}"'s composited SVG to use the injected client's href, proving generation is not hardcoded`
   );
+
+  // Reviewer finding (cycle 1): this test just overwrote renders/
+  // cards-composited/ with the fake client's placeholder hrefs — restore
+  // the real default-mock output so a plain `node --test` run leaves the
+  // directory in the state AC1 promises (one real composited SVG per
+  // brief), not test residue.
+  await composite.main();
 });
 
 test('AC3: default (mock) client resolves with no LEONARDO_API_KEY set, fully offline', async () => {
