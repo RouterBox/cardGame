@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 750 1050" width="750" height="1050">
+<title>Sporeknit Warden</title>
+<rect class="frame-band" data-fount="Bloom" data-color="green" x="0" y="0" width="750" height="1050" fill="#2f9e44"/>
+<rect class="name-slot" x="24" y="24" width="702" height="70" fill="#f5f1e6"/>
+<text x="40" y="69" font-family="Georgia, 'Times New Roman', serif" font-size="32" fill="#14151a" font-weight="bold"><tspan x="40" dy="0">Sporeknit Warden</tspan></text>
+<rect class="art-window" x="24" y="94" width="702" height="420" fill="#c9ccd3" stroke="#9a9da5" stroke-width="2"/>
+<text x="375" y="304" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="22" fill="#5a5d66">Art Placeholder</text>
+<rect class="type-line" x="24" y="514" width="702" height="50" fill="#e4dfd0"/>
+<text x="40" y="546" font-family="Georgia, 'Times New Roman', serif" font-size="20" fill="#3a3a3f"><tspan x="40" dy="0">Biology — Permanent</tspan></text>
+<rect class="rules-text-box" x="24" y="564" width="702" height="462" fill="#faf8f2" stroke="#c9ccd3" stroke-width="2"/>
+<text x="40" y="596" font-family="Georgia, 'Times New Roman', serif" font-size="20" fill="#1c1c22"><tspan x="40" dy="0">Slow.</tspan></text>
+<text x="40" y="642" font-family="Georgia, 'Times New Roman', serif" font-size="18" fill="#5a5d66" font-style="italic"><tspan x="40" dy="0">The Mireth Bloom, Biology at its purest: seed</tspan><tspan x="40" dy="24">a battlefield, then come back later to harvest</tspan><tspan x="40" dy="24">whatever it became. This is the Bloom&apos;s</tspan><tspan x="40" dy="24">primary strength, worn as a body.</tspan></text>
+<g class="cost-pip" data-fount="Bloom" data-color="green">
+<circle cx="682" cy="59" r="28" fill="#2f9e44" stroke="#14151a" stroke-width="3"/>
+<text x="682" y="67" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="26" font-weight="bold" fill="#14151a">3</text>
+</g>
+<g class="stats-corner">
+<rect x="490" y="920" width="220" height="90" fill="#1f2126" stroke="#f5f1e6" stroke-width="2"/>
+<text x="502" y="944" font-family="Georgia, 'Times New Roman', serif" font-size="16" fill="#f5f1e6"><tspan x="502" dy="0">Combat strength 2. Enters</tspan><tspan x="502" dy="20">with one Growth counter.</tspan></text>
+</g>
+</svg>
