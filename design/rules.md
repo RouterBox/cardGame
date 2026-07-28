@@ -121,6 +121,19 @@ redefine it.
 - **Capture** — the result of a further Assault against an already-Blockaded
   Planet: control passes to the assaulting challenger and every Generator on
   the Planet is destroyed (Section 8.6).
+- **Card Type** — one of the five categories a card may belong to: Magic,
+  Technology, Intelligence, Biology, or Materials (Section 9); a card may
+  belong to more than one (Section 9.7).
+- **Cost line** — the field of a card's printed template (Section 9.1)
+  stating the Fount Points, by Fount, required to play the card.
+- **Type line** — the field of a card's printed template (Section 9.1)
+  stating a card's Card Type(s) and, for a Permanent, the word "Permanent".
+- **Rules text** — the field of a card's printed template (Section 9.1)
+  stating a card's Fast card / Slow card timing and its abilities or
+  effects.
+- **Stats/counters line** — the optional field of a Permanent's printed
+  template (Section 9.1) stating a Unit's combat strength or any counters
+  the permanent enters play with.
 
 ## 3. Zones
 
@@ -526,3 +539,139 @@ being destroyed (Blockade) and only lost outright through a second, further
 Assault (Capture) — and that reaching an enemy Planet costs strictly more
 Fount Points the farther the qualifying path runs, exactly as Section 8.6
 states.
+
+## 9. Card Types & Templating
+
+Every card belongs to one or more of five Card Types — Magic, Technology,
+Intelligence, Biology, and Materials — and each Card Type draws its cost
+from exactly one Fount (Section 4) by default: Magic from the Skein,
+Technology from the Circuit, Intelligence from the Signal, Biology from the
+Bloom, and Materials from the Mass. This section defines the five Card
+Types, the template every card is printed with, and the rule for a card
+that spans more than one Card Type or Fount. Where a Fount's own mechanic
+matters, this section cross-references Section 4 rather than restating it.
+
+### 9.1 The Canonical Card Template
+
+Every card is printed with the following fields, always in this order:
+
+1. **Name** — the card's title.
+2. **Cost line** — the Fount Points required to play the card, broken out
+   by Fount (Section 4). A card that draws cost from a single Fount lists
+   just that Fount's cost; a card that draws cost from more than one Fount
+   lists each Fount's cost separately (Section 9.7).
+3. **Type line** — the card's Card Type(s) (Sections 9.2-9.6), and, if the
+   card is a Permanent (Section 2), the word "Permanent".
+4. **Rules text** — the card's Fast card / Slow card timing (Section 2)
+   and any abilities or effects, written using terms this Glossary
+   (Section 2) has already defined wherever possible.
+5. **Stats/counters line** (Permanents only, optional) — for a Unit, its
+   combat strength; for any Permanent, any counters it enters play with. A
+   card that is not a Permanent never carries this line.
+
+Each Card Type falls into exactly one of two behavior classes, stated on
+its type line by the presence or absence of the word "Permanent": a
+**permanent** Card Type means the card is a Permanent (Section 2) that
+remains on the Field once played; an **instant/sorcery-speed resolving**
+Card Type means the card resolves once (Section 2's Resolve) and is then
+placed in its owner's Wreck, never remaining on the Field. A card's Fast
+card / Slow card status is a separate fact, stated in its rules text, and
+does not depend on its behavior class.
+
+### 9.2 Magic — the Skein
+
+Magic cards draw their cost from the Skein and are instant/sorcery-speed
+resolving (Section 9.1): a Magic card is never a Permanent.
+
+> **Cinderfall Bolt**
+> Cost line: 2 Skein
+> Type line: Magic
+> Rules text: Fast. When this resolves, deal 3 damage to any Unit.
+
+### 9.3 Technology — the Circuit
+
+Technology cards draw their cost from the Circuit and are permanent
+(Section 9.1): a Technology card is always a Permanent, matching Section
+4.4's own use of the term "Technology permanent." A Technology card's
+abilities may still be used at instant or sorcery speed, per its own rules
+text — the card's permanence and the timing of its abilities are separate
+facts about it.
+
+> **Signal Relay**
+> Cost line: 2 Circuit
+> Type line: Technology — Permanent
+> Rules text: Slow. Spent, usable at instant speed (any time its
+> controller holds priority): look at the top card of your Archive; you
+> may put it on the bottom of your Archive instead of leaving it on top.
+
+### 9.4 Intelligence — the Signal
+
+Intelligence cards draw their cost from the Signal and are
+instant/sorcery-speed resolving (Section 9.1), in the same sense as Magic
+(Section 9.2): never a Permanent, always resolving once to the Wreck.
+
+> **Foresight Ping**
+> Cost line: 1 Signal
+> Type line: Intelligence
+> Rules text: Fast. When this resolves, look at the top card of your
+> Archive; you may put it on the bottom of your Archive instead of leaving
+> it on top.
+
+### 9.5 Biology — the Bloom
+
+Biology cards draw their cost from the Bloom and are permanent (Section
+9.1): every Biology card is a Unit (Section 2), and so always carries a
+stats/counters line stating its combat strength.
+
+> **Spore Warden**
+> Cost line: 3 Bloom
+> Type line: Biology — Permanent
+> Rules text: Slow.
+> Stats/counters line: Combat strength 3. Enters with no counters.
+
+### 9.6 Materials — the Mass
+
+Materials cards draw their cost from the Mass and are permanent (Section
+9.1). A Materials card may be a Generator (Section 2), a Unit, or a
+Permanent that is neither, depending on its own rules text.
+
+> **Foundry Works**
+> Cost line: 2 Mass
+> Type line: Materials — Permanent
+> Rules text: Slow. This permanent is a Generator (Section 4) attuned to
+> the Mass: during the Generation Phase (Section 5.2), it produces 1 Mass
+> Point, added to its controller's Mass resource pool.
+
+### 9.7 Multiple Types and Multiple Costs
+
+A card may list more than one Card Type on its type line, and may draw its
+cost from more than one Fount on its cost line, independently of each
+other.
+
+**Cost:** when a card's cost line names more than one Fount, its total
+cost is the sum of the Fount Points listed for each Fount, and each
+Fount's share MUST be paid from that Fount's own resource pool (Section
+4) — a challenger MAY NOT pay one Fount's share of a cost with another
+Fount's points.
+
+**Type-specific rules:** when a card lists more than one Card Type,
+every rule stated for each of its listed types (Sections 9.2-9.6) applies
+to the card at once. Because a permanent behavior class (Section 9.1) is a
+stronger claim than an instant/sorcery-speed resolving one, a card that
+lists at least one permanent Card Type (Technology, Biology, or Materials)
+is a Permanent, even if it also lists an instant/sorcery-speed resolving
+Card Type (Magic or Intelligence); a card is instant/sorcery-speed
+resolving only if every one of its listed Card Types is
+instant/sorcery-speed resolving.
+
+> **Reactive Turret**
+> Cost line: 1 Skein, 1 Circuit
+> Type line: Magic Technology — Permanent
+> Rules text: Slow. Spent: deal 1 damage to any Unit.
+
+Reactive Turret's total cost is 2 Fount Points: 1 paid from the Skein
+resource pool and 1 from the Circuit resource pool, never 2 from either
+pool alone. Its type line lists Magic, an instant/sorcery-speed resolving
+type, and Technology, a permanent type; per the rule above, the presence
+of Technology makes the whole card a Permanent, so Reactive Turret stays
+on the Field once played rather than resolving to the Wreck.
