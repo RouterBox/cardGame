@@ -8,7 +8,10 @@ const { parseSections } = require('./helpers/markdown');
 
 const REPO_ROOT = path.join(__dirname, '..');
 const SCRIPT_PATH = path.join(REPO_ROOT, 'tools', 'render-card.js');
-const CARDS_PATH = path.join(REPO_ROOT, 'design', 'cards', 'alpha-set.md');
+// Every design/cards/*.md contributes card entries (alpha-set, frontier-set,
+// ...); doc-only files (art-briefs, card-anatomy) contribute none because
+// listExpectedCards filters on the card field prefixes.
+const CARDS_DIR = path.join(REPO_ROOT, 'design', 'cards');
 const OUT_DIR = path.join(REPO_ROOT, 'renders', 'cards');
 
 function slugify(name) {
@@ -22,17 +25,22 @@ function slugify(name) {
 // required fields — same convention test/design-cards.test.js already
 // relies on for this file.
 function listExpectedCards() {
-  const content = fs.readFileSync(CARDS_PATH, 'utf8');
-  const sections = parseSections(content);
-  return sections
-    .filter((s) => s.level === 3)
-    .map((s) => ({ title: s.title, body: s.lines.join('\n') }))
-    .filter(
-      (c) =>
-        c.body.includes('Cost line:') &&
-        c.body.includes('Type line:') &&
-        c.body.includes('Rules text:')
-    );
+  const files = fs.readdirSync(CARDS_DIR).filter((f) => f.endsWith('.md')).sort();
+  const cards = [];
+  for (const file of files) {
+    const content = fs.readFileSync(path.join(CARDS_DIR, file), 'utf8');
+    const sections = parseSections(content);
+    cards.push(...sections
+      .filter((s) => s.level === 3)
+      .map((s) => ({ title: s.title, body: s.lines.join('\n') }))
+      .filter(
+        (c) =>
+          c.body.includes('Cost line:') &&
+          c.body.includes('Type line:') &&
+          c.body.includes('Rules text:')
+      ));
+  }
+  return cards;
 }
 
 function readCardSvg(name) {

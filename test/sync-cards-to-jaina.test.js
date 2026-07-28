@@ -8,7 +8,10 @@ const { parseSections } = require('./helpers/markdown');
 
 const REPO_ROOT = path.join(__dirname, '..');
 const SCRIPT_PATH = path.join(REPO_ROOT, 'tools', 'sync-cards-to-jaina.js');
-const CARDS_PATH = path.join(REPO_ROOT, 'design', 'cards', 'alpha-set.md');
+// All of design/cards/*.md — the sync tool covers every card file
+// (alpha-set, frontier-set, ...), matching lib/parse-card-markdown's
+// loadAllCards.
+const CARDS_DIR = path.join(REPO_ROOT, 'design', 'cards');
 
 function slugify(name) {
   return name
@@ -20,17 +23,22 @@ function slugify(name) {
 // A level-3 section only counts as a card record if it carries the three
 // required fields — same convention render-card.test.js relies on for this file.
 function listExpectedCards() {
-  const content = fs.readFileSync(CARDS_PATH, 'utf8');
-  const sections = parseSections(content);
-  return sections
-    .filter((s) => s.level === 3)
-    .map((s) => ({ title: s.title, body: s.lines.join('\n') }))
-    .filter(
-      (c) =>
-        c.body.includes('Cost line:') &&
-        c.body.includes('Type line:') &&
-        c.body.includes('Rules text:')
-    );
+  const files = fs.readdirSync(CARDS_DIR).filter((f) => f.endsWith('.md')).sort();
+  const cards = [];
+  for (const file of files) {
+    const content = fs.readFileSync(path.join(CARDS_DIR, file), 'utf8');
+    const sections = parseSections(content);
+    cards.push(...sections
+      .filter((s) => s.level === 3)
+      .map((s) => ({ title: s.title, body: s.lines.join('\n') }))
+      .filter(
+        (c) =>
+          c.body.includes('Cost line:') &&
+          c.body.includes('Type line:') &&
+          c.body.includes('Rules text:')
+      ));
+  }
+  return cards;
 }
 
 function runDryRun() {
@@ -54,7 +62,7 @@ test('AC1: --dry-run exits 0 and prints one JSON record per card with the requir
   }, 'expected `node tools/sync-cards-to-jaina.js --dry-run` to exit 0');
 
   const expectedCards = listExpectedCards();
-  assert.strictEqual(expectedCards.length, 18, 'expected 18 cards in design/cards/alpha-set.md');
+  assert.ok(expectedCards.length >= 18, `expected at least the 18 Alpha cards across design/cards/, found ${expectedCards.length}`);
 
   const lines = parseLines(stdout);
   assert.strictEqual(
