@@ -255,7 +255,7 @@ procedure's choice. It is a consequence of exactly two facts, checkable against
 
 | Fount   | Generator card(s) in the current pool                                     | Cheapest other card in that Fount | Sustainable past the opening Generator? |
 |---------|-----------------------------------------------------------------------------|------------------------------------|------------------------------------------|
-| Mass    | `Salvage-Wrought Bastion` (2), `Kordelia Vess, Salvage-Marshal of the Cinder Yards` (3) | `Cinder-Forged Plating` (1) | Yes — the only Fount with a card cheap enough to replay inside the 1-point/turn cap |
+| Mass    | `Salvage-Wrought Bastion` (2), `Kordelia Vess, Salvage-Marshal of the Cinder Yards` (3) | `Cinder-Forged Plating` (1) | Yes — the only Fount with both a Generator and a card cheap enough to replay inside the 1-point/turn cap |
 | Circuit | `Replicant Foundry Core` (3), `Replication Beachhead` (2)                   | `Firmware Sentinel` (2)             | No — total lockout the instant the Generator is played |
 | Bloom   | none                                                                         | `Feral Bloomcaller` / `Rootbind Thicket` (2) | N/A — nothing ever produces Bloom |
 | Signal  | none                                                                         | `Whispered Contract` / `Wormhole Ledger` (1) | N/A — nothing ever produces Signal |
@@ -266,12 +266,14 @@ only an *already-controlled* Generator produce points, and every printed Generat
 strictly more than the single-turn output of one Generator, a challenger can never field a
 second Generator once they have exactly one — the economy is capped, forever, at 1 Fount
 Point of a single Fount per turn, immediately after the opening Generator. Combined with
-every printed Unit costing at least 3 (the cheapest reachable one, `Line-Fleet Trooper`, is
-3 Mass) and a Contested Discovery costing at least 2 (double the minimum Length of 1), this
-means Combat (Section 5.4, Section 12) and any Assault against an opponent's territory
-(Section 8.6) cannot occur through ordinary play with the 28 cards currently named across
-the three card files — which is exactly why the two mechanics are demonstrated above as
-Worked Examples instead of inside the numbered Procedure.
+every reachable printed Unit costing at least 3 (the cheapest one, `Line-Fleet Trooper`, is
+3 Mass — two cheaper Units are printed, `Feral Bloomcaller` and `Rootbind Thicket` at 2 Bloom
+each, but Bloom has no Generator, so neither is ever reachable in ordinary play) and a
+Contested Discovery costing at least 2 (double the minimum Length of 1), this means Combat
+(Section 5.4, Section 12) and any Assault against an opponent's territory (Section 8.6)
+cannot occur through ordinary play with the 28 cards currently named across the three card
+files — which is exactly why the two mechanics are demonstrated above as Worked Examples
+instead of inside the numbered Procedure.
 
 Separately, because only 10 of those 28 named cards are ever payable at all (5 Materials +
 5 Technology), and Section 11.2 caps any one of them at 3 copies, the most any legal deck
