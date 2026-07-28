@@ -78,3 +78,10 @@ Append-only requirements traceability log — one section per archived work item
 - AC2 [inferred]: tools/render-card.js and tools/build-site.js both import parseCardMarkdown and slugify from lib/parse-card-markdown.js; grepping either file for the literal strings 'Cost line:', 'Type line:', 'Rules text:', or 'Stats/counters line:' finds no matches outside lib/parse-card-markdown.js. — PASS
 - AC3 [inferred]: node --test passes, and the existing render-card and build-site tests assert the identical output they asserted before this refactor — no behavioral change, pure extraction. — PASS
 - AC4 [inferred] (held_out): lib/parse-card-markdown.js has its own direct unit tests (not just exercised indirectly through render-card/build-site) covering at least one card with all four field-prefix lines and one card missing an optional field. — PASS
+
+## 2026-07-28-cardgame-alpha-set-art-briefs-cardgame-design-leonardo-art-briefs-for-the-alpha-set-words-before-art-t9.md
+
+- AC1 [user]: design/cards/art-briefs.md exists and contains exactly one brief section for each of the 18 cards in design/cards/alpha-set.md, matched by name/heading. — no receipt (escalated before receipt computation)
+- AC2 [paraphrase]: Each brief names the card's Fount-driven color/mood palette (matching the Fount identity table in design/cards/card-anatomy.md) and lists at least 2 concrete visual elements drawn from the card's own rules text or type line, not generic filler. — no receipt (escalated before receipt computation)
+- AC3 [inferred]: Each brief includes a one-line composition note referencing the Art Window's aspect ratio/shape as defined in design/cards/card-anatomy.md, so a future compositing pass can generate art that actually fits the slot. — no receipt (escalated before receipt computation)
+- AC4 [inferred] (held_out): design/cards/art-briefs.md contains no code, API calls, or references to a specific image-generation implementation — pure creative-brief prose, keeping this a words-first design deliverable per T9. — no receipt (escalated before receipt computation)
