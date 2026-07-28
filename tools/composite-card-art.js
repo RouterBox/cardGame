@@ -161,8 +161,26 @@ async function main(client = createMockLeonardoClient()) {
     }
 
     await withOutDirLock(async () => {
-      fs.rmSync(OUT_DIR, { recursive: true, force: true });
-      fs.renameSync(tmpDir, OUT_DIR);
+      // Two renames instead of rm+rename: if the second rename fails partway
+      // (e.g. Windows refusing a rename while another process still holds a
+      // handle on the directory), the first rename lets us put the old
+      // OUT_DIR back rather than leaving OUT_DIR permanently missing.
+      const backupDir = `${OUT_DIR}.bak-${process.pid}-${crypto.randomBytes(6).toString('hex')}`;
+      const hadExisting = fs.existsSync(OUT_DIR);
+      if (hadExisting) {
+        fs.renameSync(OUT_DIR, backupDir);
+      }
+      try {
+        fs.renameSync(tmpDir, OUT_DIR);
+      } catch (err) {
+        if (hadExisting) {
+          fs.renameSync(backupDir, OUT_DIR);
+        }
+        throw err;
+      }
+      if (hadExisting) {
+        fs.rmSync(backupDir, { recursive: true, force: true });
+      }
     });
   } catch (err) {
     fs.rmSync(tmpDir, { recursive: true, force: true });
