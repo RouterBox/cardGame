@@ -35,7 +35,17 @@ function contentTypeFor(filePath) {
 // Resolves a request URL to an absolute file path inside SITE_DIR, or null
 // if the request escapes SITE_DIR or doesn't match an existing file.
 function resolveFilePath(requestUrl) {
-  const pathname = decodeURIComponent(requestUrl.split('?')[0]);
+  // decodeURIComponent throws a synchronous URIError on invalid
+  // percent-encoding (a bare "%" typed into a phone address bar, "%zz"
+  // from a port scanner). Uncaught inside the request listener that would
+  // kill the whole process — one bad request from any LAN client takes the
+  // shelf down for everyone. Treat undecodable paths as not-found instead.
+  let pathname;
+  try {
+    pathname = decodeURIComponent(requestUrl.split('?')[0]);
+  } catch {
+    return null;
+  }
   const relPath = pathname === '/' ? 'index.html' : pathname.replace(/^\/+/, '');
   const resolved = path.normalize(path.join(SITE_DIR, relPath));
 

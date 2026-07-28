@@ -112,3 +112,30 @@ test('AC4: GET / returns 200 and the design-shelf index.html body', async () => 
     server.close();
   }
 });
+
+test('reviewer finding 1: a malformed percent-encoded path returns 404 and does not crash the server', async () => {
+  const server = createServer();
+  await new Promise((resolve) => server.listen(0, '127.0.0.1', resolve));
+  const port = server.address().port;
+  try {
+    // Raw socket: http.get would reject the invalid URL client-side.
+    const res = await new Promise((resolve, reject) => {
+      const net = require('node:net');
+      const sock = net.createConnection(port, '127.0.0.1', () => {
+        sock.write('GET /% HTTP/1.1\r\nHost: x\r\nConnection: close\r\n\r\n');
+      });
+      let buf = '';
+      sock.on('data', (d) => { buf += d; });
+      sock.on('end', () => resolve(buf));
+      sock.on('error', reject);
+    });
+    assert.match(res, /HTTP\/1\.1 404/, 'malformed path must 404, not crash');
+    // The server must still answer a healthy request afterwards.
+    const ok = await new Promise((resolve, reject) => {
+      require('node:http').get({ host: '127.0.0.1', port, path: '/' }, (r) => resolve(r.statusCode)).on('error', reject);
+    });
+    assert.strictEqual(ok, 200, 'server must survive the malformed request');
+  } finally {
+    server.close();
+  }
+});
