@@ -124,25 +124,43 @@ test('AC2: slug matches the render-card.js slugify(name) algorithm', () => {
 });
 
 // ---------------------------------------------------------------------------
-// AC3: without --dry-run, the script makes no Jaina API calls — it prints a
-// message that live sync is not yet implemented and exits 1.
+// AC3 (live-sync unit): without --dry-run and without Jaina credentials in
+// the environment, the script exits 1 with a clear "Jaina credentials not
+// configured" message — no unhandled exception, no silent no-op, and no
+// network call (the tool file itself still never calls fetch(); only
+// lib/jaina-client.js may).
 // ---------------------------------------------------------------------------
 
-test('AC3: without --dry-run, the script exits 1 and prints a live-sync-not-implemented message', () => {
+function envWithoutJainaCredentials() {
+  const env = { ...process.env };
+  delete env.JAINA_API_KEY;
+  delete env.JAINA_PROJECT_ID;
+  return env;
+}
+
+test('AC3: without --dry-run and without credentials, exits 1 with a clear credentials message', () => {
   let error;
   try {
-    execFileSync('node', [SCRIPT_PATH], { cwd: REPO_ROOT, encoding: 'utf8' });
+    execFileSync('node', [SCRIPT_PATH], {
+      cwd: REPO_ROOT,
+      encoding: 'utf8',
+      env: envWithoutJainaCredentials(),
+    });
   } catch (err) {
     error = err;
   }
 
-  assert.ok(error, 'expected `node tools/sync-cards-to-jaina.js` (no flag) to exit non-zero');
+  assert.ok(error, 'expected `node tools/sync-cards-to-jaina.js` (no flag, no creds) to exit non-zero');
   assert.strictEqual(error.status, 1, `expected exit code 1, got ${error.status}`);
 
   const output = `${error.stdout || ''}${error.stderr || ''}`;
   assert.ok(
-    /not yet implemented/i.test(output) && /live sync/i.test(output),
-    `expected a "live sync ... not yet implemented" message, got: ${output}`
+    /Jaina credentials not configured/.test(output),
+    `expected a "Jaina credentials not configured" message, got: ${output}`
+  );
+  assert.ok(
+    /JAINA_API_KEY/.test(output) && /JAINA_PROJECT_ID/.test(output),
+    `expected the message to name both required env vars, got: ${output}`
   );
 
   const scriptSource = fs.readFileSync(SCRIPT_PATH, 'utf8');
@@ -150,7 +168,64 @@ test('AC3: without --dry-run, the script exits 1 and prints a live-sync-not-impl
     !/require\(\s*['"](?:https?|child_process)['"]\s*\)/.test(scriptSource),
     'expected no network or subprocess module usage in the sync script'
   );
-  assert.ok(!/\bfetch\s*\(/.test(scriptSource), 'expected no fetch() calls to a Jaina API');
+  assert.ok(!/\bfetch\s*\(/.test(scriptSource), 'expected no direct fetch() calls in the tool file');
+});
+
+// ---------------------------------------------------------------------------
+// Live-sync path (AC1 + AC2 of the live-sync unit): the non-dry-run code path
+// is exercised end to end through a fake injected client — upsert() is called
+// exactly once per card record, a one-line summary is printed, and no network
+// module is ever touched.
+// ---------------------------------------------------------------------------
+
+const {
+  buildRecord,
+  runLiveSync,
+  resolveLiveClient,
+  CREDENTIALS_MISSING_MESSAGE,
+} = require('../tools/sync-cards-to-jaina');
+const { loadAllCards } = require('../lib/parse-card-markdown');
+
+test('AC1: runLiveSync calls the injected client upsert once per card and prints a one-line summary', async () => {
+  const cards = loadAllCards();
+  assert.ok(cards.length >= 18, `expected at least 18 cards, found ${cards.length}`);
+
+  const upserted = [];
+  const fakeClient = {
+    upsert: async (record) => {
+      upserted.push(record);
+      return { id: `fake-${upserted.length}` };
+    },
+  };
+
+  const logged = [];
+  const originalLog = console.log;
+  console.log = (line) => logged.push(String(line));
+  try {
+    await runLiveSync(fakeClient, cards);
+  } finally {
+    console.log = originalLog;
+  }
+
+  assert.strictEqual(upserted.length, cards.length, 'expected exactly one upsert per parsed card record');
+  assert.deepStrictEqual(
+    upserted,
+    cards.map(buildRecord),
+    'expected each upsert to receive the same record shape --dry-run prints'
+  );
+  assert.strictEqual(logged.length, 1, 'expected exactly one summary line');
+  assert.strictEqual(logged[0], `Synced ${cards.length} card record(s) to Jaina.`);
+});
+
+test('AC1: the production client is constructed only when both env vars are present', () => {
+  assert.deepStrictEqual(resolveLiveClient({}), { error: CREDENTIALS_MISSING_MESSAGE });
+  assert.deepStrictEqual(resolveLiveClient({ JAINA_API_KEY: 'k' }), { error: CREDENTIALS_MISSING_MESSAGE });
+  assert.deepStrictEqual(resolveLiveClient({ JAINA_PROJECT_ID: 'p' }), { error: CREDENTIALS_MISSING_MESSAGE });
+
+  const resolved = resolveLiveClient({ JAINA_API_KEY: 'k', JAINA_PROJECT_ID: 'p' });
+  assert.ok(resolved.client, 'expected a client when both env vars are present');
+  assert.strictEqual(typeof resolved.client.upsert, 'function');
+  assert.strictEqual(resolved.error, undefined);
 });
 
 // ---------------------------------------------------------------------------
