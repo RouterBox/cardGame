@@ -426,3 +426,10 @@ Append-only requirements traceability log — one section per archived work item
 - AC5 [paraphrase]: The document closes with a numbered list of at least 3 concrete open gaps or unresolved questions, each citing specific evidence (a file or section) — no receipt (escalated before receipt computation)
 - AC6 [inferred] (held_out): test/design-readiness.test.js asserts the document's card-set list, when cross-checked against design/cards/*.md loaded via the existing shared parser (lib/parse-card-markdown.js), does not omit any set present on disk — no receipt (escalated before receipt computation)
 - AC7 [inferred] (held_out): test/design-readiness.test.js fails (RED) before the document exists and passes (GREEN) after, run via `node --test` — no receipt (escalated before receipt computation)
+
+## 2026-07-29-cardgame-rename-wreck-tangle-the-game-is-named-wreck-tangle-propagate-the-title.md
+
+- AC1 [user]: design/rules.md opens with Wreck Tangle as the game title, presenting The Amaranth Expanse as the setting, and the rules structure integrity test still passes — no receipt (escalated before receipt computation)
+- AC2 [paraphrase]: The generated site index page title and header lead with Wreck Tangle (rebuild via tools/build-site.js), and existing site tests pass — no receipt (escalated before receipt computation)
+- AC3 [inferred]: A test asserts the string Wreck Tangle appears in design/rules.md and in site/index.html so future edits cannot silently drop the name — no receipt (escalated before receipt computation)
+- AC4 [inferred] (held_out): No card file, race file, character file, or file path is renamed by this unit � the diff touches only titles/headers/prose that name the game itself — no receipt (escalated before receipt computation)
