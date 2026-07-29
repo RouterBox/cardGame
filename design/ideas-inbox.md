@@ -118,7 +118,7 @@ Implications:
   world, races, characters, rules, cards) readable from the phone — no
   file-picking on the computer.
 
-## 2026-07-28 — use Jaina as the content backbone (from RouterBox, verbatim)
+## 2026-07-28 — use Jaina as the content backbone (from RouterBox, verbatim) [incorporated: cardgame-jaina-card-sync-live]
 
 > "Oh also we need to make heavy use of Jaina the whole way which was built
 > for this exact thing."
