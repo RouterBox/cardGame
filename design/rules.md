@@ -144,6 +144,24 @@ redefine it.
 - **Stats/counters line** — the optional field of a Permanent's printed
   template (Section 9.1) stating a Unit's combat strength or any counters
   the permanent enters play with.
+- **Keyword ability** — a single named word or short phrase that a card's
+  rules text may use in place of writing out its effect in full sentences;
+  each keyword ability is defined exactly once, in Section 14, and using
+  its name on a card means precisely what that definition states, no more
+  and no less.
+- **Bulwark** — a keyword ability, defined in Section 14.1, that prevents
+  a fixed amount of damage a permanent would otherwise take from a single
+  source, once per turn.
+- **Regenerate** — a keyword ability, defined in Section 14.2, that lets a
+  Unit shed lethal damage instead of being destroyed by it, once per turn.
+- **Foresee** — a keyword ability, defined in Section 14.3, that lets a
+  permanent's controller look at and reorder cards from the top of their
+  Archive as that permanent enters the Field.
+- **Swarm** — a keyword ability, defined in Section 14.4, that increases a
+  Unit's combat strength for each other permanent sharing its printed Name
+  that its controller controls.
+- **Paradox** — a keyword ability, defined in Section 14.5, that lets a
+  Unit attack without becoming Spent.
 
 ## 3. Zones
 
@@ -1076,3 +1094,119 @@ already-queued entry had; and that losing its sole target this way
 fizzles the entry — it does nothing and leaves the Queue, rather than
 resolving against nothing or letting its controller retarget it (Section
 13.2).
+
+## 14. Keyword Abilities
+
+Every card printed so far in *design/cards/* spells its rules text out in
+full sentences, because until now this rulebook has defined no named,
+reusable shorthand a card could invoke instead. This section closes that
+gap: it defines five **keyword abilities** (Section 2), one bound to each
+of the five Founts (Section 4) and consistent with that Fount's identity
+in *design/world.md* and its corresponding civilization in
+*design/races/*. A keyword ability's name, printed on a future card's
+rules text, means exactly what this section states for it — nothing more,
+nothing assumed. Nothing in this section changes or restates any rule
+already stated in Sections 1-13; where a rule already exists, this section
+cross-references it by section number instead. This section adds
+vocabulary only: no card in *design/cards/alpha-set.md*,
+*frontier-set.md*, or *character-signatures.md* is retextualized to use a
+keyword defined here.
+
+### 14.1 Bulwark X — the Mass
+
+**Bulwark X** is a keyword ability a permanent may have, printed with a
+number in place of X. The first time each turn a permanent with Bulwark X
+would be dealt damage from a single source, prevent X of that damage
+instead of marking it (Section 2's Damage); any damage beyond X from that
+same source is marked as normal. Bulwark X triggers at most once per turn,
+on the first qualifying instance of damage that turn, regardless of how
+many further sources deal damage to the permanent afterward. Bulwark
+reflects the Mass's identity (*design/world.md*,
+*design/races/cindral-reach.md*): matter bent to endure, armor that
+shrugs off harm rather than avoiding it.
+
+### 14.2 Regenerate — the Bloom
+
+**Regenerate** is a keyword ability a Unit may have. The first time each
+turn a Unit with Regenerate would be destroyed by damage (Section 12.3),
+instead remove all damage marked against it; it is not destroyed and
+remains on the Field. Regenerate does not prevent destruction by any
+effect that destroys a permanent without reference to damage, and it
+applies at most once per turn — a Unit with Regenerate that would be
+destroyed by damage a second time in the same turn is destroyed as
+normal. Regenerate reflects the Bloom's identity (*design/world.md*,
+*design/races/mireth-bloom.md*): a civilization that answers threats by
+mutating past them rather than enduring them outright.
+
+### 14.3 Foresee X — the Signal
+
+**Foresee X** is a keyword ability a permanent may have, printed with a
+number in place of X. When a permanent with Foresee X enters the Field,
+its controller looks at the top X cards of their own Archive, then puts
+them back on top of their Archive in any order of their choosing. Foresee
+X triggers only as the permanent enters the Field, not again for as long
+as it remains on the Field, unless a future card or effect explicitly
+grants it again. Foresee reflects the Signal's identity (*design/world.md*,
+*design/races/panoptic-concord.md*): knowing what comes next before it
+happens, and arranging accordingly.
+
+### 14.4 Swarm — the Circuit
+
+**Swarm** is a keyword ability a Unit may have. A Unit with Swarm gets +1
+to its combat strength for each other permanent its controller controls
+that shares its printed Name (Section 9.1), recalculated continuously as
+permanents sharing that Name enter or leave the Field. Swarm reflects the
+Circuit's identity (*design/world.md*,
+*design/races/wrought-assembly.md*): one working idea, copied without
+end, growing stronger the more of itself it has already made.
+
+### 14.5 Paradox — the Tangle
+
+**Paradox** is a keyword ability a Unit may have. A Unit with Paradox does
+not become Spent when it is declared as an attacker (Section 5.4); it
+remains Ready. Paradox has no effect on a Unit being declared as a
+blocker, and does not prevent the Unit from becoming Spent by any other
+stated cost. Paradox reflects the Tangle's identity (*design/world.md*,
+*design/races/starweave-communion.md*): a civilization that negotiates
+with cause and effect rather than obeying it, here breaking the ordinary
+link between attacking and becoming Spent (Section 2's Spent).
+
+### 14.6 Worked Example: Three Keywords in One Conflict Phase
+
+This example follows one Conflict Phase (Section 5.4) between Reva
+(active player) and Toma (non-active player). Reva controls Cinder
+Warden, a Materials Unit with combat strength 3 and Bulwark 2, and Signal
+Drone, a Unit with combat strength 2 and Paradox. Toma controls Spore
+Warden (Section 9.5), combat strength 3, with Regenerate.
+
+1. Reva declares both Cinder Warden and Signal Drone as attackers.
+   Because Signal Drone has Paradox (Section 14.5), it does not become
+   Spent; Cinder Warden, which has no such keyword, becomes Spent as
+   normal (Section 5.4).
+2. Toma declares Spore Warden as a blocker against Cinder Warden, leaving
+   Signal Drone unblocked. Signal Drone deals 2 damage to Toma's Core
+   Integrity (Section 5.4), since an unblocked attacker deals its combat
+   strength as damage to the non-active player.
+3. Cinder Warden and Spore Warden deal their combat strength to each
+   other (Section 12.1): 3 damage from Cinder Warden to Spore Warden, and
+   3 damage from Spore Warden to Cinder Warden. Spore Warden's 3 marked
+   damage equals its own combat strength, so it would be destroyed
+   (Section 12.3) — but it has Regenerate (Section 14.2), so instead all
+   3 marked damage is removed from it and it is not destroyed, remaining
+   on the Field. Cinder Warden has Bulwark 2 (Section 14.1); this is the
+   first damage Cinder Warden has taken this turn, so 2 of the 3 damage
+   is prevented and only 1 damage is actually marked against it — short
+   of its combat strength of 3, so Cinder Warden also survives, carrying
+   1 marked damage until it clears at the end of the turn (Section 12.4).
+4. Because Signal Drone has Paradox (Section 14.5), it never became Spent
+   in step 1, even though it attacked and dealt combat damage; it remains
+   Ready for the rest of the turn, available to block or use a
+   Spent-requiring ability without first needing to be readied.
+
+This confirms, on paper, that Bulwark prevents rather than reduces damage
+from a single source once per turn (Section 14.1), that Regenerate
+answers lethal damage by shedding it rather than the Unit avoiding combat
+altogether (Section 14.2), and that Paradox breaks the ordinary link
+between attacking and becoming Spent (Section 5.4, Section 14.5) — each
+keyword acting exactly as its own subsection states, with no further
+explanation needed on the card that carries it.
