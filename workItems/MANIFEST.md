@@ -409,3 +409,10 @@ Append-only requirements traceability log — one section per archived work item
 - AC2 [paraphrase]: A card that DOES have a matching brief still produces its composited SVG in renders/cards-composited/ exactly as before — no change in output for already-covered cards. — PASS
 - AC3 [inferred]: The warning text names the specific card (e.g. 'no art brief for "Card Name"'), not just an aggregate count, so the gap is actionable without re-deriving the diff by hand. — PASS
 - AC4 [inferred] (held_out): Running the script twice in a row against the same fixture data produces the same set of warnings, in the same order, and byte-identical composited SVGs both times — the new check introduces no nondeterminism. — PASS
+
+## 2026-07-29-cardgame-playtest-spatial-closure-refresh-fix-playtest-spatial-md-step-9-it-narrates-closing-a-wormhole-wi.md
+
+- AC1 [paraphrase]: design/playtest-spatial.md Step 9 no longer instructs playtesters to cross out a line and narrate Wormhole Closure without naming any card producing it. — PASS
+- AC2 [paraphrase]: Step 9 names 'Chokepoint Demolition Charge' and its Cost line (2 Circuit) as the card being played to Close the Wormhole it walks. — PASS
+- AC3 [paraphrase]: Step 9 still ends with the same physical action (crossing out the line fully) and the same aloud-confirmation that the line may never be redrawn and a new Discovery action would be required to reconnect those Planets, unchanged from before this unit. — PASS
+- AC4 [inferred] (held_out): Steps 1-8 and 10-12, the Materials list, and the 'What to watch for while playtesting' section of playtest-spatial.md are byte-identical to their content before this unit, and every existing assertion in test/design-map-setup-playtest.test.js still passes. — PASS
