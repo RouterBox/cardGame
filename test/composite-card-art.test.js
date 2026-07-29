@@ -5,6 +5,7 @@ const fs = require('node:fs');
 const path = require('node:path');
 const { execFileSync } = require('node:child_process');
 const { parseSections } = require('./helpers/markdown');
+const { loadAllCards } = require('../tools/render-card');
 
 const REPO_ROOT = path.join(__dirname, '..');
 const RENDER_SCRIPT_PATH = path.join(REPO_ROOT, 'tools', 'render-card.js');
@@ -253,4 +254,101 @@ test('AC3: default (mock) client resolves with no LEONARDO_API_KEY set, fully of
   } finally {
     if (previousKey !== undefined) process.env.LEONARDO_API_KEY = previousKey;
   }
+});
+
+// ---------------------------------------------------------------------------
+// AC1/AC3: a card with no matching brief in design/cards/art-briefs.md
+// prints a "no art brief for ..." warning naming it, and the run still
+// succeeds (exit 0) — informational only, never a failure.
+// ---------------------------------------------------------------------------
+
+test('AC1/AC3: cards with no matching brief print a "no art brief for ..." warning and main() still resolves', async () => {
+  const briefTitles = new Set(listBriefTitles());
+  const uncoveredNames = loadAllCards()
+    .map((card) => card.name)
+    .filter((name) => !briefTitles.has(name));
+
+  assert.ok(
+    uncoveredNames.length > 0,
+    'expected at least one card with no brief in this fixture so the warning path is exercised — ' +
+      'if this fails because coverage caught up, add an uncovered card fixture instead of deleting this test'
+  );
+
+  const warnings = [];
+  const originalWarn = console.warn;
+  console.warn = (line) => warnings.push(String(line));
+  try {
+    await assert.doesNotReject(
+      composite.main(),
+      'expected main() to resolve (exit 0) even when some cards have no brief'
+    );
+  } finally {
+    console.warn = originalWarn;
+  }
+
+  for (const name of uncoveredNames) {
+    assert.ok(
+      warnings.includes(`no art brief for "${name}"`),
+      `expected a warning naming "${name}", got: [${warnings.join(', ')}]`
+    );
+  }
+
+  assert.strictEqual(
+    warnings.length,
+    uncoveredNames.length,
+    `expected exactly one warning per uncovered card (${uncoveredNames.length}), got ${warnings.length}: [${warnings.join(', ')}]`
+  );
+});
+
+// ---------------------------------------------------------------------------
+// AC1: a card that DOES have a matching brief never triggers a warning.
+// ---------------------------------------------------------------------------
+
+test('AC1: a card with a matching brief does not print a "no art brief for ..." warning for it', async () => {
+  const briefTitles = new Set(listBriefTitles());
+  const coveredNames = loadAllCards()
+    .map((card) => card.name)
+    .filter((name) => briefTitles.has(name));
+
+  assert.ok(coveredNames.length > 0, 'expected at least one card with a matching brief in this fixture');
+
+  const warnings = [];
+  const originalWarn = console.warn;
+  console.warn = (line) => warnings.push(String(line));
+  try {
+    await composite.main();
+  } finally {
+    console.warn = originalWarn;
+  }
+
+  for (const name of coveredNames) {
+    assert.ok(
+      !warnings.includes(`no art brief for "${name}"`),
+      `did not expect a "no art brief" warning for covered card "${name}"`
+    );
+  }
+});
+
+// ---------------------------------------------------------------------------
+// AC2: compositing for an already-covered card is unaffected by the new
+// warning pass — the SVG it writes is byte-identical to a run before this
+// unit's warning logic runs (verified via the fakeClient-vs-default output
+// already exercised above; here we assert the file simply still exists and
+// still contains an <image> element, not a warning-injected placeholder).
+// ---------------------------------------------------------------------------
+
+test('AC2: running composite.main() after the coverage-warning pass still writes a normal composited SVG for a covered card', async () => {
+  const titles = listBriefTitles();
+  assert.ok(titles.length > 0, 'expected at least one brief section in design/cards/art-briefs.md');
+  const firstTitle = titles[0];
+
+  await composite.main();
+
+  const outFile = path.join(OUT_DIR, `${slugify(firstTitle)}.svg`);
+  assert.ok(fs.existsSync(outFile), `expected a composited SVG for "${firstTitle}" to still be written`);
+  const svg = fs.readFileSync(outFile, 'utf8');
+  assert.ok(
+    /<image[^>]*class="art-window"[^>]*\/?>/.test(svg),
+    `expected "${firstTitle}"'s composited SVG to still contain an <image class="art-window"> element`
+  );
 });
