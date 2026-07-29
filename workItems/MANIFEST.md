@@ -394,3 +394,11 @@ Append-only requirements traceability log — one section per archived work item
 - AC4 [inferred]: Every card named in the new Worked Example exists by exact name in design/cards/alpha-set.md or design/cards/fount-economy-set.md. — PASS
 - AC5 [inferred] (held_out): The file's two pre-existing 40-card decklists (Ada's Mass deck, Kestrel's Circuit deck) and every numbered Procedure step outside 'What This Playtest Surfaced' and the Worked Examples area are left unchanged. — PASS
 - AC6 [inferred] (held_out): `node --test` passes, including every pre-existing assertion in test/design-full-game-playtest.test.js. — PASS
+
+## 2026-07-29-cardgame-site-index-search-add-a-client-side-search-box-to-the-design-shelf-index-the-site-has-28-pages-an.md
+
+- AC1 [paraphrase]: The generated site/index.html contains an <input type="search" id="site-search"> element positioned before the first <section>. — PASS
+- AC2 [paraphrase]: site/index.html contains an inline <script> defining a standalone matching function that performs case-insensitive substring matching between a title and a query, and treats an empty/whitespace-only query as matching every title. — PASS
+- AC3 [inferred]: The extracted matching function, evaluated directly in the test process against real titles from the current design shelf (e.g. a card title from alpha-set.md and one from wormhole-closure-cards.md), returns true for a substring query matching that title case-insensitively and false for a query matching none of its words. — PASS
+- AC4 [inferred] (held_out): The script wires the search input via an 'input' event listener that sets the visibility of each <li> in the index and hides a <section> entirely once none of its <li> items remain visible, without triggering a page navigation or reload. — PASS
+- AC5 [inferred] (held_out): No file other than tools/build-site.js and the new test/build-site-index-search.test.js is created or modified; sectionFor(), SECTION_ORDER, buildPageHtml, renderMarkdown, and cardArtImgHtml behavior are unchanged from before this unit, and every pre-existing assertion in test/build-site.test.js still passes. — PASS
