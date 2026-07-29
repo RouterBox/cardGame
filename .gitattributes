@@ -17,6 +17,9 @@
 # types the generators currently emit (svg, html, and md should one of the
 # tools start emitting markdown output).
 renders/** text eol=lf
+# Raw art images are binary — the text pin above would strip CRLF bytes
+# from JPEG data and corrupt them (it did, once).
+renders/art-raw/** binary
 renders/**/*.svg text eol=lf
 renders/**/*.md text eol=lf
 
