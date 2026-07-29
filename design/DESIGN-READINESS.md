@@ -11,7 +11,7 @@ informed one instead of a guess.
 
 ## 1. Rulebook — `design/rules.md`
 
-`design/rules.md` ("Amaranth Expanse — Core Rules") currently defines 15
+`design/rules.md` ("Wreck Tangle — Core Rules") currently defines 15
 numbered top-level sections:
 
 - **1. Game Concepts**

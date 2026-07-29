@@ -1,3 +1,5 @@
+# Wreck Tangle — Game Plan
+
 Galactic civilizations themed TCG.
 
 5 starting races.  One primary strength, 2 complementary strengths, and two countering from tech tree.
