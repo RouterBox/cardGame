@@ -385,3 +385,12 @@ Append-only requirements traceability log — one section per archived work item
 - AC2 [paraphrase]: Step 8 names 'Bastion Lockdown Line' and its Cost line (2 Mass) as the card being played to place the Directional Restriction it walks. — PASS
 - AC3 [paraphrase]: Step 8 still ends with the same physical action (writing 'one-way: [origin]→[destination]' on the line) and the same aloud-confirmation that a Wormhole with no such note defaults to two-way travel, unchanged from before this unit. — PASS
 - AC4 [inferred] (held_out): Steps 1-7 and 9-12, the Materials list, and the 'What to watch for while playtesting' section of playtest-spatial.md are byte-identical to their content before this unit, and every existing assertion in test/design-map-setup-playtest.test.js still passes. — PASS
+
+## 2026-07-29-cardgame-playtest-fount-economy-refresh-correct-playtest-full-game-md-s-stale-only-mass-and-circuit-are-su.md
+
+- AC1 [paraphrase]: design/playtest-full-game.md's 'What This Playtest Surfaced' table no longer states 'none' in the Generator column for the Bloom, Signal, or Tangle rows; each names an actual Generator card (Cradle-Root Colony, Panoptic Relay Spire, Communion Waystone respectively). — PASS
+- AC2 [paraphrase]: The prose in 'What This Playtest Surfaced' no longer claims Combat cannot occur through ordinary play with 'the 28 cards currently named' unqualified by the existence of fount-economy-set.md's 6 additional cards. — PASS
+- AC3 [paraphrase]: A new Worked Example subsection demonstrates a Bloom-Fount economy: Cradle-Root Colony producing Bloom Points across Generation Phases until Feral Bloomcaller or Rootbind Thicket is played and later declared as an attacker in the Conflict Phase, citing exact rules.md section numbers throughout, in the same style as the file's pre-existing Combat and Capture Worked Examples. — PASS
+- AC4 [inferred]: Every card named in the new Worked Example exists by exact name in design/cards/alpha-set.md or design/cards/fount-economy-set.md. — PASS
+- AC5 [inferred] (held_out): The file's two pre-existing 40-card decklists (Ada's Mass deck, Kestrel's Circuit deck) and every numbered Procedure step outside 'What This Playtest Surfaced' and the Worked Examples area are left unchanged. — PASS
+- AC6 [inferred] (held_out): `node --test` passes, including every pre-existing assertion in test/design-full-game-playtest.test.js. — PASS
