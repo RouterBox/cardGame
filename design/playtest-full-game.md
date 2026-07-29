@@ -3,9 +3,11 @@
 This is a step-by-step, on-paper procedure for two humans, "Ada" and "Kestrel," to build
 decks, set up, and play one complete game under *design/rules.md*, from deck construction
 through an explicit win, using ordinary physical materials instead of a computer or
-software prototype. Every card named below exists by exact name in
-*design/cards/alpha-set.md*, *design/cards/character-signatures.md*, or
-*design/cards/frontier-set.md*. Every major step cites the exact rules.md section that
+software prototype. Every card named in the numbered Procedure below exists by exact name
+in *design/cards/alpha-set.md*, *design/cards/character-signatures.md*, or
+*design/cards/frontier-set.md*; the Worked Examples section later in this file also names
+cards from *design/cards/fount-economy-set.md*. Every major step cites the exact
+rules.md section that
 governs it, so either playtester can stop and check the physical action just taken against
 the rule text itself. This procedure builds on the spatial-layer procedure already written
 in *design/playtest-spatial.md*, but where that document focuses narrowly on the
@@ -207,9 +209,13 @@ pool genuinely support, ending in a genuine win. But it never reaches Combat or 
 against enemy territory, for the reasons in "What This Playtest Surfaced" below. Rules.md
 resolves this same tension for its own text with constructed Worked Examples (Section 7,
 Section 8.7, Section 10.3, Section 12.5, Section 13.3): a hypothetical state, stated as
-hypothetical, used to pin down a rule concretely. The two examples below do the same for
-this procedure, using the same named cards, so Section 5.4/Section 12 and Section 8.6 still
-get an on-paper demonstration even though the scripted game above cannot reach them.
+hypothetical, used to pin down a rule concretely. The three examples below do the same for
+this procedure: the first two reuse cards already named in the decklists above, so Section
+5.4/Section 12 and Section 8.6 still get an on-paper demonstration even though the scripted
+game above cannot reach them. The third adds `Cradle-Root Colony` from
+*design/cards/fount-economy-set.md*, the Generator that closes the Bloom's half of the gap
+described in "What This Playtest Surfaced" below, so Section 4.2 and Section 5.2's
+Bloom-Fount economy gets the same on-paper demonstration.
 
 ### Worked Example 1: Combat Resolution (Section 5.4, Section 12)
 
@@ -246,43 +252,99 @@ a single turn to reach it.
   immediately, and Ada's `Salvage-Wrought Bastion` there is destroyed, moved to her Wreck
   (Section 8.6).
 
+### Worked Example 3: A Bloom-Fount Economy Reaching an Attacker (Section 4.2, Section 5.2, Section 5.3, Section 5.4)
+
+Suppose, hypothetically, a third challenger, Bryn, built a Bloom deck instead of a Mass or
+Circuit one, using the same one-time starting Fount Point allotment convention as Procedure
+step 6: before her Turn 1, Bryn places 2 counters into her own Bloom pool, the cost of
+`Cradle-Root Colony`, the Generator she intends to play first.
+
+- **Turn 1, Main Phase.** Bryn plays `Cradle-Root Colony`, paying her 2 Bloom Points
+  (Section 5.3). Because it is her first Generator, it MUST be built on her own Homeworld
+  (Section 4.6, Section 8.2). It enters Ready with no counters, as its Stats/counters line
+  states.
+- **Bryn's next several turns.** Each Generation Phase, `Cradle-Root Colony` produces 1
+  Bloom Point, added to Bryn's Bloom pool (Section 5.2, Section 4.2) — the same
+  1-Fount-Point-per-turn baseline "What This Playtest Surfaced" below describes for a lone
+  Generator. Nothing in her hand costs exactly 1 Bloom yet, so she passes her Main Phase on
+  each of these turns, and Section 5.5 empties her Bloom pool again at each Dusk Phase.
+- **A later turn.** Suppose, hypothetically — the same kind of unexplained one-turn Fount
+  Point total Worked Example 2 above already supposes for Kestrel ("Kestrel had somehow
+  amassed enough Fount Points in a single turn to reach it") — that by this turn Bryn's
+  Bloom pool held 2 Bloom Points: `Cradle-Root Colony`'s usual 1 from that turn's Generation
+  Phase (Section 5.2, Section 4.2), plus 1 more. In her Main Phase, she plays
+  `Feral Bloomcaller`, paying both Bloom Points (Section 5.3). It enters Ready with no
+  counters, combat strength 1, as its Stats/counters line states; every Biology card is a
+  Unit (Section 9.5), so it may be declared as an attacker or blocker in a future Conflict
+  Phase. (`Rootbind Thicket`, the other 2-Bloom Unit printed in *design/cards/alpha-set.md*,
+  would reach this same state identically, just entering with three Growth counters and
+  combat strength 0 instead of Feral Bloomcaller's no counters and combat strength 1.)
+- **A later turn — Conflict Phase.** `Feral Bloomcaller` has not attacked, blocked, or used
+  its Spent ability since being played, so it is still Ready. Bryn declares it as an
+  attacker, naming the Planet she is attacking; it becomes Spent as she does (Section 5.4).
+
+This plays the same chain "What This Playtest Surfaced" below found missing for the Bloom: a
+Bloom Generator (`Cradle-Root Colony`) producing Bloom Points across successive Generation
+Phases (Section 5.2, Section 4.2), enough Bloom Points reaching a single turn's pool to pay
+for a printed Bloom Unit (Section 5.3), and that Unit reaching the Conflict Phase as a
+declared attacker (Section 5.4) — the same reachability Combat, Discovery past Length 1, and
+Capture all depend on, now real for the Bloom the way it was already real for the Mass.
+
 ## What This Playtest Surfaced
 
 The Procedure above genuinely plays, and genuinely ends in a win — but it never involves a
 Unit, a Fount other than Mass and Circuit, an Assault, or a Blockade, and that is not this
 procedure's choice. It is a consequence of exactly two facts, checkable against
-*design/rules.md* and the three card files:
+*design/rules.md* and all four card files this document draws from — the three the
+Procedure's own decks are built from, plus *design/cards/fount-economy-set.md*:
 
 | Fount   | Generator card(s) in the current pool                                     | Cheapest other card in that Fount | Sustainable past the opening Generator? |
 |---------|-----------------------------------------------------------------------------|------------------------------------|------------------------------------------|
-| Mass    | `Salvage-Wrought Bastion` (2), `Kordelia Vess, Salvage-Marshal of the Cinder Yards` (3) | `Cinder-Forged Plating` (1) | Yes — the only Fount with both a Generator and a card cheap enough to replay inside the 1-point/turn cap |
-| Circuit | `Replicant Foundry Core` (3), `Replication Beachhead` (2)                   | `Firmware Sentinel` (2)             | No — total lockout the instant the Generator is played |
-| Bloom   | none                                                                         | `Feral Bloomcaller` / `Rootbind Thicket` (2) | N/A — nothing ever produces Bloom |
-| Signal  | none                                                                         | `Whispered Contract` / `Wormhole Ledger` (1) | N/A — nothing ever produces Signal |
-| Tangle  | none                                                                         | `Oathbreaker's Toll` / `Echo Recall` / `Rite of Unmaking` / `Meridian Aule, Star-Read Oracle of the Tangle` (2) | N/A — nothing ever produces Tangle |
+| Mass    | `Salvage-Wrought Bastion` (2), `Kordelia Vess, Salvage-Marshal of the Cinder Yards` (3) | `Cinder-Forged Plating` (1) | Yes — a Generator and a card cheap enough to replay inside the 1-point/turn cap |
+| Circuit | `Replicant Foundry Core` (3), `Replication Beachhead` (2)                   | `Stamped Chassis Unit` (1)          | Yes — `Stamped Chassis Unit` (*design/cards/fount-economy-set.md*) now gives the Circuit a 1-point card too |
+| Bloom   | `Cradle-Root Colony` (2)                                                     | `Sporeling Latch` (1)               | Yes — both from *design/cards/fount-economy-set.md*: a Generator, plus a 1-point card cheap enough to replay |
+| Signal  | `Panoptic Relay Spire` (1 Signal, 1 Circuit)                                 | `Whispered Contract` / `Wormhole Ledger` (1) | Yes, once built — `Panoptic Relay Spire` (*design/cards/fount-economy-set.md*) is the Generator; its own cost is dual, so building it needs a one-time Circuit contribution too |
+| Tangle  | `Communion Waystone` (1 Tangle, 1 Mass)                                      | `Whispered Rite` (1)                | Yes, once built — `Communion Waystone` (*design/cards/fount-economy-set.md*) is the Generator; its own cost is dual, so building it needs a one-time Mass contribution too |
 
 Because Section 4 empties every resource pool at the end of each turn, and Section 5.2 lets
 only an *already-controlled* Generator produce points, and every printed Generator costs
 strictly more than the single-turn output of one Generator, a challenger can never field a
 second Generator once they have exactly one — the economy is capped, forever, at 1 Fount
-Point of a single Fount per turn, immediately after the opening Generator. Combined with
-every reachable printed Unit costing at least 3 (the cheapest one, `Line-Fleet Trooper`, is
-3 Mass — two cheaper Units are printed, `Feral Bloomcaller` and `Rootbind Thicket` at 2 Bloom
-each, but Bloom has no Generator, so neither is ever reachable in ordinary play) and a
-Contested Discovery costing at least 2 (double the minimum Length of 1), this means Combat
-(Section 5.4, Section 12) and any Assault against an opponent's territory (Section 8.6)
-cannot occur through ordinary play with the 28 cards currently named across the three card
-files — which is exactly why the two mechanics are demonstrated above as Worked Examples
-instead of inside the numbered Procedure.
+Point of a single Fount per turn, immediately after the opening Generator. With the 28 cards
+originally named across the three card files above, this cap meant every reachable printed
+Unit cost at least 3 (the cheapest one, `Line-Fleet Trooper`, is 3 Mass — `Feral Bloomcaller`
+and `Rootbind Thicket` at 2 Bloom each were cheaper, but Bloom had no Generator, so neither
+was ever reachable at all), and combined with a Contested Discovery costing at least 2
+(double the minimum Length of 1), Combat (Section 5.4, Section 12) and any Assault against an
+opponent's territory (Section 8.6) could not occur through ordinary play with those 28 cards
+alone — which is exactly why the two mechanics are demonstrated above as Worked Examples
+instead of inside the numbered Procedure. *design/cards/fount-economy-set.md* closes part of
+this gap for the Bloom specifically: with `Cradle-Root Colony` in a deck, the Bloom now has a
+Generator, so `Feral Bloomcaller` and `Rootbind Thicket` are no longer permanently uncastable
+the way they were with no Generator at all — Worked Example 3 above plays that Generator
+through to a declared attacker, the same way Worked Examples 1 and 2 play Combat and Capture,
+on the same hypothetical footing (a supposed state, not a claim that ordinary play reaches it
+turn-for-turn any faster than the Mass or Circuit decks above do). The two decks actually
+built for this procedure (step 1) predate *fount-economy-set.md* and still can't reach Combat
+at all, which is exactly why it remains a Worked Example here rather than a step in the
+numbered Procedure.
 
-Separately, because only 10 of those 28 named cards are ever payable at all (5 Materials +
-5 Technology), and Section 11.2 caps any one of them at 3 copies, the most any legal deck
-can lean on payable cards is 30 slots — 10 short of the Section 11.1 minimum of 40. Every
-legal deck, not just the two built for this procedure, is forced to include at least 10
-copies of cards that can never be cast.
+Separately, because only 10 of the 28 cards originally named across the three card files
+were ever payable at all (5 Materials + 5 Technology), and Section 11.2 caps any one of them
+at 3 copies, the most a deck built only from those 28 cards could lean on payable cards was
+30 slots — 10 short of the Section 11.1 minimum of 40, exactly the shape both decks above
+still have. *design/cards/fount-economy-set.md*'s 6 additional cards change this for any deck
+built after it: since every Fount now has both a Generator and a card cheap enough to replay
+after it (see the table above), a Bloom, Signal, or Tangle deck can now reach 40 payable slots
+the same way the Mass and Circuit decks above always could.
 
-For a future card set or rules revision: this playtest's single clearest, most actionable
-finding is that Bloom, Signal, and Tangle each need at least one Generator card, and every
-Fount needs at least one card cheap enough (1 point) to sustain a single-Generator economy,
-before a full game can be expected to naturally reach Combat, Discovery past Length 1, or
-Capture.
+This playtest's single clearest, most actionable finding was that Bloom, Signal, and Tangle
+each needed at least one Generator card, and every Fount needed at least one card cheap
+enough (1 point) to sustain a single-Generator economy, before a full game could be expected
+to naturally reach Combat, Discovery past Length 1, or Capture.
+*design/cards/fount-economy-set.md* was written to close exactly this gap: a Generator for
+each of the three previously-dead Founts (`Cradle-Root Colony` for the Bloom,
+`Panoptic Relay Spire` for the Signal, `Communion Waystone` for the Tangle) plus cheap
+1-cost follow-up cards
+for the Circuit, the Bloom, and the Tangle — see the updated table above, and Worked Example
+3 above, for what that closes.
