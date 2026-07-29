@@ -20,6 +20,10 @@ const REPO_ROOT = path.join(__dirname, '..');
 const BRIEFS_PATH = path.join(REPO_ROOT, 'design', 'cards', 'art-briefs.md');
 const ALT_BRIEFS_PATH = path.join(REPO_ROOT, 'design', 'cards', 'alt-art-briefs.md');
 const OUT_DIR = path.join(REPO_ROOT, 'renders', 'cards-composited');
+// Live runs land in their own directory: the committed cards-composited/
+// baseline must stay byte-identical to a deterministic MOCK run (the suite
+// asserts exactly that), so real Leonardo output must never overwrite it.
+const LIVE_OUT_DIR = path.join(REPO_ROOT, 'renders', 'cards-live');
 
 // ---------------------------------------------------------------------------
 // Art Window bounds — inherited from tools/render-card.js's own geometry so
@@ -120,25 +124,25 @@ function compositeArtWindow(baseSvg, href) {
 // stale and a later run reclaims it instead of hanging forever.
 // ---------------------------------------------------------------------------
 
-const OUT_DIR_LOCK = `${OUT_DIR}.lock`;
 const LOCK_STALE_MS = 30000; // the guarded section is just a remove+rename, so any lock
 // older than this was abandoned by a process that died mid-swap, not one still working.
 
-async function withOutDirLock(fn) {
+async function withOutDirLock(outDir, fn) {
+  const lockDir = `${outDir}.lock`;
   for (;;) {
     try {
-      fs.mkdirSync(OUT_DIR_LOCK);
+      fs.mkdirSync(lockDir);
       break;
     } catch (err) {
       if (err.code !== 'EEXIST') throw err;
       let staleMtimeMs = null;
       try {
-        staleMtimeMs = fs.statSync(OUT_DIR_LOCK).mtimeMs;
+        staleMtimeMs = fs.statSync(lockDir).mtimeMs;
       } catch (statErr) {
         if (statErr.code !== 'ENOENT') throw statErr;
       }
       if (staleMtimeMs !== null && Date.now() - staleMtimeMs > LOCK_STALE_MS) {
-        fs.rmSync(OUT_DIR_LOCK, { recursive: true, force: true });
+        fs.rmSync(lockDir, { recursive: true, force: true });
         continue;
       }
       await new Promise((resolve) => setTimeout(resolve, 20));
@@ -147,17 +151,17 @@ async function withOutDirLock(fn) {
   try {
     return await fn();
   } finally {
-    fs.rmdirSync(OUT_DIR_LOCK);
+    fs.rmdirSync(lockDir);
   }
 }
 
-async function main(client = createMockLeonardoClient(), altClient = client) {
+async function main(client = createMockLeonardoClient(), altClient = client, outDir = OUT_DIR) {
   const briefs = loadBriefs();
   const altBriefs = loadAltBriefs();
   const cardsByName = new Map(loadAllCards().map((card) => [card.name, card]));
   const baseBriefNames = new Set(briefs.map((brief) => brief.cardName));
 
-  const tmpDir = `${OUT_DIR}.tmp-${process.pid}-${crypto.randomBytes(6).toString('hex')}`;
+  const tmpDir = `${outDir}.tmp-${process.pid}-${crypto.randomBytes(6).toString('hex')}`;
   fs.mkdirSync(tmpDir, { recursive: true });
 
   try {
@@ -190,21 +194,21 @@ async function main(client = createMockLeonardoClient(), altClient = client) {
       fs.writeFileSync(path.join(tmpDir, `${slugify(card.name)}-alt.svg`), compositedSvg, 'utf8');
     }
 
-    await withOutDirLock(async () => {
+    await withOutDirLock(outDir, async () => {
       // Two renames instead of rm+rename: if the second rename fails partway
       // (e.g. Windows refusing a rename while another process still holds a
       // handle on the directory), the first rename lets us put the old
       // OUT_DIR back rather than leaving OUT_DIR permanently missing.
-      const backupDir = `${OUT_DIR}.bak-${process.pid}-${crypto.randomBytes(6).toString('hex')}`;
-      const hadExisting = fs.existsSync(OUT_DIR);
+      const backupDir = `${outDir}.bak-${process.pid}-${crypto.randomBytes(6).toString('hex')}`;
+      const hadExisting = fs.existsSync(outDir);
       if (hadExisting) {
-        fs.renameSync(OUT_DIR, backupDir);
+        fs.renameSync(outDir, backupDir);
       }
       try {
-        fs.renameSync(tmpDir, OUT_DIR);
+        fs.renameSync(tmpDir, outDir);
       } catch (err) {
         if (hadExisting) {
-          fs.renameSync(backupDir, OUT_DIR);
+          fs.renameSync(backupDir, outDir);
         }
         throw err;
       }
@@ -220,7 +224,7 @@ async function main(client = createMockLeonardoClient(), altClient = client) {
   console.log(
     `Composited ${briefs.length} card art window(s)` +
       `${altBriefs.length ? ` plus ${altBriefs.length} alt-art window(s)` : ''}` +
-      ` into ${path.relative(REPO_ROOT, OUT_DIR).split(path.sep).join('/')}/`
+      ` into ${path.relative(REPO_ROOT, outDir).split(path.sep).join('/')}/`
   );
 }
 
@@ -233,7 +237,9 @@ async function runCli(argv = process.argv) {
   // later decision, not part of this pipeline's live-client surface.
   const client = useLive ? require('../lib/leonardo-art-client').createLeonardoArtClient() : undefined;
   const altClient = useLive ? createMockLeonardoClient() : undefined;
-  await main(client, altClient);
+  // Live output is quarantined in renders/cards-live/ so the committed mock
+  // baseline in renders/cards-composited/ stays byte-identical (AC2).
+  await main(client, altClient, useLive ? LIVE_OUT_DIR : undefined);
 }
 
 if (require.main === module) {
