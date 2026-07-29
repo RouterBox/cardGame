@@ -199,3 +199,80 @@ test('AC4: no existing numbered section is removed or renumbered (Sections 1-7 r
     );
   }
 });
+
+// ---------------------------------------------------------------------------
+// Reconciliation ACs (this unit): Section 8's four review-note spots are
+// resolved into clean numbered prose, with no raw comment or strikethrough
+// markup left in Section 8, and 8.4's Unit-type Restriction no longer
+// claims to be inert. Scoped to Section 8's body, not the whole document —
+// see plan.md's GATE discussion for why (Sections 5.2/5.4 carry their own,
+// separately-unresolved RouterBox notes this unit does not charter fixing).
+// ---------------------------------------------------------------------------
+
+test('Reconciliation AC1: Section 8 contains no strikethrough tags or raw "//" comment lines', () => {
+  const body = battlefieldBody();
+  assert.ok(body, 'expected a Spatial Battlefield section');
+  assert.ok(!/<strikethrough>/i.test(body), 'expected no <strikethrough> tags left in Section 8');
+  assert.ok(!/<\/strikethrough>/i.test(body), 'expected no </strikethrough> tags left in Section 8');
+  assert.ok(!/^\s*\/\//m.test(body), 'expected no raw "//" comment lines left in Section 8');
+});
+
+test('Reconciliation AC2: Section 8.1 states a Unit has a tracked location at a specific Planet', () => {
+  const body = battlefieldProse();
+  assert.ok(
+    /located at exactly one planet/i.test(body),
+    'expected Section 8 to state a Unit is located at exactly one Planet'
+  );
+});
+
+test("Reconciliation AC2: 8.4's Unit-type Restriction no longer claims to be inert or for future cards only", () => {
+  const body = battlefieldProse();
+  assert.ok(!/exists for future cards/i.test(body), 'expected the "exists for future cards" framing to be removed');
+  assert.ok(
+    /may not move across that wormhole/i.test(body),
+    'expected the Unit-type Restriction to state it currently blocks Unit movement'
+  );
+});
+
+test('Reconciliation AC3: Discovery cost inverts Length (shorter costs more) for Discoveries of the same kind', () => {
+  const body = battlefieldProse();
+  assert.ok(
+    /10 minus the new wormhole's length/i.test(body),
+    "expected the Discovery cost formula to invert Length (10 minus the new Wormhole's Length)"
+  );
+  assert.ok(
+    /twice|double/i.test(body),
+    'expected Contested Discovery to still cost double a Frontier Discovery of the same Length'
+  );
+});
+
+test('Reconciliation AC4: Blockading requires Units located at the target Planet dealing damage >= Generator count', () => {
+  const body = battlefieldProse();
+  const blockadeIdx = body.search(/\*\*blockade\*\* the target planet/i);
+  assert.notStrictEqual(blockadeIdx, -1, 'expected a Blockade bullet in Section 8.6');
+  const blockadeText = body.slice(blockadeIdx, blockadeIdx + 700);
+  assert.ok(/located.{0,40}target planet/i.test(blockadeText), 'expected Blockade to require Units located at the target Planet');
+  assert.ok(
+    /damage.{0,120}number of generators/i.test(blockadeText),
+    "expected Blockade to require damage totaling at least the Planet's Generator count"
+  );
+});
+
+test('Reconciliation AC4: Capturing an already-Blockaded Planet requires dealing that damage total again', () => {
+  const body = battlefieldProse();
+  const captureIdx = body.search(/\*\*capture\*\* the target planet/i);
+  assert.notStrictEqual(captureIdx, -1, 'expected a Capture bullet in Section 8.6');
+  const captureText = body.slice(captureIdx, captureIdx + 700);
+  assert.ok(
+    /generator count once again/i.test(captureText),
+    'expected the Capture bullet to require dealing the same damage total again'
+  );
+});
+
+test('Reconciliation: a Unit may be deployed located at a Planet its controller does not control (makes Blockade/Capture reachable)', () => {
+  const body = battlefieldProse();
+  assert.ok(
+    /not limited to a planet the controller controls/i.test(body),
+    'expected Section 8.1 to allow a Unit to be deployed at a Planet its controller does not control'
+  );
+});
