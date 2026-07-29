@@ -117,10 +117,21 @@ test('AC1: art-briefs.md has exactly one "###" heading per card across alpha-set
   const briefTitles = briefSections.map((s) => s.title);
   const cardTitles = allCards.map((c) => c.title);
 
-  assert.strictEqual(
-    briefTitles.length,
-    cardTitles.length,
-    `expected exactly ${cardTitles.length} "###" brief sections, found ${briefTitles.length}: [${briefTitles.join(', ')}]`
+  // No strays: every brief must name a real card SOMEWHERE in
+  // design/cards/*.md — but newer set files (fount-economy, ...) may add
+  // their own briefs beyond this test's three covered files, so the total
+  // is at-least, not exactly (frozen counts broke every set addition).
+  const { loadAllCards } = require('../lib/parse-card-markdown');
+  const allKnownCardTitles = new Set(loadAllCards().map((c) => c.name));
+  for (const title of briefTitles) {
+    assert.ok(
+      allKnownCardTitles.has(title),
+      `brief section "${title}" names no card in any design/cards/*.md file`
+    );
+  }
+  assert.ok(
+    briefTitles.length >= cardTitles.length,
+    `expected at least ${cardTitles.length} "###" brief sections, found ${briefTitles.length}`
   );
   assert.strictEqual(
     new Set(briefTitles).size,

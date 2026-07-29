@@ -3,45 +3,17 @@ const test = require('node:test');
 const assert = require('node:assert');
 const fs = require('node:fs');
 const path = require('node:path');
-const crypto = require('node:crypto');
 const { parseSections } = require('./helpers/markdown');
 
 const BRIEFS_PATH = path.join(__dirname, '..', 'design', 'cards', 'art-briefs.md');
 const FOUNT_ECONOMY_SET_PATH = path.join(__dirname, '..', 'design', 'cards', 'fount-economy-set.md');
 const ANATOMY_PATH = path.join(__dirname, '..', 'design', 'cards', 'card-anatomy.md');
 
-// Files this unit must NOT modify. Guarded by hardcoded SHA-256 hashes
-// captured from the repo before this unit's changes were made, so any
-// accidental edit to these shared files (including collateral damage from
-// the in-flight frontier/signatures unit editing test/design-art-briefs.test.js)
-// fails loudly here instead of silently passing.
-const UNTOUCHED_FILES = [
-  {
-    path: path.join(__dirname, '..', 'design', 'cards', 'alpha-set.md'),
-    label: 'design/cards/alpha-set.md',
-    sha256: 'bea71683d384d845f382dd1cf7fc8690b88e184736f08f563ddbfd55bd93d7e7',
-  },
-  {
-    path: path.join(__dirname, '..', 'design', 'cards', 'frontier-set.md'),
-    label: 'design/cards/frontier-set.md',
-    sha256: '55bbfbae1b77154dee33b5d01927eeaf3088723fba428ef171c511db90e63588',
-  },
-  {
-    path: path.join(__dirname, '..', 'design', 'cards', 'character-signatures.md'),
-    label: 'design/cards/character-signatures.md',
-    sha256: '688baf681ac15e0666d13577c1c405e798662e7cfed796085b0401ac4c065f09',
-  },
-  {
-    path: FOUNT_ECONOMY_SET_PATH,
-    label: 'design/cards/fount-economy-set.md',
-    sha256: 'f72b697219a309fede855223f714db8a726ec9ea50a8f2e2d4ffebd8ab2de1df',
-  },
-  {
-    path: path.join(__dirname, 'design-art-briefs.test.js'),
-    label: 'test/design-art-briefs.test.js',
-    sha256: '77344615041e0ec439905f5ed146be8c93b6aefd376914f99ef9addedfb1a01f',
-  },
-];
+// AC4 (held_out) originally pinned shared files by hardcoded SHA-256 to prove
+// this unit didn't touch them. That is a diff-time property: correct during
+// the unit's own build, a guaranteed false alarm forever after (any later
+// unit legitimately editing a card set or design-art-briefs.test.js trips
+// it). Verified at merge time by the orchestrator, then removed.
 
 const FOUNT_COLORS = {
   Mass: 'Ash-grey',
@@ -125,25 +97,6 @@ const fountEconomyCards = listCardsFromFile(FOUNT_ECONOMY_SET_PATH);
 const cardsToCheck = fountEconomyCards.length
   ? fountEconomyCards
   : [{ title: '<no cards found — design/cards/fount-economy-set.md missing or empty>', body: '' }];
-
-// ---------------------------------------------------------------------------
-// AC4 (held_out): shared design files and the pre-existing art-briefs test
-// stay byte-identical to their content before this unit's changes.
-// ---------------------------------------------------------------------------
-
-for (const file of UNTOUCHED_FILES) {
-  test(`AC4: ${file.label} is byte-identical to its content before this unit`, () => {
-    assert.ok(fs.existsSync(file.path), `expected ${file.path} to exist`);
-    const content = fs.readFileSync(file.path);
-    const hash = crypto.createHash('sha256').update(content).digest('hex');
-    assert.strictEqual(
-      hash,
-      file.sha256,
-      `expected ${file.label} to be unchanged by this unit (sha256 mismatch) — ` +
-        `if this file legitimately needed to change, this test (and its hash) is out of scope for this unit`
-    );
-  });
-}
 
 // ---------------------------------------------------------------------------
 // AC1: design/cards/art-briefs.md gains exactly one brief section per
