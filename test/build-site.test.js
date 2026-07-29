@@ -42,6 +42,12 @@ function escapeForCheck(str) {
   return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 }
 
+function extractSectionHtml(indexHtml, sectionTitle) {
+  const escaped = sectionTitle.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  const m = indexHtml.match(new RegExp(`<section>\\n<h2>${escaped}</h2>[\\s\\S]*?</section>`));
+  return m ? m[0] : null;
+}
+
 function hashTree(dir) {
   const files = walkFiles(dir, null).sort();
   const hash = crypto.createHash('sha256');
@@ -134,4 +140,31 @@ test('AC5: the generator is deterministic — rerunning produces byte-identical 
   runBuild();
   const second = hashTree(SITE_DIR);
   assert.strictEqual(first, second, 'expected identical site/ contents (by hash) across repeated runs');
+});
+
+test('World section: design/lore.md and design/star-atlas.md are grouped with design/world.md, not Other', () => {
+  runBuild();
+  const indexHtml = fs.readFileSync(path.join(SITE_DIR, 'index.html'), 'utf8');
+
+  const worldSection = extractSectionHtml(indexHtml, 'World');
+  assert.ok(worldSection, 'expected a World section in index.html');
+  assert.ok(worldSection.includes('design/lore.html'), 'expected World section to link to design/lore.html');
+  assert.ok(worldSection.includes('design/star-atlas.html'), 'expected World section to link to design/star-atlas.html');
+  assert.ok(worldSection.includes('design/world.html'), 'expected World section to still link to design/world.html');
+
+  const otherSection = extractSectionHtml(indexHtml, 'Other');
+  if (otherSection) {
+    assert.ok(!otherSection.includes('design/lore.html'), 'design/lore.html should not appear under Other');
+    assert.ok(!otherSection.includes('design/star-atlas.html'), 'design/star-atlas.html should not appear under Other');
+  }
+});
+
+test('Other section: playtest docs remain unclassified, unaffected by this unit', () => {
+  runBuild();
+  const indexHtml = fs.readFileSync(path.join(SITE_DIR, 'index.html'), 'utf8');
+
+  const otherSection = extractSectionHtml(indexHtml, 'Other');
+  assert.ok(otherSection, 'expected an Other section in index.html');
+  assert.ok(otherSection.includes('design/playtest-full-game.html'), 'expected design/playtest-full-game.html to remain in Other');
+  assert.ok(otherSection.includes('design/playtest-spatial.html'), 'expected design/playtest-spatial.html to remain in Other');
 });
