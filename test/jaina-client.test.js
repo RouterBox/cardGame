@@ -82,7 +82,13 @@ test('upsert of an existing record: one list GET, then PUT to /records/{uuid} wi
   const body = JSON.parse(put.body);
   assert.strictEqual(body.package_slug, 'alpha');
   assert.strictEqual(body.name, 'Aegis Vanguard');
-  assert.strictEqual(body.costLine, '2 Mass', 'expected record fields flat at the top level of the body');
+  assert.strictEqual(
+    body.cost_line,
+    '2 Mass',
+    'expected record fields translated to the card schema\'s snake_case slugs (cost_line/type_line/rules_text/stats_line), flat at the top level'
+  );
+  assert.strictEqual(body.costLine, undefined, 'camelCase repo-side names must not reach the wire');
+  assert.strictEqual(body.slug, undefined, 'the card schema has no slug field — slug stays repo-side');
 });
 
 test('upsert of a never-before-seen record: POST to /records, and the returned id joins the index', async (t) => {
