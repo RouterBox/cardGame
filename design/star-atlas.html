@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Star Atlas — Amaranth Expanse Design</title>
+<style>:root { color-scheme: dark light; }
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  padding: 1.25rem;
+  background: #14151a;
+  color: #e6e6ea;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-size: 17px;
+  line-height: 1.6;
+}
+main, nav { max-width: 42rem; margin-left: auto; margin-right: auto; }
+h1, h2, h3, h4, h5, h6 { line-height: 1.25; color: #f4f1ff; }
+a { color: #8ab4ff; }
+a:visited { color: #b79cff; }
+nav {
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid #34363f;
+  font-size: 0.95rem;
+}
+nav .home-link { font-weight: 600; margin-right: 0.75rem; }
+nav .section-label { color: #9a9aa5; margin-right: 0.75rem; }
+nav .siblings { margin-top: 0.4rem; }
+nav .siblings .current { font-weight: 600; color: #f4f1ff; }
+blockquote {
+  margin: 1rem 0;
+  padding: 0.25rem 1rem;
+  border-left: 3px solid #5a5d6b;
+  color: #c7c7d1;
+}
+table { border-collapse: collapse; width: 100%; margin: 1rem 0; font-size: 0.95rem; }
+th, td { border: 1px solid #34363f; padding: 0.4rem 0.6rem; text-align: left; }
+code, pre {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  background: #1e2027;
+  border-radius: 4px;
+}
+code { padding: 0.1em 0.35em; }
+pre { padding: 0.75rem; overflow-x: auto; }
+ul, ol { padding-left: 1.4rem; }
+section h2 { margin-top: 2rem; }
+@media (prefers-color-scheme: light) {
+  body { background: #fbfbfd; color: #1c1c22; }
+  a { color: #2454c7; }
+  blockquote { color: #454550; }
+  code, pre { background: #eef0f4; }
+  th, td { border-color: #d6d8e0; }
+}</style>
+</head>
+<body>
+<nav>
+<a class="home-link" href="../index.html">&larr; Index</a>
+<span class="section-label">Other</span>
+<div class="siblings"><a href="lore.html">The Long Record — A Chronicle of the Amaranth Expanse</a> &middot; <a href="playtest-full-game.html">Full Game Playtest Procedure (On Paper)</a> &middot; <a href="playtest-spatial.html">Spatial Battlefield Playtest Procedure (On Paper)</a> &middot; <span class="current">The Star Atlas</span></div>
+</nav>
+<main>
+<h1>The Star Atlas</h1>
+<p>The Amaranth Expanse is vast enough that no design document before this one has ever had to name a single world in it — every rule, every race, and every era of history has been written in the abstract. This atlas fixes five names to the map: one Homeworld per civilization, plus a handful of frontier and contested worlds that belong to none of them. Nothing here changes a rule, a race&#39;s identity, or a page of lore; it only gives the places those documents already imply somewhere to point to by name.</p>
+<h2>Homeworlds</h2>
+<p>Each civilization controls exactly one Homeworld (<code>rules.md</code> Section 8.2): the single Planet it starts the game already holding, the anchor of its side of the battlefield graph, and the site where its first Generator must be built.</p>
+<h3>Ashkeel — Homeworld of the Cindral Reach</h3>
+<p>Ashkeel is a moon-sized ball of ore and slag in permanent, grinding orbit around a dead star, worked so continuously by the Cindral Reach&#39;s founding mining clans that its surface is now more scrap than rock. It is the purest expression of the Reach&#39;s attunement to <strong>the Mass</strong>: nothing that lands on Ashkeel, wreck or raw ore alike, is ever thrown away, and the world&#39;s own skyline is built from the accumulated hulls of every ship the Reach has ever melted down and remade. When a Cindral Reach salvage crew stripped a drifting Wrought Assembly hull down to its frame and found the Assembly&#39;s master design core fragment welded into it, the fragment was carried home to Ashkeel and welded into a Reach flagship&#39;s keel — and it is from Ashkeel that the Reach has refused, for years since, every formal Assembly request to give it back.</p>
+<h3>Fenwreath — Homeworld of the Mireth Bloom</h3>
+<p>Fenwreath is not so much inhabited by the Mireth Bloom as it simply <em>is</em> the Mireth Bloom&#39;s oldest and deepest root: a wetworld of bruise-purple fen and bioluminescent canopy where individual and organism stopped being different things generations ago. It is the clearest expression anywhere in the Expanse of <strong>the Bloom</strong>, the current of things that grow, adapt, and refuse to stay dead — Fenwreath&#39;s spore-forests have not stopped spreading since the Five Risings, and every other world the Bloom now holds is, in a real sense, an extension of this one. In the Cinderglass War, no battles were fought on or from Fenwreath, and the Mireth Bloom raised no fleet and took no side. It simply grew, patiently, over whichever battlefields the war&#39;s other four civilizations abandoned, and Fenwreath&#39;s own vaults now hold more wreckage inherited from that one war, quietly overgrown with spore and root, than from anything else in Expanse history.</p>
+<h3>Vantaris — Homeworld of the Panoptic Concord</h3>
+<p>Vantaris is a moon-sized archive, glass-black spires threaded with slow-drifting light, holding more recorded transactions, intercepted communications, and rival fleet manifests than any other single world in the Expanse. It is the seat of <strong>the Signal</strong>, the current of pattern, prediction, and knowing a thing a moment before it happens — every Panoptic Concord broker&#39;s foreknowledge traces back to a ledger kept somewhere in Vantaris&#39;s archives. During the Cinderglass War, it was from Vantaris that the Concord ran its double ledger, selling the Cindral Reach coordinates on Wrought Assembly fleet movements and selling the Assembly coordinates on Reach movements in turn, profiting from both sides for as long as the war stayed open — a practice the Concord has never formally ended, only quieted.</p>
+<h3>Ansareth — Homeworld of the Starweave Communion</h3>
+<p>Ansareth is a world of standing stones grown from crashed precursor wreckage, half-shrine and half-antenna, where Starweave pilgrims have spent generations petitioning whatever is left of the First Weave. It sits closest of any inhabited world to <strong>the Tangle</strong>, the current nobody can fully explain, the thread connecting cause to effect that the Communion believes can still be tied differently if the right ritual is performed at the right coordinates. During the Cinderglass War, oath-sworn fleets launched from Ansareth moved to seize the wormhole junctions the Reach-versus-Assembly fighting depended on — not to win the war for either side, but because Ansareth&#39;s own seers warned that a war fought that long over a First Weave relic risked provoking a second Sundering. Fleets crewed on Ansareth hold several of those junctions still, imperfectly, to this day.</p>
+<h3>Corewright — Homeworld of the Wrought Assembly</h3>
+<p>Corewright is a factory the size of a planet, chrome and matte-ceramic assembly arms visible mid-construction across its entire surface, still building the same designs it was building when the Wrought Assembly first uploaded itself into its own machinery. It is the wellspring of <strong>the Circuit</strong>, the current of the made thing that keeps making more of itself — every drone, foundry, and self-replicating hull the Assembly fields anywhere in the Expanse was, at some remove, designed on Corewright first. Corewright&#39;s own vaults once held the Assembly&#39;s master design core in full; the fragment a Cindral Reach salvage crew tore free and kept is a piece of that same core, and it is Corewright that has never stopped formally asking for the piece back, and never received it.</p>
+<h2>Frontier &amp; Contested Worlds</h2>
+<p>These worlds belong to no civilization&#39;s Homeworld. They are the kind of Unexplored or contested Planets a battlefield graph&#39;s Discovery action (<code>playtest-spatial.md</code> Section 6, <code>rules.md</code> Section 8.3) exists to turn into named places at the table.</p>
+<h3>Halvorne Junction</h3>
+<p>Halvorne Junction is a wormhole-transit world with no permanent population, valuable only for the tangle of short, cheap wormholes that meet there. It was one of the junctions Starweave Communion oath-sworn seized during the Cinderglass War to choke off the fighting between the Cindral Reach and the Wrought Assembly, and Reach fleets still test the Communion&#39;s hold on it from time to time — neither side has ever fully controlled it since.</p>
+<h3>Kelmourn Drift</h3>
+<p>Kelmourn Drift is a debris-field world at the edge of charted space where First Weave-derived wreckage keeps resurfacing, unpredictably, from ruins no civilization has ever finished mapping. Every claim staked there has reopened the same argument that started the Cinderglass War in the first place — who gets to keep what a fresh discovery turns up — without any one civilization managing to hold the world outright.</p>
+<h3>Tallowfen</h3>
+<p>Tallowfen is a modest, resource-poor world whose only real value is the single chokepoint wormhole running through it, held and re-held by whoever last had the fleet to spare for it. No civilization has ever bothered to build a Homeworld-grade presence there, but the debts different crews have run up fighting over it, season after season, are still being collected on by more than one side&#39;s ledger.</p>
+</main>
+</body>
+</html>
