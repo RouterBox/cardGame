@@ -112,7 +112,7 @@ function wrapText(text, maxChars) {
   return lines;
 }
 
-function textBlock({ x, y, lines, fontSize, lineHeight, fill, fontStyle, fontWeight }) {
+function textBlock({ x, y, lines, fontSize, lineHeight, fill, fontStyle, fontWeight, anchor }) {
   if (lines.length === 0) return '';
   const tspans = lines
     .map((line, idx) => `<tspan x="${x}" dy="${idx === 0 ? 0 : lineHeight}">${escapeXml(line)}</tspan>`)
@@ -122,6 +122,7 @@ function textBlock({ x, y, lines, fontSize, lineHeight, fill, fontStyle, fontWei
     fill ? `fill="${fill}"` : '',
     fontStyle ? `font-style="${fontStyle}"` : '',
     fontWeight ? `font-weight="${fontWeight}"` : '',
+    anchor ? `text-anchor="${anchor}"` : '',
   ]
     .filter(Boolean)
     .join(' ');
@@ -208,30 +209,37 @@ function renderTypeLine(typeLine) {
 }
 
 function renderRulesTextBox(rulesText, flavorText) {
-  const rulesLines = wrapText(rulesText, 46);
+  // Text spans ~80% of the box width and every line is centered on the
+  // card's vertical axis (RouterBox 2026-07-29: the old 46-char wrap at a
+  // left-anchored x filled barely half the frame). 58 chars of 20px Georgia
+  // is roughly 560px, about 80% of the 702px box; 18px flavor wraps wider.
+  const centerX = INNER_X + INNER_WIDTH / 2;
+  const rulesLines = wrapText(rulesText, 58);
   const parts = [
     `<rect class="rules-text-box" x="${INNER_X}" y="${RULES_BOX_Y}" width="${INNER_WIDTH}" height="${RULES_BOX_HEIGHT}" fill="#faf8f2" stroke="#c9ccd3" stroke-width="2"/>`,
     textBlock({
-      x: INNER_X + 16,
+      x: centerX,
       y: RULES_BOX_Y + 32,
       lines: rulesLines,
       fontSize: 20,
       lineHeight: 26,
       fill: '#1c1c22',
+      anchor: 'middle',
     }),
   ];
   if (flavorText) {
-    const flavorLines = wrapText(flavorText, 46);
+    const flavorLines = wrapText(flavorText, 64);
     const flavorY = RULES_BOX_Y + 32 + rulesLines.length * 26 + 20;
     parts.push(
       textBlock({
-        x: INNER_X + 16,
+        x: centerX,
         y: flavorY,
         lines: flavorLines,
         fontSize: 18,
         lineHeight: 24,
         fill: '#5a5d66',
         fontStyle: 'italic',
+        anchor: 'middle',
       })
     );
   }
