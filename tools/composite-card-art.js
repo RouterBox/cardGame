@@ -127,6 +127,22 @@ function compositeArtWindow(baseSvg, href) {
 const LOCK_STALE_MS = 30000; // the guarded section is just a remove+rename, so any lock
 // older than this was abandoned by a process that died mid-swap, not one still working.
 
+// Windows refuses to rename a directory while another process holds a
+// handle inside it (build-site reading a render, an AV scan) — that
+// surfaces as EPERM and clears in milliseconds. Retry briefly instead of
+// failing the whole run.
+function renameWithRetry(from, to) {
+  for (let attempt = 0; ; attempt++) {
+    try {
+      fs.renameSync(from, to);
+      return;
+    } catch (err) {
+      if ((err.code !== 'EPERM' && err.code !== 'EACCES') || attempt >= 40) throw err;
+      Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, 25);
+    }
+  }
+}
+
 async function withOutDirLock(outDir, fn) {
   const lockDir = `${outDir}.lock`;
   for (;;) {
@@ -202,13 +218,13 @@ async function main(client = createMockLeonardoClient(), altClient = client, out
       const backupDir = `${outDir}.bak-${process.pid}-${crypto.randomBytes(6).toString('hex')}`;
       const hadExisting = fs.existsSync(outDir);
       if (hadExisting) {
-        fs.renameSync(outDir, backupDir);
+        renameWithRetry(outDir, backupDir);
       }
       try {
-        fs.renameSync(tmpDir, outDir);
+        renameWithRetry(tmpDir, outDir);
       } catch (err) {
         if (hadExisting) {
-          fs.renameSync(backupDir, outDir);
+          renameWithRetry(backupDir, outDir);
         }
         throw err;
       }
