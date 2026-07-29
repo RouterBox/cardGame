@@ -28,6 +28,12 @@ const CARD_WIDTH = 750;
 const CARD_HEIGHT = 1050;
 const FRAME_MARGIN = 24;
 
+// Borderless treatment: total width of the thinned Frame/Border edge (split
+// evenly across however many frame-band Founts a card has), replacing the
+// base treatment's full CARD_WIDTH split. Deliberately tiny relative to
+// CARD_WIDTH so it's "materially smaller" for any Fount count.
+const BORDERLESS_EDGE_WIDTH = 8;
+
 const INNER_X = FRAME_MARGIN;
 const INNER_Y = FRAME_MARGIN;
 const INNER_WIDTH = CARD_WIDTH - 2 * FRAME_MARGIN;
@@ -126,12 +132,14 @@ function textBlock({ x, y, lines, fontSize, lineHeight, fill, fontStyle, fontWei
 // SVG rendering
 // ---------------------------------------------------------------------------
 
-function renderFrameBands(frameFounts) {
-  const bandWidth = CARD_WIDTH / frameFounts.length;
+function renderFrameBands(frameFounts, { edgeWidth, foil = false } = {}) {
+  const totalWidth = edgeWidth != null ? edgeWidth : CARD_WIDTH;
+  const bandWidth = totalWidth / frameFounts.length;
   return frameFounts
     .map((fount, idx) => {
       const color = FOUNT_COLORS[fount];
-      return `<rect class="frame-band" data-fount="${fount}" data-color="${color.name}" x="${idx * bandWidth}" y="0" width="${bandWidth}" height="${CARD_HEIGHT}" fill="${color.hex}"/>`;
+      const foilAttr = foil ? ' data-foil="true"' : '';
+      return `<rect class="frame-band" data-fount="${fount}" data-color="${color.name}"${foilAttr} x="${idx * bandWidth}" y="0" width="${bandWidth}" height="${CARD_HEIGHT}" fill="${color.hex}"/>`;
     })
     .join('\n');
 }
@@ -172,11 +180,15 @@ function renderNameSlot(name) {
   ].join('\n');
 }
 
-function renderArtWindow() {
-  const y = INNER_Y + NAME_SLOT_HEIGHT;
+function renderArtWindow({
+  x = INNER_X,
+  y = INNER_Y + NAME_SLOT_HEIGHT,
+  width = INNER_WIDTH,
+  height = ART_WINDOW_HEIGHT,
+} = {}) {
   return [
-    `<rect class="art-window" x="${INNER_X}" y="${y}" width="${INNER_WIDTH}" height="${ART_WINDOW_HEIGHT}" fill="#c9ccd3" stroke="#9a9da5" stroke-width="2"/>`,
-    `<text x="${INNER_X + INNER_WIDTH / 2}" y="${y + ART_WINDOW_HEIGHT / 2}" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="22" fill="#5a5d66">Art Placeholder</text>`,
+    `<rect class="art-window" x="${x}" y="${y}" width="${width}" height="${height}" fill="#c9ccd3" stroke="#9a9da5" stroke-width="2"/>`,
+    `<text x="${x + width / 2}" y="${y + height / 2}" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="22" fill="#5a5d66">Art Placeholder</text>`,
   ].join('\n');
 }
 
@@ -245,20 +257,50 @@ function renderStatsCorner(statsLine) {
   ].join('\n');
 }
 
-function renderCardSvg(card) {
+const TREATMENTS = ['base', 'borderless', 'foil', 'extended-art'];
+
+function renderCardSvg(card, treatment = 'base') {
+  if (!TREATMENTS.includes(treatment)) {
+    throw new Error(`unknown treatment "${treatment}" (expected one of ${TREATMENTS.join(', ')})`);
+  }
+
   const costItems = parseCostItems(card.costLine);
   const frameFounts = orderedFrameFounts(costItems);
   const isPermanent = /\bPermanent\b/.test(card.typeLine);
   const hasStatsCorner = isPermanent && Boolean(card.statsLine);
 
-  const layers = [
-    renderFrameBands(frameFounts),
-    renderNameSlot(card.name),
-    renderArtWindow(),
-    renderTypeLine(card.typeLine),
-    renderRulesTextBox(card.rulesText, card.flavorText),
-    renderCostPips(costItems),
-  ];
+  const frameBands = renderFrameBands(frameFounts, {
+    edgeWidth: treatment === 'borderless' ? BORDERLESS_EDGE_WIDTH : undefined,
+    foil: treatment === 'foil',
+  });
+
+  let artWindow;
+  if (treatment === 'borderless') {
+    // Borderless: Frame/Border shrinks to a thin edge, Art Window bleeds to
+    // the card's outer physical edge (card-anatomy.md, "The Layers").
+    artWindow = renderArtWindow({ x: 0, y: 0, width: CARD_WIDTH, height: CARD_HEIGHT });
+  } else if (treatment === 'extended-art') {
+    // Extended Art: Art Window enlarges upward to bleed behind the Name
+    // Slot's and Type Line's background bands. Width is unchanged — only
+    // the top edge and height move.
+    artWindow = renderArtWindow({ y: INNER_Y, height: RULES_BOX_Y - INNER_Y });
+  } else {
+    artWindow = renderArtWindow();
+  }
+
+  const nameSlot = renderNameSlot(card.name);
+  const typeLine = renderTypeLine(card.typeLine);
+  const rulesTextBox = renderRulesTextBox(card.rulesText, card.flavorText);
+  const costPips = renderCostPips(costItems);
+
+  // Borderless and extended-art both enlarge the Art Window so it bleeds
+  // behind other zones — paint it *before* those zones so their (still
+  // opaque) backgrounds stay on top and legible, per the Cohesion rule.
+  const artBleedsBehindContent = treatment === 'borderless' || treatment === 'extended-art';
+
+  const layers = artBleedsBehindContent
+    ? [frameBands, artWindow, nameSlot, typeLine, rulesTextBox, costPips]
+    : [frameBands, nameSlot, artWindow, typeLine, rulesTextBox, costPips];
   if (hasStatsCorner) layers.push(renderStatsCorner(card.statsLine));
 
   return [
