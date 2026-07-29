@@ -111,40 +111,18 @@ function compositeArtWindow(baseSvg, href) {
 // own OS process under `node --test`) can call main()/runCli() against
 // concurrently. The (possibly slow — a real --live run polls Leonardo per
 // brief) generation loop writes into a private, uniquely-named temp
-// directory first, so it never touches the shared path. Only the final merge
-// into OUT_DIR is guarded by a cross-process lock, which keeps that merge
-// from racing another process's merge (Windows in particular refuses a
-// rename while another process is touching the same directory). The lock
-// itself self-heals: if a holder is killed (SIGINT/SIGKILL/OOM) before
-// releasing it, the lock directory goes stale and a later run reclaims it
-// instead of hanging forever.
+// directory first, so it never touches the shared path. Only the final swap
+// onto OUT_DIR (remove + rename, a couple of fast fs calls) is guarded by a
+// cross-process lock, which keeps that swap from racing another process's
+// swap (Windows in particular refuses a rename while another process is
+// touching the same directory). The lock itself self-heals: if a holder is
+// killed (SIGINT/SIGKILL/OOM) before releasing it, the lock directory goes
+// stale and a later run reclaims it instead of hanging forever.
 // ---------------------------------------------------------------------------
 
 const OUT_DIR_LOCK = `${OUT_DIR}.lock`;
-const LOCK_STALE_MS = 30000; // the guarded section is just a handful of renames, so any lock
-// older than this was abandoned by a process that died mid-merge, not one still working.
-
-// Renames one generated file into OUT_DIR. A whole-directory swap (rename
-// OUT_DIR away, rename tmpDir into place) has a window where OUT_DIR doesn't
-// exist at all, and a concurrent test process's readdirSync(OUT_DIR) can land
-// in that gap (seen live: ENOENT scanning renders/cards-composited/ mid-run).
-// Renaming one file at a time never removes the OUT_DIR entry itself, so it's
-// always there to list. Windows can also refuse to rename over a file another
-// process still has open for reading (same class of issue writeFileAtomic in
-// tools/build-site.js retries around) — retry briefly instead of crashing.
-function mergeFileIntoOutDir(srcPath, destPath) {
-  for (let attempt = 0; ; attempt++) {
-    try {
-      fs.renameSync(srcPath, destPath);
-      return;
-    } catch (err) {
-      if ((err.code !== 'EPERM' && err.code !== 'EACCES') || attempt >= 40) {
-        throw err;
-      }
-      Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, 25);
-    }
-  }
-}
+const LOCK_STALE_MS = 30000; // the guarded section is just a remove+rename, so any lock
+// older than this was abandoned by a process that died mid-swap, not one still working.
 
 async function withOutDirLock(fn) {
   for (;;) {
@@ -213,11 +191,26 @@ async function main(client = createMockLeonardoClient(), altClient = client) {
     }
 
     await withOutDirLock(async () => {
-      fs.mkdirSync(OUT_DIR, { recursive: true });
-      for (const file of fs.readdirSync(tmpDir)) {
-        mergeFileIntoOutDir(path.join(tmpDir, file), path.join(OUT_DIR, file));
+      // Two renames instead of rm+rename: if the second rename fails partway
+      // (e.g. Windows refusing a rename while another process still holds a
+      // handle on the directory), the first rename lets us put the old
+      // OUT_DIR back rather than leaving OUT_DIR permanently missing.
+      const backupDir = `${OUT_DIR}.bak-${process.pid}-${crypto.randomBytes(6).toString('hex')}`;
+      const hadExisting = fs.existsSync(OUT_DIR);
+      if (hadExisting) {
+        fs.renameSync(OUT_DIR, backupDir);
       }
-      fs.rmdirSync(tmpDir);
+      try {
+        fs.renameSync(tmpDir, OUT_DIR);
+      } catch (err) {
+        if (hadExisting) {
+          fs.renameSync(backupDir, OUT_DIR);
+        }
+        throw err;
+      }
+      if (hadExisting) {
+        fs.rmSync(backupDir, { recursive: true, force: true });
+      }
     });
   } catch (err) {
     fs.rmSync(tmpDir, { recursive: true, force: true });
