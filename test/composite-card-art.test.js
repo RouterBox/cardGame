@@ -10,6 +10,7 @@ const REPO_ROOT = path.join(__dirname, '..');
 const RENDER_SCRIPT_PATH = path.join(REPO_ROOT, 'tools', 'render-card.js');
 const SCRIPT_PATH = path.join(REPO_ROOT, 'tools', 'composite-card-art.js');
 const BRIEFS_PATH = path.join(REPO_ROOT, 'design', 'cards', 'art-briefs.md');
+const ALT_BRIEFS_PATH = path.join(REPO_ROOT, 'design', 'cards', 'alt-art-briefs.md');
 const PLACEHOLDER_DIR = path.join(REPO_ROOT, 'renders', 'cards');
 const OUT_DIR = path.join(REPO_ROOT, 'renders', 'cards-composited');
 
@@ -27,6 +28,14 @@ function slugify(name) {
 
 function listBriefTitles() {
   const content = fs.readFileSync(BRIEFS_PATH, 'utf8');
+  return parseSections(content)
+    .filter((s) => s.level === 3)
+    .map((s) => s.title);
+}
+
+function listAltBriefTitles() {
+  if (!fs.existsSync(ALT_BRIEFS_PATH)) return [];
+  const content = fs.readFileSync(ALT_BRIEFS_PATH, 'utf8');
   return parseSections(content)
     .filter((s) => s.level === 3)
     .map((s) => s.title);
@@ -97,7 +106,11 @@ test('AC1: node tools/composite-card-art.js exits 0 and writes exactly one compo
   assert.ok(titles.length > 0, 'expected at least one brief section in design/cards/art-briefs.md');
   assert.ok(fs.existsSync(OUT_DIR), `expected ${OUT_DIR} to exist after running the script`);
 
-  const files = fs.readdirSync(OUT_DIR).filter((f) => f.endsWith('.svg'));
+  // "-alt.svg" files are a separate, additive concern owned by
+  // test/composite-card-art-alt.test.js — excluded here so this check
+  // stays exactly "one base SVG per base brief section", unchanged from
+  // before alt-art existed.
+  const files = fs.readdirSync(OUT_DIR).filter((f) => f.endsWith('.svg') && !f.endsWith('-alt.svg'));
   assert.strictEqual(
     files.length,
     titles.length,
@@ -188,6 +201,7 @@ test('AC3: image generation is injected via a client argument — a custom clien
   assert.strictEqual(typeof composite.main, 'function', 'expected composite-card-art.js to export a main(client) function');
 
   const titles = listBriefTitles();
+  const altTitles = listAltBriefTitles();
   assert.ok(titles.length > 0, 'expected at least one brief in design/cards/art-briefs.md');
   const firstTitle = titles[0];
 
@@ -206,8 +220,9 @@ test('AC3: image generation is injected via a client argument — a custom clien
 
   assert.strictEqual(
     seenBriefs.length,
-    titles.length,
-    `expected the injected client's generateArt to be called once per brief (${titles.length}), was called ${seenBriefs.length} times`
+    titles.length + altTitles.length,
+    `expected the injected client's generateArt to be called once per brief and once per alt brief ` +
+      `(${titles.length} + ${altTitles.length}), was called ${seenBriefs.length} times`
   );
 
   const outFile = path.join(OUT_DIR, `${slugify(firstTitle)}.svg`);
