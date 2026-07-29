@@ -174,7 +174,8 @@ async function withOutDirLock(outDir, fn) {
 async function main(client = createMockLeonardoClient(), altClient = client, outDir = OUT_DIR) {
   const briefs = loadBriefs();
   const altBriefs = loadAltBriefs();
-  const cardsByName = new Map(loadAllCards().map((card) => [card.name, card]));
+  const allCards = loadAllCards();
+  const cardsByName = new Map(allCards.map((card) => [card.name, card]));
   const baseBriefNames = new Set(briefs.map((brief) => brief.cardName));
 
   const tmpDir = `${outDir}.tmp-${process.pid}-${crypto.randomBytes(6).toString('hex')}`;
@@ -242,6 +243,16 @@ async function main(client = createMockLeonardoClient(), altClient = client, out
       `${altBriefs.length ? ` plus ${altBriefs.length} alt-art window(s)` : ''}` +
       ` into ${path.relative(REPO_ROOT, outDir).split(path.sep).join('/')}/`
   );
+
+  // Informational only: a card with no brief in art-briefs.md is not an
+  // error (this tool doesn't gate on card content), but the gap should be
+  // visible instead of silently invisible — that silence is what let past
+  // card sets ship with zero briefs before anyone noticed by hand.
+  for (const card of allCards) {
+    if (!baseBriefNames.has(card.name)) {
+      console.warn(`no art brief for "${card.name}"`);
+    }
+  }
 }
 
 async function runCli(argv = process.argv) {
