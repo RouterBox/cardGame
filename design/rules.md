@@ -254,6 +254,8 @@ order could matter for an ability. No player MAY play cards or use
 non-Generation abilities during this phase, and the non-active player never acts
 during another challenger's Generation Phase.
 
+//want resource generation to be connected to the graph in different ways.  Default mechanism is the generators, but gain fount points per graph characteristics should be a thing.
+
 ### 5.3 Main Phase
 
 The active player MAY play any number of Slow cards from their Hand, one
@@ -267,8 +269,17 @@ and one Assault action here (Sections 8.3 and 8.6), each at most once per turn
 and under the same restriction as a Slow card: neither MAY be taken unless the
 Queue is empty and it is the active player's priority.
 
+//discovering new planets, and creating new wormholes goes in this phase.
+
 ### 5.4 Conflict Phase
 
+//We want to have units move around the graph, to planets through wormholes, and attack planets like this.  
+//moving units means you can't attack this turn by default - effects could change that.
+//moving through wormholes takes time/resources or some tradeoff of the two.  (maybe two races need mainly time, two races need mainly resources, and magic is magical)
+//blockers can only block attackers if they are at the same defending planet. 
+//attacking and blocking through wormholes may be possible somehow
+
+//place-holder magic combat:  
 The active player MAY declare any number of their Ready Units as attackers,
 becoming Spent as they do; the non-active player MAY then declare any of their own
 Ready Units as blockers, one blocker or more per attacker. An attacking Unit that
@@ -380,16 +391,19 @@ the five zones (Section 3) a card is in.
   Planets. Every Wormhole has a **Length**: a positive integer set when the
   Wormhole is opened (Section 8.3). Length fixes the Fount Point cost of the
   Discovery that opens the Wormhole (Section 8.3) and the Fount Point cost of
-  an Assault that uses it (Section 8.6). This rulebook does not define a
+  an Assault that uses it (Section 8.6). <strikethrough>This rulebook does not define a
   general unit-movement system across Wormholes; a Unit's location is not
   tracked by this section, and Length has no effect beyond the two costs just
-  named unless a future card or rule says otherwise.
+  named unless a future card or rule says otherwise.</strikethrough> 
+  //Wrong. Units are located at planets and move through wormholes between them. This supersedes the normal battlefield zone analogous to magic the gathering.  The graph is the battlefield.  
+  
 - A Planet is **controlled** by whichever challenger most recently built a
   Generator on it or Captured it (Section 8.6); Discovering a Planet does not
   by itself grant control of it (Section 8.3). A Planet on the graph
   controlled by neither challenger is **Neutral**. Each challenger's
   Homeworld is controlled by them from the start of the game and can never
   become Neutral or change control (Section 8.2, Section 8.6).
+  //At the beginning of the game, the homeworlds are the only planets.  Planets are created for each game instance via the discovery mechanism.
 - Two Planets are **adjacent** if a Wormhole that is not Closed (Section 8.5)
   connects them directly. A **path** between two Planets is an unbroken
   sequence of adjacent Planets.
@@ -424,13 +438,14 @@ exactly one new Wormhole. To do so:
    destination is any Planet already on the graph that the active player does
    not control (Neutral, or controlled by the opponent).
 3. Choose the new Wormhole's Length: any positive integer. There is no fixed
-   table of lengths — a longer Wormhole simply costs more, per the next step.
+   table of lengths — a shorter Wormhole simply costs more, per the next step.
 4. Pay the cost, from any combination of the active player's resource pools:
    a Frontier Discovery costs Fount Points equal to the new Wormhole's
    Length; a Contested Discovery costs twice that — Fount Points equal to
    double the new Wormhole's Length. This is the toll aggression pays:
    reaching into unclaimed space is the cheap path, reaching into space the
    opponent already holds costs double.
+   //invert pairs like [1-9, 2-8, 3-7, 4-6, 5-5, 6-4, 7-3, 8-2, 9-1] to computer worm hole costs to lengths.  Shorter wormholes are easier to traverse and so are more valuable, and more expensive.
 5. The new Wormhole is added to the battlefield graph, connecting the origin
    and destination Planets, with no Restrictions (Section 8.4) and not
    Closed (Section 8.5). If the destination was Unexplored, it enters the
@@ -483,6 +498,8 @@ always take. Once a Wormhole is Closed:
 
 ### 8.6 Positional Generators: Blockade & Capture
 
+//This is an ok start, but I think the units need to be at the planet, and then need to do damage equal to the number of generators to blockade, and then do that amount again to capture.
+
 Once per turn, during their Main Phase, under the same timing restriction as
 Discovery — Queue empty, their priority — a challenger MAY take one
 **Assault** action against a Planet they do not control, provided a path
@@ -513,7 +530,7 @@ An Assault does one of the following, the assaulting challenger's choice:
 
 A Homeworld MAY be Blockaded like any other Planet, but MAY NOT be Captured
 — Homeworlds never change control (Section 8.2).
-
+//As far as I read 07/28/26 4:00pm.
 ### 8.7 Worked Example: Discovery, Blockade, and Capture
 
 This example follows Reva (Homeworld: Solmere) and Toma (Homeworld: Kethis)
