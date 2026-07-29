@@ -5,6 +5,7 @@ const fs = require('node:fs');
 const path = require('node:path');
 const { execFileSync } = require('node:child_process');
 const { parseSections } = require('./helpers/markdown');
+const { loadAllCards, renderCardSvg } = require('../tools/render-card');
 
 const REPO_ROOT = path.join(__dirname, '..');
 const SCRIPT_PATH = path.join(REPO_ROOT, 'tools', 'render-card.js');
@@ -183,4 +184,164 @@ test('AC5: Art Window is a placeholder rectangle with no illustration or image-g
     !/\b(combat resolution|turn phase|resource pool|damage calculation|phase simulation)\b/i.test(scriptSource),
     'expected no game-rule simulation logic in the layout script'
   );
+});
+
+// ---------------------------------------------------------------------------
+// Premium layer treatments (renderCardSvg's `treatment` parameter).
+//
+// design/cards/card-anatomy.md's "The Layers" section defines Base Treatment
+// plus Borderless/Foil/Extended-Art premium layer swaps. renderCardSvg today
+// (pre-unit) only ever produces Base Treatment output and silently ignores
+// any second argument, so every assertion below that depends on a treatment
+// actually changing the output is expected to fail until the `treatment`
+// parameter and its three branches are implemented.
+// ---------------------------------------------------------------------------
+
+function frameBandRects(svg) {
+  return svg.match(/<rect[^>]*class="frame-band"[^>]*\/>/g) || [];
+}
+
+function artWindowRect(svg) {
+  const match = /<rect[^>]*class="art-window"[^>]*\/>/.exec(svg);
+  assert.ok(match, 'expected an art-window rect element');
+  return match[0];
+}
+
+function attr(tag, name) {
+  const match = new RegExp(`\\b${name}="([^"]*)"`).exec(tag);
+  assert.ok(match, `expected element to carry a "${name}" attribute: ${tag}`);
+  return match[1];
+}
+
+function cardDimensions(svg) {
+  const match = /viewBox="0 0 ([\d.]+) ([\d.]+)"/.exec(svg);
+  assert.ok(match, 'expected the svg to declare a viewBox to read card dimensions from');
+  return { width: Number(match[1]), height: Number(match[2]) };
+}
+
+// font-size="32" + font-weight="bold" is unique to the Name Slot's
+// textBlock() call (renderNameSlot); no other zone uses that combination.
+function extractNameSlotText(svg) {
+  const match = /<text[^>]*font-size="32"[^>]*font-weight="bold"[^>]*>[\s\S]*?<\/text>/.exec(svg);
+  assert.ok(match, 'expected a Name Slot text element');
+  return match[0];
+}
+
+// font-size="20" fill="#3a3a3f" is unique to the Type Line's textBlock()
+// call (renderTypeLine); the Rules-Text Box also uses font-size 20 but a
+// different fill.
+function extractTypeLineText(svg) {
+  const match = /<text[^>]*font-size="20" fill="#3a3a3f"[^>]*>[\s\S]*?<\/text>/.exec(svg);
+  assert.ok(match, 'expected a Type Line text element');
+  return match[0];
+}
+
+test("Treatment AC1: renderCardSvg's treatment parameter defaults to/matches 'base' but actually distinguishes 'borderless', 'foil', and 'extended-art'", () => {
+  assert.ok(!runError, 'render script must succeed before its output can be checked');
+  for (const card of loadAllCards()) {
+    const withDefault = renderCardSvg(card);
+    const withBase = renderCardSvg(card, 'base');
+    assert.strictEqual(
+      withDefault,
+      withBase,
+      `expected renderCardSvg(card) === renderCardSvg(card, 'base') for "${card.name}"`
+    );
+
+    for (const treatment of ['borderless', 'foil', 'extended-art']) {
+      const treated = renderCardSvg(card, treatment);
+      assert.notStrictEqual(
+        treated,
+        withBase,
+        `expected renderCardSvg(card, '${treatment}') to differ from the base treatment for "${card.name}" (treatment argument appears to have no effect)`
+      );
+    }
+  }
+});
+
+test('Treatment AC2: borderless shrinks every frame band below base width and expands the art window to the full card', () => {
+  assert.ok(!runError, 'render script must succeed before its output can be checked');
+  for (const card of loadAllCards()) {
+    const baseSvg = renderCardSvg(card, 'base');
+    const borderlessSvg = renderCardSvg(card, 'borderless');
+
+    const baseBands = frameBandRects(baseSvg);
+    const borderlessBands = frameBandRects(borderlessSvg);
+    assert.ok(baseBands.length > 0, `expected at least one base frame band for "${card.name}"`);
+
+    const baseWidth = Number(attr(baseBands[0], 'width'));
+    for (const band of borderlessBands) {
+      const width = Number(attr(band, 'width'));
+      assert.ok(
+        width < baseWidth,
+        `expected every borderless frame band width (got ${width}) to be materially smaller than the base width (${baseWidth}) for "${card.name}"`
+      );
+    }
+
+    const { width: cardWidth, height: cardHeight } = cardDimensions(borderlessSvg);
+    const borderlessArtWindow = artWindowRect(borderlessSvg);
+    const artWidth = Number(attr(borderlessArtWindow, 'width'));
+    const artHeight = Number(attr(borderlessArtWindow, 'height'));
+    assert.strictEqual(artWidth, cardWidth, `expected borderless art window width to equal the full card width for "${card.name}"`);
+    assert.strictEqual(artHeight, cardHeight, `expected borderless art window height to equal the full card height for "${card.name}"`);
+
+    const baseArtWindow = artWindowRect(baseSvg);
+    assert.notStrictEqual(
+      artWidth,
+      Number(attr(baseArtWindow, 'width')),
+      `expected borderless art window width to differ from base for "${card.name}"`
+    );
+  }
+});
+
+test('Treatment AC3: foil marks every frame band with data-foil="true" while keeping x/y/width/height/fill identical to base', () => {
+  assert.ok(!runError, 'render script must succeed before its output can be checked');
+  for (const card of loadAllCards()) {
+    const baseSvg = renderCardSvg(card, 'base');
+    const foilSvg = renderCardSvg(card, 'foil');
+
+    const baseBands = frameBandRects(baseSvg);
+    const foilBands = frameBandRects(foilSvg);
+    assert.strictEqual(foilBands.length, baseBands.length, `expected the same frame band count for "${card.name}"`);
+    assert.ok(baseBands.length > 0, `expected at least one frame band for "${card.name}"`);
+
+    for (let i = 0; i < baseBands.length; i++) {
+      assert.ok(
+        /data-foil="true"/.test(foilBands[i]),
+        `expected foil frame band ${i} to carry data-foil="true" for "${card.name}"`
+      );
+      for (const name of ['x', 'y', 'width', 'height', 'fill']) {
+        assert.strictEqual(
+          attr(foilBands[i], name),
+          attr(baseBands[i], name),
+          `expected foil frame band ${i} attribute "${name}" to match base for "${card.name}"`
+        );
+      }
+    }
+  }
+});
+
+test('Treatment AC4: extended-art enlarges the art window past base height while Name Slot/Type Line text stay identical', () => {
+  assert.ok(!runError, 'render script must succeed before its output can be checked');
+  for (const card of loadAllCards()) {
+    const baseSvg = renderCardSvg(card, 'base');
+    const extendedSvg = renderCardSvg(card, 'extended-art');
+
+    const baseHeight = Number(attr(artWindowRect(baseSvg), 'height'));
+    const extendedHeight = Number(attr(artWindowRect(extendedSvg), 'height'));
+    assert.ok(
+      extendedHeight > baseHeight,
+      `expected extended-art window height (${extendedHeight}) to exceed base (${baseHeight}) for "${card.name}"`
+    );
+
+    assert.strictEqual(
+      extractNameSlotText(extendedSvg),
+      extractNameSlotText(baseSvg),
+      `expected Name Slot text element unchanged for "${card.name}"`
+    );
+    assert.strictEqual(
+      extractTypeLineText(extendedSvg),
+      extractTypeLineText(baseSvg),
+      `expected Type Line text element unchanged for "${card.name}"`
+    );
+  }
 });
