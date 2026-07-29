@@ -6,6 +6,7 @@ const fs = require('node:fs');
 const path = require('node:path');
 const { parseCardMarkdown } = require('../lib/parse-card-markdown');
 const { parseSections } = require('./helpers/markdown');
+const { registerCardTemplateChecks } = require('./helpers/card-template');
 
 const CARDS_PATH = path.join(__dirname, '..', 'design', 'cards', 'character-signatures.md');
 const RACES_DIR = path.join(__dirname, '..', 'design', 'races');
@@ -113,33 +114,7 @@ test('AC1: there are exactly 5 race files, one card is expected per race', () =>
 // ---------------------------------------------------------------------------
 
 for (const card of sectionsToCheck) {
-  test(`AC2: "${card.title}" has Cost line, Type line, and Rules text in order`, () => {
-    const body = card.body;
-    const costIdx = body.indexOf('Cost line:');
-    const typeIdx = body.indexOf('Type line:');
-    const rulesIdx = body.indexOf('Rules text:');
-    assert.notStrictEqual(costIdx, -1, `expected a "Cost line:" field in "${card.title}"`);
-    assert.notStrictEqual(typeIdx, -1, `expected a "Type line:" field in "${card.title}"`);
-    assert.notStrictEqual(rulesIdx, -1, `expected a "Rules text:" field in "${card.title}"`);
-    assert.ok(
-      costIdx < typeIdx && typeIdx < rulesIdx,
-      `expected Cost line -> Type line -> Rules text order in "${card.title}"`
-    );
-  });
-
-  test(`AC2: "${card.title}" only carries a Stats/counters line after Rules text, and only if a Permanent`, () => {
-    const body = card.body;
-    const rulesIdx = body.indexOf('Rules text:');
-    const statsIdx = body.indexOf('Stats/counters line:');
-    if (statsIdx === -1) return;
-    assert.ok(rulesIdx !== -1 && statsIdx > rulesIdx, `expected Stats/counters line to follow Rules text in "${card.title}"`);
-    const typeMatch = body.match(/Type line:\s*([^\n]+)/);
-    assert.ok(typeMatch, `expected a Type line to check permanence in "${card.title}"`);
-    assert.ok(
-      /\bPermanent\b/.test(typeMatch[1]),
-      `expected "${card.title}" to be a Permanent since it carries a Stats/counters line, got type line: ${typeMatch[1]}`
-    );
-  });
+  registerCardTemplateChecks(card.title, card.body);
 }
 
 // ---------------------------------------------------------------------------
