@@ -546,3 +546,83 @@ Composition: wide, landscape rectangle (~5:3), the large rectangular window
 beneath the Name Slot per card-anatomy.md — keep the chassis unit and the
 permanent it's fortifying close together in the frame, with the assembly
 line receding behind them.
+
+## Character Signatures, Wave 2
+
+### Torel Ashgrave, Line-Captain of the Ember Vanguard
+
+Palette: Ash-grey — the Mass's industrial endurance, worn identically down
+the whole line.
+Subject/Scene: Torel Ashgrave, Line-Captain of the Ember Vanguard, stands
+at the head of a formation of identical Materials Unit hulls, her own
+combat strength visibly drawn from how many stand behind her.
+Key visual elements:
+- Torel Ashgrave herself, a named Cindral Reach Line-Captain in ash-grey Materials plating, not a generic Unit
+- A visible rank of other identical Materials Unit hulls she controls, each uniform hull explaining why her combat strength is increased
+- No individual flourish anywhere in the formation — uniformity itself is the point, per her own conviction
+Composition: wide, landscape rectangle (~5:3), the large rectangular window
+beneath the Name Slot per card-anatomy.md — place Torel at the head of the
+formation with the identical hulls receding behind her to fill the frame.
+
+### Rathe Ossuary-Kin, Spore-Hound of the Sprawl
+
+Palette: Green — the Bloom's patient growth, thickening the longer
+something tries to kill it.
+Subject/Scene: Rathe Ossuary-Kin, Spore-Hound of the Sprawl, stands scarred
+and unbothered at the center of the Mireth Bloom's Sprawl, a fresh Growth
+counter blooming on his Biology Unit form the instant a wound lands.
+Key visual elements:
+- Rathe Ossuary-Kin himself, a named Mireth Bloom Biology Unit fused with spore-mass, not a generic creature
+- A visible Growth counter shown taking root on his form at the exact moment damage is dealt to him, the wound feeding rather than harming
+- A quiet, unhurried stillness in his stance, stranger and calmer with every scar the Sprawl gives him
+Composition: wide, landscape rectangle (~5:3), the large rectangular window
+beneath the Name Slot per card-anatomy.md — keep Rathe low and central with
+the new Growth counter catching the light at the point of impact.
+
+### Doran Vex Amaranthine, Ledger-Warden of the Foreknowledge Archive
+
+Palette: Cyan — the Signal's cool analytic watchfulness, reading what's
+already left a trace.
+Subject/Scene: Doran Vex Amaranthine, Ledger-Warden of the Foreknowledge
+Archive, leans over an opponent's Archive, reading the top card in cyan
+light before setting it back exactly as he found it.
+Key visual elements:
+- Doran Vex Amaranthine himself, a named Panoptic Concord Intelligence figure in archive-keeper's dress, not a generic reader
+- An opponent's Archive shown mid-read, its top card lit and legible before being placed back untouched
+- A patient, unhurried reading posture — the working is quiet observation, not a strike, true to his own conviction that the trace was already there to find
+Composition: wide, landscape rectangle (~5:3), the large rectangular window
+beneath the Name Slot per card-anatomy.md — keep Doran close over the
+Archive with the opponent's pile lit at the frame's center.
+
+### Ysolde Thane, Pilgrim of the Unwritten Sign
+
+Palette: Violet — the Tangle's uncanny ritual mood, here turned toward
+finding what's still open.
+Subject/Scene: Ysolde Thane, Pilgrim of the Unwritten Sign, kneels at the
+edge of her own Archive, a violet Magic working lifting its top card into
+view as she decides whether to carry it into her Hand or leave it exactly
+where it lies.
+Key visual elements:
+- Ysolde Thane herself, a named Starweave Communion Magic pilgrim reading the Unwritten Sign, not a generic caster
+- The top card of her own Archive suspended in violet light, visibly a moment of choice between her Hand and leaving it in place
+- A tentative, searching posture — the working reads as renegotiation, patient rather than certain of the outcome
+Composition: wide, landscape rectangle (~5:3), the large rectangular window
+beneath the Name Slot per card-anatomy.md — center Ysolde over her own
+Archive with the suspended card lit at the frame's midpoint.
+
+### Foreman-Prime Yssa Ductile, Keeper of the First Pattern
+
+Palette: Copper — the Circuit's warm mechanized repetition, drawn from the
+one true design.
+Subject/Scene: Foreman-Prime Yssa Ductile, Keeper of the First Pattern,
+stands at the Generator core she keeps, its copper Circuit Point flowing
+into the Wrought Assembly's resource pool as the exact pattern every other
+Technology unit is stamped from.
+Key visual elements:
+- Foreman-Prime Yssa Ductile herself, a named Wrought Assembly Technology figure guarding the singular First Pattern, not a generic overseer
+- The Generator core she attends producing a visible Circuit Point, the resource pool made tangible at her feet
+- Rows of Technology units in the distance, each an exact copy of the one pattern she alone keeps, reinforcing that hers is the singular original
+Composition: wide, landscape rectangle (~5:3), the large rectangular window
+beneath the Name Slot per card-anatomy.md — place Yssa and the Generator
+core center-frame with the reproduced units receding symmetrically behind
+her.

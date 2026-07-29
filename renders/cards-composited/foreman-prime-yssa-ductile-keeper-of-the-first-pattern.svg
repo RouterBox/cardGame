@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 750 1050" width="750" height="1050">
+<title>Foreman-Prime Yssa Ductile, Keeper of the First Pattern</title>
+<rect class="frame-band" data-fount="Circuit" data-color="copper" x="0" y="0" width="750" height="1050" fill="#b5651d"/>
+<rect class="name-slot" x="24" y="24" width="702" height="70" fill="#f5f1e6"/>
+<text x="40" y="69" font-family="Georgia, 'Times New Roman', serif" font-size="32" fill="#14151a" font-weight="bold"><tspan x="40" dy="0">Foreman-Prime Yssa Ductile, Keeper of the First Pattern</tspan></text>
+<image class="art-window" x="24" y="94" width="702" height="420" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI3MDIiIGhlaWdodD0iNDIwIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJoc2woNTQsIDQ1JSwgNTUlKSIvPjx0ZXh0IHg9IjUwJSIgeT0iNTAlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBkb21pbmFudC1iYXNlbGluZT0ibWlkZGxlIiBmb250LWZhbWlseT0iR2VvcmdpYSwgJ1RpbWVzIE5ldyBSb21hbicsIHNlcmlmIiBmb250LXNpemU9IjIyIiBmaWxsPSIjMTQxNTFhIj5Gb3JlbWFuLVByaW1lIFlzc2EgRHVjdGlsZSwgS2VlcGVyIG9mIHRoZSBGaXJzdCBQYXR0ZXJuPC90ZXh0Pjwvc3ZnPg==" preserveAspectRatio="xMidYMid slice"/>
+<rect class="type-line" x="24" y="514" width="702" height="50" fill="#e4dfd0"/>
+<text x="40" y="546" font-family="Georgia, 'Times New Roman', serif" font-size="20" fill="#3a3a3f"><tspan x="40" dy="0">Technology — Permanent</tspan></text>
+<rect class="rules-text-box" x="24" y="564" width="702" height="462" fill="#faf8f2" stroke="#c9ccd3" stroke-width="2"/>
+<text x="40" y="596" font-family="Georgia, 'Times New Roman', serif" font-size="20" fill="#1c1c22"><tspan x="40" dy="0">Slow. This permanent is a Generator attuned to</tspan><tspan x="40" dy="26">the Circuit: during the Generation Phase, it</tspan><tspan x="40" dy="26">produces 1 Circuit Point, added to its</tspan><tspan x="40" dy="26">controller&apos;s Circuit resource pool.</tspan></text>
+<text x="40" y="720" font-family="Georgia, 'Times New Roman', serif" font-size="18" fill="#5a5d66" font-style="italic"><tspan x="40" dy="0">Foreman-Prime Yssa Ductile holds the actual,</tspan><tspan x="40" dy="24">singular design every unit in The Wrought</tspan><tspan x="40" dy="24">Assembly is copied from — not a description of</tspan><tspan x="40" dy="24">perfection, but perfection itself, endlessly</tspan><tspan x="40" dy="24">reproduced.</tspan></text>
+<g class="cost-pip" data-fount="Circuit" data-color="copper">
+<circle cx="682" cy="59" r="28" fill="#b5651d" stroke="#14151a" stroke-width="3"/>
+<text x="682" y="67" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="26" font-weight="bold" fill="#14151a">4</text>
+</g>
+</svg>
