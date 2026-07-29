@@ -626,3 +626,81 @@ Composition: wide, landscape rectangle (~5:3), the large rectangular window
 beneath the Name Slot per card-anatomy.md — place Yssa and the Generator
 core center-frame with the reproduced units receding symmetrically behind
 her.
+
+## Wormhole Restrictions Set — Locks on the Battlefield Graph
+
+### Bastion Lockdown Line
+
+Palette: Ash-grey — the Mass's industrial endurance, welding a passage shut
+behind every convoy it sends out.
+Subject/Scene: A Cindral Reach work crew welds a fresh Directional seal onto
+one endpoint of a Wormhole anchored to a Planet they control, closing off
+the reverse route for good.
+Key visual elements:
+- A welded, one-way door sealing shut at a Wormhole's endpoint, permitting travel only outward from the controlled Planet
+- The reverse route shown visibly blocked, so nothing can travel back the way it came
+- Ash-grey Materials plating and salvage-doctrine welding gear, the Cindral Reach's own hand at work
+Composition: wide, landscape rectangle (~5:3), the large rectangular window
+beneath the Name Slot per card-anatomy.md — place the welded endpoint at the
+frame's center with the sealed reverse route receding into shadow behind it.
+
+### Conveyance Directive
+
+Palette: Copper — the Circuit's warm mechanized repetition, sending
+everything it makes outward and nothing back.
+Subject/Scene: A Wrought Assembly conveyance directive, a Generator attuned
+to the Circuit, produces a copper Circuit Point at its core while a
+Directional seal locks one Wormhole endpoint to outbound-only travel.
+Key visual elements:
+- The Generator core producing a visible Circuit Point, the Circuit resource pool made tangible at its base
+- A Wormhole endpoint sealed so travel runs only toward the far Planet, the reverse route visibly closed
+- Repeating, modular Wrought Assembly conduit-work, the same one-way design copied without end
+Composition: wide, landscape rectangle (~5:3), the large rectangular window
+beneath the Name Slot per card-anatomy.md — center the Generator core with
+the sealed, outbound-only endpoint leading the eye toward the frame's edge.
+
+### Rootbound Corridor
+
+Palette: Green — the Bloom's patient growth, taking root in a passage that
+was never planted ground to begin with.
+Subject/Scene: A Mireth Bloom growth-mass takes root at a Wormhole's
+endpoint, its living tendrils claiming the passage as this Planet's own the
+instant its controller holds priority.
+Key visual elements:
+- Living root-growth visibly taking root at a Wormhole's endpoint, growth spreading rather than being built
+- A Team claim shown as spreading biology sealing the passage against any opposing challenger's Assaults
+- Cultivated ground beneath the growth, the Mireth Bloom's doctrine of harvesting what it becomes
+Composition: wide, landscape rectangle (~5:3), the large rectangular window
+beneath the Name Slot per card-anatomy.md — root the growth-mass low in the
+frame with the claimed Wormhole endpoint filling the width beneath it.
+
+### Vector Interdiction
+
+Palette: Cyan — the Signal's cool analytic watchfulness, writing a claim
+onto the manifest before anyone else can contest it.
+Subject/Scene: A Panoptic Concord cipher-device hovers at a Wormhole's
+endpoint, its cyan sensor-light writing a Team claim onto the passage's
+manifest the instant this resolves.
+Key visual elements:
+- A cyan analytic beam writing a claim directly onto a Wormhole's endpoint manifest, resolving in an instant rather than a sustained ritual
+- An opposing challenger's Assault path shown stopping cold at the claimed endpoint, unable to count it as part of a route
+- Panoptic Concord architecture — layered, watchful, data-cathedral in feel, the same Intelligence doctrine as its sibling ciphers
+Composition: wide, landscape rectangle (~5:3), the large rectangular window
+beneath the Name Slot per card-anatomy.md — place the cipher device at the
+Wormhole endpoint with the blocked Assault path fading into the frame's edge.
+
+### Pilgrim's Right of Way
+
+Palette: Violet — the Tangle's uncanny ritual mood, turned into a rite of
+passage only the faithful may answer.
+Subject/Scene: A Starweave Communion pilgrim kneels at a Wormhole's endpoint,
+performing a rite of passage in violet ritual light as the Tangle itself is
+petitioned to answer only to their claim.
+Key visual elements:
+- A rite of passage performed at a Wormhole's endpoint, violet ritual threads binding the crossing to the pilgrim's own Planet
+- An opposing challenger's Assaults shown unable to count the claimed passage as part of their path, the Tangle forgetting their claim
+- Starweave Communion ritual dress and posture, patient and deliberate rather than a flash of aggression
+Composition: wide, landscape rectangle (~5:3), the large rectangular window
+beneath the Name Slot per card-anatomy.md — center the pilgrim at the
+Wormhole endpoint with the violet rite-light framing the passage behind
+them.
