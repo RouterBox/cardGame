@@ -274,7 +274,10 @@ order could matter for an ability. No player MAY play cards or use
 non-Generation abilities during this phase, and the non-active player never acts
 during another challenger's Generation Phase.
 
-//want resource generation to be connected to the graph in different ways.  Default mechanism is the generators, but gain fount points per graph characteristics should be a thing.
+*Open design question (unresolved): whether resource generation should also
+connect to the battlefield graph in other ways beyond the Generator mechanic
+above — for example, gaining Fount Points from graph characteristics
+directly — is not decided by this section.*
 
 ### 5.3 Main Phase
 
@@ -287,19 +290,28 @@ single turn, and a challenger MAY NOT play a Slow card unless the Queue is empty
 and it is their priority. The active player MAY also take one Discovery action
 and one Assault action here (Sections 8.3 and 8.6), each at most once per turn
 and under the same restriction as a Slow card: neither MAY be taken unless the
-Queue is empty and it is the active player's priority.
-
-//discovering new planets, and creating new wormholes goes in this phase.
+Queue is empty and it is the active player's priority. Discovery (Section
+8.3), which can add a new Planet to the graph and always opens a new
+Wormhole, is one of the two special actions permitted here.
 
 ### 5.4 Conflict Phase
 
-//We want to have units move around the graph, to planets through wormholes, and attack planets like this.  
-//moving units means you can't attack this turn by default - effects could change that.
-//moving through wormholes takes time/resources or some tradeoff of the two.  (maybe two races need mainly time, two races need mainly resources, and magic is magical)
-//blockers can only block attackers if they are at the same defending planet. 
-//attacking and blocking through wormholes may be possible somehow
+*Open design questions (unresolved): whether and how Units move around the
+battlefield graph — between Planets, through Wormholes — and attack Planets
+by doing so; whether moving a Unit costs that Unit its ability to attack the
+same turn by default, though an effect could change that; whether moving
+through a Wormhole costs time, resources, or some tradeoff of the two
+(possibly varying by race); whether a blocking Unit must be located at the
+same Planet as the attacker it blocks; and whether attacking or blocking
+across a Wormhole is possible at all — are not decided by this section.
+Section 8.1 tracks a Unit's location as a real, current fact once the Unit
+is on the Field, but grants no action, on its own, that relocates it; these
+open questions are exactly the design space that gap leaves for a future
+rule or card.*
 
-//place-holder magic combat:  
+The combat mechanic below is a placeholder pending resolution of the open
+questions above:
+
 The active player MAY declare any number of their Ready Units as attackers,
 becoming Spent as they do; the non-active player MAY then declare any of their own
 Ready Units as blockers, one blocker or more per attacker. An attacking Unit that
