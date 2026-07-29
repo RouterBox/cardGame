@@ -7,7 +7,6 @@ const { execFileSync } = require('node:child_process');
 const { parseSections } = require('./helpers/markdown');
 
 const REPO_ROOT = path.join(__dirname, '..');
-const RENDER_SCRIPT_PATH = path.join(REPO_ROOT, 'tools', 'render-card.js');
 const SCRIPT_PATH = path.join(REPO_ROOT, 'tools', 'composite-card-art.js');
 const ALT_BRIEFS_PATH = path.join(REPO_ROOT, 'design', 'cards', 'alt-art-briefs.md');
 const OUT_DIR = path.join(REPO_ROOT, 'renders', 'cards-composited');
@@ -27,19 +26,17 @@ function listAltBriefTitles() {
     .map((s) => s.title);
 }
 
-let renderError = null;
 let runError = null;
 
 // node's test runner gives each *.test.js file its own process, so this
-// file re-runs the render + composite CLIs itself rather than assuming
+// file re-runs the composite CLI itself rather than assuming
 // composite-card-art.test.js's own test.before() already ran in this
-// process (or ran first).
+// process (or ran first). It deliberately does NOT spawn
+// tools/render-card.js: nothing in this file reads renders/cards/ (the
+// compositor calls renderCardSvg() in-process), and a second concurrent
+// render-card.js run would race the pre-existing test file's own run
+// against the shared renders/cards/ directory.
 test.before(() => {
-  try {
-    execFileSync('node', [RENDER_SCRIPT_PATH], { cwd: REPO_ROOT, encoding: 'utf8' });
-  } catch (err) {
-    renderError = err;
-  }
   try {
     execFileSync('node', [SCRIPT_PATH], { cwd: REPO_ROOT, encoding: 'utf8' });
   } catch (err) {
@@ -60,10 +57,6 @@ test('AC3: design/cards/alt-art-briefs.md names exactly 3 alt briefs (sanity che
 });
 
 test('AC3: node tools/composite-card-art.js writes exactly one <slug>-alt.svg per alt brief', () => {
-  assert.ok(
-    !renderError,
-    `setup failed: node tools/render-card.js must succeed, got: ${renderError && (renderError.message + '\n' + (renderError.stdout || '') + (renderError.stderr || ''))}`
-  );
   assert.ok(
     !runError,
     `expected node tools/composite-card-art.js to exit 0, got: ${runError && (runError.message + '\n' + (runError.stdout || '') + (runError.stderr || ''))}`
