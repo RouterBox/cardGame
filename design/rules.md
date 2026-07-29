@@ -1299,3 +1299,129 @@ altogether (Section 14.2), and that Paradox breaks the ordinary link
 between attacking and becoming Spent (Section 5.4, Section 14.5) — each
 keyword acting exactly as its own subsection states, with no further
 explanation needed on the card that carries it.
+
+## 15. Starting the Game
+
+Section 11.1 already requires each challenger's Archive to hold at least
+40 cards "before shuffling and before that challenger's opening hand is
+drawn from it," and Section 5.1 already carves out an exception for "the
+challenger who takes the very first turn of the game" — both assuming a
+game-start procedure this rulebook has not, until now, actually written.
+This section is that procedure: shuffling, determining who takes the
+first turn, drawing an opening hand, and mulliganing it if a challenger
+is dissatisfied. It happens once, before either challenger's first turn,
+and before any rule in Sections 1-14 first applies. Nothing in this
+section changes or restates any rule already stated in Sections 1-14;
+where a rule already exists, this section cross-references it by section
+number instead.
+
+### 15.1 Shuffling
+
+Before the game begins, each challenger shuffles their own Archive
+(Section 3), thoroughly randomizing the order of its cards. A
+challenger's Archive MUST already meet the 40-card minimum (Section 11.1)
+at the moment this shuffle happens — Section 11.1 fixes that minimum as a
+floor that holds "before shuffling," not a target a challenger may reach
+by adding cards afterward. Both challengers shuffle their own Archive
+this way, regardless of which of them goes on to take the first turn
+(Section 15.2).
+
+### 15.2 Determining the First Turn
+
+Once both challengers have shuffled (Section 15.1), they determine who
+takes the first turn of the game as follows:
+
+1. Each challenger flips a coin, rolls a die, or uses any other method
+   both challengers agree gives each of them an equal, even chance of
+   winning; this rulebook does not require one specific physical method,
+   only that whatever method is used be unbiased and agreed by both
+   challengers before it is used.
+2. Whichever challenger wins that flip, roll, or agreed method takes the
+   first turn of the game (Section 2's Turn). If the method produces no
+   clear winner — for example, a tied die roll — the challengers repeat
+   step 1 using the same method until it produces one.
+3. The other challenger takes the second turn, and turns continue to
+   alternate between the two challengers from there, exactly as Section
+   2's Turn already states.
+
+### 15.3 Opening Hands
+
+After the first-turn challenger is determined (Section 15.2), and before
+the first Dawn Phase (Section 5.1) of the game, each challenger draws an
+**opening hand**: 5 cards drawn from the top of their own shuffled
+Archive (Section 15.1, Section 3). Both challengers draw an opening hand
+of this same size, regardless of which of them takes the first turn.
+
+Drawing an opening hand happens once, as part of general game setup, and
+is entirely separate from the single automatic card a Dawn Phase draws
+on every turn thereafter (Section 5.1): the first-turn challenger's
+Section 5.1 exception governs only that later, per-turn Dawn Phase draw,
+and has no bearing on the opening hand dealt here — both challengers,
+including the one who takes the first turn, draw a full opening hand.
+
+### 15.4 Mulligans
+
+After drawing their opening hand (Section 15.3), and before the first
+turn of the game begins, a challenger dissatisfied with their opening
+hand MAY take a **mulligan**:
+
+1. The challenger shuffles their entire opening hand back into their own
+   Archive (Section 3), randomizing it back in among the Archive's other
+   cards.
+2. The challenger then draws a new opening hand (Section 15.3): 5 cards,
+   the same size as the hand just shuffled back — never fewer, never
+   more.
+3. If still dissatisfied, the challenger may repeat this procedure, but
+   MAY NOT take more than 2 mulligans in total. After a challenger's
+   second mulligan, their opening hand is final, whether or not they are
+   satisfied with it.
+
+Taking a mulligan changes only which cards a challenger holds as their
+opening hand; it does not touch Section 5.1's Dawn Phase exception in
+any way. The challenger who takes the very first turn of the game still
+does not draw during their first Dawn Phase, exactly as Section 5.1
+already states, regardless of how many mulligans either challenger took
+beforehand — a mulligan is never itself a Dawn Phase draw, and the two
+are never in conflict. Either challenger MAY take a mulligan whether or
+not they are the challenger who will take the first turn, and one
+challenger's mulligans have no effect on the other challenger's opening
+hand or their own ability to mulligan.
+
+### 15.5 Worked Example: Two Challengers Starting a Game
+
+This example follows Reva and Toma preparing to start a game together,
+from shuffling through one challenger taking a mulligan.
+
+1. Reva and Toma have each built an Archive of exactly 40 cards, meeting
+   the minimum Section 11.1 requires. Each shuffles their own Archive
+   (Section 15.1), randomizing its order; the game has not yet begun and
+   neither challenger has drawn any card yet.
+2. Reva and Toma determine who takes the first turn (Section 15.2): they
+   flip a coin, and Toma wins the flip. Per Section 15.2's procedure,
+   Toma takes the first turn of the game; Reva will take the second
+   turn, and turns will alternate between them from there (Section 2's
+   Turn).
+3. Both challengers then draw their opening hands (Section 15.3): Toma
+   draws 5 cards from the top of his shuffled Archive, and Reva draws 5
+   cards from the top of hers — 35 cards remain in each Archive. This
+   drawing happens before Toma's first Dawn Phase, not as part of it
+   (Section 5.1).
+4. Reva looks at her opening hand and is dissatisfied with it. She takes
+   a mulligan (Section 15.4): she shuffles all 5 cards back into her
+   Archive, reshuffles it, and draws a new opening hand of 5 cards. This
+   is Reva's first mulligan; Section 15.4's cap of 2 means she may take
+   at most one more if she chooses to.
+5. Satisfied with her new hand, Reva keeps it. The game now begins with
+   Toma's first turn. His Dawn Phase readies no permanents, since he
+   controls none yet, and — per Section 5.1's exception for the
+   challenger taking the very first turn — he does not draw a card
+   during this first Dawn Phase, even though both challengers already
+   hold full opening hands of 5 cards from steps 3 and 4.
+
+This confirms, on paper, that shuffling, first-turn determination, and
+opening hands happen in a fixed order before the game's first turn
+(Sections 15.1-15.3), that a mulligan lets a challenger redraw the same
+hand size without disturbing that order (Section 15.4), and that Section
+5.1's first-turn-doesn't-draw exception is untouched by any of it —
+Toma still skips his one automatic Dawn Phase draw, regardless of Reva's
+mulligan or the opening hands both challengers already hold.
