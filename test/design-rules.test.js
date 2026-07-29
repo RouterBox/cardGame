@@ -292,3 +292,75 @@ test('AC5: Priority & Timing resolves at least one concrete timing edge case on 
   const body = normalizeProse(edgeCaseHeadings[0].lines.join('\n'));
   assert.ok(body.length > 100, `expected the edge case to be resolved with substantive text (>100 chars), got ${body.length} chars`);
 });
+
+// ---------------------------------------------------------------------------
+// Unit cardgame-conflict-phase-movement-rules — Section 5.4 Conflict Phase
+// movement rules (AC1-AC5 of that unit; AC6 is "existing assertions in this
+// file and in design-combat.test.js still pass", which is covered by simply
+// running the full suite, not by a dedicated test here).
+// ---------------------------------------------------------------------------
+
+function conflictPhaseSection() {
+  const sections = parseSections(readRules());
+  const idx = findSection(sections, /^5\.4\s+conflict phase/i);
+  return idx === -1 ? null : sections[idx];
+}
+
+function conflictPhaseProse() {
+  const section = conflictPhaseSection();
+  return section === null ? null : normalizeProse(section.lines.join('\n'));
+}
+
+test('movement-rules AC1: Section 5.4 has no lines beginning with a "//" inline comment', () => {
+  const section = conflictPhaseSection();
+  assert.ok(section, 'expected a "5.4 Conflict Phase" heading');
+  const commentLines = section.lines.filter((line) => /^\s*\/\//.test(line));
+  assert.deepStrictEqual(
+    commentLines,
+    [],
+    `expected no "//" comment lines in Section 5.4, found: ${JSON.stringify(commentLines)}`
+  );
+});
+
+test('movement-rules AC2: Section 5.4 states the active player may take a Movement action moving a Ready Unit across a single Wormhole to an adjacent Planet', () => {
+  const body = conflictPhaseProse();
+  assert.ok(body, 'expected a "5.4 Conflict Phase" section body');
+  assert.ok(
+    /active player MAY take[^.]*Movement action/i.test(body),
+    'expected the active player MAY take a Movement action'
+  );
+  assert.ok(/Ready Unit/i.test(body), 'expected the Movement action to move a Ready Unit');
+  assert.ok(/single Wormhole/i.test(body), 'expected the Movement action to cross a single Wormhole');
+  assert.ok(/adjacent Planet/i.test(body), 'expected the Movement action to move to an adjacent Planet');
+});
+
+test('movement-rules AC3: Section 5.4 states a Unit that moved this turn cannot be declared as an attacker unless a card or ability says otherwise', () => {
+  const body = conflictPhaseProse();
+  assert.ok(body, 'expected a "5.4 Conflict Phase" section body');
+  assert.ok(
+    /Unit that moved this turn[^.]*MAY NOT be declared as an attacker/i.test(body),
+    'expected a Unit that moved this turn MAY NOT be declared as an attacker this turn'
+  );
+  assert.ok(
+    /unless a card or ability specifically says otherwise/i.test(body),
+    'expected the default-no-attack rule to carry a card/ability exception'
+  );
+});
+
+test('movement-rules AC4: Section 5.4 states a Unit may only be declared as a blocker if it occupies the same Planet as the Planet being attacked', () => {
+  const body = conflictPhaseProse();
+  assert.ok(body, 'expected a "5.4 Conflict Phase" section body');
+  assert.ok(
+    /MAY only be declared as a blocker[^.]*occupies the same Planet[^.]*Planet being attacked/i.test(body),
+    'expected a blocker declaration to require occupying the same Planet as the Planet being attacked'
+  );
+});
+
+test("movement-rules AC5: Section 5.4 states the Movement action costs Fount Points equal to the traversed Wormhole's Length", () => {
+  const body = conflictPhaseProse();
+  assert.ok(body, 'expected a "5.4 Conflict Phase" section body');
+  assert.ok(
+    /Movement action costs Fount Points[^.]*equal to[^.]*Wormhole's Length/i.test(body),
+    "expected the Movement action to cost Fount Points equal to the traversed Wormhole's Length"
+  );
+});

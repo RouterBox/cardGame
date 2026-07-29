@@ -311,28 +311,33 @@ Wormhole, is one of the two special actions permitted here.
 
 ### 5.4 Conflict Phase
 
-*Open design questions (unresolved): whether and how Units move around the
-battlefield graph — between Planets, through Wormholes — and attack Planets
-by doing so; whether moving a Unit costs that Unit its ability to attack the
-same turn by default, though an effect could change that; whether moving
-through a Wormhole costs time, resources, or some tradeoff of the two
-(possibly varying by race); whether a blocking Unit must be located at the
-same Planet as the attacker it blocks; and whether attacking or blocking
-across a Wormhole is possible at all — are not decided by this section.
-Section 8.1 tracks a Unit's location as a real, current fact once the Unit
-is on the Field, but grants no action, on its own, that relocates it; these
-open questions are exactly the design space that gap leaves for a future
-rule or card.*
+During the Conflict Phase, the active player takes the following actions,
+in order:
 
-The combat mechanic below is a placeholder pending resolution of the open
-questions above:
-
-The active player MAY declare any number of their Ready Units as attackers,
-becoming Spent as they do; the non-active player MAY then declare any of their own
-Ready Units as blockers, one blocker or more per attacker. An attacking Unit that
-is unblocked deals its combat strength as damage to the non-active player's Core
-Integrity. A Unit that did not attack MAY NOT deal combat damage this phase, and a
-Spent Unit MAY NOT be declared as either an attacker or a blocker.
+1. **Movement.** The active player MAY take any number of Movement
+   actions during the Conflict Phase. A Movement action moves one Ready
+   Unit the active player controls across a single Wormhole, from the
+   Planet where it is located to an adjacent Planet (Section 8.1),
+   provided the Wormhole is not Closed (Section 8.5) and its Restrictions
+   (Section 8.4) permit the move. Taking a Movement action costs Fount
+   Points, from any combination of the active player's resource pools,
+   equal to that Wormhole's Length (Section 8.1).
+2. **Declaring attackers.** The active player MAY declare any number of
+   their Ready Units as attackers, becoming Spent as they do; declaring a
+   Unit as an attacker names the Planet it is attacking — the Planet
+   being attacked. A Unit that moved this turn, whether by a Movement
+   action (Rule 1) or by any other effect, MAY NOT be declared as an
+   attacker this turn, unless a card or ability specifically says
+   otherwise.
+3. **Declaring blockers.** The non-active player MAY then declare any of
+   their own Ready Units as blockers, one blocker or more per attacker. A
+   Unit MAY only be declared as a blocker against an attacker if that
+   Unit occupies the same Planet as the Planet being attacked (Section
+   8.1).
+4. **Unblocked damage.** An attacking Unit that is unblocked deals its
+   combat strength as damage to the non-active player's Core Integrity. A
+   Unit that did not attack MAY NOT deal combat damage this phase, and a
+   Spent Unit MAY NOT be declared as either an attacker or a blocker.
 
 ### 5.5 Dusk Phase
 
