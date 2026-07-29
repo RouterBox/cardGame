@@ -102,7 +102,10 @@ against the rule text itself.
    since no-Restriction is the default.
 
 9. **Close a Wormhole.** Pick a different drawn line, cross it out
-   fully, and note that the two Planets it connected are no longer
+   fully, narrating that **Chokepoint Demolition Charge** (Cost line: 2
+   Circuit, the Wrought Assembly card in
+   *design/cards/wormhole-closure-cards.md*) is the card just played to
+   Close it, and note that the two Planets it connected are no longer
    adjacent unless some other, un-Closed line also connects them
    (Section 8.5). Confirm aloud that this line MAY NOT be redrawn —
    reconnecting those same two Planets later would require paying for a
