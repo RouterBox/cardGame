@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AgentBox, in Plain Language</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js"></script>
+<style>
+  /* ── AgentBox tokens: deep forge charcoal + ember amber + verified green ── */
+  :root{
+    --bg:#101418; --bg2:#161B21;
+    --ink:#F2F4F6; --dim:#9AA7B4;
+    --accent:#F5A623;
+    --green:#4ADE80;
+    --red:#F87171;
+    --card:#1D242C; --card-ink:#F2F4F6; --card-dim:#9AA7B4;
+    --hairline:#2C353F;
+    --shadow:0 2px 8px rgba(0,0,0,.45);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%}
+  body{background:var(--bg); color:var(--ink); font-family:"Noto Sans",Arial,sans-serif; overflow:hidden}
+  a{color:var(--accent); text-decoration:none}
+  a:hover{text-decoration:underline}
+  a:focus-visible, button:focus-visible, select:focus-visible, input:focus-visible{outline:2px solid var(--accent); outline-offset:2px}
+  .slide{position:absolute; inset:0; padding:5vh 6vw 10vh; display:flex; flex-direction:column; justify-content:center; gap:2.2vh; opacity:0; pointer-events:none}
+  .slide.active{opacity:1; pointer-events:auto}
+  .kicker{color:var(--accent); font-size:1.9vh; letter-spacing:.2em; text-transform:uppercase; font-weight:600}
+  h1{font-size:6.2vh; line-height:1.1; font-weight:700}
+  h2{font-size:4.4vh; line-height:1.12; font-weight:700}
+  .hl{color:var(--accent)} .hgn{color:var(--green)} .hrd{color:var(--red)}
+  .sub{color:var(--dim); font-size:2.5vh; max-width:74ch; line-height:1.45}
+  .sub b{color:var(--ink)}
+  .lead{font-size:2.95vh; line-height:1.5; max-width:66ch}
+  .lead b{color:var(--ink)}
+  ul.big{list-style:none; display:flex; flex-direction:column; gap:1.8vh; font-size:2.5vh; max-width:80ch}
+  ul.big li{padding-left:3vh; position:relative; line-height:1.45}
+  ul.big li::before{content:"▸"; position:absolute; left:0; color:var(--accent); font-weight:700}
+  ul.big li b{color:var(--ink)}
+  .line{display:flex; align-items:stretch; gap:.8vw; margin-top:1vh}
+  .line .stage{flex:1; background:var(--card); border:1px solid var(--hairline); border-radius:6px; box-shadow:var(--shadow);
+    padding:2.2vh .9vw; text-align:center; display:flex; flex-direction:column; gap:.9vh; justify-content:flex-start}
+  .line .stage .n{font-size:3.6vh}
+  .line .stage b{font-size:2vh; color:var(--card-ink)}
+  .line .stage span{color:var(--card-dim); font-size:1.65vh; line-height:1.3}
+  .line .arr{align-self:center; color:var(--accent); font-size:3vh; font-weight:700}
+  .cards{display:grid; grid-template-columns:1fr 1fr; gap:1.6vw}
+  .card{background:var(--card); border:1px solid var(--hairline); border-radius:6px; box-shadow:var(--shadow); padding:2.4vh 1.5vw}
+  .card h3{font-size:2.5vh; margin-bottom:1.1vh; color:var(--accent); font-weight:600}
+  .card h3 span{color:var(--card-dim); font-size:1.9vh; font-weight:400}
+  .card p{font-size:2.1vh; line-height:1.45; color:var(--card-ink)}
+  .card b{color:var(--accent)} .card .hgn{color:var(--green)}
+  .stat{display:flex; gap:2vw; margin-top:1.3vh; flex-wrap:wrap}
+  .stat .box{background:var(--card); border:1px solid var(--hairline); border-radius:6px; box-shadow:var(--shadow); padding:2vh 1.6vw; min-width:18ch}
+  .stat .box .big{font-size:3.8vh; font-weight:700}
+  .stat .box .hgn{color:var(--green)} .stat .box .hl{color:var(--accent)}
+  .stat .box .lbl{color:var(--card-dim); font-size:1.9vh; margin-top:.5vh; line-height:1.3}
+  #hud{position:fixed; left:0; right:0; bottom:0; padding:1.6vh 2vw; display:flex; align-items:center; gap:1.2vw;
+    background:rgba(16,20,24,.6); -webkit-backdrop-filter:blur(14px); backdrop-filter:blur(14px);
+    border-top:1px solid rgba(255,255,255,.12); z-index:10}
+  #hud button{background:transparent; color:var(--ink); border:1px solid rgba(255,255,255,.4); border-radius:30px;
+    padding:1vh 1.4vw; font-size:1.9vh; cursor:pointer; font-family:inherit;
+    transition:border-color .15s ease-out, color .15s ease-out, transform .15s ease-out}
+  #hud button:hover{border-color:var(--accent); color:var(--accent)}
+  #hud button:active{transform:scale(.96)}
+  #counter{color:var(--dim); font-size:1.9vh; min-width:6ch}
+  #bar{flex:1; height:.75vh; background:rgba(255,255,255,.22); border-radius:30px; overflow:hidden}
+  #bar i{display:block; height:100%; width:0; background:var(--accent); border-radius:30px; transition:width .2s linear}
+  #speaking{color:var(--accent); font-size:1.9vh; visibility:hidden}
+  #speaking.on{visibility:visible; animation:pulse 1.2s ease-in-out infinite}
+  @keyframes pulse{50%{opacity:.4}}
+  .voicesel{background:var(--card); color:var(--card-ink); border:1px solid var(--hairline); border-radius:10px;
+    padding:1vh 1vw; font-size:1.9vh; cursor:pointer; font-family:inherit}
+  .voicesel:hover{border-color:var(--accent)}
+  .toggle{display:flex; align-items:center; gap:.5vw; color:var(--dim); font-size:1.9vh; cursor:pointer; user-select:none; white-space:nowrap}
+  .toggle input{accent-color:var(--accent); width:2vh; height:2vh; cursor:pointer}
+  #gate{position:fixed; inset:0; z-index:20; background:var(--bg);
+    display:flex; flex-direction:column; align-items:center; justify-content:center; gap:3vh; text-align:center; padding:0 8vw}
+  #gate .voice{color:var(--accent); font-size:2vh; letter-spacing:.18em; text-transform:uppercase; font-weight:600}
+  #gate h1{font-size:6vh; max-width:28ch}
+  #gate p{color:var(--dim); font-size:2.5vh; max-width:62ch; line-height:1.5}
+  #gate button{background:var(--accent); color:#101418; border:none; border-radius:30px;
+    padding:1.8vh 4.5vw; font-size:2.7vh; font-weight:700; cursor:pointer; font-family:inherit;
+    transition:filter .15s ease-out, transform .15s ease-out}
+  #gate button:hover{filter:brightness(1.1)}
+  #gate button:active{transform:scale(.97)}
+  @media (prefers-reduced-motion: reduce){
+    *, *::before, *::after{animation-duration:.01ms !important; animation-iteration-count:1 !important;
+      transition-duration:.01ms !important; scroll-behavior:auto !important}
+  }
+</style>
+</head>
+<body>
+
+<div id="gate">
+  <div class="voice">Narrated by <span class="narrator">Jessica</span> · <span id="durLabel">7½ minutes</span></div>
+  <h1>AgentBox,<br><span class="hl">in Plain Language</span></h1>
+  <p>What it is, where its ideas came from, and why you can trust a box full of robots to build things. No programming knowledge needed. Slides advance with the narration; arrow keys skip, space pauses.</p>
+  <div style="display:flex; gap:1.5vw; align-items:center">
+    <button id="startBtn">▶ Start</button>
+    <select id="gateVoice" class="voicesel"><option value="jessica" selected>Voice: Jessica</option><option value="daniel">Voice: Daniel</option></select>
+  </div>
+</div>
+
+<!-- 1 · what it is -->
+<section class="slide" data-audio="audio/01-title.mp3">
+  <div class="kicker">A plain-language tour · July 2026</div>
+  <h1>A folder that works like a<br><span class="hl">small software studio</span></h1>
+  <p class="lead">AgentBox is a single folder on a computer where AI workers <b>propose</b> the next job, <b>do</b> the job, <b>check each other's</b> work, and <b>publish</b> it — while a human keeps the veto and sets the taste.</p>
+  <p class="sub">Last night, mostly unsupervised, it designed the rulebook for a card game, wrote sixty-plus cards, illustrated them, and put the whole thing on a website.</p>
+</section>
+
+<!-- 2 · the homework -->
+<section class="slide" data-audio="audio/02-survey.mp3">
+  <div class="kicker">Before we built anything</div>
+  <h2>We did the homework: how does the industry<br>run <span class="hl">AI-driven development?</span></h2>
+  <p class="sub">A research survey of the field — centered on Amazon's <b>AI-DLC</b> method ("AI-Driven Development Life Cycle") and the projects around it — found the same three ingredients everywhere:</p>
+  <ul class="big">
+    <li><b>Start from a goal, not a to-do list.</b> A human states an intent; the AI breaks it into small, finishable pieces.</li>
+    <li><b>A small cast of specialist roles.</b> Not one giant brain — a planner, a builder, a checker, each with one job.</li>
+    <li><b>A paper trail with human checkpoints.</b> Every step writes files a person can read, and risky moments pause for approval.</li>
+  </ul>
+</section>
+
+<!-- 3 · stolen ideas -->
+<section class="slide" data-audio="audio/03-stolen.mp3">
+  <div class="kicker">Standing on shoulders</div>
+  <h2>What we <span class="hl">borrowed</span>, and from whom</h2>
+  <div class="cards">
+    <div class="card"><h3>AWS AI-DLC <span>· awslabs/aidlc-workflows</span></h3>
+      <p>The skeleton and the vocabulary: big goals become small <b>units</b> of work, built in short bursts called <b>bolts</b>, and every step leaves its plan and evidence <b>on disk</b> where anyone can read it.</p></div>
+    <div class="card"><h3>CrewAI <span>· multi-agent role casting</span></h3>
+      <p>The idea of a <b>small named cast</b> instead of one do-everything AI. Ours is five: an idea-maker, a planner, an exam-writer, a builder, and an inspector — each forbidden from doing the others' jobs.</p></div>
+    <div class="card"><h3>Devin &amp; Cursor <span>· the hard lessons</span></h3>
+      <p>Give each job its own <b>isolated copy</b> of the project so workers can't trample each other; be extra-paranoid near money and security; and <b>never take the worker's word</b> that the work is good.</p></div>
+    <div class="card"><h3>Human-in-the-loop patterns <span>· incl. Wiz &amp; FIRE</span></h3>
+      <p>Approval gates at the risky moments — and our twist, the <b>veto window</b>: routine proposals go to the human's phone, and polite silence after fair warning <span class="hgn">counts as a yes</span>. The pipeline never waits on anyone's energy.</p></div>
+  </div>
+</section>
+
+<!-- 4 · one job, end to end -->
+<section class="slide" data-audio="audio/04-flow.mp3">
+  <div class="kicker">Follow one job through the box</div>
+  <h2>Propose → prove → build → inspect → <span class="hgn">publish</span></h2>
+  <div class="line">
+    <div class="stage"><div class="n">💡</div><b>Propose</b><span>The idea-maker suggests the next job</span></div>
+    <div class="arr">→</div>
+    <div class="stage"><div class="n">📱</div><b>Veto window</b><span>Human gets hours to say no</span></div>
+    <div class="arr">→</div>
+    <div class="stage"><div class="n">🧪</div><b>Exam first</b><span>The test is written before the work</span></div>
+    <div class="arr">→</div>
+    <div class="stage"><div class="n">🔨</div><b>Build</b><span>In an isolated copy of the project</span></div>
+    <div class="arr">→</div>
+    <div class="stage"><div class="n">🔍</div><b>Inspect</b><span>A checker who never met the builder</span></div>
+    <div class="arr">→</div>
+    <div class="stage"><div class="n">🧾</div><b>Receipt</b><span>A dumb script verifies the facts</span></div>
+    <div class="arr">→</div>
+    <div class="stage"><div class="n">✅</div><b>Publish</b><span>Merged automatically</span></div>
+  </div>
+  <p class="sub">If builder and inspector argue three times without agreeing, the job <b>stops and rings the human</b> — with the disagreement summarized, on the phone.</p>
+</section>
+
+<!-- 5 · why trust it -->
+<section class="slide" data-audio="audio/05-trust.mp3">
+  <div class="kicker">The paranoia, on purpose</div>
+  <h2>When a machine says its own work is good —<br><span class="hl">who checks, besides the machine?</span></h2>
+  <ul class="big">
+    <li><b>The exam exists before the work</b> — and a script confirms it fails first, so a fake exam can't sneak in.</li>
+    <li><b>The inspector never talks to the builder.</b> It sees only the assignment and the finished result — and a first-try pass triggers a second, deliberately hostile inspection.</li>
+    <li><b>Some requirements are kept secret</b> from the builder entirely, checked only at the end. You can't study for a test you've never seen.</li>
+    <li><b>"Done" is a receipt, not a claim</b> — computed by a simple script from facts no AI can author. And anything touching money or real accounts <b>always</b> waits for the human.</li>
+  </ul>
+  <div class="stat">
+    <div class="box"><div class="big hgn">20+ jobs</div><div class="lbl">shipped in one overnight run</div></div>
+    <div class="box"><div class="big hl">44 cards</div><div class="lbl">illustrated in ~2½ minutes, one AI worker per card</div></div>
+    <div class="box"><div class="big hgn">841 checks</div><div class="lbl">all green before anything publishes</div></div>
+  </div>
+</section>
+
+<!-- 6 · close -->
+<section class="slide" data-audio="audio/06-close.mp3">
+  <div class="kicker">The bottom line</div>
+  <h2>A zip file that is a <span class="hl">software studio</span></h2>
+  <p class="lead">Copy the folder to any computer, add one AI login, and it wakes up knowing its job — its instructions, its diary, and the ledger of everything the human ever taught it travel <b>inside the folder</b>.</p>
+  <p class="lead">The human supplies <b>taste and judgment</b>. The box supplies <b>the hours</b>. And the answer to "who checks, besides the machine?" is: <b class="hgn">the exam, the stranger, the secret question, and the receipt</b> — every single time.</p>
+</section>
+
+<div id="hud">
+  <button id="prevBtn" title="Previous">⟨</button>
+  <button id="pauseBtn" title="Play/pause narration">⏸</button>
+  <button id="nextBtn" title="Next">⟩</button>
+  <span id="counter">1 / 6</span>
+  <div id="bar"><i></i></div>
+  <span id="speaking">● <span class="narrator">Jessica</span> is speaking</span>
+  <label class="toggle" title="When off, changing slides doesn't start narration"><input type="checkbox" id="autoplayChk" checked> Autoplay</label>
+  <select id="hudVoice" class="voicesel" title="Switch narrator"><option value="jessica" selected>Jessica</option><option value="daniel">Daniel</option></select>
+</div>
+
+<script>
+/* ── GSAP enter animation (additive layer; deck works without it) ── */
+var animateSlideIn = function(){};
+if (window.gsap){
+  const mm = gsap.matchMedia();
+  mm.add("(prefers-reduced-motion: no-preference)", () => {
+    animateSlideIn = function(slide){
+      const children = slide.querySelectorAll(
+        ':scope > .kicker, :scope > h1, :scope > h2, :scope > p, :scope > ul.big > li, ' +
+        ':scope > .cards > .card, :scope > .line > *, :scope > .stat > .box'
+      );
+      if (!children.length) return;
+      gsap.killTweensOf(children);
+      gsap.fromTo(children,
+        { y: 24, autoAlpha: 0 },
+        { y: 0, autoAlpha: 1, duration: 0.5, ease: "power2.out", stagger: 0.06,
+          clearProps: "transform,opacity,visibility" });
+    };
+    return () => { animateSlideIn = function(){}; };
+  });
+}
+(function(){
+  const slides = Array.from(document.querySelectorAll('.slide'));
+  const total = slides.length;
+  const audio = new Audio();
+  const bar = document.querySelector('#bar i');
+  const counter = document.getElementById('counter');
+  const speaking = document.getElementById('speaking');
+  const pauseBtn = document.getElementById('pauseBtn');
+  let idx = -1;
+  let autoplay = true;
+
+  const VOICE_DIRS = { jessica: 'audio-jessica', daniel: 'audio' };
+  const VOICE_NAMES = { jessica: 'Jessica', daniel: 'Daniel' };
+  const VOICE_DURS = { jessica: '7½ minutes', daniel: '8½ minutes' };  // measured totals: 444s / 518s
+  let voice = 'jessica';
+  const selects = [document.getElementById('gateVoice'), document.getElementById('hudVoice')];
+  function audioSrc(slide){ return slide.dataset.audio.replace('audio/', VOICE_DIRS[voice] + '/'); }
+  function setVoice(v){
+    if (v === voice) return;
+    voice = v;
+    selects.forEach(s => { if (s) s.value = v; });
+    document.querySelectorAll('.narrator').forEach(el => el.textContent = VOICE_NAMES[v]);
+    const dl = document.getElementById('durLabel'); if (dl) dl.textContent = VOICE_DURS[v];
+    if (idx >= 0){
+      const t = audio.currentTime, wasPaused = audio.paused, ended = audio.ended;
+      audio.src = audioSrc(slides[idx]);
+      if (!ended){
+        audio.addEventListener('loadedmetadata', function seek(){
+          audio.removeEventListener('loadedmetadata', seek);
+          audio.currentTime = Math.min(t, audio.duration - 0.1);
+          if (!wasPaused) audio.play().catch(()=>{});
+        });
+      }
+    }
+  }
+  selects.forEach(s => { if (s) s.addEventListener('change', e => setVoice(e.target.value)); });
+
+  document.getElementById('autoplayChk').addEventListener('change', e => {
+    autoplay = e.target.checked;
+    if (!autoplay && !audio.paused) { audio.pause(); pauseBtn.textContent = '▶'; }
+  });
+
+  audio.addEventListener('ended', () => {
+    speaking.classList.remove('on');
+    if (autoplay && idx < total - 1) show(idx + 1);
+    else pauseBtn.textContent = (idx === total - 1) ? '↻' : '▶';
+  });
+  audio.addEventListener('error', () => {   // a missing/failed clip must never stall the deck
+    speaking.classList.remove('on');
+    if (autoplay && idx >= 0 && idx < total - 1) setTimeout(() => show(idx + 1), 1500);
+    else pauseBtn.textContent = '▶';
+  });
+  audio.addEventListener('timeupdate', () => {
+    if (audio.duration) bar.style.width = (audio.currentTime / audio.duration * 100) + '%';
+  });
+  audio.addEventListener('play',  () => speaking.classList.add('on'));
+  audio.addEventListener('pause', () => speaking.classList.remove('on'));
+
+  function show(n){
+    if (n < 0 || n >= total) return;
+    if (idx >= 0) slides[idx].classList.remove('active');
+    idx = n;
+    slides[idx].classList.add('active');
+    animateSlideIn(slides[idx]);
+    counter.textContent = (idx + 1) + ' / ' + total;
+    bar.style.width = '0';
+    audio.src = audioSrc(slides[idx]);
+    if (autoplay){
+      pauseBtn.textContent = '⏸';
+      audio.play().catch(()=>{});
+    } else {
+      pauseBtn.textContent = '▶';
+    }
+  }
+  function togglePause(){
+    if (audio.ended && idx === total - 1){ show(0); return; }
+    if (audio.paused){ audio.play().catch(()=>{}); pauseBtn.textContent = '⏸'; }
+    else { audio.pause(); pauseBtn.textContent = '▶'; }
+  }
+  document.getElementById('startBtn').addEventListener('click', () => { document.getElementById('gate').remove(); show(0); });
+  document.getElementById('nextBtn').addEventListener('click', () => show(idx + 1));
+  document.getElementById('prevBtn').addEventListener('click', () => show(idx - 1));
+  pauseBtn.addEventListener('click', togglePause);
+  document.addEventListener('keydown', e => {
+    if (e.target.tagName === 'SELECT' || e.target.tagName === 'INPUT') return;
+    if (!document.getElementById('gate')){
+      if (e.key === 'ArrowRight') show(idx + 1);
+      else if (e.key === 'ArrowLeft') show(idx - 1);
+      else if (e.key === ' '){ e.preventDefault(); togglePause(); }
+    } else if (e.key === 'Enter' || e.key === ' '){ e.preventDefault(); document.getElementById('startBtn').click(); }
+  });
+})();
+</script>
+</body>
+</html>
