@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Design Readiness Review — The Amaranth Expanse — Amaranth Expanse Design</title>
+<style>:root { color-scheme: dark light; }
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  padding: 1.25rem;
+  background: #14151a;
+  color: #e6e6ea;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-size: 17px;
+  line-height: 1.6;
+}
+main, nav { max-width: 42rem; margin-left: auto; margin-right: auto; }
+h1, h2, h3, h4, h5, h6 { line-height: 1.25; color: #f4f1ff; }
+a { color: #8ab4ff; }
+a:visited { color: #b79cff; }
+nav {
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid #34363f;
+  font-size: 0.95rem;
+}
+nav .home-link { font-weight: 600; margin-right: 0.75rem; }
+nav .section-label { color: #9a9aa5; margin-right: 0.75rem; }
+nav .siblings { margin-top: 0.4rem; }
+nav .siblings .current { font-weight: 600; color: #f4f1ff; }
+blockquote {
+  margin: 1rem 0;
+  padding: 0.25rem 1rem;
+  border-left: 3px solid #5a5d6b;
+  color: #c7c7d1;
+}
+table { border-collapse: collapse; width: 100%; margin: 1rem 0; font-size: 0.95rem; }
+th, td { border: 1px solid #34363f; padding: 0.4rem 0.6rem; text-align: left; }
+code, pre {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  background: #1e2027;
+  border-radius: 4px;
+}
+code { padding: 0.1em 0.35em; }
+img.card-art { display: block; max-width: 100%; height: auto; margin: 0.75rem 0; border-radius: 6px; }
+pre { padding: 0.75rem; overflow-x: auto; }
+ul, ol { padding-left: 1.4rem; }
+section h2 { margin-top: 2rem; }
+@media (prefers-color-scheme: light) {
+  body { background: #fbfbfd; color: #1c1c22; }
+  a { color: #2454c7; }
+  blockquote { color: #454550; }
+  code, pre { background: #eef0f4; }
+  th, td { border-color: #d6d8e0; }
+}</style>
+</head>
+<body>
+<nav>
+<a class="home-link" href="../index.html">&larr; Index</a>
+<span class="section-label">Other</span>
+<div class="siblings"><span class="current">Design Readiness Review — The Amaranth Expanse</span> &middot; <a href="playtest-full-game.html">Full Game Playtest Procedure (On Paper)</a> &middot; <a href="playtest-spatial.html">Spatial Battlefield Playtest Procedure (On Paper)</a></div>
+</nav>
+<main>
+<h1>Design Readiness Review — The Amaranth Expanse</h1>
+<p>This document inventories every design-phase deliverable shipped in this repository to date, with a file citation for each claim, and closes with a numbered list of open gaps relevant to <code>design/ideas-inbox.md</code>&#39;s &quot;software gate ruling&quot; entry (I6): game <em>implementation</em> (a rules engine, a playable client) stays off-limits until the design is compelling enough to earn it; tools for content generation and game authoring are already allowed and several are shipped. This review exists to make that judgment call an informed one instead of a guess.</p>
+<h2>1. Rulebook — <code>design/rules.md</code></h2>
+<p><code>design/rules.md</code> (&quot;Amaranth Expanse — Core Rules&quot;) currently defines 15 numbered top-level sections:</p>
+<ul><li><strong>1. Game Concepts</strong></li><li><strong>2. Glossary &amp; Vocabulary</strong></li><li><strong>3. Zones</strong></li><li><strong>4. Resources</strong></li><li><strong>5. Turn Structure</strong></li><li><strong>6. Priority &amp; Timing</strong></li><li><strong>7. Worked Example: A Priority Exchange</strong></li><li><strong>8. Spatial Battlefield</strong></li><li><strong>9. Card Types &amp; Templating</strong></li><li><strong>10. Winning &amp; Losing Conditions</strong></li><li><strong>11. Deck Construction</strong></li><li><strong>12. Combat Resolution</strong></li><li><strong>13. Targeting</strong></li><li><strong>14. Keyword Abilities</strong></li><li><strong>15. Starting the Game</strong></li></ul>
+<p>Sections 7, 8.7, 10.3, 12.5, 13.3, 14.6, and 15.5 each carry a worked example, and Section 2 is a glossary every later section defines new terms into before using them — a discipline the rulebook has followed consistently since Section 5 (&quot;Turn Structure&quot;) through Section 15 (&quot;Starting the Game&quot;).</p>
+<h2>2. World, Lore, Races &amp; Star Atlas</h2>
+<ul><li><strong><code>design/world.md</code></strong> — &quot;The Amaranth Expanse&quot;: a galaxy/setting overview</li></ul>
+<p>  (&quot;The Setting&quot;), a brief history of the First Weave and the Sundering (&quot;A   History in Brief&quot;), and the cosmology section &quot;Cosmology: The Five   Founts,&quot; naming and grounding all five categories as in-universe forces:   <strong>the Mass</strong> (materials), <strong>the Bloom</strong> (biology), <strong>the Signal</strong>   (intelligence), <strong>the Circuit</strong> (technology), <strong>the Tangle</strong> (magic).</p>
+<ul><li><strong><code>design/lore.md</code></strong> — &quot;The Long Record&quot;: 6 named eras in its &quot;Timeline of</li></ul>
+<p>  Eras&quot; section — <strong>The Weave Age</strong>, <strong>The Sundering</strong>, <strong>The Long Dark</strong>,   <strong>The Five Risings</strong>, <strong>The Cinderglass War</strong>, <strong>Current Era: The Uneasy   Expanse</strong>. The Cinderglass War is the central turning point, pulling in   the Cindral Reach, the Wrought Assembly, the Panoptic Concord, and the   Starweave Communion directly; the Mireth Bloom fights no battles in it and   inherits its wreckage instead. &quot;Current Era: The Uneasy Expanse&quot; is the   fixed narrative anchor every card set&#39;s flavor text writes from.</p>
+<ul><li><strong><code>design/star-atlas.md</code></strong> — names one Homeworld per race (Ashkeel /</li></ul>
+<p>  Cindral Reach, Fenwreath / Mireth Bloom, Vantaris / Panoptic Concord,   Ansareth / Starweave Communion, Corewright / Wrought Assembly) plus three   Frontier/Contested worlds belonging to no race (Halvorne Junction, Kelmourn   Drift, Tallowfen).</p>
+<ul><li><strong><code>design/races/</code></strong> — exactly 5 files, one per race: <code>cindral-reach.md</code>,</li></ul>
+<p>  <code>mireth-bloom.md</code>, <code>panoptic-concord.md</code>, <code>starweave-communion.md</code>,   <code>wrought-assembly.md</code>. Each states an identity paragraph, one primary   Fount strength, two complementary strengths, and two countering   weaknesses.</p>
+<ul><li><strong><code>design/characters/</code></strong> — one file per race (4 named characters each, 20</li></ul>
+<p>  total) plus <code>design/characters/web.md</code>, which interlinks all 20 across   race lines (its own Overview: &quot;Twenty names, five civilizations, and one   shape underneath all of it&quot;).</p>
+<h2>3. Card Sets &amp; Waves — <code>design/cards/*.md</code></h2>
+<p>Every shipped card set/wave, parsed via the shared parser (<code>lib/parse-card-markdown.js</code>&#39;s <code>loadCardsFromFile</code>/<code>loadAllCards</code>, which every authoring tool in this repo already uses instead of each tool re-implementing its own parsing):</p>
+<ul><li><strong>Alpha Set</strong> — <code>design/cards/alpha-set.md</code> — 18 cards. The Alpha starters:</li></ul>
+<p>  at least one card per Card Type and per Fount, at least one per race tied   to that race&#39;s own primary Fount.</p>
+<ul><li><strong>Frontier Set</strong> — <code>design/cards/frontier-set.md</code> — 5 cards. One per race,</li></ul>
+<p>  each mechanically tied to the battlefield graph (<code>rules.md</code> Section 8).</p>
+<ul><li><strong>Character Signatures</strong> — <code>design/cards/character-signatures.md</code> — 5</li></ul>
+<p>  cards. One per race, each built from a specific named character in   <code>design/characters/</code>.</p>
+<ul><li><strong>Character Signatures, Wave 2</strong> —</li></ul>
+<p>  <code>design/cards/character-signatures-wave-2.md</code> — 5 cards. A second named   character per race, distinct from wave 1&#39;s.</p>
+<ul><li><strong>Spatial Race Identity Set</strong> — <code>design/cards/spatial-race-identity-set.md</code></li></ul>
+<p>  — 3 cards. Race identity combined with the wormhole/battlefield graph.</p>
+<ul><li><strong>Wormhole Restrictions Set</strong> —</li></ul>
+<p>  <code>design/cards/wormhole-restrictions-set.md</code> — 5 cards. One per race,   each placing a Directional or Team Restriction on a Wormhole (Section   8.4).</p>
+<ul><li><strong>Wormhole Closure Cards</strong> — <code>design/cards/wormhole-closure-cards.md</code> — 5</li></ul>
+<p>  cards. One per race, each Closing a Wormhole (Section 8.5).</p>
+<ul><li><strong>Fount Economy Set</strong> — <code>design/cards/fount-economy-set.md</code> — 6 cards.</li></ul>
+<p>  Closes the Bloom/Signal/Tangle Generator gap <code>design/playtest-full-game.md</code>   surfaced.</p>
+<p><strong>Total: 52 named cards across 8 files.</strong> This list is not a hand-typed count: <code>test/design-readiness.test.js</code> re-derives it from <code>design/cards/*.md</code> via <code>lib/parse-card-markdown.js</code> on every test run and fails if any set on disk is missing from this section, so it cannot go stale the way a frozen count would.</p>
+<p>Three further files live in <code>design/cards/</code> but are design-spec/brief documents, not card sets, and correctly parse to 0 cards: <code>design/cards/card-anatomy.md</code>, <code>design/cards/art-briefs.md</code>, <code>design/cards/alt-art-briefs.md</code> (see below).</p>
+<h2>4. Card Anatomy &amp; Art Brief Coverage</h2>
+<ul><li><strong><code>design/cards/card-anatomy.md</code></strong> — the shared card skeleton (Frame/</li></ul>
+<p>  Border, Name Slot, Cost Slot, Art Window, Type Line, Rules-Text Box, Stats   Corner, Set/Collector Strip), the mapping from every <code>rules.md</code> Section   9.1 template field to exactly one zone, and the premium-treatment layers   (borderless, foil, extended art) that dress the same skeleton without   changing what a card says or does.</p>
+<ul><li><strong><code>design/cards/art-briefs.md</code></strong> — 44 art-brief sections, covering every</li></ul>
+<p>  card in <code>alpha-set.md</code>, <code>frontier-set.md</code>, <code>character-signatures.md</code>,   <code>character-signatures-wave-2.md</code>, <code>fount-economy-set.md</code>, and   <code>wormhole-restrictions-set.md</code>.</p>
+<ul><li><strong><code>design/cards/alt-art-briefs.md</code></strong> — 5 alternate-art briefs for the</li></ul>
+<p>  fount Generators (Sporeknit Warden, Salvage-Wrought Bastion, Replicant   Foundry Core, Foreknowledge Cipher, Unwritten Hour).</p>
+<ul><li><strong>Known gap:</strong> the 3 cards in <code>spatial-race-identity-set.md</code> and the 5</li></ul>
+<p>  cards in <code>wormhole-closure-cards.md</code> (8 cards total) have no brief in   <code>art-briefs.md</code> yet. <code>tools/composite-card-art.js</code> already surfaces this   live via a <code>no art brief for &quot;&lt;name&gt;&quot;</code> warning on every run (see Open Gap   1 below).</p>
+<h2>5. Authoring, Render, Site &amp; Sync Tooling</h2>
+<p>Per <code>design/ideas-inbox.md</code>&#39;s &quot;software gate ruling&quot; entry (I6): game <em>implementation</em> stays off-limits; tools for content generation and game authoring are allowed. Every tool below is authoring/presentation tooling — none implements game rules or a playable client:</p>
+<ul><li><strong><code>lib/parse-card-markdown.js</code></strong> — the single shared card-markdown parser</li></ul>
+<p>  (<code>parseCardMarkdown</code>, <code>slugify</code>, <code>loadCardsFromFile</code>, <code>loadAllCards</code>)   every tool below, and this document&#39;s own test, import instead of   re-implementing.</p>
+<ul><li><strong><code>tools/render-card.js</code></strong> — deterministic card-layout renderer</li></ul>
+<p>  (<code>renders/cards/*.svg</code>), base/borderless/foil/extended-art treatments, no   illustration, no network call, no game logic.</p>
+<ul><li><strong><code>tools/composite-card-art.js</code></strong> — composites generated art (mock client</li></ul>
+<p>  by default, <code>--live</code> real Leonardo client) into the Art Window   (<code>renders/cards-composited/*.svg</code>, <code>*-alt.svg</code>); warns, never fails, on   cards missing a brief.</p>
+<ul><li><strong><code>tools/generate-phoenix-card.js</code></strong> — one-card live-Leonardo generation</li></ul>
+<p>  producing a fully self-contained <code>renders/cards-phoenix/*.svg</code>.</p>
+<ul><li><strong><code>tools/build-site.js</code></strong> — generates the whole design-shelf <code>site/</code></li></ul>
+<p>  (one page per design markdown file plus <code>gamePlan.md</code>,   <code>site/cards-index.html</code>), deterministically.</p>
+<ul><li><strong><code>tools/serve-site.js</code></strong> — LAN HTTP server for <code>site/</code> (ephemeral port by</li></ul>
+<p>  design).</p>
+<ul><li><strong><code>tools/sync-cards-to-jaina.js</code></strong> — dry-run and <code>--live</code> sync of parsed</li></ul>
+<p>  card records into Jaina.</p>
+<ul><li><strong><code>site/</code></strong> — the generated, browsable design shelf, including</li></ul>
+<p>  <code>site/cards-index.html</code>, <code>site/phoenix-gallery.html</code>, and   <code>site/presentation/presentation.html</code>.</p>
+<h2>6. Open Gaps &amp; Unresolved Questions</h2>
+<ol><li><strong>Art-brief coverage has an 8-card hole.</strong> None of the 3 cards in</li></ol>
+<p>   <code>design/cards/spatial-race-identity-set.md</code> or the 5 cards in    <code>design/cards/wormhole-closure-cards.md</code> have a matching entry in    <code>design/cards/art-briefs.md</code>, so <code>tools/composite-card-art.js</code> cannot    generate art for them — confirmed live by that tool&#39;s own    <code>no art brief for &quot;&lt;name&gt;&quot;</code> warning (see    <code>workItems/2026-07-29-cardgame-art-brief-coverage-warning-*.md</code>). No    unit has yet been proposed to close it.</p>
+<ol><li><strong>The Spatial Race Identity Set only speaks for 3 of 5 races.</strong></li></ol>
+<p>   <code>design/cards/spatial-race-identity-set.md</code> realizes    <code>design/ideas-inbox.md</code>&#39;s 2026-07-26 (later) entry — wormhole mechanics    as race identity — for the Panoptic Concord, Starweave Communion, and    Cindral Reach only. The Mireth Bloom and the Wrought Assembly have no    card in this wave, even though that same ideas-inbox entry frames the    mechanic as combining with &quot;every race identity.&quot;</p>
+<ol><li><strong>No digital implementation of the design has ever been built or run.</strong></li></ol>
+<p>   <code>design/ideas-inbox.md</code>&#39;s &quot;software gate ruling&quot; entry (I6 — the gate    this review exists to inform) has, so far, kept every shipped unit to    content-authoring tools. Nobody has yet tested whether the spatial    battlefield graph, the five-Fount economy, or the Conflict Phase&#39;s    priority/response system actually play well in real time; the only    games ever run against this design are the two on-paper procedures in    <code>design/playtest-spatial.md</code> and <code>design/playtest-full-game.md</code>, each a    single walkthrough of one prewritten deck pairing.</p>
+<ol><li><strong>Jaina is wired up for card records only.</strong> <code>design/ideas-inbox.md</code>&#39;s</li></ol>
+<p>   &quot;use Jaina as the content backbone&quot; entry asked to make heavy use of    Jaina &quot;the whole way,&quot; but <code>tools/sync-cards-to-jaina.js</code> only syncs    parsed card records. Characters (<code>design/characters/</code>), races    (<code>design/races/</code>), world/lore (<code>design/world.md</code>, <code>design/lore.md</code>), and    the star atlas (<code>design/star-atlas.md</code>) remain markdown-only prose with    no Jaina schema or sync path yet.</p>
+</main>
+</body>
+</html>
