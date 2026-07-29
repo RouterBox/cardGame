@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 750 1050" width="750" height="1050">
+<title>Doran Vex Amaranthine, Ledger-Warden of the Foreknowledge Archive</title>
+<rect class="frame-band" data-fount="Signal" data-color="cyan" x="0" y="0" width="750" height="1050" fill="#06b6d4"/>
+<rect class="name-slot" x="24" y="24" width="702" height="70" fill="#f5f1e6"/>
+<text x="40" y="69" font-family="Georgia, 'Times New Roman', serif" font-size="32" fill="#14151a" font-weight="bold"><tspan x="40" dy="0">Doran Vex Amaranthine, Ledger-Warden of the Foreknowledge Archive</tspan></text>
+<image class="art-window" x="24" y="94" width="702" height="420" href="https://cdn.leonardo.ai/gen-1/image-0.png" preserveAspectRatio="xMidYMid slice"/>
+<rect class="type-line" x="24" y="514" width="702" height="50" fill="#e4dfd0"/>
+<text x="40" y="546" font-family="Georgia, 'Times New Roman', serif" font-size="20" fill="#3a3a3f"><tspan x="40" dy="0">Intelligence</tspan></text>
+<rect class="rules-text-box" x="24" y="564" width="702" height="462" fill="#faf8f2" stroke="#c9ccd3" stroke-width="2"/>
+<text x="40" y="596" font-family="Georgia, 'Times New Roman', serif" font-size="20" fill="#1c1c22"><tspan x="40" dy="0">Fast. When this resolves, look at the top card</tspan><tspan x="40" dy="26">of an opponent&apos;s Archive; then put it back.</tspan></text>
+<text x="40" y="668" font-family="Georgia, 'Times New Roman', serif" font-size="18" fill="#5a5d66" font-style="italic"><tspan x="40" dy="0">Doran Vex Amaranthine keeps The Panoptic</tspan><tspan x="40" dy="24">Concord&apos;s oldest conviction alive: that</tspan><tspan x="40" dy="24">anything which will happen has already left a</tspan><tspan x="40" dy="24">trace of itself, for whoever is patient enough</tspan><tspan x="40" dy="24">to read it first.</tspan></text>
+<g class="cost-pip" data-fount="Signal" data-color="cyan">
+<circle cx="682" cy="59" r="28" fill="#06b6d4" stroke="#14151a" stroke-width="3"/>
+<text x="682" y="67" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="26" font-weight="bold" fill="#14151a">2</text>
+</g>
+</svg>
