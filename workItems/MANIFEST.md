@@ -416,3 +416,13 @@ Append-only requirements traceability log — one section per archived work item
 - AC2 [paraphrase]: Step 9 names 'Chokepoint Demolition Charge' and its Cost line (2 Circuit) as the card being played to Close the Wormhole it walks. — PASS
 - AC3 [paraphrase]: Step 9 still ends with the same physical action (crossing out the line fully) and the same aloud-confirmation that the line may never be redrawn and a new Discovery action would be required to reconnect those Planets, unchanged from before this unit. — PASS
 - AC4 [inferred] (held_out): Steps 1-8 and 10-12, the Materials list, and the 'What to watch for while playtesting' section of playtest-spatial.md are byte-identical to their content before this unit, and every existing assertion in test/design-map-setup-playtest.test.js still passes. — PASS
+
+## 2026-07-29-cardgame-design-readiness-review-cardgame-design-readiness-review.md
+
+- AC1 [paraphrase]: design/DESIGN-READINESS.md is created and is non-empty markdown — no receipt (escalated before receipt computation)
+- AC2 [inferred]: The document names every numbered rulebook section (rules.md) by its section number and title — no receipt (escalated before receipt computation)
+- AC3 [inferred]: The document names every shipped card set/wave (Alpha starters, Frontier spatial cards, character signature waves, spatial race identity waves, wormhole restriction/closure cards, fount economy cards) with a file citation for each — no receipt (escalated before receipt computation)
+- AC4 [inferred]: The document names the world lore eras and the races/star atlas content with file citations — no receipt (escalated before receipt computation)
+- AC5 [paraphrase]: The document closes with a numbered list of at least 3 concrete open gaps or unresolved questions, each citing specific evidence (a file or section) — no receipt (escalated before receipt computation)
+- AC6 [inferred] (held_out): test/design-readiness.test.js asserts the document's card-set list, when cross-checked against design/cards/*.md loaded via the existing shared parser (lib/parse-card-markdown.js), does not omit any set present on disk — no receipt (escalated before receipt computation)
+- AC7 [inferred] (held_out): test/design-readiness.test.js fails (RED) before the document exists and passes (GREEN) after, run via `node --test` — no receipt (escalated before receipt computation)
