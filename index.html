@@ -59,6 +59,7 @@ section h2 { margin-top: 2rem; }
 <main>
 <h1>Amaranth Expanse — Design Shelf</h1>
 <p><a href="cards-index.html">All Cards</a></p>
+<p><input type="search" id="site-search" placeholder="Search…"></p>
 <section>
 <h2>World</h2>
 <ul>
@@ -125,5 +126,22 @@ section h2 { margin-top: 2rem; }
 </ul>
 </section>
 </main>
+<script>function siteSearchMatches(title, query) {
+  var q = query.trim().toLowerCase();
+  if (q === '') return true;
+  return title.toLowerCase().indexOf(q) !== -1;
+}
+document.getElementById('site-search').addEventListener('input', function (e) {
+  var query = e.target.value;
+  document.querySelectorAll('section').forEach(function (section) {
+    var anyVisible = false;
+    section.querySelectorAll('li').forEach(function (li) {
+      var match = siteSearchMatches(li.textContent, query);
+      li.style.display = match ? '' : 'none';
+      if (match) anyVisible = true;
+    });
+    section.style.display = anyVisible ? '' : 'none';
+  });
+});</script>
 </body>
 </html>
