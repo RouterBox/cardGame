@@ -132,3 +132,14 @@ Implications:
   write to Jaina rather than inventing their own storage.
 - Markdown design docs remain the narrative/spec layer; Jaina holds the
   structured data layer the tools consume.
+
+## 2026-07-29 — The game's name (verbatim from RouterBox)
+
+> "Wreck Tangle" — "yeah thats the name of the game."
+
+The game is officially named **Wreck Tangle**. (Origin: a play on the Tangle
+Fount and the setting's salvaged First Weave wreckage — and, yes, on
+"rectangle".) The name should propagate through the rulebook title, the
+design-shelf site, the card set docs, and lore references to the game itself.
+"The Amaranth Expanse" remains the SETTING name unless RouterBox says
+otherwise — Wreck Tangle is the GAME.
