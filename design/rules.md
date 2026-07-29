@@ -251,6 +251,22 @@ Generators sit on Planets, and Planets are Blockade-able and Capturable
 producing forever — Section 8.6 states exactly what happens to a Generator
 when its Planet is contested (Blockaded) or lost (Captured).
 
+### 4.7 Graph-Driven Generation
+
+During the Generation Phase (Section 5.2), after the active player's Generators have
+produced their Fount Points as described above, the active player gains one bonus
+Fount Point, of a single Fount of their choice, for every Planet beyond their
+Homeworld (Section 8.2) that they currently control (Section 8.1). These bonus
+points are added to the active player's chosen resource pool as one lump step,
+after Generator production, not interleaved with it.
+
+This bonus is a single choice of Fount for the whole step, not a per-Planet choice:
+a challenger who currently controls three Planets beyond their Homeworld gains
+three bonus points of one Fount they pick, not points split across multiple Founts.
+A challenger's Homeworld itself never counts toward this total — it is controlled
+from the start of the game and can never change control (Section 8.1, Section 8.2),
+so it is not something the graph's current shape earned them.
+
 ## 5. Turn Structure
 
 Every turn consists of the same five phases, always in this order. A phase never
@@ -274,10 +290,9 @@ order could matter for an ability. No player MAY play cards or use
 non-Generation abilities during this phase, and the non-active player never acts
 during another challenger's Generation Phase.
 
-*Open design question (unresolved): whether resource generation should also
-connect to the battlefield graph in other ways beyond the Generator mechanic
-above — for example, gaining Fount Points from graph characteristics
-directly — is not decided by this section.*
+After all of the active player's Generators have produced their points, the active
+player also gains bonus Fount Points from the battlefield graph itself, exactly as
+Section 4.7 (Graph-Driven Generation) describes.
 
 ### 5.3 Main Phase
 
