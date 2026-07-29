@@ -3,6 +3,7 @@
 
 const fs = require('node:fs');
 const path = require('node:path');
+const crypto = require('node:crypto');
 const { parseCardMarkdown, slugify, loadCardsFromFile, loadAllCards } = require('../lib/parse-card-markdown');
 
 const REPO_ROOT = path.join(__dirname, '..');
@@ -273,24 +274,97 @@ function renderCardSvg(card) {
 
 // ---------------------------------------------------------------------------
 // Main
+//
+// Multiple test files each spawn `node tools/render-card.js` in their own
+// before() hook and node's test runner runs those files concurrently, so
+// two invocations can be rebuilding OUT_DIR at the same moment. Populating
+// OUT_DIR in place (old rmSync-then-writeFileSync-per-card approach) let one
+// process's rmSync race another's writes and throw ENOTEMPTY. Instead, each
+// invocation renders into a private tmp dir and swaps it onto OUT_DIR under
+// the same lock + backup-rename pattern tools/composite-card-art.js already
+// uses for its own OUT_DIR — output is deterministic, so whichever
+// invocation's swap lands last still leaves byte-identical files.
 // ---------------------------------------------------------------------------
+
+const OUT_DIR_LOCK = `${OUT_DIR}.lock`;
+const LOCK_STALE_MS = 30000; // the guarded section is just a remove+rename, so any lock
+// older than this was abandoned by a process that died mid-swap, not one still working.
+
+function sleepSync(ms) {
+  Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, ms);
+}
+
+function withOutDirLockSync(fn) {
+  for (;;) {
+    try {
+      fs.mkdirSync(OUT_DIR_LOCK);
+      break;
+    } catch (err) {
+      if (err.code !== 'EEXIST') throw err;
+      let staleMtimeMs = null;
+      try {
+        staleMtimeMs = fs.statSync(OUT_DIR_LOCK).mtimeMs;
+      } catch (statErr) {
+        if (statErr.code !== 'ENOENT') throw statErr;
+      }
+      if (staleMtimeMs !== null && Date.now() - staleMtimeMs > LOCK_STALE_MS) {
+        fs.rmSync(OUT_DIR_LOCK, { recursive: true, force: true });
+        continue;
+      }
+      sleepSync(20);
+    }
+  }
+  try {
+    return fn();
+  } finally {
+    fs.rmdirSync(OUT_DIR_LOCK);
+  }
+}
 
 function main() {
   const cards = loadAllCards();
 
-  fs.rmSync(OUT_DIR, { recursive: true, force: true });
-  fs.mkdirSync(OUT_DIR, { recursive: true });
+  const tmpDir = `${OUT_DIR}.tmp-${process.pid}-${crypto.randomBytes(6).toString('hex')}`;
+  fs.mkdirSync(tmpDir, { recursive: true });
 
-  const usedSlugs = new Set();
-  for (const card of cards) {
-    const slug = slugify(card.name);
-    if (usedSlugs.has(slug)) {
-      throw new Error(`duplicate card filename slug "${slug}" from card name "${card.name}"`);
+  try {
+    const usedSlugs = new Set();
+    for (const card of cards) {
+      const slug = slugify(card.name);
+      if (usedSlugs.has(slug)) {
+        throw new Error(`duplicate card filename slug "${slug}" from card name "${card.name}"`);
+      }
+      usedSlugs.add(slug);
+
+      const svg = renderCardSvg(card);
+      fs.writeFileSync(path.join(tmpDir, `${slug}.svg`), svg, 'utf8');
     }
-    usedSlugs.add(slug);
 
-    const svg = renderCardSvg(card);
-    fs.writeFileSync(path.join(OUT_DIR, `${slug}.svg`), svg, 'utf8');
+    withOutDirLockSync(() => {
+      // Two renames instead of rm+rename: if the second rename fails partway
+      // (e.g. Windows refusing a rename while another process still holds a
+      // handle on the directory), the first rename lets us put the old
+      // OUT_DIR back rather than leaving OUT_DIR permanently missing.
+      const backupDir = `${OUT_DIR}.bak-${process.pid}-${crypto.randomBytes(6).toString('hex')}`;
+      const hadExisting = fs.existsSync(OUT_DIR);
+      if (hadExisting) {
+        fs.renameSync(OUT_DIR, backupDir);
+      }
+      try {
+        fs.renameSync(tmpDir, OUT_DIR);
+      } catch (err) {
+        if (hadExisting) {
+          fs.renameSync(backupDir, OUT_DIR);
+        }
+        throw err;
+      }
+      if (hadExisting) {
+        fs.rmSync(backupDir, { recursive: true, force: true });
+      }
+    });
+  } catch (err) {
+    fs.rmSync(tmpDir, { recursive: true, force: true });
+    throw err;
   }
 
   console.log(`Rendered ${cards.length} card(s) into ${path.relative(REPO_ROOT, OUT_DIR).split(path.sep).join('/')}/`);
