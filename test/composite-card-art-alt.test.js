@@ -52,8 +52,8 @@ const ALT_TITLES = listAltBriefTitles();
 // alt-art-briefs.md, and no other card gets a "-alt.svg" file.
 // ---------------------------------------------------------------------------
 
-test('AC3: design/cards/alt-art-briefs.md names exactly 3 alt briefs (sanity check on fixture)', () => {
-  assert.strictEqual(ALT_TITLES.length, 3, `expected exactly 3 alt briefs, found ${ALT_TITLES.length}`);
+test('AC3: design/cards/alt-art-briefs.md names exactly 5 alt briefs (sanity check on fixture)', () => {
+  assert.strictEqual(ALT_TITLES.length, 5, `expected exactly 5 alt briefs, found ${ALT_TITLES.length}`);
 });
 
 test('AC3: node tools/composite-card-art.js writes exactly one <slug>-alt.svg per alt brief', () => {
