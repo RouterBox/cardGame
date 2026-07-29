@@ -97,10 +97,10 @@ the numbered Procedure itself.
    per challenger, fixed and symmetric every time (Section 8.8).
 
 4. **Shuffle, draw opening hands, and set starting trackers.** Each challenger shuffles
-   their 40-card Archive (Section 3) and draws an opening hand of 5 cards from it — 35
-   cards then remain in each Archive. Rules.md does not fix an opening hand size; this
-   procedure uses 5 as a table convention, not a rules.md citation. Set each challenger's
-   Core Integrity tracker to 20 (also a table convention, per the Materials list above).
+   their 40-card Archive (Section 3, Section 15.1) and draws an opening hand of 5 cards
+   from it (Section 15.3) — 35 cards then remain in each Archive. Set each challenger's
+   Core Integrity tracker to 20 (a table convention, per the Materials list above; rules.md
+   does not fix a starting Core Integrity value).
 
 5. **Determine who takes the first turn.** Flip a coin, or use any other neutral method —
    determining who takes the first turn is named as part of general game setup, but no
