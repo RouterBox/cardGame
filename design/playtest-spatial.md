@@ -91,13 +91,15 @@ against the rule text itself.
    to whichever challenger most recently built a Generator on a Planet,
    or Captured it (Section 8.1).
 
-8. **Add a Restriction to a Wormhole.** Pick any drawn line on the table
-   and write "one-way: [origin]→[destination]" on it, narrating that
-   **Bastion Lockdown Line** (Cost line: 2 Mass, the Cindral Reach card
-   in *design/cards/wormhole-restrictions-set.md*) is the card just
-   played to grant it a Directional Restriction (Section 8.4). Confirm
-   aloud that a Wormhole with no such note may still be traversed either
-   way, since no-Restriction is the default.
+8. **Add a Restriction to a Wormhole.** Pick a drawn line on the table
+   with an endpoint at a Planet the active player controls, and write
+   "one-way: [origin]→[destination]" on it — with that controlled
+   Planet as the origin — narrating that **Bastion Lockdown Line** (Cost
+   line: 2 Mass, the Cindral Reach card in
+   *design/cards/wormhole-restrictions-set.md*) is the card just played
+   to grant it a Directional Restriction (Section 8.4). Confirm aloud
+   that a Wormhole with no such note may still be traversed either way,
+   since no-Restriction is the default.
 
 9. **Close a Wormhole.** Pick a different drawn line, cross it out
    fully, and note that the two Planets it connected are no longer
