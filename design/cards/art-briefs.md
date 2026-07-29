@@ -286,3 +286,166 @@ Key visual elements:
 Composition: wide, landscape rectangle (~5:3), the large rectangular window
 beneath the Name Slot per card-anatomy.md — angle the bolt diagonally
 across the frame toward its point of impact.
+
+## Frontier Set — Cards of the Battlefield Graph
+
+### Bastion Reclamation Crew
+
+Palette: Ash-grey — the Mass's industrial endurance, reinforcing what's
+already dug in.
+Subject/Scene: A Cindral Reach reclamation crew welds a fresh Fortification
+plate onto a Generator core, working calmly despite the Planet around them
+sitting under active Blockade.
+Key visual elements:
+- A Generator permanent being reinforced with a visible Fortification counter, shown as a freshly welded plate
+- Blockade markers or a besieging line visible at the Planet's edge, showing the danger the crew works through
+- A salvage/reclamation crew in ash-grey Materials gear, calm and workmanlike rather than alarmed
+Composition: wide, landscape rectangle (~5:3), the large rectangular window
+beneath the Name Slot per card-anatomy.md — keep the crew and Generator core
+low and central with the Blockade line visible at the frame's edge.
+
+### Frontier Spore Cluster
+
+Palette: Green — the Bloom's patient growth, triggered the instant new
+ground opens up.
+Subject/Scene: A cluster of frontier spore-growths pulses and swells the
+instant a Discovery action cracks open new ground nearby, a Growth counter
+blooming visibly on the Unit.
+Key visual elements:
+- A spore cluster Unit visibly swelling with a new Growth counter, rendered as a budding node
+- A Discovery action shown happening just beyond it — freshly opened, unclaimed ground or a marker cracking open
+- Biology growth reacting instantly, mid-bloom rather than static, since this can resolve any time its controller holds priority
+Composition: wide, landscape rectangle (~5:3), the large rectangular window
+beneath the Name Slot per card-anatomy.md — center the spore cluster low in
+frame with the Discovery site visible just beyond it.
+
+### Wormhole Ledger
+
+Palette: Cyan — the Signal's cool analytic watchfulness, reading a passage
+before anyone else does.
+Subject/Scene: A Panoptic Concord ledger-device hovers beside a Wormhole,
+its cyan readout unrolling the Restriction bound to that passage while a
+second beam peers into the top of its controller's own Archive.
+Key visual elements:
+- A visible Wormhole with its carried Restriction shown as a glowing cyan clause or seal on the passage
+- The top card of the controller's Archive lit up mid-read, as if deciding whether to leave it or move it away
+- Panoptic Concord ledger/architecture styling — layered, cyan, watchful rather than aggressive
+Composition: wide, landscape rectangle (~5:3), the large rectangular window
+beneath the Name Slot per card-anatomy.md — place the Wormhole and its
+Restriction seal on one side, the Archive read on the other, balanced
+across the frame.
+
+### Rite of Unmaking
+
+Palette: Violet — the Tangle's uncanny ritual mood, here turned toward
+closing a path rather than opening one.
+Subject/Scene: A Starweave Communion ritualist stands at the endpoint of a
+Wormhole anchored to a Planet they control, closing violet threads of light
+around the passage as it undergoes Closure and unravels from the
+battlefield graph.
+Key visual elements:
+- A Wormhole visibly sealing shut at its endpoint near a controlled Planet, mid-Closure
+- Violet ritual threads winding the passage closed rather than shattering it — a deliberate unmaking, not violence
+- The battlefield graph itself faintly visible, with the closing Wormhole's connection fading from it
+Composition: wide, landscape rectangle (~5:3), the large rectangular window
+beneath the Name Slot per card-anatomy.md — angle the closing Wormhole
+diagonally across the frame with the Planet anchor in one corner.
+
+### Replication Beachhead
+
+Palette: Copper — the Circuit's warm mechanized repetition, copying itself
+the instant it can.
+Subject/Scene: A Wrought Assembly beachhead structure, a Generator attuned
+to the Circuit, produces a copper Circuit Point at its core the moment an
+Assault action lands a Capture nearby, an exact token copy already
+stamping out beside it.
+Key visual elements:
+- A Generator core producing a glowing copper Circuit Point, the Circuit resource pool made visible
+- An exact token copy of the permanent emerging beside the original the instant a Capture resolves
+- An Assault still visibly unfolding at the Field's edge, the trigger for the beachhead's replication
+Composition: wide, landscape rectangle (~5:3), the large rectangular window
+beneath the Name Slot per card-anatomy.md — center the beachhead Generator
+with the fresh token copy emerging symmetrically beside it.
+
+## Character Signatures
+
+### Kordelia Vess, Salvage-Marshal of the Cinder Yards
+
+Palette: Ash-grey — the Mass's industrial endurance, worn by a marshal who
+wastes nothing.
+Subject/Scene: Kordelia Vess, Salvage-Marshal of the Cinder Yards, stands
+at the Generator core she commands, a Mass Point glowing at its heart while
+she pulls a Materials card free from a Wreck pile at her feet and passes it
+toward an open Hand.
+Key visual elements:
+- Kordelia Vess herself, a named Cindral Reach marshal in ash-grey salvage gear, not a generic Unit
+- The Generator core producing a visible Mass Point, the Mass resource pool made tangible
+- A Wreck pile at her feet with one Materials card being pulled free toward a Hand
+Composition: wide, landscape rectangle (~5:3), the large rectangular window
+beneath the Name Slot per card-anatomy.md — place Kordelia Vess
+center-frame with the Generator core behind her and the Wreck pile low in
+the foreground.
+
+### Mother-Thread Ilvex, First Voice of the Sprawl
+
+Palette: Green — the Bloom's patient growth, spreading outward from one
+living center.
+Subject/Scene: Mother-Thread Ilvex, First Voice of the Sprawl, stands
+rooted at the center of a spreading Biology growth-network, a new Growth
+counter blooming on her Unit form each time another Biology permanent
+takes root nearby.
+Key visual elements:
+- Mother-Thread Ilvex herself, a named Mireth Bloom figure fused with the Sprawl's living growth, not a generic creature
+- Additional Biology growth visibly taking root nearby, tied by living threads back to her
+- A fresh Growth counter shown blooming on her form, marking the moment another permanent is played
+Composition: wide, landscape rectangle (~5:3), the large rectangular window
+beneath the Name Slot per card-anatomy.md — root Mother-Thread Ilvex
+centrally with the Sprawl's growth threads radiating outward to the
+frame's edges.
+
+### Selin Vashti Corr, Whisper-Broker of the Glass Spires
+
+Palette: Cyan — the Signal's cool analytic watchfulness, trading in what
+others would rather keep hidden.
+Subject/Scene: Selin Vashti Corr, Whisper-Broker of the Glass Spires, leans
+close to an opponent's fanned-open Hand, reading it in cyan light before
+drawing a card of her own from the top of the deck.
+Key visual elements:
+- Selin Vashti Corr herself, a named Panoptic Concord broker in cyan-lit Intelligence attire, not a generic figure
+- An opponent's Hand of cards partially revealed, fanned open under her reading gaze
+- A single card being drawn toward her in the same beat, quiet and transactional rather than a strike
+Composition: wide, landscape rectangle (~5:3), the large rectangular window
+beneath the Name Slot per card-anatomy.md — keep Selin Vashti Corr close
+and low-key in the foreground with the opponent's Hand receding behind
+her.
+
+### Meridian Aule, Star-Read Oracle of the Tangle
+
+Palette: Violet — the Tangle's uncanny ritual mood, paid for in days spent
+reading it.
+Subject/Scene: Meridian Aule, Star-Read Oracle of the Tangle, hovers three
+cards from the top of her Archive in a violet ritual light, reading them
+before setting them back down in a new order.
+Key visual elements:
+- Meridian Aule herself, a named Starweave Communion oracle in violet Magic ritual dress, not a generic caster
+- Three distinct cards suspended above an open Archive, visibly being read and reordered
+- A violet threading motion showing the cards settling back into a new order rather than being drawn away
+Composition: wide, landscape rectangle (~5:3), the large rectangular window
+beneath the Name Slot per card-anatomy.md — arrange the three floating
+cards in a shallow arc above the Archive at the frame's center.
+
+### Unit 0-Prime "Cast-Aside", the First Flaw
+
+Palette: Copper — the Circuit's warm mechanized precision, marred by the
+one flaw it was never allowed to have.
+Subject/Scene: Unit 0-Prime, "Cast-Aside", stands alone among rows of
+identical Wrought Assembly copies, a copper Technology Unit whose frame is
+subtly marred — a flaw stamped into its plating that marks it as the one
+that can never be copied.
+Key visual elements:
+- Unit 0-Prime itself, a single copper Technology Unit, deliberately imperfect against a backdrop of uniform copies
+- A visible flaw or scar in its plating, the mark of the "First Flaw" that makes it unable to be copied
+- Rows of identical, flawless copper units in the background, emphasizing this Unit's singular difference
+Composition: wide, landscape rectangle (~5:3), the large rectangular window
+beneath the Name Slot per card-anatomy.md — place Unit 0-Prime slightly
+off-center against a receding grid of identical copies behind it.
