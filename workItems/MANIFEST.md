@@ -185,3 +185,10 @@ Append-only requirements traceability log — one section per archived work item
 - AC2 [inferred]: node --test exercises the live-sync (non-dry-run) code path using a fake/injected Jaina client — no require('http'), require('https'), or fetch() call reaches an external host during the test run, keeping the suite network-free and deterministic like every other unit in this repo. — no receipt (escalated before receipt computation)
 - AC3 [inferred]: If JAINA_API_KEY or JAINA_PROJECT_ID is missing when the script is invoked without --dry-run, it exits 1 and prints a clear 'Jaina credentials not configured' message instead of throwing an unhandled exception or silently no-op'ing. — no receipt (escalated before receipt computation)
 - AC4 [inferred] (held_out): --dry-run mode's output and behavior are unchanged byte-for-byte from the merged dry-run unit (same NDJSON records, still makes zero client/network calls) — this unit only adds behavior to the no-flag path. — no receipt (escalated before receipt computation)
+
+## 2026-07-29-cardgame-ideas-inbox-jaina-sync-tag-tag-the-jaina-content-backbone-idea-as-incorporated.md
+
+- AC1 [user]: design/ideas-inbox.md's 'use Jaina as the content backbone' heading ends with '[incorporated: cardgame-jaina-card-sync-live]'. — FAIL
+- AC2 [paraphrase]: test/design-ideas-inbox.test.js's existing test asserting that heading 'remains untagged' is replaced with a test asserting it now ends with '[incorporated: cardgame-jaina-card-sync-live]'; no other existing test in the file is weakened, removed, or renamed. — FAIL
+- AC3 [inferred]: All six other '## ' headings and their existing [incorporated: ...] tags in design/ideas-inbox.md are byte-identical to before this edit, and every '>' verbatim quote block in the file is unchanged. — FAIL
+- AC4 [inferred] (held_out): design/ideas-inbox.md still contains exactly 7 '## ' entry headings after the edit, in the same order, none added or removed, and `node --test` passes with no other test file needing modification. — FAIL
