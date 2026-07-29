@@ -46,7 +46,12 @@ test('AC1: a card with a matching composited render gets an <img> whose resolved
   const resolvedImgAbsPath = path.resolve(path.dirname(pageAbsPath), imgMatch[1]);
   assert.ok(fs.existsSync(resolvedImgAbsPath), `expected ${resolvedImgAbsPath} to exist`);
 
-  const sourceSvgAbsPath = path.join(REPO_ROOT, 'renders', 'cards-composited', `${CARD_WITH_ART.slug}.svg`);
+  // Mirror build-site's own preference: live art (renders/cards-live/)
+  // wins over the deterministic mock baseline when both exist.
+  const liveSvgAbsPath = path.join(REPO_ROOT, 'renders', 'cards-live', `${CARD_WITH_ART.slug}.svg`);
+  const sourceSvgAbsPath = fs.existsSync(liveSvgAbsPath)
+    ? liveSvgAbsPath
+    : path.join(REPO_ROOT, 'renders', 'cards-composited', `${CARD_WITH_ART.slug}.svg`);
   assert.deepStrictEqual(
     fs.readFileSync(resolvedImgAbsPath),
     fs.readFileSync(sourceSvgAbsPath),
