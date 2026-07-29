@@ -114,13 +114,15 @@ redefine it.
   reopened.
 - **Assault** — an action a challenger may take against a Planet they do not
   control, along a qualifying path of Wormholes, costing Fount Points equal
-  to the summed Length of that path; an Assault either Blockades or Captures
-  its target (Section 8.6).
-- **Blockade** — the state of a Planet under Assault that halts the Fount
-  Point production of every Generator on it until cleared (Section 8.6).
-- **Capture** — the result of a further Assault against an already-Blockaded
-  Planet: control passes to the assaulting challenger and every Generator on
-  the Planet is destroyed (Section 8.6).
+  to the summed Length of that path; an Assault attempts to Blockade or
+  Capture its target, succeeding only if the assaulting challenger's Units
+  meet that target's damage requirement (Section 8.6).
+- **Blockade** — the state of a Planet, reached by a successful Assault,
+  that halts the Fount Point production of every Generator on it until
+  cleared (Section 8.6).
+- **Capture** — the result of a further, successful Assault against an
+  already-Blockaded Planet: control passes to the assaulting challenger and
+  every Generator on the Planet is destroyed (Section 8.6).
 - **Eliminated** — a challenger removed from the rest of the game because
   they have met an elimination condition (Section 10.1); an Eliminated
   challenger takes no further turns and receives no further priority
@@ -272,7 +274,10 @@ order could matter for an ability. No player MAY play cards or use
 non-Generation abilities during this phase, and the non-active player never acts
 during another challenger's Generation Phase.
 
-//want resource generation to be connected to the graph in different ways.  Default mechanism is the generators, but gain fount points per graph characteristics should be a thing.
+*Open design question (unresolved): whether resource generation should also
+connect to the battlefield graph in other ways beyond the Generator mechanic
+above — for example, gaining Fount Points from graph characteristics
+directly — is not decided by this section.*
 
 ### 5.3 Main Phase
 
@@ -285,19 +290,28 @@ single turn, and a challenger MAY NOT play a Slow card unless the Queue is empty
 and it is their priority. The active player MAY also take one Discovery action
 and one Assault action here (Sections 8.3 and 8.6), each at most once per turn
 and under the same restriction as a Slow card: neither MAY be taken unless the
-Queue is empty and it is the active player's priority.
-
-//discovering new planets, and creating new wormholes goes in this phase.
+Queue is empty and it is the active player's priority. Discovery (Section
+8.3), which can add a new Planet to the graph and always opens a new
+Wormhole, is one of the two special actions permitted here.
 
 ### 5.4 Conflict Phase
 
-//We want to have units move around the graph, to planets through wormholes, and attack planets like this.  
-//moving units means you can't attack this turn by default - effects could change that.
-//moving through wormholes takes time/resources or some tradeoff of the two.  (maybe two races need mainly time, two races need mainly resources, and magic is magical)
-//blockers can only block attackers if they are at the same defending planet. 
-//attacking and blocking through wormholes may be possible somehow
+*Open design questions (unresolved): whether and how Units move around the
+battlefield graph — between Planets, through Wormholes — and attack Planets
+by doing so; whether moving a Unit costs that Unit its ability to attack the
+same turn by default, though an effect could change that; whether moving
+through a Wormhole costs time, resources, or some tradeoff of the two
+(possibly varying by race); whether a blocking Unit must be located at the
+same Planet as the attacker it blocks; and whether attacking or blocking
+across a Wormhole is possible at all — are not decided by this section.
+Section 8.1 tracks a Unit's location as a real, current fact once the Unit
+is on the Field, but grants no action, on its own, that relocates it; these
+open questions are exactly the design space that gap leaves for a future
+rule or card.*
 
-//place-holder magic combat:  
+The combat mechanic below is a placeholder pending resolution of the open
+questions above:
+
 The active player MAY declare any number of their Ready Units as attackers,
 becoming Spent as they do; the non-active player MAY then declare any of their own
 Ready Units as blockers, one blocker or more per attacker. An attacking Unit that
@@ -404,24 +418,41 @@ the five zones (Section 3) a card is in.
 - A **Planet** is a node in the battlefield graph. Some Planets are on the
   graph from the start of the game (each challenger's Homeworld, Section
   8.2); others begin **Unexplored** — not yet on the graph at all — and are
-  only added to it by Discovery (Section 8.3).
+  only added to it by Discovery (Section 8.3). Section 8.8 fixes the
+  complete starting graph — each challenger's Homeworld and nothing else —
+  as part of general game setup.
 - A **Wormhole** is an edge in the battlefield graph, connecting exactly two
   Planets. Every Wormhole has a **Length**: a positive integer set when the
   Wormhole is opened (Section 8.3). Length fixes the Fount Point cost of the
   Discovery that opens the Wormhole (Section 8.3) and the Fount Point cost of
-  an Assault that uses it (Section 8.6). <strikethrough>This rulebook does not define a
-  general unit-movement system across Wormholes; a Unit's location is not
-  tracked by this section, and Length has no effect beyond the two costs just
-  named unless a future card or rule says otherwise.</strikethrough> 
-  //Wrong. Units are located at planets and move through wormholes between them. This supersedes the normal battlefield zone analogous to magic the gathering.  The graph is the battlefield.  
-  
+  an Assault that uses it (Section 8.6).
+- A Unit's **location** is a Planet: at every moment a Unit is on the Field
+  (Section 3), it is located at exactly one Planet on the battlefield graph.
+  Location is separate from zone — the Planet a Unit is located at has no
+  bearing on which zone (Section 3) it is in, just as standing on a Planet
+  has no bearing on any card's zone (above). A Unit's controller chooses
+  which Planet it is located at as they play it, and unlike a Generator
+  (Section 4.6), that choice is not limited to a Planet the controller
+  controls — a Unit MAY be played located at any Planet already on the
+  battlefield graph, whether Neutral or controlled by either challenger.
+  (This deployment freedom is provisional: Section 5.4 already carries open,
+  unresolved notes contemplating a costed wormhole-movement system, and
+  adopting one may narrow where a Unit may be deployed.) Once a Unit is on
+  the Field, its location changes only if some rule or card effect
+  explicitly moves it; this rulebook currently defines no action, on its
+  own, that relocates an already-deployed Unit — the actions that grant
+  movement are deliberately left to future rules or cards, a design space
+  Section 5.4's open notes already flag. Any such movement, however granted,
+  must still traverse a Wormhole that is not Closed (Section 8.5) and whose
+  Restrictions (Section 8.4) permit it. The graph is the battlefield: a
+  Unit's location on it, once the Unit is on the Field, is a real fact this
+  rulebook tracks and checks (Section 8.6), not a detail left untracked.
 - A Planet is **controlled** by whichever challenger most recently built a
   Generator on it or Captured it (Section 8.6); Discovering a Planet does not
   by itself grant control of it (Section 8.3). A Planet on the graph
   controlled by neither challenger is **Neutral**. Each challenger's
   Homeworld is controlled by them from the start of the game and can never
   become Neutral or change control (Section 8.2, Section 8.6).
-  //At the beginning of the game, the homeworlds are the only planets.  Planets are created for each game instance via the discovery mechanism.
 - Two Planets are **adjacent** if a Wormhole that is not Closed (Section 8.5)
   connects them directly. A **path** between two Planets is an unbroken
   sequence of adjacent Planets.
@@ -456,14 +487,19 @@ exactly one new Wormhole. To do so:
    destination is any Planet already on the graph that the active player does
    not control (Neutral, or controlled by the opponent).
 3. Choose the new Wormhole's Length: any positive integer. There is no fixed
-   table of lengths — a shorter Wormhole simply costs more, per the next step.
+   table of lengths — a shorter Wormhole simply costs more, per the next
+   step, since a shorter Wormhole is easier to traverse and therefore more
+   valuable.
 4. Pay the cost, from any combination of the active player's resource pools:
-   a Frontier Discovery costs Fount Points equal to the new Wormhole's
-   Length; a Contested Discovery costs twice that — Fount Points equal to
-   double the new Wormhole's Length. This is the toll aggression pays:
-   reaching into unclaimed space is the cheap path, reaching into space the
-   opponent already holds costs double.
-   //invert pairs like [1-9, 2-8, 3-7, 4-6, 5-5, 6-4, 7-3, 8-2, 9-1] to computer worm hole costs to lengths.  Shorter wormholes are easier to traverse and so are more valuable, and more expensive.
+   a Frontier Discovery costs Fount Points equal to 10 minus the new
+   Wormhole's Length, with a minimum of 1 Fount Point no matter how long the
+   Wormhole is; a Contested Discovery costs twice that — Fount Points equal
+   to double the Frontier cost for a Wormhole of that Length. This is the
+   toll ease of passage pays: the shorter and more easily-traveled a
+   Wormhole is, the more Fount Points it costs to open, while a long,
+   sprawling Wormhole is comparatively cheap to open; reaching into space
+   the opponent already holds still costs exactly double what reaching into
+   unclaimed space of the same Length would.
 5. The new Wormhole is added to the battlefield graph, connecting the origin
    and destination Planets, with no Restrictions (Section 8.4) and not
    Closed (Section 8.5). If the destination was Unexplored, it enters the
@@ -487,15 +523,22 @@ none (Section 8.3).
   challenger and their allies; the opposing challenger's Assaults (Section
   8.6) MAY NOT count that Wormhole as part of a path.
 - A **Unit-type Restriction** limits passage through a Wormhole to
-  permanents of a stated type (for example, "Biology-only"). This rulebook's
-  Assault action (Section 8.6) does not move a Unit and is therefore never
-  affected by a Unit-type Restriction; the Restriction exists for future
-  cards that let a Unit move or deploy between Planets, a design space this
-  rulebook leaves open.
+  permanents of a stated type (for example, "Biology-only"): a Unit whose
+  printed type does not match a Wormhole's Unit-type Restriction MAY NOT
+  move across that Wormhole, however that movement is granted (Section
+  8.1). This rulebook's Assault action (Section 8.6) does not move a Unit
+  and is therefore never affected by a Unit-type Restriction; the
+  Restriction instead governs Unit movement between Planets whenever a
+  future rule or card grants it (Section 8.1) — a real, current limit on
+  that movement, not a placeholder.
 
 A Directional, Team, or Unit-type Restriction on a Wormhole never changes
 that Wormhole's Length or its Closed/un-Closed state, and a Wormhole may
-carry more than one Restriction of different kinds at once.
+carry more than one Restriction of different kinds at once. Whether a
+Directional or Team Restriction also limits a future rule's or card's Unit
+movement (Section 8.1), and not only an Assault's path (Section 8.6), is an
+open question this section does not resolve; only the Unit-type Restriction
+is stated, by this rulebook, to govern such movement directly.
 
 ### 8.5 Wormhole Closure
 
@@ -516,8 +559,6 @@ always take. Once a Wormhole is Closed:
 
 ### 8.6 Positional Generators: Blockade & Capture
 
-//This is an ok start, but I think the units need to be at the planet, and then need to do damage equal to the number of generators to blockade, and then do that amount again to capture.
-
 Once per turn, during their Main Phase, under the same timing restriction as
 Discovery — Queue empty, their priority — a challenger MAY take one
 **Assault** action against a Planet they do not control, provided a path
@@ -527,28 +568,43 @@ challenger's team or this direction of travel. If more than one qualifying
 path exists, the assaulting challenger chooses which one to use. An Assault
 costs Fount Points, from any combination of the assaulting challenger's
 resource pools, equal to the sum of the Lengths of every Wormhole on the
-chosen path.
+chosen path. Paying this cost lets the assaulting challenger attempt to
+Blockade or Capture the target Planet; it does not by itself do either — the
+Unit-and-damage requirement below decides whether the attempt succeeds.
 
 An Assault does one of the following, the assaulting challenger's choice:
 
-- **Blockade** the target Planet: every Generator on it stops producing
-  Fount Points, starting with the Generation Phase (Section 5.2) of the
-  assaulted challenger's next turn, for as long as the Blockade lasts. A
-  Blockade lasts until the Planet's controller pays Fount Points, from any
-  combination of their own resource pools, equal to the Assault's original
-  cost, during their own Main Phase under the same timing restriction — the
-  only way to clear a Blockade.
+- **Blockade** the target Planet: this requires the assaulting challenger to
+  control one or more Units located (Section 8.1) at the target Planet at
+  the moment the Assault action is taken. Those Units' combined combat
+  strength (Section 9.1) is dealt as damage to the Planet — this rulebook's
+  Damage concept (Section 2) extended to a Planet, alongside Core Integrity
+  and a Unit, exactly as an attacking Unit deals its combat strength as
+  damage elsewhere in this rulebook (Section 12.1). If that damage totals at
+  least the number of Generators on the Planet, every Generator on it stops
+  producing Fount Points, starting with the Generation Phase (Section 5.2)
+  of the assaulted challenger's next turn, for as long as the Blockade
+  lasts; if the damage falls short, the Assault still costs its Fount Points
+  but the Planet is not Blockaded. A Blockade lasts until the Planet's
+  controller pays Fount Points, from any combination of their own resource
+  pools, equal to the Assault's original cost, during their own Main Phase
+  under the same timing restriction — the only way to clear a Blockade.
 - **Capture** the target Planet, if it is already Blockaded by the
-  assaulting challenger: control of the Planet passes to the assaulting
-  challenger immediately, and every Generator on it is destroyed — moved to
-  its owner's Wreck (Section 3). Capture is permanent: control does not
-  revert on its own, and a destroyed Generator must be replayed, on some
-  Planet its owner controls, like any other Generator, subject to the
-  one-Generator-per-turn limit (Section 5.3).
+  assaulting challenger: this requires meeting the same Unit-and-damage
+  requirement as Blockade, above, a second time — the assaulting
+  challenger's Units located at the target Planet dealing combined damage
+  totaling at least the Planet's Generator count once again. If they do,
+  control of the Planet passes to the assaulting challenger immediately, and
+  every Generator on it is destroyed — moved to its owner's Wreck (Section
+  3). If the damage falls short, the Assault still costs its Fount Points
+  but the Planet is not Captured and remains Blockaded. Capture is
+  permanent: control does not revert on its own, and a destroyed Generator
+  must be replayed, on some Planet its owner controls, like any other
+  Generator, subject to the one-Generator-per-turn limit (Section 5.3).
 
 A Homeworld MAY be Blockaded like any other Planet, but MAY NOT be Captured
 — Homeworlds never change control (Section 8.2).
-//As far as I read 07/28/26 4:00pm.
+
 ### 8.7 Worked Example: Discovery, Blockade, and Capture
 
 This example follows Reva (Homeworld: Solmere) and Toma (Homeworld: Kethis)
@@ -557,27 +613,40 @@ with no Wormhole between them.
 
 1. On an early turn, Reva takes a Discovery action: a Frontier Discovery from
    Solmere to an Unexplored Planet, naming it Ordinal Reach, with a Wormhole
-   of Length 2. Frontier Discovery costs Fount Points equal to Length, so
-   Reva pays 2. Ordinal Reach joins the battlefield graph as a Neutral
-   Planet, adjacent to Solmere.
+   of Length 2. A Frontier Discovery costs Fount Points equal to 10 minus the
+   new Wormhole's Length, so Reva pays 8. Ordinal Reach joins the battlefield
+   graph as a Neutral Planet, adjacent to Solmere.
 2. On a later turn, Reva plays a Generator and builds it on Ordinal Reach.
    Ordinal Reach is now controlled by Reva (Section 8.1).
-3. Toma, on their own Main Phase, takes an Assault action against Ordinal
-   Reach. The only path from a Planet Toma controls (Kethis) to Ordinal Reach
-   runs Kethis, through a Wormhole Toma had separately Discovered to Solmere,
-   to Solmere, then the Length-2 Wormhole on to Ordinal Reach; Toma pays
-   Fount Points equal to the sum of both Wormholes' Lengths on that path, and
-   chooses to Blockade rather than Capture. Ordinal Reach is now Blockaded:
-   starting with Reva's next Generation Phase, the Generator there stops
-   producing Fount Points, though it is not destroyed and Reva still
-   controls the Planet.
-4. Reva does not clear the Blockade (that would cost Fount Points equal to
-   Toma's Assault, paid during Reva's own Main Phase). On a following turn,
-   Toma takes a second Assault action along the same path, this time
-   choosing to Capture. Control of Ordinal Reach passes to Toma immediately,
-   and Reva's Generator there is destroyed, moved to Reva's Wreck. Reva may
-   later replay a Generator, but only on a Planet Reva still controls, and
-   only one per turn (Section 5.3).
+3. On an earlier turn, Toma had separately Discovered a Wormhole connecting
+   Kethis to Solmere. On a later turn, Toma plays a Unit with combat
+   strength 3, choosing to deploy it located at Ordinal Reach (Section 8.1)
+   — a Planet Toma does not control, which this rulebook's deployment rule
+   for a Unit allows even though Ordinal Reach is Reva's, unlike a Generator
+   (Section 4.6), which may only be built on a Planet its controller
+   already controls.
+4. Toma, on their own Main Phase, takes an Assault action against Ordinal
+   Reach. The only path from a Planet Toma controls (Kethis) to Ordinal
+   Reach runs Kethis, through the Wormhole to Solmere, then the Length-2
+   Wormhole on to Ordinal Reach; Toma pays Fount Points equal to the sum of
+   both Wormholes' Lengths on that path. Toma's Unit, already located at
+   Ordinal Reach (step 3), has combat strength 3 — at least Ordinal Reach's
+   single Generator — so Toma chooses to Blockade rather than Capture: the
+   Unit deals 3 damage to Ordinal Reach, meeting the 1-Generator requirement
+   (Section 8.6). Ordinal Reach is now Blockaded: starting with Reva's next
+   Generation Phase, the Generator there stops producing Fount Points,
+   though it is not destroyed and Reva still controls the Planet.
+5. Reva does not clear the Blockade (that would cost Fount Points equal to
+   Toma's Assault, paid during Reva's own Main Phase). Toma's Unit remains
+   located at Ordinal Reach throughout (Section 8.1: nothing in this
+   rulebook moves it away on its own). On a following turn, Toma takes a
+   second Assault action along the same path, paying the Fount Point cost
+   again, and this time chooses to Capture: the Unit again deals 3 damage to
+   Ordinal Reach, once more meeting the 1-Generator requirement (Section
+   8.6). Control of Ordinal Reach passes to Toma immediately, and Reva's
+   Generator there is destroyed, moved to Reva's Wreck. Reva may later
+   replay a Generator, but only on a Planet Reva still controls, and only
+   one per turn (Section 5.3).
 
 This confirms, on paper, that a Planet's Generator can be pressured without
 being destroyed (Blockade) and only lost outright through a second, further
