@@ -20,6 +20,7 @@ renders/** text eol=lf
 # Raw art images are binary — the text pin above would strip CRLF bytes
 # from JPEG data and corrupt them (it did, once).
 renders/art-raw/** binary
+renders/art-raw-phoenix/** binary
 renders/**/*.svg text eol=lf
 renders/**/*.md text eol=lf
 
