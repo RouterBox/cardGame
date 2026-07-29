@@ -323,3 +323,12 @@ Append-only requirements traceability log — one section per archived work item
 - AC2 [paraphrase]: That subsection states the active player gains one bonus Fount Point, of a single Fount they choose, during the Generation Phase, for every Planet beyond their Homeworld that they currently control. — PASS
 - AC3 [paraphrase]: Section 5.2 (Generation Phase) contains no line beginning with a `//` inline comment, and its prose references the new Graph-Driven Generation subsection by number. — PASS
 - AC4 [inferred] (held_out): design/rules.md's top-level section numbering remains strictly sequential starting at 1, Sections 1-3 and 6-10 are byte-identical to before this unit, and every pre-existing assertion in test/design-battlefield.test.js and test/design-rules.test.js still passes. — PASS
+
+## 2026-07-29-cardgame-conflict-phase-movement-rules-rewrite-rules-md-section-5-4-conflict-phase-to-define-unit-movement-and-location-aware-attacking-blocking-replacing-the-placeholder-combat-text.md
+
+- AC1 [paraphrase]: design/rules.md Section 5.4 contains no lines beginning with a `//` inline comment. — no receipt (escalated before receipt computation)
+- AC2 [paraphrase]: Section 5.4 states, in numbered rules prose, that the active player may take a Movement action during the Conflict Phase moving one of their Ready Units across a single Wormhole to an adjacent Planet. — no receipt (escalated before receipt computation)
+- AC3 [paraphrase]: Section 5.4 states that a Unit that moved this turn cannot be declared as an attacker this turn, unless a card or ability specifically says otherwise. — no receipt (escalated before receipt computation)
+- AC4 [paraphrase]: Section 5.4 states that a Unit may only be declared as a blocker against an attacker if that Unit occupies the same Planet as the Planet being attacked. — no receipt (escalated before receipt computation)
+- AC5 [inferred]: Section 5.4 states a Fount Point cost for the Movement action equal to the traversed Wormhole's Length. — no receipt (escalated before receipt computation)
+- AC6 [inferred] (held_out): Every pre-existing assertion in test/design-rules.test.js and test/design-combat.test.js continues to pass against the rewritten Section 5.4 text. — no receipt (escalated before receipt computation)
