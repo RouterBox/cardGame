@@ -266,7 +266,12 @@ async function runCli(argv = process.argv) {
   const altClient = useLive ? createMockLeonardoClient() : undefined;
   // Live output is quarantined in renders/cards-live/ so the committed mock
   // baseline in renders/cards-composited/ stays byte-identical (AC2).
-  await main(client, altClient, useLive ? LIVE_OUT_DIR : undefined);
+  // CARDGAME_LIVE_OUT_DIR exists for the --live WIRING test: it runs this
+  // exact path with a mocked transport, and without the redirect it
+  // overwrote every genuine Leonardo render with the mock's placeholder URL
+  // (discovered 2026-07-29 — the real art had to be dug back out of git).
+  const liveOutDir = process.env.CARDGAME_LIVE_OUT_DIR || LIVE_OUT_DIR;
+  await main(client, altClient, useLive ? liveOutDir : undefined);
 }
 
 if (require.main === module) {

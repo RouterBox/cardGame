@@ -4,7 +4,7 @@
 <rect class="frame-band" data-fount="Signal" data-color="cyan" x="0" y="0" width="750" height="1050" fill="#06b6d4"/>
 <rect class="name-slot" x="24" y="24" width="702" height="70" fill="#f5f1e6"/>
 <text x="40" y="69" font-family="Georgia, 'Times New Roman', serif" font-size="32" fill="#14151a" font-weight="bold"><tspan x="40" dy="0">Static Ambush</tspan></text>
-<image class="art-window" x="24" y="94" width="702" height="420" href="https://cdn.leonardo.ai/gen-1/image-0.png" preserveAspectRatio="xMidYMid slice"/>
+<image class="art-window" x="24" y="94" width="702" height="420" href="https://cdn.leonardo.ai/users/7c12f74b-d49c-4a7e-8a6c-b9be0604d294/generations/bfe44bf2-c8b7-411f-a25a-7fd5a54019fb/Default_Trading_card_illustration_for_Static_Ambush_Palette_Cy_0.jpg" preserveAspectRatio="xMidYMid slice"/>
 <rect class="type-line" x="24" y="514" width="702" height="50" fill="#e4dfd0"/>
 <text x="40" y="546" font-family="Georgia, 'Times New Roman', serif" font-size="20" fill="#3a3a3f"><tspan x="40" dy="0">Intelligence</tspan></text>
 <rect class="rules-text-box" x="24" y="564" width="702" height="462" fill="#faf8f2" stroke="#c9ccd3" stroke-width="2"/>

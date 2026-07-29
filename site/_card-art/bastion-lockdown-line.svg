@@ -4,7 +4,7 @@
 <rect class="frame-band" data-fount="Mass" data-color="ash-grey" x="0" y="0" width="750" height="1050" fill="#8a8d93"/>
 <rect class="name-slot" x="24" y="24" width="702" height="70" fill="#f5f1e6"/>
 <text x="40" y="69" font-family="Georgia, 'Times New Roman', serif" font-size="32" fill="#14151a" font-weight="bold"><tspan x="40" dy="0">Bastion Lockdown Line</tspan></text>
-<image class="art-window" x="24" y="94" width="702" height="420" href="https://cdn.leonardo.ai/gen-1/image-0.png" preserveAspectRatio="xMidYMid slice"/>
+<image class="art-window" x="24" y="94" width="702" height="420" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI3MDIiIGhlaWdodD0iNDIwIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJoc2woMTgyLCA0NSUsIDU1JSkiLz48dGV4dCB4PSI1MCUiIHk9IjUwJSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZG9taW5hbnQtYmFzZWxpbmU9Im1pZGRsZSIgZm9udC1mYW1pbHk9Ikdlb3JnaWEsICdUaW1lcyBOZXcgUm9tYW4nLCBzZXJpZiIgZm9udC1zaXplPSIyMiIgZmlsbD0iIzE0MTUxYSI+QmFzdGlvbiBMb2NrZG93biBMaW5lPC90ZXh0Pjwvc3ZnPg==" preserveAspectRatio="xMidYMid slice"/>
 <rect class="type-line" x="24" y="514" width="702" height="50" fill="#e4dfd0"/>
 <text x="40" y="546" font-family="Georgia, 'Times New Roman', serif" font-size="20" fill="#3a3a3f"><tspan x="40" dy="0">Materials — Permanent</tspan></text>
 <rect class="rules-text-box" x="24" y="564" width="702" height="462" fill="#faf8f2" stroke="#c9ccd3" stroke-width="2"/>

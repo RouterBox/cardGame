@@ -2,6 +2,8 @@
 const test = require('node:test');
 const assert = require('node:assert');
 const path = require('node:path');
+const fs = require('node:fs');
+const os = require('node:os');
 const { execFileSync } = require('node:child_process');
 
 const REPO_ROOT = path.join(__dirname, '..');
@@ -97,35 +99,40 @@ test('AC1: constructing a live client without LEONARDO_API_KEY set never happens
 });
 
 test('AC1: --live wiring sends one image-generation request per brief in design/cards/art-briefs.md', async () => {
-  await withEnv('LEONARDO_API_KEY', 'test-key-123', async () => {
-    const briefs = loadBriefs();
-    assert.ok(briefs.length > 0, 'expected at least one brief in design/cards/art-briefs.md');
+  // Redirect the run's output to a throwaway directory: this test runs the
+  // REAL --live path with a mock transport, and before this redirect it
+  // overwrote every genuine Leonardo render in renders/cards-live/ with the
+  // mock's placeholder URL (the real art had to be recovered from git).
+  const tmpOutDir = fs.mkdtempSync(path.join(os.tmpdir(), 'live-wiring-out-'));
+  process.env.CARDGAME_LIVE_OUT_DIR = tmpOutDir;
+  try {
+    await withEnv('LEONARDO_API_KEY', 'test-key-123', async () => {
+      const briefs = loadBriefs();
+      assert.ok(briefs.length > 0, 'expected at least one brief in design/cards/art-briefs.md');
 
-    const { calls, fetchImpl } = mockTransport();
-    const previousFetch = global.fetch;
-    global.fetch = fetchImpl;
-    try {
-      await assert.doesNotReject(
-        runCli(['node', SCRIPT_PATH, '--live']),
-        'expected runCli(["--live"]) to construct a LeonardoArtClient and complete using the mock transport'
+      const { calls, fetchImpl } = mockTransport();
+      const previousFetch = global.fetch;
+      global.fetch = fetchImpl;
+      try {
+        await assert.doesNotReject(
+          runCli(['node', SCRIPT_PATH, '--live']),
+          'expected runCli(["--live"]) to construct a LeonardoArtClient and complete using the mock transport'
+        );
+      } finally {
+        global.fetch = previousFetch;
+      }
+
+      const postCalls = calls.filter((c) => (c.options.method || '').toUpperCase() === 'POST');
+      assert.strictEqual(
+        postCalls.length,
+        briefs.length,
+        `expected exactly one image-generation request per brief (${briefs.length}), saw ${postCalls.length}`
       );
-    } finally {
-      global.fetch = previousFetch;
-    }
-
-    const postCalls = calls.filter((c) => (c.options.method || '').toUpperCase() === 'POST');
-    assert.strictEqual(
-      postCalls.length,
-      briefs.length,
-      `expected exactly one image-generation request per brief (${briefs.length}), saw ${postCalls.length}`
-    );
-  });
-
-  // The --live run above wrote mock-transport hrefs into
-  // renders/cards-composited/; restore the committed default-mock output so
-  // a subsequent AC2 check (and a plain `node --test` re-run) sees the
-  // normal, non-live state rather than residue from this test.
-  await compositeMain();
+    });
+  } finally {
+    delete process.env.CARDGAME_LIVE_OUT_DIR;
+    fs.rmSync(tmpOutDir, { recursive: true, force: true });
+  }
 });
 
 // ---------------------------------------------------------------------------
