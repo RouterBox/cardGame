@@ -3,13 +3,13 @@ const test = require('node:test');
 const assert = require('node:assert');
 const fs = require('node:fs');
 const path = require('node:path');
-const { parseSections, findSection, normalizeProse } = require('./helpers/markdown');
+const { parseSections, findSection, sectionText, normalizeProse } = require('./helpers/markdown');
 const { loadCardsFromFile } = require('../lib/parse-card-markdown');
 
 const RULES_PATH = path.join(__dirname, '..', 'design', 'rules.md');
 const DOC_PATH = path.join(__dirname, '..', 'design', 'playtest-full-game.md');
-const CARD_FILES = ['alpha-set.md', 'character-signatures.md', 'frontier-set.md'].map((f) =>
-  path.join(__dirname, '..', 'design', 'cards', f)
+const CARD_FILES = ['alpha-set.md', 'character-signatures.md', 'frontier-set.md', 'fount-economy-set.md'].map(
+  (f) => path.join(__dirname, '..', 'design', 'cards', f)
 );
 
 function readRules() {
@@ -119,12 +119,13 @@ test('AC1: procedure ends at an explicit win condition being reached', () => {
 
 // ---------------------------------------------------------------------------
 // AC2: every card named in the walkthrough exists by exact name in one of
-// design/cards/alpha-set.md, design/cards/character-signatures.md, or
-// design/cards/frontier-set.md. Card names are wrapped in backticks throughout the
-// document by convention, so every backtick-wrapped span must be a real card name.
+// design/cards/alpha-set.md, design/cards/character-signatures.md,
+// design/cards/frontier-set.md, or design/cards/fount-economy-set.md. Card names are
+// wrapped in backticks throughout the document by convention, so every backtick-wrapped
+// span must be a real card name.
 // ---------------------------------------------------------------------------
 
-test('AC2: every backtick-wrapped card name exists in one of the three permitted card files', () => {
+test('AC2: every backtick-wrapped card name exists in one of the four permitted card files', () => {
   const content = readDoc();
   const cited = extractCardNameCitations(content);
   assert.ok(cited.length >= 15, `expected at least 15 distinct card-name citations, found ${cited.length}`);
@@ -133,11 +134,11 @@ test('AC2: every backtick-wrapped card name exists in one of the three permitted
   assert.deepStrictEqual(
     missing,
     [],
-    `these backtick-wrapped names do not exist by exact name in alpha-set.md, character-signatures.md, or frontier-set.md: ${JSON.stringify(missing)}`
+    `these backtick-wrapped names do not exist by exact name in alpha-set.md, character-signatures.md, frontier-set.md, or fount-economy-set.md: ${JSON.stringify(missing)}`
   );
 });
 
-test('AC2: at least one card from each of the three permitted files is named', () => {
+test('AC2: at least one card from each of the four permitted files is named', () => {
   const content = readDoc();
   const cited = new Set(extractCardNameCitations(content));
   for (const file of CARD_FILES) {
@@ -192,6 +193,75 @@ test('AC3: cites the governing section for capture/win (8.6, 10.1, 10.2)', () =>
   assert.ok(/Section\s+8\.6\b/.test(content), 'expected a citation of Section 8.6 (Blockade & Capture)');
   assert.ok(/Section\s+10\.1\b/.test(content), 'expected a citation of Section 10.1 (Player Elimination)');
   assert.ok(/Section\s+10\.2\b/.test(content), 'expected a citation of Section 10.2 (Game End)');
+});
+
+// ---------------------------------------------------------------------------
+// AC1/AC2/AC3/AC4 (fount-economy-set.md refresh): "What This Playtest Surfaced" reflects
+// the current card pool, and a new Worked Example proves a Bloom-Fount economy reaching
+// an attacker.
+// ---------------------------------------------------------------------------
+
+function surfacedSectionText() {
+  const sections = parseSections(readDoc());
+  const text = sectionText(sections, /^What This Playtest Surfaced$/);
+  assert.ok(text, 'expected a "What This Playtest Surfaced" section to exist');
+  return text;
+}
+
+test('AC1: the Generator column names a real card for Bloom, Signal, and Tangle', () => {
+  const text = surfacedSectionText();
+  assert.ok(
+    /\|\s*Bloom\s*\|[^\n]*`Cradle-Root Colony`/.test(text),
+    'expected the Bloom row to name `Cradle-Root Colony` as its Generator'
+  );
+  assert.ok(
+    /\|\s*Signal\s*\|[^\n]*`Panoptic Relay Spire`/.test(text),
+    'expected the Signal row to name `Panoptic Relay Spire` as its Generator'
+  );
+  assert.ok(
+    /\|\s*Tangle\s*\|[^\n]*`Communion Waystone`/.test(text),
+    'expected the Tangle row to name `Communion Waystone` as its Generator'
+  );
+  assert.ok(!/\|\s*Bloom\s*\|\s*none\s*\|/.test(text), 'expected the Bloom row to no longer say "none"');
+  assert.ok(!/\|\s*Signal\s*\|\s*none\s*\|/.test(text), 'expected the Signal row to no longer say "none"');
+  assert.ok(!/\|\s*Tangle\s*\|\s*none\s*\|/.test(text), 'expected the Tangle row to no longer say "none"');
+});
+
+test('AC2: no longer claims Combat is unreachable with an unqualified "28 cards currently named"', () => {
+  const text = normalizeProse(surfacedSectionText());
+  assert.ok(
+    !/cannot occur through ordinary play with the 28 cards currently named across the three card files/i.test(
+      text
+    ),
+    'expected the old, unqualified claim about the 28 cards to be gone'
+  );
+  assert.ok(/fount-economy-set\.md/i.test(text), 'expected the section to reference fount-economy-set.md');
+});
+
+test('AC3: a new Worked Example demonstrates a Bloom-Fount economy reaching an attacker', () => {
+  const sections = parseSections(readDoc());
+  const text = sectionText(sections, /^Worked Example 3\b/);
+  assert.ok(text, 'expected a "Worked Example 3" subsection to exist');
+  assert.ok(/`Cradle-Root Colony`/.test(text), 'expected the example to name `Cradle-Root Colony`');
+  assert.ok(
+    /`Feral Bloomcaller`/.test(text) || /`Rootbind Thicket`/.test(text),
+    'expected the example to name `Feral Bloomcaller` or `Rootbind Thicket`'
+  );
+  assert.ok(/Section\s+5\.2\b/.test(text), 'expected a citation of Section 5.2 (Generation Phase)');
+  assert.ok(/Section\s+5\.4\b/.test(text), 'expected a citation of Section 5.4 (Conflict Phase)');
+  assert.ok(/attacker/i.test(text), 'expected the example to declare an attacker');
+});
+
+test('AC4: every card in Worked Example 3 exists in alpha-set.md or fount-economy-set.md', () => {
+  const sections = parseSections(readDoc());
+  const text = sectionText(sections, /^Worked Example 3\b/);
+  const cited = extractCardNameCitations(text);
+  const allowed = new Set([
+    ...loadCardsFromFile(path.join(__dirname, '..', 'design', 'cards', 'alpha-set.md')).map((c) => c.name),
+    ...loadCardsFromFile(path.join(__dirname, '..', 'design', 'cards', 'fount-economy-set.md')).map((c) => c.name),
+  ]);
+  const missing = cited.filter((name) => !allowed.has(name));
+  assert.deepStrictEqual(missing, [], `unexpected card names in Worked Example 3: ${JSON.stringify(missing)}`);
 });
 
 // ---------------------------------------------------------------------------
