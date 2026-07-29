@@ -27,3 +27,8 @@ renders/**/*.md text eol=lf
 site/** text eol=lf
 site/**/*.html text eol=lf
 site/**/*.md text eol=lf
+# Binary media never gets EOL conversion, no matter what tree it sits in.
+*.mp3 binary
+*.jpg binary
+*.jpeg binary
+*.png binary
