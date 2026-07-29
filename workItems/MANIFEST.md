@@ -402,3 +402,10 @@ Append-only requirements traceability log — one section per archived work item
 - AC3 [inferred]: The extracted matching function, evaluated directly in the test process against real titles from the current design shelf (e.g. a card title from alpha-set.md and one from wormhole-closure-cards.md), returns true for a substring query matching that title case-insensitively and false for a query matching none of its words. — PASS
 - AC4 [inferred] (held_out): The script wires the search input via an 'input' event listener that sets the visibility of each <li> in the index and hides a <section> entirely once none of its <li> items remain visible, without triggering a page navigation or reload. — PASS
 - AC5 [inferred] (held_out): No file other than tools/build-site.js and the new test/build-site-index-search.test.js is created or modified; sectionFor(), SECTION_ORDER, buildPageHtml, renderMarkdown, and cardArtImgHtml behavior are unchanged from before this unit, and every pre-existing assertion in test/build-site.test.js still passes. — PASS
+
+## 2026-07-29-cardgame-art-brief-coverage-warning-composite-card-art-js-warns-on-cards-with-no-matching-art-brief-instea.md
+
+- AC1 [user]: Running `node tools/composite-card-art.js` prints a warning line naming any card (loaded via loadAllCards()) that has no matching brief in design/cards/art-briefs.md, and the process still exits 0. — PASS
+- AC2 [paraphrase]: A card that DOES have a matching brief still produces its composited SVG in renders/cards-composited/ exactly as before — no change in output for already-covered cards. — PASS
+- AC3 [inferred]: The warning text names the specific card (e.g. 'no art brief for "Card Name"'), not just an aggregate count, so the gap is actionable without re-deriving the diff by hand. — PASS
+- AC4 [inferred] (held_out): Running the script twice in a row against the same fixture data produces the same set of warnings, in the same order, and byte-identical composited SVGs both times — the new check introduces no nondeterminism. — PASS
