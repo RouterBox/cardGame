@@ -1,4 +1,7 @@
-# Amaranth Expanse — Core Rules
+# Wreck Tangle — Core Rules
+
+*Wreck Tangle* is set in the Amaranth Expanse — the galaxy described in full
+in *design/world.md*.
 
 ## 1. Game Concepts
 
