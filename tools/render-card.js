@@ -293,14 +293,20 @@ function renderCardSvg(card, treatment = 'base') {
   const rulesTextBox = renderRulesTextBox(card.rulesText, card.flavorText);
   const costPips = renderCostPips(costItems);
 
-  // Borderless and extended-art both enlarge the Art Window so it bleeds
-  // behind other zones — paint it *before* those zones so their (still
-  // opaque) backgrounds stay on top and legible, per the Cohesion rule.
-  const artBleedsBehindContent = treatment === 'borderless' || treatment === 'extended-art';
-
-  const layers = artBleedsBehindContent
-    ? [frameBands, artWindow, nameSlot, typeLine, rulesTextBox, costPips]
-    : [frameBands, nameSlot, artWindow, typeLine, rulesTextBox, costPips];
+  // Extended-art enlarges the Art Window so it bleeds behind the Name Slot/
+  // Type Line — paint it *before* those zones so their (still opaque)
+  // backgrounds stay on top and legible, per the Cohesion rule. Borderless
+  // is the opposite: its full-bleed Art Window must sit *behind* the thin
+  // frame edge, not in front of it, or the edge is invisible — so the frame
+  // bands paint last (on top) there.
+  let layers;
+  if (treatment === 'borderless') {
+    layers = [artWindow, frameBands, nameSlot, typeLine, rulesTextBox, costPips];
+  } else if (treatment === 'extended-art') {
+    layers = [frameBands, artWindow, nameSlot, typeLine, rulesTextBox, costPips];
+  } else {
+    layers = [frameBands, nameSlot, artWindow, typeLine, rulesTextBox, costPips];
+  }
   if (hasStatsCorner) layers.push(renderStatsCorner(card.statsLine));
 
   return [
