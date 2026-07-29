@@ -31,8 +31,16 @@ function runFixture(body) {
     '',
   ].join('\n');
   fs.writeFileSync(fixturePath, fixtureSrc);
+  // Strip the parent test runner's coordination env: a nested `node --test`
+  // that inherits NODE_TEST_CONTEXT reports into the PARENT's protocol and
+  // exits 0 even when its tests fail, which silently inverts every
+  // "expected failure" assertion below when this file runs inside the full
+  // suite (it behaved correctly only when run standalone).
+  const env = { ...process.env };
+  delete env.NODE_TEST_CONTEXT;
+  delete env.NODE_OPTIONS;
   try {
-    return spawnSync(process.execPath, ['--test', fixturePath], { encoding: 'utf8' });
+    return spawnSync(process.execPath, ['--test', fixturePath], { encoding: 'utf8', env });
   } finally {
     fs.rmSync(tmpDir, { recursive: true, force: true });
   }
