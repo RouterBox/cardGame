@@ -6,7 +6,9 @@ const path = require('node:path');
 const { parseSections } = require('./helpers/markdown');
 
 const BRIEFS_PATH = path.join(__dirname, '..', 'design', 'cards', 'art-briefs.md');
-const CARDS_PATH = path.join(__dirname, '..', 'design', 'cards', 'alpha-set.md');
+const ALPHA_SET_PATH = path.join(__dirname, '..', 'design', 'cards', 'alpha-set.md');
+const FRONTIER_SET_PATH = path.join(__dirname, '..', 'design', 'cards', 'frontier-set.md');
+const CHARACTER_SIGNATURES_PATH = path.join(__dirname, '..', 'design', 'cards', 'character-signatures.md');
 const ANATOMY_PATH = path.join(__dirname, '..', 'design', 'cards', 'card-anatomy.md');
 
 const FOUNT_COLORS = {
@@ -45,8 +47,8 @@ function readFile(p) {
   return fs.readFileSync(p, 'utf8');
 }
 
-function listAlphaSetCards() {
-  const content = readFile(CARDS_PATH);
+function listCardsFromFile(cardsPath) {
+  const content = readFile(cardsPath);
   if (content === null) return [];
   const sections = parseSections(content);
   return sections
@@ -80,15 +82,18 @@ function briefBriefsSections() {
   return sections.filter((s) => s.level === 3);
 }
 
-const alphaSetCards = listAlphaSetCards();
-const cardsToCheck = alphaSetCards.length
-  ? alphaSetCards
-  : [{ title: '<no cards found — design/cards/alpha-set.md missing or empty>', body: '' }];
+const alphaSetCards = listCardsFromFile(ALPHA_SET_PATH);
+const frontierSetCards = listCardsFromFile(FRONTIER_SET_PATH);
+const characterSignatureCards = listCardsFromFile(CHARACTER_SIGNATURES_PATH);
+const allCards = [...alphaSetCards, ...frontierSetCards, ...characterSignatureCards];
+const cardsToCheck = allCards.length
+  ? allCards
+  : [{ title: '<no cards found — design/cards/alpha-set.md, frontier-set.md, or character-signatures.md missing or empty>', body: '' }];
 
 // ---------------------------------------------------------------------------
 // AC1: design/cards/art-briefs.md exists and contains exactly one brief
-// section for each of the 18 cards in design/cards/alpha-set.md, matched by
-// name/heading.
+// section for each card in alpha-set.md, frontier-set.md, and
+// character-signatures.md, matched by name/heading.
 // ---------------------------------------------------------------------------
 
 test('AC1: design/cards/art-briefs.md exists', () => {
@@ -99,25 +104,33 @@ test('AC1: alpha-set.md has exactly 18 cards (sanity check on fixture)', () => {
   assert.strictEqual(alphaSetCards.length, 18, `expected 18 cards in alpha-set.md, found ${alphaSetCards.length}`);
 });
 
-test('AC1: art-briefs.md has exactly one ### heading per alpha-set.md card, no duplicates, no extras', () => {
+test('AC1: frontier-set.md has exactly 5 cards (sanity check on fixture)', () => {
+  assert.strictEqual(frontierSetCards.length, 5, `expected 5 cards in frontier-set.md, found ${frontierSetCards.length}`);
+});
+
+test('AC1: character-signatures.md has exactly 5 cards (sanity check on fixture)', () => {
+  assert.strictEqual(characterSignatureCards.length, 5, `expected 5 cards in character-signatures.md, found ${characterSignatureCards.length}`);
+});
+
+test('AC1: art-briefs.md has exactly one "###" heading per card across alpha-set.md, frontier-set.md, and character-signatures.md, no duplicates, no extras', () => {
   const briefSections = briefBriefsSections();
   const briefTitles = briefSections.map((s) => s.title);
-  const alphaTitles = alphaSetCards.map((c) => c.title);
+  const cardTitles = allCards.map((c) => c.title);
 
   assert.strictEqual(
     briefTitles.length,
-    alphaTitles.length,
-    `expected exactly ${alphaTitles.length} "###" brief sections, found ${briefTitles.length}: [${briefTitles.join(', ')}]`
+    cardTitles.length,
+    `expected exactly ${cardTitles.length} "###" brief sections, found ${briefTitles.length}: [${briefTitles.join(', ')}]`
   );
   assert.strictEqual(
     new Set(briefTitles).size,
     briefTitles.length,
     `expected no duplicate brief headings, got [${briefTitles.join(', ')}]`
   );
-  for (const name of alphaTitles) {
+  for (const name of cardTitles) {
     assert.ok(
       briefTitles.includes(name),
-      `expected a brief section titled exactly "${name}" (verbatim match to alpha-set.md heading)`
+      `expected a brief section titled exactly "${name}" (verbatim match to card heading)`
     );
   }
 });
