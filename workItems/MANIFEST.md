@@ -332,3 +332,11 @@ Append-only requirements traceability log — one section per archived work item
 - AC4 [paraphrase]: Section 5.4 states that a Unit may only be declared as a blocker against an attacker if that Unit occupies the same Planet as the Planet being attacked. — no receipt (escalated before receipt computation)
 - AC5 [inferred]: Section 5.4 states a Fount Point cost for the Movement action equal to the traversed Wormhole's Length. — no receipt (escalated before receipt computation)
 - AC6 [inferred] (held_out): Every pre-existing assertion in test/design-rules.test.js and test/design-combat.test.js continues to pass against the rewritten Section 5.4 text. — no receipt (escalated before receipt computation)
+
+## 2026-07-29-cardgame-site-world-section-categorization-design-shelf-site-buries-lore-md-and-star-atlas-md-in-a-generic.md
+
+- AC1 [paraphrase]: sectionFor('design/lore.md') and sectionFor('design/star-atlas.md') both return 'World' — verified by running node tools/build-site.js and checking that the generated site/index.html's World section contains links to both lore.html and star-atlas.html alongside world.html. — PASS
+- AC2 [paraphrase]: No generated page for design/lore.md or design/star-atlas.md appears under an 'Other' section heading in site/index.html after this unit. — PASS
+- AC3 [inferred]: Every other existing section's membership (Races, Characters, Cards, Rules, Plans & Ideas) is unchanged from before this unit, and design/playtest-full-game.md and design/playtest-spatial.md remain classified as 'Other' (not moved by this unit). — PASS
+- AC4 [inferred] (held_out): Running node tools/build-site.js twice in a row produces byte-identical site/ output on both runs, matching the existing determinism guarantee already covered by test/build-site.test.js. — PASS
+- AC5 [inferred] (held_out): test/build-site.test.js is updated to assert the new World-section membership against the real, current design/lore.md and design/star-atlas.md files, and every pre-existing assertion in that file still passes. — PASS
