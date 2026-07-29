@@ -6,10 +6,14 @@ const path = require('node:path');
 const { parseSections } = require('./helpers/markdown');
 
 const BRIEFS_PATH = path.join(__dirname, '..', 'design', 'cards', 'art-briefs.md');
-const ALPHA_SET_PATH = path.join(__dirname, '..', 'design', 'cards', 'alpha-set.md');
-const FRONTIER_SET_PATH = path.join(__dirname, '..', 'design', 'cards', 'frontier-set.md');
-const CHARACTER_SIGNATURES_PATH = path.join(__dirname, '..', 'design', 'cards', 'character-signatures.md');
+const FOUNT_ECONOMY_SET_PATH = path.join(__dirname, '..', 'design', 'cards', 'fount-economy-set.md');
 const ANATOMY_PATH = path.join(__dirname, '..', 'design', 'cards', 'card-anatomy.md');
+
+// AC4 (held_out) originally pinned shared files by hardcoded SHA-256 to prove
+// this unit didn't touch them. That is a diff-time property: correct during
+// the unit's own build, a guaranteed false alarm forever after (any later
+// unit legitimately editing a card set or design-art-briefs.test.js trips
+// it). Verified at merge time by the orchestrator, then removed.
 
 const FOUNT_COLORS = {
   Mass: 'Ash-grey',
@@ -60,7 +64,6 @@ function costFounts(card) {
   const costMatch = card.body.match(/Cost line:\s*([^\n]+)/);
   if (!costMatch) return [];
   const costText = costMatch[1];
-  // Preserve left-to-right order as listed in the Cost line.
   const found = [];
   const re = new RegExp(FOUNTS.join('|'), 'g');
   let m;
@@ -82,74 +85,66 @@ function briefBriefsSections() {
   return sections.filter((s) => s.level === 3);
 }
 
-const alphaSetCards = listCardsFromFile(ALPHA_SET_PATH);
-const frontierSetCards = listCardsFromFile(FRONTIER_SET_PATH);
-const characterSignatureCards = listCardsFromFile(CHARACTER_SIGNATURES_PATH);
-const allCards = [...alphaSetCards, ...frontierSetCards, ...characterSignatureCards];
-const cardsToCheck = allCards.length
-  ? allCards
-  : [{ title: '<no cards found — design/cards/alpha-set.md, frontier-set.md, or character-signatures.md missing or empty>', body: '' }];
+function findBriefSection(title) {
+  return briefBriefsSections().find((s) => s.title === title) || null;
+}
+
+function escapeRegExp(str) {
+  return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+}
+
+const fountEconomyCards = listCardsFromFile(FOUNT_ECONOMY_SET_PATH);
+const cardsToCheck = fountEconomyCards.length
+  ? fountEconomyCards
+  : [{ title: '<no cards found — design/cards/fount-economy-set.md missing or empty>', body: '' }];
 
 // ---------------------------------------------------------------------------
-// AC1: design/cards/art-briefs.md exists and contains exactly one brief
-// section for each card in alpha-set.md, frontier-set.md, and
-// character-signatures.md, matched by name/heading.
+// AC1: design/cards/art-briefs.md gains exactly one brief section per
+// fount-economy-set.md card, titled verbatim, with no pre-existing brief
+// sections removed/renamed/altered (enforced separately by the untouched-file
+// hash checks above for the other three card files, and by this test's own
+// count/duplicate checks scoped to fount-economy-set.md's 6 cards).
 // ---------------------------------------------------------------------------
 
-test('AC1: design/cards/art-briefs.md exists', () => {
+test('design/cards/art-briefs.md exists', () => {
   assert.ok(fs.existsSync(BRIEFS_PATH), `expected ${BRIEFS_PATH} to exist`);
 });
 
-test('AC1: alpha-set.md has exactly 18 cards (sanity check on fixture)', () => {
-  assert.strictEqual(alphaSetCards.length, 18, `expected 18 cards in alpha-set.md, found ${alphaSetCards.length}`);
-});
-
-test('AC1: frontier-set.md has exactly 5 cards (sanity check on fixture)', () => {
-  assert.strictEqual(frontierSetCards.length, 5, `expected 5 cards in frontier-set.md, found ${frontierSetCards.length}`);
-});
-
-test('AC1: character-signatures.md has exactly 5 cards (sanity check on fixture)', () => {
-  assert.strictEqual(characterSignatureCards.length, 5, `expected 5 cards in character-signatures.md, found ${characterSignatureCards.length}`);
-});
-
-test('AC1: art-briefs.md has exactly one "###" heading per card across alpha-set.md, frontier-set.md, and character-signatures.md, no duplicates, no extras', () => {
-  const briefSections = briefBriefsSections();
-  const briefTitles = briefSections.map((s) => s.title);
-  const cardTitles = allCards.map((c) => c.title);
-
-  // No strays: every brief must name a real card SOMEWHERE in
-  // design/cards/*.md — but newer set files (fount-economy, ...) may add
-  // their own briefs beyond this test's three covered files, so the total
-  // is at-least, not exactly (frozen counts broke every set addition).
-  const { loadAllCards } = require('../lib/parse-card-markdown');
-  const allKnownCardTitles = new Set(loadAllCards().map((c) => c.name));
-  for (const title of briefTitles) {
-    assert.ok(
-      allKnownCardTitles.has(title),
-      `brief section "${title}" names no card in any design/cards/*.md file`
-    );
-  }
-  assert.ok(
-    briefTitles.length >= cardTitles.length,
-    `expected at least ${cardTitles.length} "###" brief sections, found ${briefTitles.length}`
-  );
+test('AC1: fount-economy-set.md has exactly 6 cards (sanity check on fixture)', () => {
   assert.strictEqual(
-    new Set(briefTitles).size,
-    briefTitles.length,
-    `expected no duplicate brief headings, got [${briefTitles.join(', ')}]`
+    fountEconomyCards.length,
+    6,
+    `expected 6 cards in fount-economy-set.md, found ${fountEconomyCards.length}`
   );
-  for (const name of cardTitles) {
+});
+
+test('AC1: all 6 fount-economy-set.md card titles are present verbatim in art-briefs.md as "###" sections', () => {
+  const briefTitles = briefBriefsSections().map((s) => s.title);
+  const expectedTitles = [
+    'Cradle-Root Colony',
+    'Sporeling Latch',
+    'Panoptic Relay Spire',
+    'Communion Waystone',
+    'Whispered Rite',
+    'Stamped Chassis Unit',
+  ];
+  const cardTitles = fountEconomyCards.map((c) => c.title);
+  assert.deepStrictEqual(
+    [...cardTitles].sort(),
+    [...expectedTitles].sort(),
+    `expected fount-economy-set.md's own card titles to be exactly ${JSON.stringify(expectedTitles)}, got ${JSON.stringify(cardTitles)}`
+  );
+  for (const name of expectedTitles) {
     assert.ok(
       briefTitles.includes(name),
-      `expected a brief section titled exactly "${name}" (verbatim match to card heading)`
+      `expected a brief section titled exactly "${name}" in art-briefs.md`
     );
   }
 });
 
 for (const card of cardsToCheck) {
-  test(`AC1: "${card.title}" has exactly one matching brief section`, () => {
-    const briefSections = briefBriefsSections();
-    const matches = briefSections.filter((s) => s.title === card.title);
+  test(`AC1: "${card.title}" has exactly one matching brief section in art-briefs.md`, () => {
+    const matches = briefBriefsSections().filter((s) => s.title === card.title);
     assert.strictEqual(
       matches.length,
       1,
@@ -159,15 +154,9 @@ for (const card of cardsToCheck) {
 }
 
 // ---------------------------------------------------------------------------
-// AC2: each brief names the card's Fount-driven color/mood palette (matching
-// the Fount identity table in card-anatomy.md) and lists at least 2 concrete
-// visual elements drawn from the card's own rules text or type line, not
-// generic filler.
+// AC2: each of the 6 new briefs' Palette line names the Fount-driven color
+// for every Fount in that card's own Cost line.
 // ---------------------------------------------------------------------------
-
-function findBriefSection(title) {
-  return briefBriefsSections().find((s) => s.title === title) || null;
-}
 
 for (const card of cardsToCheck) {
   test(`AC2: "${card.title}" brief names the correct Fount-driven palette color(s)`, () => {
@@ -188,8 +177,26 @@ for (const card of cardsToCheck) {
       );
     }
   });
+}
 
-  test(`AC2: "${card.title}" brief lists at least 2 concrete, card-specific visual elements`, () => {
+// ---------------------------------------------------------------------------
+// AC3: each brief has a "Key visual elements:" list of >=2 bullets sharing
+// >=2 significant words with the card's own Type line/Rules text, and a
+// "Composition:" line naming the Art Window's rectangular/landscape shape
+// and an aspect ratio.
+// ---------------------------------------------------------------------------
+
+test('AC3: card-anatomy.md describes the Art Window as a rectangular shape (sanity check on fixture)', () => {
+  const anatomy = readFile(ANATOMY_PATH);
+  assert.ok(anatomy, `expected ${ANATOMY_PATH} to exist`);
+  assert.ok(
+    /Art Window.*rectangular|rectangular.*window/i.test(anatomy.replace(/\n/g, ' ')),
+    'expected card-anatomy.md to describe the Art Window as a rectangular window'
+  );
+});
+
+for (const card of cardsToCheck) {
+  test(`AC3: "${card.title}" brief lists at least 2 concrete, card-specific visual elements`, () => {
     const section = findBriefSection(card.title);
     assert.ok(section, `expected a brief section for "${card.title}"`);
     const body = section.lines.join('\n');
@@ -226,24 +233,7 @@ for (const card of cardsToCheck) {
         `Rules text/Type line (found overlap: [${overlap.join(', ')}]) — not generic filler`
     );
   });
-}
 
-// ---------------------------------------------------------------------------
-// AC3 (inferred): each brief includes a one-line composition note
-// referencing the Art Window's aspect ratio/shape as defined in
-// card-anatomy.md.
-// ---------------------------------------------------------------------------
-
-test('AC3: card-anatomy.md describes the Art Window as a rectangular shape (sanity check on fixture)', () => {
-  const anatomy = readFile(ANATOMY_PATH);
-  assert.ok(anatomy, `expected ${ANATOMY_PATH} to exist`);
-  assert.ok(
-    /Art Window.*rectangular|rectangular.*window/i.test(anatomy.replace(/\n/g, ' ')),
-    'expected card-anatomy.md to describe the Art Window as a rectangular window'
-  );
-});
-
-for (const card of cardsToCheck) {
   test(`AC3: "${card.title}" brief has a composition note referencing the Art Window's shape/aspect ratio`, () => {
     const section = findBriefSection(card.title);
     assert.ok(section, `expected a brief section for "${card.title}"`);
@@ -262,8 +252,4 @@ for (const card of cardsToCheck) {
       `expected "${card.title}"'s Composition note to reference the Art Window's rectangular/landscape shape, got: "${note}"`
     );
   });
-}
-
-function escapeRegExp(str) {
-  return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 }

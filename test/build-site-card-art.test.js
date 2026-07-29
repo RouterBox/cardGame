@@ -22,12 +22,26 @@ const CARD_WITH_ART = {
   slug: 'line-fleet-trooper',
 };
 
-// "Cradle-Root Colony" (design/cards/fount-economy-set.md) has no brief in
-// design/cards/art-briefs.md and so no composited render exists for it.
-const CARD_WITHOUT_ART = {
-  pageRelPath: 'design/cards/fount-economy-set.html',
-  cardName: 'Cradle-Root Colony',
-};
+// Any card with no render in cards-live/ or cards-composited/ works here —
+// found dynamically, because hardcoding one (originally Cradle-Root Colony)
+// breaks the moment a later unit adds that card's art brief.
+const { loadCardsFromFile, slugify: slugifyCardName } = require('../lib/parse-card-markdown');
+function findCardWithoutArt() {
+  const cardsDir = path.join(REPO_ROOT, 'design', 'cards');
+  for (const file of fs.readdirSync(cardsDir).filter((f) => f.endsWith('.md')).sort()) {
+    for (const card of loadCardsFromFile(path.join(cardsDir, file))) {
+      const slug = slugifyCardName(card.name);
+      const hasArt = ['cards-live', 'cards-composited'].some((dir) =>
+        fs.existsSync(path.join(REPO_ROOT, 'renders', dir, `${slug}.svg`))
+      );
+      if (!hasArt) {
+        return { pageRelPath: `design/cards/${file.replace(/\.md$/, '.html')}`, cardName: card.name };
+      }
+    }
+  }
+  return null; // full art coverage — the no-art test below skips itself
+}
+const CARD_WITHOUT_ART = findCardWithoutArt();
 
 test('AC1: a card with a matching composited render gets an <img> whose resolved src is a byte-identical copy', () => {
   runBuild();
@@ -59,7 +73,7 @@ test('AC1: a card with a matching composited render gets an <img> whose resolved
   );
 });
 
-test('AC2: a card with no composited render gets no <img class="card-art">, and the build still exits 0', () => {
+test('AC2: a card with no composited render gets no <img class="card-art">, and the build still exits 0', { skip: CARD_WITHOUT_ART === null && 'every card currently has art' }, () => {
   runBuild();
 
   const pageAbsPath = path.join(SITE_DIR, ...CARD_WITHOUT_ART.pageRelPath.split('/'));
