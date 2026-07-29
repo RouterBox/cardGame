@@ -73,11 +73,11 @@ test('AC3: "software gate ruling" heading ends with [incorporated: cardgame-desi
   );
 });
 
-test('AC3: "use Jaina as the content backbone" heading remains untagged', () => {
+test('AC3: "use Jaina as the content backbone" heading ends with [incorporated: cardgame-jaina-card-sync-live]', () => {
   const idx = findSection(headings, /use jaina as the content backbone/i);
   assert.notStrictEqual(idx, -1, 'expected a heading containing "use Jaina as the content backbone"');
   assert.ok(
-    !headings[idx].title.includes('[incorporated:'),
-    `expected heading "${headings[idx].title}" to NOT contain an [incorporated: ...] tag`
+    headings[idx].title.endsWith('[incorporated: cardgame-jaina-card-sync-live]'),
+    `expected heading "${headings[idx].title}" to end with [incorporated: cardgame-jaina-card-sync-live]`
   );
 });
