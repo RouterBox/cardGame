@@ -1,8 +1,9 @@
 # Alt-Art Briefs
 
-This document gives one Alt-Art brief for each of three cards already
-briefed in `design/cards/art-briefs.md`, one card from Bloom, Mass, and
-Circuit. Per the Alt-Art layer defined in `design/cards/card-anatomy.md`'s
+This document gives one Alt-Art brief for each of five cards already
+briefed in `design/cards/art-briefs.md`, one card from each of the game's
+five Founts: Bloom, Mass, Circuit, Signal, and Tangle. Per the Alt-Art layer
+defined in `design/cards/card-anatomy.md`'s
 "The Layers" section, an Alt-Art brief swaps only the Art Window's
 illustration for an alternate illustration of the same subject matter —
 every other zone keeps the base treatment's placement and content exactly.
@@ -60,3 +61,36 @@ Composition: wide, landscape rectangle (~5:3), the large rectangular window
 beneath the Name Slot per card-anatomy.md — let the racked cores recede in
 rows toward the frame's center with the mechanical arm crossing the
 foreground.
+
+### Foreknowledge Cipher
+
+Palette: Cyan — the Signal's cool analytic watchfulness, this time caught
+mid-fabrication rather than mid-reading.
+Subject/Scene: Inside a dim fabrication vault lit only by scattered cyan
+sparks, engineers hammer a fresh lens into an unfinished device housing
+while calibration threads snap taut, the whole frame drawing its first
+flicker of light long before it is ever aimed at anything to read.
+Key visual elements:
+- An unfinished cipher-device housing still being assembled, not yet hovering or reading any cards
+- Engineers hammering a fresh lens into place as calibration threads snap taut around the frame
+- Panoptic Concord fabrication-vault architecture — layered, watchful, data-cathedral in feel, seen from within its own workshop rather than in the field
+Composition: wide, landscape rectangle (~5:3), the large rectangular window
+beneath the Name Slot per card-anatomy.md — center the half-built device
+with the engineers and calibration threads framing it left and right.
+
+### Unwritten Hour
+
+Palette: Violet — the Tangle's uncanny ritual mood, here settled into
+stillness rather than caught mid-working.
+Subject/Scene: Long after the ritual ends, a lone acolyte kneels in a
+candlelit archive vault, carefully re-shelving the same waypoint-tokens by
+hand while a faint violet afterglow still clings to each one, the queue now
+silent and fixed in order.
+Key visual elements:
+- The same waypoint-tokens from the working, now inert and being re-shelved by hand rather than actively reordering
+- A candlelit archive vault setting, emphasizing aftermath and record-keeping over an active casting
+- A faint violet afterglow still clinging to the tokens, the only trace the ritual ever happened
+Composition: wide, landscape rectangle (~5:3), the large rectangular window
+beneath the Name Slot per card-anatomy.md — keep the acolyte and shelved
+tokens low and central with the vault's candlelit darkness filling the
+frame's edges.
