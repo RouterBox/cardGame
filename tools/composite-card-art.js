@@ -18,6 +18,7 @@ const { slugify, splitIntoH3Sections } = require('../lib/parse-card-markdown');
 
 const REPO_ROOT = path.join(__dirname, '..');
 const BRIEFS_PATH = path.join(REPO_ROOT, 'design', 'cards', 'art-briefs.md');
+const ALT_BRIEFS_PATH = path.join(REPO_ROOT, 'design', 'cards', 'alt-art-briefs.md');
 const OUT_DIR = path.join(REPO_ROOT, 'renders', 'cards-composited');
 
 // ---------------------------------------------------------------------------
@@ -34,12 +35,23 @@ const ART_WINDOW_WIDTH = INNER_WIDTH;
 // Brief loading — design/cards/art-briefs.md, one brief per "###" section
 // ---------------------------------------------------------------------------
 
-function loadBriefs() {
-  const markdown = fs.readFileSync(BRIEFS_PATH, 'utf8');
+function loadBriefsFromFile(filePath) {
+  const markdown = fs.readFileSync(filePath, 'utf8');
   return splitIntoH3Sections(markdown).map((section) => ({
     cardName: section.title,
     text: section.lines.join('\n').trim(),
   }));
+}
+
+function loadBriefs() {
+  return loadBriefsFromFile(BRIEFS_PATH);
+}
+
+// alt-art-briefs.md is optional — main() only loads it when present, so a
+// checkout with no Alt-Art briefs yet still composites exactly as before.
+function loadAltBriefs() {
+  if (!fs.existsSync(ALT_BRIEFS_PATH)) return [];
+  return loadBriefsFromFile(ALT_BRIEFS_PATH);
 }
 
 // ---------------------------------------------------------------------------
@@ -139,9 +151,11 @@ async function withOutDirLock(fn) {
   }
 }
 
-async function main(client = createMockLeonardoClient()) {
+async function main(client = createMockLeonardoClient(), altClient = client) {
   const briefs = loadBriefs();
+  const altBriefs = loadAltBriefs();
   const cardsByName = new Map(loadAllCards().map((card) => [card.name, card]));
+  const baseBriefNames = new Set(briefs.map((brief) => brief.cardName));
 
   const tmpDir = `${OUT_DIR}.tmp-${process.pid}-${crypto.randomBytes(6).toString('hex')}`;
   fs.mkdirSync(tmpDir, { recursive: true });
@@ -158,6 +172,22 @@ async function main(client = createMockLeonardoClient()) {
       const compositedSvg = compositeArtWindow(baseSvg, href);
 
       fs.writeFileSync(path.join(tmpDir, `${slugify(card.name)}.svg`), compositedSvg, 'utf8');
+    }
+
+    for (const altBrief of altBriefs) {
+      const card = cardsByName.get(altBrief.cardName);
+      if (!card) {
+        throw new Error(`alt-art-briefs.md brief "${altBrief.cardName}" has no matching card in design/cards/*.md`);
+      }
+      if (!baseBriefNames.has(altBrief.cardName)) {
+        throw new Error(`alt-art-briefs.md brief "${altBrief.cardName}" has no base brief in design/cards/art-briefs.md`);
+      }
+
+      const baseSvg = renderCardSvg(card);
+      const { href } = await altClient.generateArt({ cardName: card.name, brief: altBrief.text });
+      const compositedSvg = compositeArtWindow(baseSvg, href);
+
+      fs.writeFileSync(path.join(tmpDir, `${slugify(card.name)}-alt.svg`), compositedSvg, 'utf8');
     }
 
     await withOutDirLock(async () => {
@@ -188,14 +218,22 @@ async function main(client = createMockLeonardoClient()) {
   }
 
   console.log(
-    `Composited ${briefs.length} card art window(s) into ${path.relative(REPO_ROOT, OUT_DIR).split(path.sep).join('/')}/`
+    `Composited ${briefs.length} card art window(s)` +
+      `${altBriefs.length ? ` plus ${altBriefs.length} alt-art window(s)` : ''}` +
+      ` into ${path.relative(REPO_ROOT, OUT_DIR).split(path.sep).join('/')}/`
   );
 }
 
 async function runCli(argv = process.argv) {
   const useLive = argv.includes('--live');
+  // --live only swaps the *base* pass onto the real Leonardo API — the
+  // already-shipped live-client contract is exactly one live request per
+  // design/cards/art-briefs.md brief. Alt-Art keeps using the deterministic
+  // mock client here; wiring alt-art into live generation is a separate,
+  // later decision, not part of this pipeline's live-client surface.
   const client = useLive ? require('../lib/leonardo-art-client').createLeonardoArtClient() : undefined;
-  await main(client);
+  const altClient = useLive ? createMockLeonardoClient() : undefined;
+  await main(client, altClient);
 }
 
 if (require.main === module) {
@@ -211,6 +249,7 @@ module.exports = {
   createMockLeonardoClient,
   compositeArtWindow,
   loadBriefs,
+  loadAltBriefs,
   ART_WINDOW_X,
   ART_WINDOW_Y,
   ART_WINDOW_WIDTH,
