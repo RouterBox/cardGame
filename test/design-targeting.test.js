@@ -56,13 +56,20 @@ const EXPECTED_TOP_LEVEL_TITLES = [
   '13. Targeting',
 ];
 
+// (amended by cardgame-keyword-abilities-rules: later units append further
+// numbered sections — assert the fixed PREFIX, not the exact full list, the
+// same forward-compatible shape design-combat.test.js already uses.)
 test('AC1: rules.md appends "13. Targeting" immediately after "12. Combat Resolution", with every earlier section\'s number and title unchanged', () => {
   const sections = topLevelSections(readRules());
   const titles = sections.map((s) => s.title);
+  assert.ok(
+    titles.length >= EXPECTED_TOP_LEVEL_TITLES.length,
+    `expected at least ${EXPECTED_TOP_LEVEL_TITLES.length} top-level sections, got ${titles.length}`
+  );
   assert.deepStrictEqual(
-    titles,
+    titles.slice(0, EXPECTED_TOP_LEVEL_TITLES.length),
     EXPECTED_TOP_LEVEL_TITLES,
-    `expected exactly ${JSON.stringify(EXPECTED_TOP_LEVEL_TITLES)}, got ${JSON.stringify(titles)}`
+    `expected the first sections to be exactly ${JSON.stringify(EXPECTED_TOP_LEVEL_TITLES)}, got ${JSON.stringify(titles)}`
   );
 });
 
