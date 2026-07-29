@@ -35,8 +35,13 @@ test('AC1: a card with a matching composited render gets an <img> whose resolved
   const pageAbsPath = path.join(SITE_DIR, ...CARD_WITH_ART.pageRelPath.split('/'));
   const pageHtml = fs.readFileSync(pageAbsPath, 'utf8');
 
-  const imgMatch = pageHtml.match(/<img class="card-art" src="([^"]+)"[^>]*>/);
-  assert.ok(imgMatch, 'expected an <img class="card-art"> tag in the page');
+  // Match THIS card's img specifically — the page carries one card-art img
+  // per rendered card, and the first img on the page belongs to whichever
+  // card section happens to come first, not necessarily this one.
+  const imgMatch = pageHtml.match(
+    new RegExp(`<img class="card-art" src="([^"]*${CARD_WITH_ART.slug}\\.svg)"[^>]*>`)
+  );
+  assert.ok(imgMatch, `expected an <img class="card-art"> tag for ${CARD_WITH_ART.slug} in the page`);
 
   const resolvedImgAbsPath = path.resolve(path.dirname(pageAbsPath), imgMatch[1]);
   assert.ok(fs.existsSync(resolvedImgAbsPath), `expected ${resolvedImgAbsPath} to exist`);
