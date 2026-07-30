@@ -6,7 +6,7 @@
 - title: Migrate the 3 remaining Jaina sync tools onto the existing runDryRunSyncCli helper
 - project: cardgame
 - completed: 2026-07-30
-- outcome: escalated
+- outcome: merged (orchestrator recovery: NEEDS_WORK misattributed the RED-test artifact to the builder; unit spec cannot forbid the pipeline's own test creation)
 - start_sha: c054910a17399263b6c859fa8306cfec0a1ea19c
 - end_sha: c054910a17399263b6c859fa8306cfec0a1ea19c
 
