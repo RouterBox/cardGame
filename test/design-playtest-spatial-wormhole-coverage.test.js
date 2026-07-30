@@ -270,7 +270,9 @@ test('AC4: "What to watch for" section is unchanged (no new bullet added)', () =
 
 test('AC5: node tools/build-site.js regenerates playtest-spatial.html with all 8 newly narrated card names', () => {
   execFileSync(process.execPath, [BUILD_SCRIPT], { cwd: REPO_ROOT, stdio: 'pipe' });
-  const html = readFile(SITE_HTML_PATH);
+  // The site generator HTML-escapes apostrophes (&#39;), so card names like
+  // "Pilgrim's Right of Way" never appear literally — unescape before matching.
+  const html = readFile(SITE_HTML_PATH).replace(/&#39;|&apos;/g, "'");
   for (const card of [...RESTRICTION_CARDS, ...CLOSURE_CARDS]) {
     assert.ok(html.includes(card.name), `expected site/design/playtest-spatial.html to contain "${card.name}"`);
   }
