@@ -85,6 +85,9 @@ re-implementing its own parsing):
 - **Character Signatures, Wave 2** —
   `design/cards/character-signatures-wave-2.md` — 5 cards. A second named
   character per race, distinct from wave 1's.
+- **Character Signatures, Wave 3** —
+  `design/cards/character-signatures-wave-3.md` — 5 cards. A third named
+  character per race, distinct from waves 1 and 2's.
 - **Spatial Race Identity Set** — `design/cards/spatial-race-identity-set.md`
   — 3 cards. Race identity combined with the wormhole/battlefield graph.
 - **Spatial Race Identity Set, Wave 2** —
@@ -101,7 +104,7 @@ re-implementing its own parsing):
   Closes the Bloom/Signal/Tangle Generator gap `design/playtest-full-game.md`
   surfaced.
 
-**Total: 54 named cards across 9 files.** This list is not a hand-typed
+**Total: 59 named cards across 10 files.** This list is not a hand-typed
 count: `test/design-readiness.test.js` re-derives it from
 `design/cards/*.md` via `lib/parse-card-markdown.js` on every test run and
 fails if any set on disk is missing from this section, so it cannot go
