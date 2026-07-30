@@ -550,3 +550,11 @@ Append-only requirements traceability log — one section per archived work item
 - AC3 [inferred]: Section 4's 'Known gap' bullet no longer contains the claim that 3 spatial-race-identity-set.md cards or 5 wormhole-closure-cards.md cards lack a matching art-brief entry — no receipt (escalated before receipt computation)
 - AC4 [inferred] (held_out): Section 3's card-set inventory and Section 6's Open Gaps list are present in the file byte-for-byte unchanged — no receipt (escalated before receipt computation)
 - AC5 [paraphrase]: test/design-readiness.test.js's existing assertions still pass unmodified — no receipt (escalated before receipt computation)
+
+## 2026-07-30-cardgame-art-briefs-spatial-race-identity-wave-2-write-the-missing-art-briefs-for-spatial-race-identity-se.md
+
+- AC1 [inferred]: design/cards/art-briefs.md gains exactly one '###' section per card, titled 'Bloom Fount' and 'Circuit Fount' verbatim, appended after the existing content with no pre-existing section touched — no receipt (escalated before receipt computation)
+- AC2 [inferred]: Bloom Fount's Palette line names Green (card-anatomy.md's Frame/Border color for the Bloom) and Circuit Fount's Palette line names Copper (the Circuit's color), each explicitly naming its Fount — no receipt (escalated before receipt computation)
+- AC3 [paraphrase] (held_out): Each brief's Subject/Scene names the card's own race (Mireth Bloom for Bloom Fount, Wrought Assembly for Circuit Fount) and references that card's specific printed mechanic (Bloomfront Expansion's build-on-uncontrolled-Planet exception / the Discovery-triggered cost reduction), and each includes a Key visual elements list of at least 3 bullet points — no receipt (escalated before receipt computation)
+- AC4 [paraphrase]: Each brief's Composition line cites the Art Window as a wide landscape rectangle with an aspect ratio matching the ~5:3 precedent used by every prior art-briefs.md entry — no receipt (escalated before receipt computation)
+- AC5 [inferred]: Running tools/composite-card-art.js against design/cards/spatial-race-identity-set-wave-2.md's cards no longer prints a 'no art brief for "<name>"' warning for Bloom Fount or Circuit Fount — no receipt (escalated before receipt computation)
