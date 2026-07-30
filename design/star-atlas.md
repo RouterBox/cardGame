@@ -6,7 +6,9 @@ every era of history has been written in the abstract. This atlas fixes
 five names to the map: one Homeworld per civilization, plus a handful of
 frontier and contested worlds that belong to none of them. Nothing here
 changes a rule, a race's identity, or a page of lore; it only gives the
-places those documents already imply somewhere to point to by name.
+places those documents already imply somewhere to point to by name. This
+atlas belongs to the card game *Wreck Tangle* — the Amaranth Expanse
+remains the name of the setting it depicts, not the game.
 
 ## Homeworlds
 
