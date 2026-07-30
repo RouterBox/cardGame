@@ -598,3 +598,11 @@ Append-only requirements traceability log — one section per archived work item
 - AC3 [paraphrase]: Each of the four parser modules' own existing test suite passes unmodified against the refactored code — no receipt (escalated before receipt computation)
 - AC4 [inferred] (held_out): Calling loadAllRaces(), loadAllWorlds(), loadAllEras(), and loadAllFounts() against the real design/ files after the refactor returns the same records in the same order with the same field values as calling them did before the refactor — no receipt (escalated before receipt computation)
 - AC5 [inferred]: lib/markdown-sections.js has its own direct unit test exercising splitIntoH2Sections, splitIntoH3SectionsWithParent, and extractParagraph independent of any of the four domain parsers — no receipt (escalated before receipt computation)
+
+## 2026-07-30-cardgame-design-readiness-gap3-jaina-sync-fix-fix-design-readiness-md-s-stale-jaina-wired-up-for-card-reco.md
+
+- AC1 [inferred]: design/DESIGN-READINESS.md Section 5's tooling list contains one new bullet each for tools/sync-characters-to-jaina.js, tools/sync-races-to-jaina.js, tools/sync-star-atlas-to-jaina.js, and tools/sync-lore-eras-to-jaina.js, alongside the existing sync-cards-to-jaina.js bullet — no receipt (escalated before receipt computation)
+- AC2 [inferred]: Section 6 item 3 no longer contains the sentence claiming characters, races, world/lore, or the star atlas 'remain markdown-only prose with no Jaina schema or sync path yet' — no receipt (escalated before receipt computation)
+- AC3 [paraphrase] (held_out): Section 6 item 3's rewritten text names design/world.md's Cosmology/Founts content as still lacking a sync tool, and references the founts sync as in-flight rather than shipped — no receipt (escalated before receipt computation)
+- AC4 [inferred]: Section 4's art-brief coverage bullets and Section 6 item 1's wormhole/art-brief text are present byte-for-byte unchanged — no receipt (escalated before receipt computation)
+- AC5 [paraphrase]: test/design-readiness.test.js and test/design-readiness-gap2-resolved.test.js's existing assertions pass unmodified against the edited file — no receipt (escalated before receipt computation)
