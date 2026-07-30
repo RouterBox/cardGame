@@ -542,3 +542,11 @@ Append-only requirements traceability log — one section per archived work item
 - AC3 [inferred] (held_out): Each record's domain field matches the word(s) after the em-dash in that Fount's own heading (The Mass -> 'materials', The Bloom -> 'biology', The Signal -> 'intelligence', The Circuit -> 'technology', The Tangle -> 'magic'), and description is non-empty and does not contain the literal heading text of any other Fount (no bleed-through from an adjacent section) — PASS
 - AC4 [inferred]: Without --dry-run, the script makes no Jaina API calls, no network access, and no credentials are required by node --test — it prints a message that live sync is not yet implemented for Founts and exits 1 — PASS
 - AC5 [inferred]: Running the dry-run twice in a row against unchanged markdown produces byte-identical stdout output (deterministic: no timestamps, no randomness, stable record ordering matching the section's own heading order) — PASS
+
+## 2026-07-30-cardgame-design-readiness-section4-art-briefs-coverage-fix-fix-design-readiness-md-section-4-s-stale-art-b.md
+
+- AC1 [inferred]: design/DESIGN-READINESS.md Section 4's art-briefs.md coverage bullet lists 'wormhole-closure-cards.md' and 'spatial-race-identity-set.md' alongside the existing 6 file names — no receipt (escalated before receipt computation)
+- AC2 [inferred]: That same bullet states the total art-brief section count as 52, not 44 — no receipt (escalated before receipt computation)
+- AC3 [inferred]: Section 4's 'Known gap' bullet no longer contains the claim that 3 spatial-race-identity-set.md cards or 5 wormhole-closure-cards.md cards lack a matching art-brief entry — no receipt (escalated before receipt computation)
+- AC4 [inferred] (held_out): Section 3's card-set inventory and Section 6's Open Gaps list are present in the file byte-for-byte unchanged — no receipt (escalated before receipt computation)
+- AC5 [paraphrase]: test/design-readiness.test.js's existing assertions still pass unmodified — no receipt (escalated before receipt computation)
