@@ -785,3 +785,44 @@ Composition: wide, landscape rectangle (~5:3), the large rectangular window
 beneath the Name Slot per card-anatomy.md — center the single pulse at
 the moment of detonation, the chokepoint's graph connection fading at the
 frame's edge.
+
+## Spatial Race Identity Set — Wormholes as Race Identity
+
+### Preemptive Survey
+
+Palette: Cyan — the Signal's cool analytic watchfulness, arriving before the Discovery it prices.
+Subject/Scene: A Panoptic Concord scout array angles toward an unclaimed system, its cyan sensor-light already tracing the ground a Discovery hasn't reached yet.
+Key visual elements:
+- A Discovery action just beginning at the frame's edge — unclaimed, unmapped space not yet reached
+- A ledger or meter of Fount Points shown marked down, cheaper than the Section 8.3 cost it would otherwise pay
+- Panoptic Concord scout architecture, cyan and watchful, reading the destination before the Fount is ever spent
+Composition: wide, landscape rectangle (~5:3), the large rectangular
+window beneath the Name Slot per card-anatomy.md — angle the scout array
+toward the unclaimed space so the eye leads outward, into the Discovery
+still to come.
+
+### Unbound Passage
+
+Palette: Violet — the Tangle's uncanny ritual mood, unmaking a Restriction rather than fighting past it.
+Subject/Scene: A Starweave Communion ritualist stands at a Wormhole's mouth, violet threads dissolving the Directional and Team Restriction markers carved into the passage as an Assault begins to cross.
+Key visual elements:
+- A Wormhole shown with its Directional and Team Restriction markers visibly dissolving rather than breaking
+- An Assault already mid-crossing through the passage, its path unobstructed where the Restriction used to bar it
+- Violet ritual threads unwinding from the ritualist's hands toward the passage, patient rather than forceful
+Composition: wide, landscape rectangle (~5:3), the large rectangular
+window beneath the Name Slot per card-anatomy.md — center the Wormhole's
+mouth with the dissolving Restriction markers and the crossing Assault
+sharing the frame.
+
+### Chokepoint Garrison
+
+Palette: Ash-grey — the Mass's industrial endurance, welded onto a passage rather than a wall.
+Subject/Scene: A Cindral Reach garrison crew welds a Fortification plate onto a Wormhole's endpoint at a Planet they control, the passage unable to undergo Closure while the plate holds.
+Key visual elements:
+- A Fortification plate being welded directly onto a Wormhole endpoint, ash-grey Materials work still sparking
+- The controlled Planet anchoring that endpoint shown at the frame's edge, the source of the garrison's claim
+- The passage's Closure visibly refused — a sealed, holding structure rather than a passage under threat
+Composition: wide, landscape rectangle (~5:3), the large rectangular
+window beneath the Name Slot per card-anatomy.md — keep the welded
+endpoint low and central with the controlled Planet anchoring one side of
+the frame.
