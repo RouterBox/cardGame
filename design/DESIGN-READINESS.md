@@ -166,14 +166,18 @@ none implements game rules or a playable client:
 
 ## 6. Open Gaps & Unresolved Questions
 
-1. **Art-brief coverage has an 8-card hole.** None of the 3 cards in
-   `design/cards/spatial-race-identity-set.md` or the 5 cards in
-   `design/cards/wormhole-closure-cards.md` have a matching entry in
-   `design/cards/art-briefs.md`, so `tools/composite-card-art.js` cannot
-   generate art for them — confirmed live by that tool's own
-   `no art brief for "<name>"` warning (see
-   `workItems/2026-07-29-cardgame-art-brief-coverage-warning-*.md`). No
-   unit has yet been proposed to close it.
+1. **Resolved — art-brief coverage for the wormhole-closure and
+   spatial-race-identity sets is complete.** All 8 cards this gap used to
+   track now have a matching entry in `design/cards/art-briefs.md`: the 5
+   in `design/cards/wormhole-closure-cards.md`, closed by
+   `cardgame-art-briefs-wormhole-closure` (see
+   `workItems/2026-07-30-cardgame-art-briefs-wormhole-closure-*.md`), and
+   the 3 in `design/cards/spatial-race-identity-set.md` — Preemptive
+   Survey, Unbound Passage, Chokepoint Garrison — closed by
+   `cardgame-art-briefs-spatial-race-identity` (see
+   `workItems/2026-07-30-cardgame-art-briefs-spatial-race-identity-*.md`).
+   `tools/composite-card-art.js` no longer prints a
+   `no art brief for "<name>"` warning for any of them.
 
 **Resolved — the Spatial Race Identity Set now speaks for all 5 races.**
 `design/cards/spatial-race-identity-set.md` grounded only the Panoptic
