@@ -469,3 +469,12 @@ Append-only requirements traceability log — one section per archived work item
 - AC3 [inferred]: tools/composite-card-art.js contains no local withOutDirLock function declaration and instead requires the lock helper from lib/fs-lock.js; test/composite-card-art.test.js passes unmodified — PASS
 - AC4 [inferred] (held_out): A new test/fs-lock-dedup.test.js exercises lib/fs-lock.js directly: a second concurrent acquire attempt is excluded until the first releases, and a lock left behind by a killed process (mtime older than the stale threshold) is automatically reclaimed rather than hanging — PASS
 - AC5 [paraphrase]: Full `node --test` run is green (pre-existing suite plus the new fs-lock tests) — PASS
+
+## 2026-07-30-cardgame-playtest-decklist-refresh-full-game-playtest-decklists-still-build-from-cards-the-file-itself-now.md
+
+- AC1 [inferred]: Deck A and Deck B in Step 1 each name at least one card from design/cards/fount-economy-set.md — PASS
+- AC2 [inferred]: No line in either decklist in Step 1 is annotated 'dead' or 'can never be paid' — PASS
+- AC3 [inferred]: The 'Only 10 of the 28 cards currently named across the three card files can ever be paid for' sentence is replaced with a count consistent with the current pool across alpha-set.md, frontier-set.md, character-signatures.md, and fount-economy-set.md — PASS
+- AC4 [inferred]: Both decklists still total exactly 40 cards with no more than 3 copies of any one card Name (Section 11.1, Section 11.2) — PASS
+- AC5 [inferred] (held_out): test/design-full-game-playtest.test.js parses both decklists from the document and asserts at least one payable card per Fount is present in at least one deck — PASS
+- AC6 [inferred] (held_out): No file other than design/playtest-full-game.md, site/design/playtest-full-game.html, and test/design-full-game-playtest.test.js is modified — PASS
