@@ -3,10 +3,10 @@
 This is a step-by-step, on-paper procedure for two humans, "Ada" and "Kestrel," to build
 decks, set up, and play one complete game under *design/rules.md*, from deck construction
 through an explicit win, using ordinary physical materials instead of a computer or
-software prototype. Every card named in the numbered Procedure below exists by exact name
-in *design/cards/alpha-set.md*, *design/cards/character-signatures.md*, or
-*design/cards/frontier-set.md*; the Worked Examples section later in this file also names
-cards from *design/cards/fount-economy-set.md*. Every major step cites the exact
+software prototype. Every card named in the numbered Procedure below, including the Worked
+Examples section later in this file, exists by exact name in *design/cards/alpha-set.md*,
+*design/cards/character-signatures.md*, *design/cards/frontier-set.md*, or
+*design/cards/fount-economy-set.md*. Every major step cites the exact
 rules.md section that
 governs it, so either playtester can stop and check the physical action just taken against
 the rule text itself. This procedure builds on the spatial-layer procedure already written
@@ -15,9 +15,8 @@ battlefield graph, this one plays every phase of an entire game, from an empty t
 declared winner.
 
 Read "What This Playtest Surfaced" at the end before running this procedure — it explains,
-with exact numbers, why both decks below draw only from the Mass and Circuit Founts, and
-why Combat and Capture are demonstrated separately as Worked Examples rather than inside
-the numbered Procedure itself.
+with exact numbers, why Combat and Capture are demonstrated separately as Worked Examples
+rather than inside the numbered Procedure itself.
 
 ## Materials
 
@@ -42,12 +41,11 @@ the numbered Procedure itself.
 
 ## Procedure
 
-1. **Construct two legal 40-card decks (Section 11).** Only 10 of the 28 cards currently
-   named across the three card files can ever be paid for — see "What This Playtest
-   Surfaced" for exactly why. Both decks below lean on those 10 as far as legally possible
-   (Section 11.2 caps any one name at 3 copies, so 10 names x 3 = 30 payable slots) and
-   fill the remaining 10 slots, required by Section 11.1's 40-card minimum, with cards
-   from the dead Founts. Build these two decks exactly as listed:
+1. **Construct two legal 40-card decks (Section 11).** All 34 of the cards currently
+   named across the four card files — alpha-set.md, frontier-set.md,
+   character-signatures.md, and fount-economy-set.md — can now be paid for: every Fount
+   (Mass, Bloom, Signal, Circuit, Tangle) has a Generator (Section 5.2), so no card below
+   is uncastable. Build these two decks exactly as listed:
 
    **Deck A ("Ada")** — 40 cards:
    - 3x `Salvage-Wrought Bastion` (2 Mass, Materials — Permanent, Generator)
@@ -56,15 +54,16 @@ the numbered Procedure itself.
    - 3x `Kordelia Vess, Salvage-Marshal of the Cinder Yards` (3 Mass, Materials —
      Permanent, Generator)
    - 3x `Bastion Reclamation Crew` (2 Mass, Materials — Permanent)
-   - 3x `Sporeknit Warden` (3 Bloom — dead, no Bloom Generator exists)
-   - 3x `Feral Bloomcaller` (2 Bloom — dead)
-   - 3x `Rootbind Thicket` (2 Bloom — dead)
-   - 3x `Oathbreaker's Toll` (2 Tangle — dead, no Tangle Generator exists)
-   - 3x `Echo Recall` (2 Tangle — dead)
-   - 3x `Whispered Contract` (1 Signal — dead, no Signal Generator exists)
-   - 3x `Foreknowledge Cipher` (2 Signal — dead)
-   - 3x `Wrought-Bloom Graft` (1 Mass, 1 Bloom — dead, the Bloom share can never be paid)
-   - 1x `Mother-Thread Ilvex, First Voice of the Sprawl` (4 Bloom — dead)
+   - 3x `Cradle-Root Colony` (2 Bloom, Biology — Permanent, Generator)
+   - 3x `Feral Bloomcaller` (2 Bloom)
+   - 3x `Rootbind Thicket` (2 Bloom)
+   - 3x `Communion Waystone` (1 Tangle, 1 Mass, Magic Materials — Permanent, Generator)
+   - 3x `Echo Recall` (2 Tangle)
+   - 3x `Panoptic Relay Spire` (1 Signal, 1 Circuit, Intelligence Technology —
+     Permanent, Generator)
+   - 3x `Foreknowledge Cipher` (2 Signal)
+   - 3x `Wrought-Bloom Graft` (1 Mass, 1 Bloom)
+   - 1x `Mother-Thread Ilvex, First Voice of the Sprawl` (4 Bloom)
 
    **Deck B ("Kestrel")** — 40 cards:
    - 3x `Replicant Foundry Core` (3 Circuit, Technology — Permanent, Generator)
@@ -73,16 +72,16 @@ the numbered Procedure itself.
    - 3x `Unit 0-Prime "Cast-Aside", the First Flaw` (3 Circuit, Technology — Permanent,
      Unit, combat strength 3)
    - 3x `Replication Beachhead` (2 Circuit, Technology — Permanent, Generator)
-   - 3x `Static Ambush` (3 Signal — dead)
-   - 3x `Unwritten Hour` (3 Tangle — dead)
-   - 3x `Signal-Wrought Prototype` (1 Signal, 1 Circuit — dead, the Signal share can never
-     be paid)
-   - 3x `Tangle-Forged Bolt` (1 Tangle, 1 Mass — dead, the Tangle share can never be paid)
-   - 3x `Wormhole Ledger` (1 Signal — dead)
-   - 3x `Rite of Unmaking` (2 Tangle — dead)
-   - 3x `Selin Vashti Corr, Whisper-Broker of the Glass Spires` (2 Signal — dead)
-   - 3x `Meridian Aule, Star-Read Oracle of the Tangle` (2 Tangle — dead)
-   - 1x `Whispered Contract` (1 Signal — dead)
+   - 3x `Panoptic Relay Spire` (1 Signal, 1 Circuit, Intelligence Technology —
+     Permanent, Generator)
+   - 3x `Signal-Wrought Prototype` (1 Signal, 1 Circuit)
+   - 3x `Communion Waystone` (1 Tangle, 1 Mass, Magic Materials — Permanent, Generator)
+   - 3x `Tangle-Forged Bolt` (1 Tangle, 1 Mass)
+   - 3x `Wormhole Ledger` (1 Signal)
+   - 3x `Rite of Unmaking` (2 Tangle)
+   - 3x `Selin Vashti Corr, Whisper-Broker of the Glass Spires` (2 Signal)
+   - 3x `Meridian Aule, Star-Read Oracle of the Tangle` (2 Tangle)
+   - 1x `Whispered Contract` (1 Signal)
 
    Check each deck against Section 11.1 (at least 40 cards: both are exactly 40) and
    Section 11.2 (no more than 3 copies of any one Name: confirmed above).
@@ -325,9 +324,9 @@ the way they were with no Generator at all — Worked Example 3 above plays that
 through to a declared attacker, the same way Worked Examples 1 and 2 play Combat and Capture,
 on the same hypothetical footing (a supposed state, not a claim that ordinary play reaches it
 turn-for-turn any faster than the Mass or Circuit decks above do). The two decks actually
-built for this procedure (step 1) predate *fount-economy-set.md* and still can't reach Combat
-at all, which is exactly why it remains a Worked Example here rather than a step in the
-numbered Procedure.
+built for this procedure (step 1) now draw from *fount-economy-set.md* too, but the numbered
+Procedure as scripted still never plays a Unit into Combat, which is exactly why Combat
+remains a Worked Example here rather than a step in the numbered Procedure.
 
 Separately, because only 10 of the 28 cards originally named across the three card files
 were ever payable at all (5 Materials + 5 Technology), and Section 11.2 caps any one of them
