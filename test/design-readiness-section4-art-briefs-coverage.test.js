@@ -53,12 +53,13 @@ test('AC1: Section 4 coverage bullet lists wormhole-closure-cards.md and spatial
 });
 
 // ---------------------------------------------------------------------------
-// AC2: that same bullet states the total art-brief section count as 52,
-// not 44 — and 52 is verified live against art-briefs.md on disk so this
-// can't drift from reality.
+// AC2: that same bullet states the total art-brief section count, verified
+// live against art-briefs.md on disk so the doc can't drift from reality.
+// (Originally pinned to exactly 52; that froze repo state and broke the
+// moment the next brief set merged — the doc must track the live count.)
 // ---------------------------------------------------------------------------
 
-test('AC2: Section 4 coverage bullet states 52 art-brief sections, not 44', () => {
+test('AC2: Section 4 coverage bullet states the live art-brief section count, not a stale one', () => {
   assert.ok(
     anatomyBody,
     'expected a "Card Anatomy & Art Brief Coverage" section in design/DESIGN-READINESS.md'
@@ -67,15 +68,18 @@ test('AC2: Section 4 coverage bullet states 52 art-brief sections, not 44', () =
   const artBriefsPath = path.join(CARDS_DIR, 'art-briefs.md');
   const artBriefsContent = fs.readFileSync(artBriefsPath, 'utf8');
   const sectionCount = (artBriefsContent.match(/^###\s+/gm) || []).length;
-  assert.strictEqual(sectionCount, 52, 'expected design/cards/art-briefs.md to currently have 52 "###" sections');
+  assert.ok(
+    sectionCount >= 52,
+    `expected design/cards/art-briefs.md to keep at least the 52 "###" sections it had when this test was written, found ${sectionCount}`
+  );
 
   assert.ok(
     !/\b44 art-brief sections\b/.test(anatomyBody),
     'expected Section 4 to no longer claim "44 art-brief sections"'
   );
   assert.ok(
-    /\b52 art-brief sections\b/.test(anatomyBody),
-    'expected Section 4 to state "52 art-brief sections"'
+    new RegExp(`\\b${sectionCount} art-brief sections\\b`).test(anatomyBody),
+    `expected Section 4 to state "${sectionCount} art-brief sections" (the live count in art-briefs.md)`
   );
 });
 
