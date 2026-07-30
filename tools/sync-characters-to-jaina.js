@@ -2,6 +2,7 @@
 'use strict';
 
 const { loadAllCharacters } = require('../lib/parse-character-markdown');
+const { runDryRunSyncCli } = require('../lib/run-jaina-dryrun-cli');
 
 const NOT_IMPLEMENTED_MESSAGE =
   'Live sync to Jaina is not yet implemented for characters in this unit. Re-run with ' +
@@ -27,18 +28,12 @@ function buildRecord(character) {
 // ---------------------------------------------------------------------------
 
 function main() {
-  const dryRun = process.argv.includes('--dry-run');
-
-  if (!dryRun) {
-    console.error(NOT_IMPLEMENTED_MESSAGE);
-    process.exitCode = 1;
-    return;
-  }
-
-  const characters = loadAllCharacters();
-  for (const character of characters) {
-    console.log(JSON.stringify(buildRecord(character)));
-  }
+  runDryRunSyncCli({
+    loadItems: loadAllCharacters,
+    buildRecord,
+    notImplementedMessage: NOT_IMPLEMENTED_MESSAGE,
+    argv: process.argv,
+  });
 }
 
 main();
