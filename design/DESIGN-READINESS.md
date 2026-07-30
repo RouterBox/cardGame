@@ -176,6 +176,9 @@ none implements game rules or a playable client:
 - **`tools/sync-founts-to-jaina.js`** — dry-run-only sync of parsed Fount
   cosmology records (`design/world.md`'s "Cosmology: The Five Founts"
   section) into Jaina.
+- **`tools/sync-world-narrative-to-jaina.js`** — dry-run-only sync of parsed
+  world-narrative records (`design/world.md`'s "The Setting" and "A History
+  in Brief" sections) into Jaina.
 - **`site/`** — the generated, browsable design shelf, including
   `site/cards-index.html`, `site/phoenix-gallery.html`, and
   `site/presentation/presentation.html`.
@@ -222,7 +225,7 @@ entry used to track (see Section 3 above).
    (`design/star-atlas.md`), `tools/sync-lore-eras-to-jaina.js`
    (`design/lore.md`'s eras — not all of `lore.md`'s prose), and
    `tools/sync-founts-to-jaina.js` (`design/world.md`'s "Cosmology: The
-   Five Founts" section). What's left: `design/world.md`'s "The Setting"
-   and "A History in Brief" sections remain free-form narrative prose with
-   no per-item structure and no Jaina schema or sync path — the same
-   reason the Founts sync unit left them out of scope.
+   Five Founts" section). `design/world.md`'s "The Setting" and "A History
+   in Brief" sections — free-form narrative prose with no per-item
+   structure, previously left out of every tool above — are now covered
+   too: `tools/sync-world-narrative-to-jaina.js` closes this gap.
