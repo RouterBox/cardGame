@@ -120,18 +120,20 @@ documents, not card sets, and correctly parse to 0 cards:
   9.1 template field to exactly one zone, and the premium-treatment layers
   (borderless, foil, extended art) that dress the same skeleton without
   changing what a card says or does.
-- **`design/cards/art-briefs.md`** — 44 art-brief sections, covering every
+- **`design/cards/art-briefs.md`** — 52 art-brief sections, covering every
   card in `alpha-set.md`, `frontier-set.md`, `character-signatures.md`,
-  `character-signatures-wave-2.md`, `fount-economy-set.md`, and
-  `wormhole-restrictions-set.md`.
+  `character-signatures-wave-2.md`, `fount-economy-set.md`,
+  `wormhole-restrictions-set.md`, `wormhole-closure-cards.md`, and
+  `spatial-race-identity-set.md`.
 - **`design/cards/alt-art-briefs.md`** — 5 alternate-art briefs for the
   fount Generators (Sporeknit Warden, Salvage-Wrought Bastion, Replicant
   Foundry Core, Foreknowledge Cipher, Unwritten Hour).
-- **Known gap:** the 3 cards in `spatial-race-identity-set.md` and the 5
-  cards in `wormhole-closure-cards.md` (8 cards total) have no brief in
-  `art-briefs.md` yet. `tools/composite-card-art.js` already surfaces this
-  live via a `no art brief for "<name>"` warning on every run (see Open Gap
-  1 below).
+- **Known gap — resolved:** the 3 cards in `spatial-race-identity-set.md`
+  and the 5 cards in `wormhole-closure-cards.md` (8 cards total) previously
+  had no brief in `art-briefs.md`; both sets are now fully covered, closed
+  by the merged units `cardgame-art-briefs-wormhole-closure` and
+  `cardgame-art-briefs-spatial-race-identity` (see Open Gap 1 in Section 6
+  below, which already reflects this).
 
 ## 5. Authoring, Render, Site & Sync Tooling
 
