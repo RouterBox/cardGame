@@ -502,3 +502,11 @@ Append-only requirements traceability log — one section per archived work item
 - AC3 [inferred] (held_out): complementaryStrengths and counteringWeaknesses are each arrays of exactly 2 strings matching that race file's own bullets, and signatureHooks is an array of exactly 5 {name, description} objects matching that race file's own '## Signature Hooks' bullet list verbatim — PASS
 - AC4 [inferred]: Without --dry-run, the script makes no Jaina API calls, no network access, and no credentials are required by node --test — it prints a message that live sync is not yet implemented for races and exits 1 — PASS
 - AC5 [inferred]: Running the dry-run twice in a row against unchanged markdown produces byte-identical stdout output (deterministic: no timestamps, no randomness, stable record ordering: cindral-reach, mireth-bloom, panoptic-concord, starweave-communion, wrought-assembly) — PASS
+
+## 2026-07-30-cardgame-design-readiness-gap2-resolved-fix-fix-design-readiness-md-s-stale-open-gap-2-already-resolved-by.md
+
+- AC1 [inferred]: design/DESIGN-READINESS.md's Open Gaps section no longer contains the sentence claiming the Mireth Bloom or the Wrought Assembly have 'no card in this wave' — PASS
+- AC2 [inferred]: The same Open Gaps section now states that this gap was resolved and names 'spatial-race-identity-set-wave-2.md' verbatim as the resolving file — PASS
+- AC3 [paraphrase]: The Open Gaps section still parses as a sequential numbered list (1., 2., 3., ... with no skipped or repeated numbers) with at least 3 items, so test/design-readiness.test.js's existing AC5 assertion continues to pass unmodified — PASS
+- AC4 [inferred] (held_out): Section 3's existing description of 'Spatial Race Identity Set, Wave 2' (the 2-card, two-remaining-races summary) is present in the file byte-for-byte unchanged — PASS
+- AC5 [paraphrase]: The other three Open Gap entries (art-brief coverage hole, no digital implementation ever built, Jaina wired for cards only) each still appear in the document with their original substantive text intact, only renumbered — PASS
