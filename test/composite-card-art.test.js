@@ -134,12 +134,28 @@ test('AC1: node tools/composite-card-art.js exits 0 and writes exactly one compo
 test('AC2: composited SVGs replace the Art Window placeholder rect with an <image> sized to the placeholder bounds', () => {
   assert.ok(!runError, 'compositing script must succeed before its output can be checked');
 
+  // Other test files in this suite call composite.main(), which rewrites
+  // OUT_DIR via a tmp-dir swap; a read landing inside the swap window sees
+  // ENOENT for a file that exists again milliseconds later. Retry briefly
+  // instead of failing on the transient hole (same idiom as the repo's
+  // EPERM retries).
+  const readSvgWithRetry = (file) => {
+    for (let attempt = 0; ; attempt++) {
+      try {
+        return fs.readFileSync(file, 'utf8');
+      } catch (err) {
+        if (err.code !== 'ENOENT' || attempt >= 40) throw err;
+        const until = Date.now() + 25;
+        while (Date.now() < until) { /* brief spin; swap window is ms */ }
+      }
+    }
+  };
+
   const titles = listBriefTitles();
   for (const title of titles) {
     const expectedBounds = readPlaceholderBounds(title);
     const compositedFile = path.join(OUT_DIR, `${slugify(title)}.svg`);
-    assert.ok(fs.existsSync(compositedFile), `expected a composited SVG for "${title}"`);
-    const svg = fs.readFileSync(compositedFile, 'utf8');
+    const svg = readSvgWithRetry(compositedFile);
 
     assert.ok(
       !/<rect[^>]*class="art-window"/.test(svg),
