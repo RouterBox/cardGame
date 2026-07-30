@@ -15,6 +15,7 @@ const {
   escapeXml,
 } = require('./render-card');
 const { slugify, splitIntoH3Sections } = require('../lib/parse-card-markdown');
+const { withLock } = require('../lib/fs-lock');
 
 const REPO_ROOT = path.join(__dirname, '..');
 const BRIEFS_PATH = path.join(REPO_ROOT, 'design', 'cards', 'art-briefs.md');
@@ -117,15 +118,10 @@ function compositeArtWindow(baseSvg, href) {
 // brief) generation loop writes into a private, uniquely-named temp
 // directory first, so it never touches the shared path. Only the final swap
 // onto OUT_DIR (remove + rename, a couple of fast fs calls) is guarded by a
-// cross-process lock, which keeps that swap from racing another process's
-// swap (Windows in particular refuses a rename while another process is
-// touching the same directory). The lock itself self-heals: if a holder is
-// killed (SIGINT/SIGKILL/OOM) before releasing it, the lock directory goes
-// stale and a later run reclaims it instead of hanging forever.
+// cross-process lock (lib/fs-lock.js), which keeps that swap from racing
+// another process's swap (Windows in particular refuses a rename while
+// another process is touching the same directory).
 // ---------------------------------------------------------------------------
-
-const LOCK_STALE_MS = 30000; // the guarded section is just a remove+rename, so any lock
-// older than this was abandoned by a process that died mid-swap, not one still working.
 
 // Windows refuses to rename a directory while another process holds a
 // handle inside it (build-site reading a render, an AV scan) — that
@@ -140,34 +136,6 @@ function renameWithRetry(from, to) {
       if ((err.code !== 'EPERM' && err.code !== 'EACCES') || attempt >= 40) throw err;
       Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, 25);
     }
-  }
-}
-
-async function withOutDirLock(outDir, fn) {
-  const lockDir = `${outDir}.lock`;
-  for (;;) {
-    try {
-      fs.mkdirSync(lockDir);
-      break;
-    } catch (err) {
-      if (err.code !== 'EEXIST') throw err;
-      let staleMtimeMs = null;
-      try {
-        staleMtimeMs = fs.statSync(lockDir).mtimeMs;
-      } catch (statErr) {
-        if (statErr.code !== 'ENOENT') throw statErr;
-      }
-      if (staleMtimeMs !== null && Date.now() - staleMtimeMs > LOCK_STALE_MS) {
-        fs.rmSync(lockDir, { recursive: true, force: true });
-        continue;
-      }
-      await new Promise((resolve) => setTimeout(resolve, 20));
-    }
-  }
-  try {
-    return await fn();
-  } finally {
-    fs.rmdirSync(lockDir);
   }
 }
 
@@ -211,7 +179,7 @@ async function main(client = createMockLeonardoClient(), altClient = client, out
       fs.writeFileSync(path.join(tmpDir, `${slugify(card.name)}-alt.svg`), compositedSvg, 'utf8');
     }
 
-    await withOutDirLock(outDir, async () => {
+    await withLock(`${outDir}.lock`, async () => {
       // Two renames instead of rm+rename: if the second rename fails partway
       // (e.g. Windows refusing a rename while another process still holds a
       // handle on the directory), the first rename lets us put the old
@@ -232,7 +200,7 @@ async function main(client = createMockLeonardoClient(), altClient = client, out
       if (hadExisting) {
         fs.rmSync(backupDir, { recursive: true, force: true });
       }
-    });
+    }, { kind: 'dir' });
   } catch (err) {
     fs.rmSync(tmpDir, { recursive: true, force: true });
     throw err;
