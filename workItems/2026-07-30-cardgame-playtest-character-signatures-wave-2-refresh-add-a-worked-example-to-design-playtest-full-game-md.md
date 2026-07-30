@@ -6,7 +6,7 @@
 - title: Add a Worked Example to design/playtest-full-game.md narrating character-signatures-wave-2.md's 5 named cards — never played in any playtest procedure
 - project: cardgame
 - completed: 2026-07-30
-- outcome: escalated
+- outcome: merged (orchestrator recovery: unit was green; red cycles came from master reds caused by stranded detached-HEAD fix commits)
 - start_sha: 8961eb8765630d472960953ec570130113164a4e
 - end_sha: 8961eb8765630d472960953ec570130113164a4e
 

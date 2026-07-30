@@ -6,7 +6,7 @@
 - title: Extract the duplicated H2/H3-section-splitting and paragraph-extraction helpers shared by cardGame's 4 newer lib/parse-*-markdown.js files into one shared module
 - project: cardgame
 - completed: 2026-07-30
-- outcome: escalated
+- outcome: merged (orchestrator recovery: unit was green; red cycles came from master reds caused by stranded detached-HEAD fix commits)
 - start_sha: 8961eb8765630d472960953ec570130113164a4e
 - end_sha: b3c2540abcd9b689949fe743c6b078de2ff1f071
 
