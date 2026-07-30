@@ -6,7 +6,7 @@
 - title: Write a second Full Game Playtest Procedure (design/playtest-full-game-2.md) built around the 5 card sets no decklist has ever used, closing DESIGN-READINESS.md Open Gap 2's 'only one deck pairing' critique
 - project: cardgame
 - completed: 2026-07-30
-- outcome: escalated
+- outcome: merged (orchestrator recovery: applied the cycle-2 reviewer fix the builder refused — revert doc reflow, normalizeProse the sanity check)
 - start_sha: 1baf532e011157d256160c51fbbeb06f9b168fd2
 - end_sha: 1baf532e011157d256160c51fbbeb06f9b168fd2
 
