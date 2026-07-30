@@ -510,3 +510,11 @@ Append-only requirements traceability log — one section per archived work item
 - AC3 [paraphrase]: The Open Gaps section still parses as a sequential numbered list (1., 2., 3., ... with no skipped or repeated numbers) with at least 3 items, so test/design-readiness.test.js's existing AC5 assertion continues to pass unmodified — PASS
 - AC4 [inferred] (held_out): Section 3's existing description of 'Spatial Race Identity Set, Wave 2' (the 2-card, two-remaining-races summary) is present in the file byte-for-byte unchanged — PASS
 - AC5 [paraphrase]: The other three Open Gap entries (art-brief coverage hole, no digital implementation ever built, Jaina wired for cards only) each still appear in the document with their original substantive text intact, only renumbered — PASS
+
+## 2026-07-30-cardgame-jaina-star-atlas-sync-dryrun-cardgame-tool-dry-run-sync-of-star-atlas-world-records-into-jaina-co.md
+
+- AC1 [paraphrase]: node tools/sync-star-atlas-to-jaina.js --dry-run exits 0 and prints exactly 8 JSON objects, one per '###' heading in design/star-atlas.md, in the same order they appear in the file (Ashkeel, Fenwreath, Vantaris, Ansareth, Corewright, Halvorne Junction, Kelmourn Drift, Tallowfen) — PASS
+- AC2 [paraphrase]: Each printed record has name, slug, type, race, and description fields; slug is computed with the identical slugify(name) algorithm already used by lib/parse-card-markdown.js, so the same world name produces the same slug anywhere else in the repo — PASS
+- AC3 [inferred] (held_out): The 5 records parsed from sections under '## Homeworlds' have type 'homeworld' and a race field matching the civilization named after the em-dash in that section's own heading (e.g. Ashkeel's race is 'Cindral Reach'); the 3 records parsed from sections under '## Frontier & Contested Worlds' have type 'frontier' and race null — PASS
+- AC4 [inferred]: Without --dry-run, the script makes no Jaina API calls, no network access, and no credentials are required by node --test — it prints a message that live sync is not yet implemented for the star atlas and exits 1 — PASS
+- AC5 [inferred]: Running the dry-run twice in a row against unchanged markdown produces byte-identical stdout output (deterministic: no timestamps, no randomness, stable record ordering matching the file's own section order) — PASS
