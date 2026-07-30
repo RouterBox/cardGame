@@ -112,7 +112,112 @@ against the rule text itself.
    reconnecting those same two Planets later would require paying for a
    brand-new Discovery action from scratch.
 
-10. **Take an Assault action.** Once a challenger has a qualifying path
+10. **Narrate the remaining Wormhole Restriction and Closure cards on
+    this same graph.** Revisit the physical state already on the table
+    from steps 6, 8, and 9, and narrate one remaining Wormhole
+    Restriction or Wormhole Closure card resolving against it, in turn
+    (see *design/cards/wormhole-restrictions-set.md* and
+    *design/cards/wormhole-closure-cards.md*):
+    a. **Conveyance Directive** (Cost line: 2 Circuit, Type line:
+       Technology — Permanent, the Wrought Assembly card in
+       *design/cards/wormhole-restrictions-set.md*) — pick a different
+       drawn line on the table with an endpoint at a Planet the active
+       player controls, and write "one-way: [origin]→[destination]" on
+       it — with that controlled Planet as the origin — narrating that
+       Conveyance Directive is the card just played to grant it a
+       Directional Restriction (Section 8.4), as step 8's Bastion
+       Lockdown Line teaches. Because it is also a Generator attuned
+       to the Circuit, place a "Generator" marker on the Planet that
+       played it if none is there yet, narrating that it also
+       produces 1 Circuit Point every Generation Phase — an ongoing
+       income Bastion Lockdown Line's own text does not grant. Confirm
+       aloud that a Wormhole with no such note may still be traversed
+       either way, since no-Restriction is the default.
+    b. **Rootbound Corridor** (Cost line: 2 Bloom, Type line: Biology
+       — Permanent, the Mireth Bloom card in *design/cards/wormhole-
+       restrictions-set.md*) — pick a different drawn line on the
+       table with an endpoint at a Planet the active player controls,
+       and write "Team Restriction: [active player]" on it, narrating
+       that Rootbound Corridor is the card just played to grant it a
+       Team Restriction (Section 8.4) naming the active player, so the
+       opposing challenger's Assaults may not count that line as part
+       of a path. Confirm aloud that Rootbound Corridor's own text
+       lets it resolve at instant speed, any time its controller holds
+       priority, unlike a Slow card that can only be played on that
+       controller's own Main Phase.
+    c. **Vector Interdiction** (Cost line: 1 Signal, Type line:
+       Intelligence, the Panoptic Concord card in *design/cards/
+       wormhole-restrictions-set.md*) — pick a different drawn line on
+       the table with an endpoint at a Planet the active player
+       controls, and write "Team Restriction: [active player]" on it,
+       narrating that Vector Interdiction is the card just played to
+       grant it a Team Restriction (Section 8.4) naming the active
+       player, so the opposing challenger's Assaults may not count
+       that line as part of a path. Confirm aloud that Vector
+       Interdiction is Fast, so — unlike the Slow cards narrated in
+       this step — it could resolve any time the active player holds
+       priority, not only on their own Main Phase.
+    d. **Pilgrim's Right of Way** (Cost line: 2 Tangle, Type line:
+       Magic, the Starweave Communion card in *design/cards/wormhole-
+       restrictions-set.md*) — pick a different drawn line on the
+       table with an endpoint at a Planet the active player controls,
+       and write "Team Restriction: [active player]" on it, narrating
+       that Pilgrim's Right of Way is the card just played to grant it
+       a Team Restriction (Section 8.4) naming the active player, so
+       the opposing challenger's Assaults may not count that line as
+       part of a path. Confirm aloud that Pilgrim's Right of Way is
+       Slow, unlike Vector Interdiction's Fast timing, and that a
+       Restriction card has now been named for each of the five races
+       across step 8 and this step.
+    e. **Bastion Seal Detachment** (Cost line: 2 Mass, Type line:
+       Materials — Permanent, the Cindral Reach card in *design/cards/
+       wormhole-closure-cards.md*) — pick a different drawn line on
+       the table with an endpoint at a Planet the active player
+       controls, cross it out fully, narrating that Bastion Seal
+       Detachment is the card just played to Close it (Section 8.5),
+       and note that the two Planets it connected are no longer
+       adjacent unless some other, un-Closed line also connects them.
+       Confirm aloud that Bastion Seal Detachment carries a Combat
+       strength of 1 and enters with no counters, unlike step 9's
+       Chokepoint Demolition Charge, which has no combat stats of its
+       own.
+    f. **Withering Conduit Rot** (Cost line: 2 Bloom, Type line:
+       Biology, the Mireth Bloom card in *design/cards/wormhole-
+       closure-cards.md*) — pick a different drawn line on the table
+       with an endpoint at a Planet the active player controls, cross
+       it out fully, narrating that Withering Conduit Rot is the card
+       just played to Close it (Section 8.5), and note that the two
+       Planets it connected are no longer adjacent unless some other,
+       un-Closed line also connects them. Confirm aloud that Withering
+       Conduit Rot's Biology Type line carries no Permanent tag, so —
+       unlike Bastion Seal Detachment just narrated — nothing stays
+       behind on the table once it resolves; only the crossed-out line
+       shows it was ever played.
+    g. **Severance Directive** (Cost line: 1 Signal, Type line:
+       Intelligence, the Panoptic Concord card in *design/cards/
+       wormhole-closure-cards.md*) — pick a different drawn line on
+       the table with an endpoint at a Planet the active player
+       controls, cross it out fully, narrating that Severance
+       Directive is the card just played to Close it (Section 8.5),
+       and note that the two Planets it connected are no longer
+       adjacent unless some other, un-Closed line also connects them.
+       Confirm aloud that Severance Directive is Fast, so — like step
+       9's Chokepoint Demolition Charge — it could resolve any time
+       the active player holds priority, not only on their own Main
+       Phase.
+    h. **Rite of the Sealed Tangle** (Cost line: 2 Tangle, Type line:
+       Magic, the Starweave Communion card in *design/cards/wormhole-
+       closure-cards.md*) — pick a different drawn line on the table
+       with an endpoint at a Planet the active player controls, cross
+       it out fully, narrating that Rite of the Sealed Tangle is the
+       card just played to Close it (Section 8.5), and note that the
+       two Planets it connected are no longer adjacent unless some
+       other, un-Closed line also connects them. Confirm aloud that
+       Rite of the Sealed Tangle is Slow, and that a Closure card has
+       now been named for each of the five races across step 9 and
+       this step.
+
+11. **Take an Assault action.** Once a challenger has a qualifying path
     — running only along un-crossed-out lines that carry no Restriction
     forbidding this challenger or this direction — from a Planet they
     control to a Planet they do not control, that challenger MAY take
@@ -133,7 +238,7 @@ against the rule text itself.
     A Homeworld card MAY be Blockaded this way but its control token MAY
     NEVER be flipped by a Capture.
 
-11. **Narrate the Spatial Race Identity cards on this same graph.**
+12. **Narrate the Spatial Race Identity cards on this same graph.**
     Revisit the physical state already on the table from steps 6, 8, 9,
     and 10, and narrate one Spatial Race Identity card resolving
     against each, in turn (see *design/cards/spatial-race-identity-
@@ -191,7 +296,7 @@ against the rule text itself.
        aloud that a Circuit Fount built on any other Planet would not
        receive this reduction.
 
-12. **Replay Section 8.7's worked example once, on this same table.**
+13. **Replay Section 8.7's worked example once, on this same table.**
     Using the graph already on the table (or resetting to just the two
     Homeworlds if preferred), walk through Section 8.7's four numbered
     steps move for move — a Frontier Discovery to a new Planet, a
@@ -199,7 +304,7 @@ against the rule text itself.
     Assault that Captures it — checking each physical action here
     against that worked example's text before moving to the next.
 
-13. **Play to a conclusion.** Keep alternating turns (Section 5), taking
+14. **Play to a conclusion.** Keep alternating turns (Section 5), taking
     further Discovery and Assault actions as the graph and each side's
     Fount Point income allow, until either challenger's Core Integrity
     tally reaches 0, or a challenger must draw from an empty Archive and
