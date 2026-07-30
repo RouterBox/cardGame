@@ -120,7 +120,7 @@ documents, not card sets, and correctly parse to 0 cards:
   9.1 template field to exactly one zone, and the premium-treatment layers
   (borderless, foil, extended art) that dress the same skeleton without
   changing what a card says or does.
-- **`design/cards/art-briefs.md`** — 52 art-brief sections, covering every
+- **`design/cards/art-briefs.md`** — 54 art-brief sections, covering every
   card in `alpha-set.md`, `frontier-set.md`, `character-signatures.md`,
   `character-signatures-wave-2.md`, `fount-economy-set.md`,
   `wormhole-restrictions-set.md`, `wormhole-closure-cards.md`, and
