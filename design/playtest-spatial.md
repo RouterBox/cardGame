@@ -133,7 +133,65 @@ against the rule text itself.
     A Homeworld card MAY be Blockaded this way but its control token MAY
     NEVER be flipped by a Capture.
 
-11. **Replay Section 8.7's worked example once, on this same table.**
+11. **Narrate the Spatial Race Identity cards on this same graph.**
+    Revisit the physical state already on the table from steps 6, 8, 9,
+    and 10, and narrate one Spatial Race Identity card resolving
+    against each, in turn (see *design/cards/spatial-race-identity-
+    set.md* and *design/cards/spatial-race-identity-set-wave-2.md*):
+    a. **Preemptive Survey** (Cost line: 1 Signal, Type line:
+       Intelligence, the Panoptic Concord card in *design/cards/
+       spatial-race-identity-set.md*) — before repeating a Discovery
+       action like the one in step 6, narrate this card resolving
+       first: the next Discovery action the active player takes this
+       turn costs 2 fewer Fount Points, to a minimum of 0 (Section
+       8.3). Recount the counters actually paid for that Discovery
+       with the 2-point reduction applied, and confirm aloud that the
+       reduced total, not the ordinary Length-based total, is what
+       actually leaves the resource pool.
+    b. **Unbound Passage** (Cost line: 2 Tangle, Type line: Magic, the
+       Starweave Communion card in *design/cards/spatial-race-
+       identity-set.md*) — point to the line still carrying the
+       Directional Restriction written in step 8, and narrate this
+       card resolving to name that same Wormhole: for the rest of
+       this turn, an Assault (Section 8.6) may treat that Wormhole's
+       Directional Restriction (Section 8.4) as absent when counting
+       its path. Trace an Assault path across that line in the
+       forbidden direction, out loud, and confirm aloud that the path
+       counts as qualifying only because Unbound Passage is in effect
+       this turn.
+    c. **Chokepoint Garrison** (Cost line: 2 Mass, Type line: Materials
+       — Permanent, the Cindral Reach card in *design/cards/spatial-
+       race-identity-set.md*) — before crossing out a different line
+       the way step 9 did, place a small "Fortification" token on that
+       line instead, narrating that this card resolved to place it
+       (Section 8.5, following the Fortification-counter pattern
+       Section 4.1 establishes for the Mass). Attempt the same
+       crossing-out action step 9 performed on this newly fortified
+       line, and confirm aloud that it MAY NOT be Closed while the
+       token remains — the attempt stops before the line is marked.
+    d. **Bloom Fount** (Cost line: 2 Bloom, Type line: Biology —
+       Permanent, the Mireth Bloom card in *design/cards/spatial-race-
+       identity-set-wave-2.md*) — point to a Planet card on the table
+       that the active player does not control (an opponent's Planet,
+       or a Neutral Planet reached by a Contested Discovery). Place a
+       "Generator" marker on it without moving its control token,
+       narrating that this card is a stated exception to the ordinary
+       rule that, after a challenger's first Generator, later ones
+       MUST be built only on a Planet that challenger already controls
+       (Section 4.6). Confirm aloud that the control token on that
+       Planet does not change.
+    e. **Circuit Fount** (Cost line: 2 Circuit, Type line: Technology —
+       Permanent, the Wrought Assembly card in *design/cards/spatial-
+       race-identity-set-wave-2.md*) — point to the Planet card added
+       to the graph by the Discovery action in step 6, and place a
+       "Generator" marker there, narrating that because this Planet
+       was added by a Discovery action taken this game, this card's
+       own cost is 1 fewer Circuit Point, to a minimum of 0 (Section
+       8.3). Pay the reduced total in counters, out loud, and confirm
+       aloud that a Circuit Fount built on any other Planet would not
+       receive this reduction.
+
+12. **Replay Section 8.7's worked example once, on this same table.**
     Using the graph already on the table (or resetting to just the two
     Homeworlds if preferred), walk through Section 8.7's four numbered
     steps move for move — a Frontier Discovery to a new Planet, a
@@ -141,7 +199,7 @@ against the rule text itself.
     Assault that Captures it — checking each physical action here
     against that worked example's text before moving to the next.
 
-12. **Play to a conclusion.** Keep alternating turns (Section 5), taking
+13. **Play to a conclusion.** Keep alternating turns (Section 5), taking
     further Discovery and Assault actions as the graph and each side's
     Fount Point income allow, until either challenger's Core Integrity
     tally reaches 0, or a challenger must draw from an empty Archive and
@@ -161,3 +219,11 @@ against the rule text itself.
   visibly move it to the Wreck rather than just crossing it out? Those
   are two different states (Blockade vs. Capture) and the physical
   materials should make the difference obvious at a glance.
+- After step 11, does either playtester's first instinct treat these
+  five actions as just another Discovery, Assault, Closure, or
+  Generator placement, and skip narrating the card producing it? That
+  instinct to skip is itself the signal this coverage gap existed —
+  each of these five cards changes a real, checkable outcome (the
+  counters actually paid, whether a path counts, whether a line can be
+  crossed out, whether a control token changes, whether a build costs
+  less) that the ordinary action alone would not produce.
