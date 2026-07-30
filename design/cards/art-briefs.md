@@ -826,3 +826,30 @@ Composition: wide, landscape rectangle (~5:3), the large rectangular
 window beneath the Name Slot per card-anatomy.md — keep the welded
 endpoint low and central with the controlled Planet anchoring one side of
 the frame.
+
+## Spatial Race Identity Set, Wave 2 — Two More Races Grounded in the Graph
+
+### Bloom Fount
+
+Palette: Green — the Bloom's patient growth, rooting wherever it likes, permission or not.
+Subject/Scene: A Mireth Bloom Fount, grounding the race's own Bloomfront Expansion, roots directly into a Planet its controller does not yet control, its Biology core swelling as it produces a Bloom Point on ground nobody has ceded to it.
+Key visual elements:
+- The Generator core itself, a living root-mass rather than machinery, visibly producing a Bloom Point
+- The ground beneath it marked or bannered as belonging to another Team, growth rooting in anyway, no permission asked
+- No claim-stake, banner-plant, or conquest marker anywhere in frame — the Bloomfront Expansion needs none
+Composition: wide, landscape rectangle (~5:3), the large rectangular
+window beneath the Name Slot per card-anatomy.md — root the Fount low in
+frame with the contested, unclaimed ground filling the width beneath it.
+
+### Circuit Fount
+
+Palette: Copper — the Circuit's warm mechanized repetition, cheapest the instant new ground opens up.
+Subject/Scene: A Wrought Assembly Fount stamps its one flawless pattern onto a Planet a Discovery action only just added to the battlefield graph, its Circuit Point flowing into the resource pool for one Point less than the pattern usually costs.
+Key visual elements:
+- The Generator core producing a visible Circuit Point, copper conduits carrying the charge into a resource pool
+- A freshly opened Discovery site at the build location — unclaimed, newly-charted ground, not yet fought over
+- A ledger or cost meter shown marked down, one Circuit Point cheaper than the pattern's usual price
+Composition: wide, landscape rectangle (~5:3), the large rectangular
+window beneath the Name Slot per card-anatomy.md — center the Fount at
+the freshly discovered site with the discount ledger visible at the
+frame's edge.
