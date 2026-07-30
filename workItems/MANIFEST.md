@@ -644,3 +644,11 @@ Append-only requirements traceability log — one section per archived work item
 - AC3 [paraphrase] (held_out): For each of the 5 new sections, the Subject/Scene text shares fewer than half its significant words with that same card's base brief Subject/Scene text in design/cards/art-briefs.md — a genuinely different scene, not a restatement — PASS
 - AC4 [inferred]: The 5 existing Generator sections in alt-art-briefs.md are byte-for-byte unchanged, and design/cards/art-briefs.md, design/cards/character-signatures.md, and design/cards/alpha-set.md are byte-for-byte unchanged — PASS
 - AC5 [paraphrase]: test/design-alt-art-briefs.test.js passes with its EXPECTED_TITLES constant extended to all 10 titles, exercising both the AC1 field-shape loop and the AC2 Subject/Scene-divergence loop against the 5 new sections — PASS
+
+## 2026-07-30-cardgame-lore-docs-game-name-references-add-wreck-tangle-game-name-references-to-design-world-md-design-lo.md
+
+- AC1 [inferred]: design/world.md contains the string "Wreck Tangle" at least once, and its H1 title ("# The Amaranth Expanse") is unchanged — PASS
+- AC2 [inferred]: design/lore.md contains the string "Wreck Tangle" at least once, and its H1 title is unchanged — PASS
+- AC3 [inferred]: design/star-atlas.md contains the string "Wreck Tangle" at least once, and its H1 title is unchanged — PASS
+- AC4 [paraphrase] (held_out): design/rules.md, site/index.html, and every file under design/cards/ are byte-for-byte unchanged from their content before this unit — PASS
+- AC5 [paraphrase]: site/design/world.html, site/design/lore.html, and site/design/star-atlas.html are regenerated via tools/build-site.js and each contains "Wreck Tangle"; a new test file mechanically asserts all of the above — PASS
