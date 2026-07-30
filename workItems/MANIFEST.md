@@ -636,3 +636,11 @@ Append-only requirements traceability log — one section per archived work item
 - AC2 [inferred]: Each of the 3 files keeps its own buildRecord function, its own NOT_IMPLEMENTED_MESSAGE constant, and an unchanged module.exports shape ({ buildRecord, NOT_IMPLEMENTED_MESSAGE }) — no receipt (escalated before receipt computation)
 - AC3 [paraphrase]: test/sync-lore-eras-to-jaina.test.js, test/sync-founts-to-jaina.test.js, and test/sync-star-atlas-to-jaina.test.js pass unmodified against the refactored tools, with no changes made to any file under test/ — no receipt (escalated before receipt computation)
 - AC4 [paraphrase] (held_out): lib/run-jaina-dryrun-cli.js, tools/sync-characters-to-jaina.js, tools/sync-races-to-jaina.js, and tools/sync-cards-to-jaina.js are byte-for-byte unchanged — no receipt (escalated before receipt computation)
+
+## 2026-07-30-cardgame-alt-art-briefs-character-signatures-extend-design-cards-alt-art-briefs-md-with-alt-art-briefs-for.md
+
+- AC1 [inferred]: design/cards/alt-art-briefs.md contains exactly 10 "###" brief sections: the 5 existing Generator titles (Sporeknit Warden, Salvage-Wrought Bastion, Replicant Foundry Core, Foreknowledge Cipher, Unwritten Hour) plus the 5 character-signatures.md card names, verbatim — PASS
+- AC2 [inferred]: Each of the 5 new sections has Palette:, Subject/Scene:, a "Key visual elements:" bulleted list of 2 or more items, and Composition: fields, matching the existing 5 sections' shape — PASS
+- AC3 [paraphrase] (held_out): For each of the 5 new sections, the Subject/Scene text shares fewer than half its significant words with that same card's base brief Subject/Scene text in design/cards/art-briefs.md — a genuinely different scene, not a restatement — PASS
+- AC4 [inferred]: The 5 existing Generator sections in alt-art-briefs.md are byte-for-byte unchanged, and design/cards/art-briefs.md, design/cards/character-signatures.md, and design/cards/alpha-set.md are byte-for-byte unchanged — PASS
+- AC5 [paraphrase]: test/design-alt-art-briefs.test.js passes with its EXPECTED_TITLES constant extended to all 10 titles, exercising both the AC1 field-shape loop and the AC2 Subject/Scene-divergence loop against the 5 new sections — PASS
