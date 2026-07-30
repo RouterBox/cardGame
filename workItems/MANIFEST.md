@@ -534,3 +534,11 @@ Append-only requirements traceability log — one section per archived work item
 - AC3 [paraphrase]: The Open Gaps section still parses as a sequential numbered list (1., 2., 3., ... no skipped or repeated numbers) with at least 3 items, so test/design-readiness.test.js's existing AC5 assertion continues to pass unmodified — no receipt (escalated before receipt computation)
 - AC4 [inferred] (held_out): Section 3's card-set inventory and Section 4's 'Known gap' note are present in the file byte-for-byte unchanged — no receipt (escalated before receipt computation)
 - AC5 [paraphrase]: Open Gaps 2, 3, and 4 each still appear with their original substantive text intact, only renumbered if the edit requires it — no receipt (escalated before receipt computation)
+
+## 2026-07-30-cardgame-jaina-founts-sync-dryrun-cardgame-tool-dry-run-sync-of-the-five-founts-cosmology-records-into-jai.md
+
+- AC1 [paraphrase]: node tools/sync-founts-to-jaina.js --dry-run exits 0 and prints exactly 5 JSON objects, one per '###' heading inside design/world.md's 'Cosmology: The Five Founts' section, in file order: The Mass, The Bloom, The Signal, The Circuit, The Tangle — PASS
+- AC2 [paraphrase]: Each printed record has name, slug, domain, and description fields; slug is computed with the identical slugify(name) function already exported by lib/parse-card-markdown.js, so the same Fount name produces the same slug anywhere else in the repo — PASS
+- AC3 [inferred] (held_out): Each record's domain field matches the word(s) after the em-dash in that Fount's own heading (The Mass -> 'materials', The Bloom -> 'biology', The Signal -> 'intelligence', The Circuit -> 'technology', The Tangle -> 'magic'), and description is non-empty and does not contain the literal heading text of any other Fount (no bleed-through from an adjacent section) — PASS
+- AC4 [inferred]: Without --dry-run, the script makes no Jaina API calls, no network access, and no credentials are required by node --test — it prints a message that live sync is not yet implemented for Founts and exits 1 — PASS
+- AC5 [inferred]: Running the dry-run twice in a row against unchanged markdown produces byte-identical stdout output (deterministic: no timestamps, no randomness, stable record ordering matching the section's own heading order) — PASS
