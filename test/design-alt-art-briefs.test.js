@@ -8,7 +8,18 @@ const { parseSections } = require('./helpers/markdown');
 const ALT_BRIEFS_PATH = path.join(__dirname, '..', 'design', 'cards', 'alt-art-briefs.md');
 const BASE_BRIEFS_PATH = path.join(__dirname, '..', 'design', 'cards', 'art-briefs.md');
 
-const EXPECTED_TITLES = ['Sporeknit Warden', 'Salvage-Wrought Bastion', 'Replicant Foundry Core', 'Foreknowledge Cipher', 'Unwritten Hour'];
+const EXPECTED_TITLES = [
+  'Sporeknit Warden',
+  'Salvage-Wrought Bastion',
+  'Replicant Foundry Core',
+  'Foreknowledge Cipher',
+  'Unwritten Hour',
+  'Kordelia Vess, Salvage-Marshal of the Cinder Yards',
+  'Mother-Thread Ilvex, First Voice of the Sprawl',
+  'Selin Vashti Corr, Whisper-Broker of the Glass Spires',
+  'Meridian Aule, Star-Read Oracle of the Tangle',
+  'Unit 0-Prime "Cast-Aside", the First Flaw',
+];
 
 const FIELD_PREFIXES = ['Palette:', 'Subject/Scene:', 'Key visual elements:', 'Composition:'];
 
@@ -71,12 +82,12 @@ test('AC1: design/cards/alt-art-briefs.md exists', () => {
   assert.ok(fs.existsSync(ALT_BRIEFS_PATH), `expected ${ALT_BRIEFS_PATH} to exist`);
 });
 
-test('AC1: alt-art-briefs.md has exactly 5 "###" sections titled verbatim', () => {
+test('AC1: alt-art-briefs.md has exactly 10 "###" sections titled verbatim', () => {
   const titles = altSections.map((s) => s.title);
   assert.strictEqual(
     titles.length,
-    5,
-    `expected exactly 5 brief sections, found ${titles.length}: [${titles.join(', ')}]`
+    10,
+    `expected exactly 10 brief sections, found ${titles.length}: [${titles.join(', ')}]`
   );
   assert.deepStrictEqual(
     [...titles].sort(),
