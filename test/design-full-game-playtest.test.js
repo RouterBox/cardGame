@@ -265,6 +265,160 @@ test('AC4: every card in Worked Example 3 exists in alpha-set.md or fount-econom
 });
 
 // ---------------------------------------------------------------------------
+// Step 1 decklist refresh (cardgame-playtest-decklist-refresh): AC1 (each deck names a
+// fount-economy-set.md card), AC2 (no more stale "dead"/"can never be paid" annotations),
+// AC3 (the payable-card count matches the current four-file pool), AC4 (deck legality —
+// Section 11.1/11.2), AC5 held_out (at least one payable card per Fount across the two
+// decks).
+// ---------------------------------------------------------------------------
+
+function stepOneText(content) {
+  const m = content.match(
+    /\n1\.\s+\*\*Construct two legal 40-card decks[\s\S]*?(?=\n2\.\s+\*\*Lay out the two Homeworlds)/
+  );
+  assert.ok(m, 'expected to find numbered Step 1 (deck construction) up to Step 2');
+  return m[0];
+}
+
+function extractDeckEntries(stepText, label, endMarkerRe) {
+  const headerRe = new RegExp('\\*\\*Deck ' + label + ' \\("[^"]+"\\)\\*\\*\\s*—\\s*40 cards:');
+  const headerMatch = stepText.match(headerRe);
+  assert.ok(headerMatch, `expected to find the Deck ${label} header in Step 1`);
+  const rest = stepText.slice(headerMatch.index + headerMatch[0].length);
+  const endMatch = rest.match(endMarkerRe);
+  const body = endMatch ? rest.slice(0, endMatch.index) : rest;
+  const lineRe = /-\s+(\d+)x\s+`([^`]+)`\s*\(([\s\S]*?)\)/g;
+  const entries = [];
+  let m;
+  while ((m = lineRe.exec(body))) {
+    entries.push({ count: parseInt(m[1], 10), name: m[2] });
+  }
+  return entries;
+}
+
+function deckAEntries(stepText) {
+  return extractDeckEntries(stepText, 'A', /\*\*Deck B/);
+}
+
+function deckBEntries(stepText) {
+  return extractDeckEntries(stepText, 'B', /\n\s*Check each deck/);
+}
+
+function generatorFounts() {
+  const founts = new Set();
+  for (const file of CARD_FILES) {
+    for (const card of loadCardsFromFile(file)) {
+      const m = card.rulesText.match(/Generator attuned to the (\w+)/);
+      if (m) founts.add(m[1]);
+    }
+  }
+  return founts;
+}
+
+function parseCostFounts(costLine) {
+  const founts = [];
+  const re = /\d+\s+(Mass|Bloom|Signal|Circuit|Tangle)/g;
+  let m;
+  while ((m = re.exec(costLine))) founts.push(m[1]);
+  return founts;
+}
+
+function cardCostByName() {
+  const map = new Map();
+  for (const file of CARD_FILES) {
+    for (const card of loadCardsFromFile(file)) map.set(card.name, card.costLine);
+  }
+  return map;
+}
+
+function isPayable(costLine, founts) {
+  return parseCostFounts(costLine).every((f) => founts.has(f));
+}
+
+test('AC4: Deck A and Deck B in Step 1 each total exactly 40 cards with no name over 3 copies', () => {
+  const step = stepOneText(readDoc());
+  for (const [label, entries] of [
+    ['A', deckAEntries(step)],
+    ['B', deckBEntries(step)],
+  ]) {
+    assert.ok(entries.length > 0, `expected to parse decklist entries for Deck ${label}`);
+    const total = entries.reduce((sum, e) => sum + e.count, 0);
+    assert.strictEqual(total, 40, `expected Deck ${label} to total 40 cards, got ${total}`);
+    for (const e of entries) {
+      assert.ok(e.count <= 3, `expected Deck ${label} to cap \`${e.name}\` at 3 copies, got ${e.count}`);
+    }
+  }
+});
+
+test('AC1: Deck A and Deck B in Step 1 each name at least one fount-economy-set.md card', () => {
+  const step = stepOneText(readDoc());
+  const fountEconomyNames = new Set(
+    loadCardsFromFile(path.join(__dirname, '..', 'design', 'cards', 'fount-economy-set.md')).map((c) => c.name)
+  );
+  for (const [label, entries] of [
+    ['A', deckAEntries(step)],
+    ['B', deckBEntries(step)],
+  ]) {
+    const hasOne = entries.some((e) => fountEconomyNames.has(e.name));
+    assert.ok(hasOne, `expected Deck ${label} to name at least one fount-economy-set.md card`);
+  }
+});
+
+test('AC2: no decklist line in Step 1 is annotated dead or can-never-be-paid', () => {
+  const step = stepOneText(readDoc());
+  assert.ok(!/\bdead\b/i.test(step), 'expected no "dead" annotation to remain in Step 1');
+  assert.ok(!/can never be paid/i.test(step), 'expected no "can never be paid" annotation to remain in Step 1');
+});
+
+test('AC3: the payable-card count in Step 1 matches the current four-file pool', () => {
+  const step = stepOneText(readDoc());
+  assert.ok(
+    !/Only 10 of the 28 cards/i.test(step),
+    'expected the stale "Only 10 of the 28 cards" sentence to be gone'
+  );
+
+  const founts = generatorFounts();
+  assert.strictEqual(
+    founts.size,
+    5,
+    `expected every Fount to have a Generator in the four-file pool, found: ${[...founts].sort().join(', ')}`
+  );
+
+  let totalNamed = 0;
+  let payableCount = 0;
+  for (const file of CARD_FILES) {
+    for (const card of loadCardsFromFile(file)) {
+      totalNamed++;
+      if (isPayable(card.costLine, founts)) payableCount++;
+    }
+  }
+  assert.strictEqual(payableCount, totalNamed, 'expected every card to be payable now that every Fount has a Generator');
+
+  assert.ok(
+    new RegExp(`\\b${totalNamed}\\b`).test(step),
+    `expected Step 1 to state the current total of ${totalNamed} cards named across the four card files`
+  );
+  assert.ok(/can now be paid for/i.test(step), 'expected Step 1 to state that the cards can now be paid for');
+});
+
+test('AC5: at least one payable card per Fount is present in at least one deck', () => {
+  const step = stepOneText(readDoc());
+  const founts = generatorFounts();
+  const costs = cardCostByName();
+  const allEntries = [...deckAEntries(step), ...deckBEntries(step)];
+
+  for (const fount of ['Mass', 'Bloom', 'Signal', 'Circuit', 'Tangle']) {
+    const covered = allEntries.some((e) => {
+      const costLine = costs.get(e.name);
+      assert.ok(costLine, `expected \`${e.name}\` (named in Step 1) to be a real card with a Cost line`);
+      const pips = parseCostFounts(costLine);
+      return pips.includes(fount) && isPayable(costLine, founts);
+    });
+    assert.ok(covered, `expected at least one payable card costing ${fount} in Deck A or Deck B`);
+  }
+});
+
+// ---------------------------------------------------------------------------
 // Sanity: this unit must not have modified rules.md or any card file (AC4, held out).
 // This is a light in-suite guard, not a substitute for the reviewer checking `git diff`
 // touches only the two new files.
