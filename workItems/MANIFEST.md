@@ -454,3 +454,10 @@ Append-only requirements traceability log — one section per archived work item
 - AC2 [paraphrase]: Each new brief's Palette line names the single Fount-driven color from card-anatomy.md's Fount identity table matching the one Fount named in that card's own Cost line (Ash-grey for Mass, Green for Bloom, Cyan for Signal, Copper for Circuit, Violet for Tangle). — PASS
 - AC3 [paraphrase]: Each new brief has a 'Key visual elements:' list of at least 2 bullets sharing at least 2 significant words with that card's own rules text or flavor text (not generic filler phrasing), and a 'Composition:' line naming the Art Window's rectangular/landscape shape and an aspect ratio. — PASS
 - AC4 [inferred] (held_out): test/design-art-briefs-wormhole-closure.test.js exists and enforces the above against the real, current wormhole-closure-cards.md and art-briefs.md content; every other card file and every pre-existing test file remain byte-identical to before this unit. — PASS
+
+## 2026-07-30-cardgame-main-phase-discovery-crossref-resolve-rules-md-section-5-3-s-leftover-discovery-timing-dev-note-t.md
+
+- AC1 [paraphrase]: design/rules.md no longer contains any line reading exactly '//discovering new planets, and creating new wormholes goes in this phase.' anywhere in the file. — PASS
+- AC2 [paraphrase]: Section 5.3 (Main Phase)'s prose explicitly states, in a full sentence (not a comment), that the Discovery action creates new Planets and/or Wormholes on the battlefield graph, and cross-references Section 8.3. — PASS
+- AC3 [paraphrase]: Every other existing `//`-prefixed note in design/rules.md (Section 5.2 line ~275, Section 5.4 lines ~294-300, and Section 8's five notes) remains present, word-for-word unchanged, and no section other than 5.3 is modified. — PASS
+- AC4 [inferred] (held_out): test/design-rules-main-phase-discovery-note.test.js exists and enforces all three criteria above against the real, current design/rules.md content. — PASS
