@@ -461,3 +461,11 @@ Append-only requirements traceability log — one section per archived work item
 - AC2 [paraphrase]: Section 5.3 (Main Phase)'s prose explicitly states, in a full sentence (not a comment), that the Discovery action creates new Planets and/or Wormholes on the battlefield graph, and cross-references Section 8.3. — PASS
 - AC3 [paraphrase]: Every other existing `//`-prefixed note in design/rules.md (Section 5.2 line ~275, Section 5.4 lines ~294-300, and Section 8's five notes) remains present, word-for-word unchanged, and no section other than 5.3 is modified. — PASS
 - AC4 [inferred] (held_out): test/design-rules-main-phase-discovery-note.test.js exists and enforces all three criteria above against the real, current design/rules.md content. — PASS
+
+## 2026-07-30-cardgame-tools-fs-lock-dedup-extract-the-two-independently-reinvented-cross-process-file-locks-in-tools-in.md
+
+- AC1 [inferred]: lib/fs-lock.js exists and exports a lock function implementing exclusive acquire-or-wait plus stale-lock reclaim (lock older than a threshold is treated as abandoned and reclaimed rather than blocking forever) — PASS
+- AC2 [inferred]: tools/build-site.js contains no local withBuildLock/isLockStale function declarations and instead requires the lock helper from lib/fs-lock.js; test/build-site.test.js passes unmodified — PASS
+- AC3 [inferred]: tools/composite-card-art.js contains no local withOutDirLock function declaration and instead requires the lock helper from lib/fs-lock.js; test/composite-card-art.test.js passes unmodified — PASS
+- AC4 [inferred] (held_out): A new test/fs-lock-dedup.test.js exercises lib/fs-lock.js directly: a second concurrent acquire attempt is excluded until the first releases, and a lock left behind by a killed process (mtime older than the stale threshold) is automatically reclaimed rather than hanging — PASS
+- AC5 [paraphrase]: Full `node --test` run is green (pre-existing suite plus the new fs-lock tests) — PASS
