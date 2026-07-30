@@ -433,3 +433,10 @@ Append-only requirements traceability log — one section per archived work item
 - AC2 [paraphrase]: The generated site index page title and header lead with Wreck Tangle (rebuild via tools/build-site.js), and existing site tests pass — no receipt (escalated before receipt computation)
 - AC3 [inferred]: A test asserts the string Wreck Tangle appears in design/rules.md and in site/index.html so future edits cannot silently drop the name — no receipt (escalated before receipt computation)
 - AC4 [inferred] (held_out): No card file, race file, character file, or file path is renamed by this unit � the diff touches only titles/headers/prose that name the game itself — no receipt (escalated before receipt computation)
+
+## 2026-07-30-cardgame-card-catalog-name-collision-check-one-mechanical-no-duplicate-card-name-check-across-the-whole-de.md
+
+- AC1 [inferred]: lib/card-catalog.js exists and exports a function that, given an array of card records each with a `name` field, returns the list of names that appear more than once (comparing case-insensitively, so 'Wormhole Ledger' and 'wormhole ledger' count as the same name). — PASS
+- AC2 [inferred]: test/card-catalog-collision.test.js proves detection with fixture data: given a synthetic set of card records containing one name repeated across two entries (including at least one case-only variant), the function returns that name as a duplicate; given a synthetic set with no repeated names, it returns an empty list. — PASS
+- AC3 [paraphrase]: test/card-catalog-collision.test.js also calls the same function against the real card catalog returned by lib/parse-card-markdown.js's loadAllCards(), and asserts it currently returns zero duplicate names. — PASS
+- AC4 [inferred] (held_out): No file under design/cards/, lib/parse-card-markdown.js, or any pre-existing test/*.js file is modified by this unit — only lib/card-catalog.js and test/card-catalog-collision.test.js are added, and every pre-existing test file's pass/fail outcome under `node --test` is unchanged. — PASS
