@@ -526,3 +526,11 @@ Append-only requirements traceability log — one section per archived work item
 - AC3 [inferred]: Each record's order field is its 1-based position in the '## Timeline of Eras' numbered list (The Weave Age is 1, Current Era: The Uneasy Expanse is 6), and order values across the 6 records are the unique integers 1 through 6 with no gaps or repeats — PASS
 - AC4 [inferred] (held_out): Each record's summary field contains that era's own prose text only — it must not contain the literal heading text of any other era (no bleed-through from an adjacent section), and must be non-empty — PASS
 - AC5 [inferred]: Without --dry-run, the script makes no Jaina API calls, no network access, and no credentials are required by node --test — it prints a message that live sync is not yet implemented for lore eras and exits 1; running the dry-run twice in a row against unchanged markdown produces byte-identical stdout output — PASS
+
+## 2026-07-30-cardgame-design-readiness-gap1-wormhole-resolved-fix-fix-design-readiness-md-s-stale-open-gap-1-wormhole-c.md
+
+- AC1 [inferred]: design/DESIGN-READINESS.md's Open Gap 1 no longer contains the claim that the 5 wormhole-closure-cards cards lack a matching art-brief entry — no receipt (escalated before receipt computation)
+- AC2 [inferred]: Open Gap 1's text now states that design/cards/art-briefs.md already covers the wormhole-closure-cards set, naming that file verbatim, and narrows the remaining hole to the 3 cards in spatial-race-identity-set.md — no receipt (escalated before receipt computation)
+- AC3 [paraphrase]: The Open Gaps section still parses as a sequential numbered list (1., 2., 3., ... no skipped or repeated numbers) with at least 3 items, so test/design-readiness.test.js's existing AC5 assertion continues to pass unmodified — no receipt (escalated before receipt computation)
+- AC4 [inferred] (held_out): Section 3's card-set inventory and Section 4's 'Known gap' note are present in the file byte-for-byte unchanged — no receipt (escalated before receipt computation)
+- AC5 [paraphrase]: Open Gaps 2, 3, and 4 each still appear with their original substantive text intact, only renumbered if the edit requires it — no receipt (escalated before receipt computation)
