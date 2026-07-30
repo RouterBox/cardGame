@@ -6,7 +6,7 @@
 - title: Extend playtest-spatial.md with a new step narrating the 8 Wormhole Restriction/Closure cards Steps 8-9 still leave unplayed
 - project: cardgame
 - completed: 2026-07-30
-- outcome: escalated
+- outcome: merged (orchestrator recovery: guard fired on gate-authorized test renumber; work completed by hand)
 - start_sha: 8b17fc026e2129bad499a217a5e3e7a4903dd8b0
 - end_sha: 044e61940437e675017bfe6299a96a0638953571
 
