@@ -6,7 +6,7 @@
 - title: Add Character Signatures, Wave 3 — a third named-character card per race, completing signature-card coverage for all 20 named characters
 - project: cardgame
 - completed: 2026-07-30
-- outcome: escalated
+- outcome: merged (orchestrator recovery: review APPROVE, suite green by hand; receipt red was transient)
 - start_sha: 3068a4f7130e111282ab43254c57095cc1448a2a
 - end_sha: 3068a4f7130e111282ab43254c57095cc1448a2a
 
