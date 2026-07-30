@@ -6,7 +6,7 @@
 - title: Fix DESIGN-READINESS.md's stale Open Gap 1 (wormhole-closure half already resolved by shipped art briefs)
 - project: cardgame
 - completed: 2026-07-30
-- outcome: escalated
+- outcome: merged (orchestrator recovery: builder work was complete and green; escalation red was transient)
 - start_sha: ef933b69d9f5f9248635745796616122dc60adf5
 - end_sha: 1372ce65c5a63818debbc11128c4c7f6ca364ead
 
