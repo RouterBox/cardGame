@@ -3,10 +3,10 @@
 This is a step-by-step, on-paper procedure for two humans, "Ada" and "Kestrel," to build
 decks, set up, and play one complete game under *design/rules.md*, from deck construction
 through an explicit win, using ordinary physical materials instead of a computer or
-software prototype. Every card named in the numbered Procedure below exists by exact name
-in *design/cards/alpha-set.md*, *design/cards/character-signatures.md*, or
-*design/cards/frontier-set.md*; the Worked Examples section later in this file also names
-cards from *design/cards/fount-economy-set.md*. Every major step cites the exact
+software prototype. Every card named in the numbered Procedure below, including the Worked
+Examples section later in this file, exists by exact name in *design/cards/alpha-set.md*,
+*design/cards/character-signatures.md*, *design/cards/frontier-set.md*, or
+*design/cards/fount-economy-set.md*. Every major step cites the exact
 rules.md section that
 governs it, so either playtester can stop and check the physical action just taken against
 the rule text itself. This procedure builds on the spatial-layer procedure already written
@@ -15,9 +15,8 @@ battlefield graph, this one plays every phase of an entire game, from an empty t
 declared winner.
 
 Read "What This Playtest Surfaced" at the end before running this procedure — it explains,
-with exact numbers, why both decks below draw only from the Mass and Circuit Founts, and
-why Combat and Capture are demonstrated separately as Worked Examples rather than inside
-the numbered Procedure itself.
+with exact numbers, why Combat and Capture are demonstrated separately as Worked Examples
+rather than inside the numbered Procedure itself.
 
 ## Materials
 
