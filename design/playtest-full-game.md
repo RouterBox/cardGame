@@ -42,12 +42,11 @@ the numbered Procedure itself.
 
 ## Procedure
 
-1. **Construct two legal 40-card decks (Section 11).** Only 10 of the 28 cards currently
-   named across the three card files can ever be paid for — see "What This Playtest
-   Surfaced" for exactly why. Both decks below lean on those 10 as far as legally possible
-   (Section 11.2 caps any one name at 3 copies, so 10 names x 3 = 30 payable slots) and
-   fill the remaining 10 slots, required by Section 11.1's 40-card minimum, with cards
-   from the dead Founts. Build these two decks exactly as listed:
+1. **Construct two legal 40-card decks (Section 11).** All 34 of the cards currently
+   named across the four card files — alpha-set.md, frontier-set.md,
+   character-signatures.md, and fount-economy-set.md — can now be paid for: every Fount
+   (Mass, Bloom, Signal, Circuit, Tangle) has a Generator (Section 5.2), so no card below
+   is uncastable. Build these two decks exactly as listed:
 
    **Deck A ("Ada")** — 40 cards:
    - 3x `Salvage-Wrought Bastion` (2 Mass, Materials — Permanent, Generator)
@@ -56,15 +55,16 @@ the numbered Procedure itself.
    - 3x `Kordelia Vess, Salvage-Marshal of the Cinder Yards` (3 Mass, Materials —
      Permanent, Generator)
    - 3x `Bastion Reclamation Crew` (2 Mass, Materials — Permanent)
-   - 3x `Sporeknit Warden` (3 Bloom — dead, no Bloom Generator exists)
-   - 3x `Feral Bloomcaller` (2 Bloom — dead)
-   - 3x `Rootbind Thicket` (2 Bloom — dead)
-   - 3x `Oathbreaker's Toll` (2 Tangle — dead, no Tangle Generator exists)
-   - 3x `Echo Recall` (2 Tangle — dead)
-   - 3x `Whispered Contract` (1 Signal — dead, no Signal Generator exists)
-   - 3x `Foreknowledge Cipher` (2 Signal — dead)
-   - 3x `Wrought-Bloom Graft` (1 Mass, 1 Bloom — dead, the Bloom share can never be paid)
-   - 1x `Mother-Thread Ilvex, First Voice of the Sprawl` (4 Bloom — dead)
+   - 3x `Cradle-Root Colony` (2 Bloom, Biology — Permanent, Generator)
+   - 3x `Feral Bloomcaller` (2 Bloom)
+   - 3x `Rootbind Thicket` (2 Bloom)
+   - 3x `Communion Waystone` (1 Tangle, 1 Mass, Magic Materials — Permanent, Generator)
+   - 3x `Echo Recall` (2 Tangle)
+   - 3x `Panoptic Relay Spire` (1 Signal, 1 Circuit, Intelligence Technology —
+     Permanent, Generator)
+   - 3x `Foreknowledge Cipher` (2 Signal)
+   - 3x `Wrought-Bloom Graft` (1 Mass, 1 Bloom)
+   - 1x `Mother-Thread Ilvex, First Voice of the Sprawl` (4 Bloom)
 
    **Deck B ("Kestrel")** — 40 cards:
    - 3x `Replicant Foundry Core` (3 Circuit, Technology — Permanent, Generator)
@@ -73,16 +73,16 @@ the numbered Procedure itself.
    - 3x `Unit 0-Prime "Cast-Aside", the First Flaw` (3 Circuit, Technology — Permanent,
      Unit, combat strength 3)
    - 3x `Replication Beachhead` (2 Circuit, Technology — Permanent, Generator)
-   - 3x `Static Ambush` (3 Signal — dead)
-   - 3x `Unwritten Hour` (3 Tangle — dead)
-   - 3x `Signal-Wrought Prototype` (1 Signal, 1 Circuit — dead, the Signal share can never
-     be paid)
-   - 3x `Tangle-Forged Bolt` (1 Tangle, 1 Mass — dead, the Tangle share can never be paid)
-   - 3x `Wormhole Ledger` (1 Signal — dead)
-   - 3x `Rite of Unmaking` (2 Tangle — dead)
-   - 3x `Selin Vashti Corr, Whisper-Broker of the Glass Spires` (2 Signal — dead)
-   - 3x `Meridian Aule, Star-Read Oracle of the Tangle` (2 Tangle — dead)
-   - 1x `Whispered Contract` (1 Signal — dead)
+   - 3x `Panoptic Relay Spire` (1 Signal, 1 Circuit, Intelligence Technology —
+     Permanent, Generator)
+   - 3x `Signal-Wrought Prototype` (1 Signal, 1 Circuit)
+   - 3x `Communion Waystone` (1 Tangle, 1 Mass, Magic Materials — Permanent, Generator)
+   - 3x `Tangle-Forged Bolt` (1 Tangle, 1 Mass)
+   - 3x `Wormhole Ledger` (1 Signal)
+   - 3x `Rite of Unmaking` (2 Tangle)
+   - 3x `Selin Vashti Corr, Whisper-Broker of the Glass Spires` (2 Signal)
+   - 3x `Meridian Aule, Star-Read Oracle of the Tangle` (2 Tangle)
+   - 1x `Whispered Contract` (1 Signal)
 
    Check each deck against Section 11.1 (at least 40 cards: both are exactly 40) and
    Section 11.2 (no more than 3 copies of any one Name: confirmed above).
