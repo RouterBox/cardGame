@@ -5,8 +5,9 @@ decks, set up, and play one complete game under *design/rules.md*, from deck con
 through an explicit win, using ordinary physical materials instead of a computer or
 software prototype. Every card named in the numbered Procedure below, including the Worked
 Examples section later in this file, exists by exact name in *design/cards/alpha-set.md*,
-*design/cards/character-signatures.md*, *design/cards/frontier-set.md*, or
-*design/cards/fount-economy-set.md*. Every major step cites the exact
+*design/cards/character-signatures.md*, *design/cards/frontier-set.md*,
+*design/cards/fount-economy-set.md*, or *design/cards/character-signatures-wave-2.md*. Every
+major step cites the exact
 rules.md section that
 governs it, so either playtester can stop and check the physical action just taken against
 the rule text itself. This procedure builds on the spatial-layer procedure already written
@@ -208,13 +209,16 @@ pool genuinely support, ending in a genuine win. But it never reaches Combat or 
 against enemy territory, for the reasons in "What This Playtest Surfaced" below. Rules.md
 resolves this same tension for its own text with constructed Worked Examples (Section 7,
 Section 8.7, Section 10.3, Section 12.5, Section 13.3): a hypothetical state, stated as
-hypothetical, used to pin down a rule concretely. The three examples below do the same for
+hypothetical, used to pin down a rule concretely. The four examples below do the same for
 this procedure: the first two reuse cards already named in the decklists above, so Section
 5.4/Section 12 and Section 8.6 still get an on-paper demonstration even though the scripted
 game above cannot reach them. The third adds `Cradle-Root Colony` from
 *design/cards/fount-economy-set.md*, the Generator that closes the Bloom's half of the gap
 described in "What This Playtest Surfaced" below, so Section 4.2 and Section 5.2's
-Bloom-Fount economy gets the same on-paper demonstration.
+Bloom-Fount economy gets the same on-paper demonstration. The fourth adds all 5 of
+*design/cards/character-signatures-wave-2.md*'s named cards — one per race — so Sections
+9.2-9.6, Section 4.2, and Section 3 each get the same on-paper demonstration for cards that
+were fully specified and legal, but had never appeared in any playtest procedure before now.
 
 ### Worked Example 1: Combat Resolution (Section 5.4, Section 12)
 
@@ -288,6 +292,102 @@ Phases (Section 5.2, Section 4.2), enough Bloom Points reaching a single turn's 
 for a printed Bloom Unit (Section 5.3), and that Unit reaching the Conflict Phase as a
 declared attacker (Section 5.4) — the same reachability Combat, Discovery past Length 1, and
 Capture all depend on, now real for the Bloom the way it was already real for the Mass.
+
+### Worked Example 4: Five Signature Permanents and Spells in Play (Section 9.2, Section 9.3, Section 9.4, Section 9.5, Section 9.6, Section 4.2, Section 3)
+
+Suppose, hypothetically, each of the 5 named cards in *design/cards/character-signatures-wave-2.md*
+— one per race, none of them in either Step 1 decklist above — were played once, and, where
+its rules text carries a triggered or resolving ability, that ability fired once. Each
+demonstration below reuses a challenger already established earlier in this document (Ada,
+Kestrel, or Bryn from Worked Example 3) whose own deck already draws from that card's Fount,
+and introduces two further hypothetical challengers, Vantis and Elowen, only where none of the
+three already fits.
+
+**Torel Ashgrave, Line-Captain of the Ember Vanguard (The Cindral Reach — Materials).**
+Cost line: 2 Mass. Type line: Materials — Permanent.
+
+- Suppose, hypothetically, Ada controlled a Ready `Line-Fleet Trooper` (combat strength 3, a
+  Materials Unit) and played Torel Ashgrave, Line-Captain of the Ember Vanguard from her Hand
+  in her Main Phase, paying 2 Mass (Section 5.3). Materials cards are permanent (Section 9.6),
+  so it enters the Field as a Permanent, with combat strength 1 and no counters, exactly as
+  its Stats/counters line states (Section 9.1).
+- Torel Ashgrave, Line-Captain of the Ember Vanguard's rules text is a static ability, not a
+  trigger: its combat strength is increased by 1 for each other Materials Unit its controller
+  controls. With `Line-Fleet Trooper` — one other Materials Unit — on the Field, its combat
+  strength is 1 (printed) + 1 = 2 for as long as Ada controls that other Materials Unit
+  (Section 9.1, Section 9.6).
+
+**Rathe Ossuary-Kin, Spore-Hound of the Sprawl (The Mireth Bloom — Biology).**
+Cost line: 3 Bloom. Type line: Biology — Permanent.
+
+- Suppose, hypothetically, continuing Worked Example 3's Bryn, that by a later turn her Bloom
+  pool held 3 Bloom Points: `Cradle-Root Colony`'s usual 1 from that turn's Generation Phase
+  (Section 5.2, Section 4.2), plus 2 more — the same kind of unexplained one-turn Fount Point
+  total Worked Examples 2 and 3 above already suppose. In her Main Phase, Bryn plays
+  Rathe Ossuary-Kin, Spore-Hound of the Sprawl, paying 3 Bloom (Section 5.3). Every Biology
+  card is a Unit (Section 9.5), so it enters Ready with combat strength 2 and no counters, as
+  its Stats/counters line states.
+- Suppose, hypothetically, in a later Conflict Phase, Bryn's opponent declared a Ready
+  `Feral Bloomcaller` (combat strength 1) as an attacker, and Bryn declared her Ready
+  Rathe Ossuary-Kin, Spore-Hound of the Sprawl as a blocker against it (Section 5.4).
+  Because it is blocked, `Feral Bloomcaller` deals its combat strength as damage to
+  Rathe Ossuary-Kin, Spore-Hound of the Sprawl instead of Bryn's Core Integrity (Section
+  12.1): 1 damage, less than its combat strength of 2, so it survives rather than being
+  destroyed (Section 12.3). Being dealt that damage triggers its own rules text: place a
+  Growth counter on it (Section 4.2). With one Growth counter, its combat strength becomes 2
+  (printed) + 1 = 3 until that counter is removed.
+
+**Doran Vex Amaranthine, Ledger-Warden of the Foreknowledge Archive (The Panoptic Concord — Intelligence).**
+Cost line: 2 Signal. Type line: Intelligence.
+
+- Suppose, hypothetically, a fourth challenger, Vantis, built a Signal deck and had 2 Signal
+  Points in his pool. In his Main Phase, he plays
+  Doran Vex Amaranthine, Ledger-Warden of the Foreknowledge Archive as a Fast card, paying 2
+  Signal (Section 5.3). Intelligence cards are instant/sorcery-speed resolving (Section 9.4),
+  so it is added to the Queue rather than entering the Field as a Permanent (Section 9.1).
+- Once both challengers pass in succession,
+  Doran Vex Amaranthine, Ledger-Warden of the Foreknowledge Archive resolves (Section 6):
+  Vantis looks at the top card of his opponent's Archive — a zone neither challenger may
+  otherwise look through (Section 3) — then puts it back on top, exactly as its rules text
+  states. It then moves to Vantis's Wreck, having resolved once (Section 9.1).
+
+**Ysolde Thane, Pilgrim of the Unwritten Sign (The Starweave Communion — Magic).**
+Cost line: 2 Tangle. Type line: Magic.
+
+- Suppose, hypothetically, a fifth challenger, Elowen, built a Tangle deck and had 2 Tangle
+  Points in her pool. In her Main Phase, she plays Ysolde Thane, Pilgrim of the Unwritten Sign
+  as a Fast card, paying 2 Tangle (Section 5.3). Magic cards are instant/sorcery-speed
+  resolving (Section 9.2), so it is added to the Queue rather than entering the Field as a
+  Permanent (Section 9.1).
+- Once both challengers pass in succession, Ysolde Thane, Pilgrim of the Unwritten Sign
+  resolves (Section 6): Elowen looks at the top card of her own Archive (Section 3) and
+  chooses to put it into her Hand instead of leaving it on top, exactly as its rules text
+  states. It then moves to Elowen's Wreck, having resolved once (Section 9.1).
+
+**Foreman-Prime Yssa Ductile, Keeper of the First Pattern (The Wrought Assembly — Technology).**
+Cost line: 4 Circuit. Type line: Technology — Permanent.
+
+- Suppose, hypothetically, Kestrel's Circuit pool held 4 Circuit Points in a single turn and,
+  in her Main Phase, she played Foreman-Prime Yssa Ductile, Keeper of the First Pattern,
+  paying 4 Circuit (Section 5.3). Technology cards are permanent (Section 9.3), so it enters
+  the Field as a Permanent.
+- Foreman-Prime Yssa Ductile, Keeper of the First Pattern's rules text makes it a Generator
+  attuned to the Circuit, the same relationship Section 4.4 already defines for any Circuit
+  Generator. At the start of Kestrel's next Generation Phase, it produces 1 Circuit Point,
+  added to Kestrel's Circuit resource pool (Section 5.2, Section 4.4), exactly as any other
+  Circuit Generator's own printed ability would.
+
+This plays all 5 of *design/cards/character-signatures-wave-2.md*'s named cards — one per race
+— into a hypothetical game state at least once each, exactly the way Worked Examples 1-3 above
+already do for cards drawn from the four other card files: each card's Cost line and Type line
+are exactly as printed (Section 9.1), each card's Card Type governs whether it is a Permanent
+or resolves once to the Wreck (Sections 9.2-9.6), and each card's own triggered or resolving
+ability fires exactly as its rules text states — Rathe Ossuary-Kin, Spore-Hound of the
+Sprawl's Growth counter (Section 4.2) and
+Doran Vex Amaranthine, Ledger-Warden of the Foreknowledge Archive's and
+Ysolde Thane, Pilgrim of the Unwritten Sign's Archive-reading abilities (Section 3) included.
+This closes the one gap left in the design's own named cards: these 5, one per race, are fully
+specified and legal, but until now had never appeared in any playtest procedure at all.
 
 ## What This Playtest Surfaced
 
