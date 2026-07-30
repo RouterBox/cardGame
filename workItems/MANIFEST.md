@@ -652,3 +652,11 @@ Append-only requirements traceability log — one section per archived work item
 - AC3 [inferred]: design/star-atlas.md contains the string "Wreck Tangle" at least once, and its H1 title is unchanged — PASS
 - AC4 [paraphrase] (held_out): design/rules.md, site/index.html, and every file under design/cards/ are byte-for-byte unchanged from their content before this unit — PASS
 - AC5 [paraphrase]: site/design/world.html, site/design/lore.html, and site/design/star-atlas.html are regenerated via tools/build-site.js and each contains "Wreck Tangle"; a new test file mechanically asserts all of the above — PASS
+
+## 2026-07-30-cardgame-playtest-spatial-wormhole-coverage-extend-playtest-spatial-md-with-a-new-step-narrating-the-8-wor.md
+
+- AC1 [inferred]: design/playtest-spatial.md's new step names all 4 remaining Wormhole Restrictions Set cards by exact name and Cost line: Conveyance Directive (2 Circuit), Rootbound Corridor (2 Bloom), Vector Interdiction (1 Signal), Pilgrim's Right of Way (2 Tangle) — no receipt (escalated before receipt computation)
+- AC2 [inferred]: design/playtest-spatial.md's new step names all 4 remaining Wormhole Closure Cards cards by exact name and Cost line: Bastion Seal Detachment (2 Mass), Withering Conduit Rot (2 Bloom), Severance Directive (1 Signal), Rite of the Sealed Tangle (2 Tangle) — no receipt (escalated before receipt computation)
+- AC3 [paraphrase] (held_out): For each of the 8 newly narrated cards, the new step ties its narration to a distinct physical action matching that card's Rules text (a Restriction note for the 4 restriction cards, a crossed-out line for the 4 closure cards), not a generic restatement of Step 8 or Step 9's own action — no receipt (escalated before receipt computation)
+- AC4 [inferred]: Steps 1 through 9 and Step 11 of design/playtest-spatial.md, the Materials list, and the 'What to watch for' section are present byte-for-byte unchanged from before this unit — no receipt (escalated before receipt computation)
+- AC5 [paraphrase]: site/design/playtest-spatial.html is regenerated via tools/build-site.js from the updated markdown and contains all 8 newly narrated card names; the new test file mechanically asserts all 8 card names and Cost lines appear in design/playtest-spatial.md — no receipt (escalated before receipt computation)
