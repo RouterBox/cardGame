@@ -324,9 +324,9 @@ the way they were with no Generator at all — Worked Example 3 above plays that
 through to a declared attacker, the same way Worked Examples 1 and 2 play Combat and Capture,
 on the same hypothetical footing (a supposed state, not a claim that ordinary play reaches it
 turn-for-turn any faster than the Mass or Circuit decks above do). The two decks actually
-built for this procedure (step 1) predate *fount-economy-set.md* and still can't reach Combat
-at all, which is exactly why it remains a Worked Example here rather than a step in the
-numbered Procedure.
+built for this procedure (step 1) now draw from *fount-economy-set.md* too, but the numbered
+Procedure as scripted still never plays a Unit into Combat, which is exactly why Combat
+remains a Worked Example here rather than a step in the numbered Procedure.
 
 Separately, because only 10 of the 28 cards originally named across the three card files
 were ever payable at all (5 Materials + 5 Technology), and Section 11.2 caps any one of them
