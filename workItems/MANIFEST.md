@@ -614,3 +614,11 @@ Append-only requirements traceability log — one section per archived work item
 - AC3 [paraphrase] (held_out): Every Fount (Mass, Bloom, Signal, Circuit, Tangle) used by either deck has at least one card in that same deck whose rules text names it as a Generator attuned to that Fount, so no card in either deck is uncastable — no receipt (escalated before receipt computation)
 - AC4 [inferred]: The numbered Procedure cites specific rules.md section numbers throughout and ends with an explicit declared winner (a challenger stated to have won, or the opposing challenger stated to be Eliminated per Section 10) — no receipt (escalated before receipt computation)
 - AC5 [paraphrase]: site/design/playtest-full-game-2.html exists, generated via tools/build-site.js from the new markdown file, and design/playtest-full-game.md, design/playtest-spatial.md, and every design/cards/*.md file are present byte-for-byte unchanged — no receipt (escalated before receipt computation)
+
+## 2026-07-30-cardgame-character-signatures-wave-3-add-character-signatures-wave-3-a-third-named-character-card-per-race.md
+
+- AC1 [inferred]: design/cards/character-signatures-wave-3.md exists with exactly 5 cards, one per race under design/races/ — FAIL
+- AC2 [paraphrase] (held_out): Each card's named character, verified against that race's design/characters/*.md file, is one of the two characters not already used by character-signatures.md or character-signatures-wave-2.md for that race — FAIL
+- AC3 [inferred]: Across character-signatures.md, character-signatures-wave-2.md, and character-signatures-wave-3.md combined, no named character is used by more than one card — FAIL
+- AC4 [inferred]: Each card's Cost line names that race's own primary Fount (per design/races/*.md) and each card follows the Section 9.1 template field order (Name, Cost line, Type line, Rules text, optional Stats/counters line) — FAIL
+- AC5 [paraphrase]: site/design/cards/character-signatures-wave-3.html exists via tools/build-site.js, and character-signatures.md, character-signatures-wave-2.md, and every design/characters/*.md file are byte-for-byte unchanged — FAIL
