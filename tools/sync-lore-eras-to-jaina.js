@@ -2,6 +2,7 @@
 'use strict';
 
 const { loadAllEras } = require('../lib/parse-lore-markdown');
+const { runDryRunSyncCli } = require('../lib/run-jaina-dryrun-cli');
 
 const NOT_IMPLEMENTED_MESSAGE =
   'Live sync to Jaina is not yet implemented for lore eras in this unit. Re-run with ' +
@@ -25,18 +26,12 @@ function buildRecord(era) {
 // ---------------------------------------------------------------------------
 
 function main() {
-  const dryRun = process.argv.includes('--dry-run');
-
-  if (!dryRun) {
-    console.error(NOT_IMPLEMENTED_MESSAGE);
-    process.exitCode = 1;
-    return;
-  }
-
-  const eras = loadAllEras();
-  for (const era of eras) {
-    console.log(JSON.stringify(buildRecord(era)));
-  }
+  runDryRunSyncCli({
+    loadItems: loadAllEras,
+    buildRecord,
+    notImplementedMessage: NOT_IMPLEMENTED_MESSAGE,
+    argv: process.argv,
+  });
 }
 
 main();

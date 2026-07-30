@@ -2,6 +2,7 @@
 'use strict';
 
 const { loadAllWorlds } = require('../lib/parse-star-atlas-markdown');
+const { runDryRunSyncCli } = require('../lib/run-jaina-dryrun-cli');
 
 const NOT_IMPLEMENTED_MESSAGE =
   'Live sync to Jaina is not yet implemented for the star atlas in this unit. Re-run with ' +
@@ -26,18 +27,12 @@ function buildRecord(world) {
 // ---------------------------------------------------------------------------
 
 function main() {
-  const dryRun = process.argv.includes('--dry-run');
-
-  if (!dryRun) {
-    console.error(NOT_IMPLEMENTED_MESSAGE);
-    process.exitCode = 1;
-    return;
-  }
-
-  const worlds = loadAllWorlds();
-  for (const world of worlds) {
-    console.log(JSON.stringify(buildRecord(world)));
-  }
+  runDryRunSyncCli({
+    loadItems: loadAllWorlds,
+    buildRecord,
+    notImplementedMessage: NOT_IMPLEMENTED_MESSAGE,
+    argv: process.argv,
+  });
 }
 
 main();

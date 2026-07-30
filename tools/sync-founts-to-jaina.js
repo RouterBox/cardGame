@@ -2,6 +2,7 @@
 'use strict';
 
 const { loadAllFounts } = require('../lib/parse-founts-markdown');
+const { runDryRunSyncCli } = require('../lib/run-jaina-dryrun-cli');
 
 const NOT_IMPLEMENTED_MESSAGE =
   'Live sync to Jaina is not yet implemented for Founts in this unit. Re-run with ' +
@@ -25,18 +26,12 @@ function buildRecord(fount) {
 // ---------------------------------------------------------------------------
 
 function main() {
-  const dryRun = process.argv.includes('--dry-run');
-
-  if (!dryRun) {
-    console.error(NOT_IMPLEMENTED_MESSAGE);
-    process.exitCode = 1;
-    return;
-  }
-
-  const founts = loadAllFounts();
-  for (const fount of founts) {
-    console.log(JSON.stringify(buildRecord(fount)));
-  }
+  runDryRunSyncCli({
+    loadItems: loadAllFounts,
+    buildRecord,
+    notImplementedMessage: NOT_IMPLEMENTED_MESSAGE,
+    argv: process.argv,
+  });
 }
 
 main();
