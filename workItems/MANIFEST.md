@@ -629,3 +629,10 @@ Append-only requirements traceability log — one section per archived work item
 - AC2 [inferred]: lib/parse-character-markdown.js's module.exports still includes slugify, and calling it returns the same values as before (e.g. slugify('Torel Ashgrave') === 'torel-ashgrave') — PASS
 - AC3 [inferred] (held_out): lib/parse-card-markdown.js, lib/parse-race-markdown.js, lib/parse-star-atlas-markdown.js, lib/parse-lore-markdown.js, and lib/parse-founts-markdown.js are byte-for-byte unchanged — PASS
 - AC4 [paraphrase]: test/parse-character-markdown.test.js passes unmodified against the refactored file, and loadAllCharacters() called against the real design/characters/ files returns the same character records (including slug values) as before the refactor — PASS
+
+## 2026-07-30-cardgame-jaina-sync-tools-dryrun-cli-dedup-migrate-the-3-remaining-jaina-sync-tools-onto-the-existing-rund.md
+
+- AC1 [inferred]: tools/sync-lore-eras-to-jaina.js, tools/sync-founts-to-jaina.js, and tools/sync-star-atlas-to-jaina.js each import runDryRunSyncCli from lib/run-jaina-dryrun-cli.js and call it from main() instead of inlining the dry-run/not-implemented control flow — no receipt (escalated before receipt computation)
+- AC2 [inferred]: Each of the 3 files keeps its own buildRecord function, its own NOT_IMPLEMENTED_MESSAGE constant, and an unchanged module.exports shape ({ buildRecord, NOT_IMPLEMENTED_MESSAGE }) — no receipt (escalated before receipt computation)
+- AC3 [paraphrase]: test/sync-lore-eras-to-jaina.test.js, test/sync-founts-to-jaina.test.js, and test/sync-star-atlas-to-jaina.test.js pass unmodified against the refactored tools, with no changes made to any file under test/ — no receipt (escalated before receipt computation)
+- AC4 [paraphrase] (held_out): lib/run-jaina-dryrun-cli.js, tools/sync-characters-to-jaina.js, tools/sync-races-to-jaina.js, and tools/sync-cards-to-jaina.js are byte-for-byte unchanged — no receipt (escalated before receipt computation)
