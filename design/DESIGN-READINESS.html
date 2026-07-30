@@ -97,12 +97,12 @@ section h2 { margin-top: 2rem; }</style>
 <h2>4. Card Anatomy &amp; Art Brief Coverage</h2>
 <ul><li><strong><code>design/cards/card-anatomy.md</code></strong> — the shared card skeleton (Frame/</li></ul>
 <p>  Border, Name Slot, Cost Slot, Art Window, Type Line, Rules-Text Box, Stats   Corner, Set/Collector Strip), the mapping from every <code>rules.md</code> Section   9.1 template field to exactly one zone, and the premium-treatment layers   (borderless, foil, extended art) that dress the same skeleton without   changing what a card says or does.</p>
-<ul><li><strong><code>design/cards/art-briefs.md</code></strong> — 44 art-brief sections, covering every</li></ul>
-<p>  card in <code>alpha-set.md</code>, <code>frontier-set.md</code>, <code>character-signatures.md</code>,   <code>character-signatures-wave-2.md</code>, <code>fount-economy-set.md</code>, and   <code>wormhole-restrictions-set.md</code>.</p>
+<ul><li><strong><code>design/cards/art-briefs.md</code></strong> — 52 art-brief sections, covering every</li></ul>
+<p>  card in <code>alpha-set.md</code>, <code>frontier-set.md</code>, <code>character-signatures.md</code>,   <code>character-signatures-wave-2.md</code>, <code>fount-economy-set.md</code>,   <code>wormhole-restrictions-set.md</code>, <code>wormhole-closure-cards.md</code>, and   <code>spatial-race-identity-set.md</code>.</p>
 <ul><li><strong><code>design/cards/alt-art-briefs.md</code></strong> — 5 alternate-art briefs for the</li></ul>
 <p>  fount Generators (Sporeknit Warden, Salvage-Wrought Bastion, Replicant   Foundry Core, Foreknowledge Cipher, Unwritten Hour).</p>
-<ul><li><strong>Known gap:</strong> the 3 cards in <code>spatial-race-identity-set.md</code> and the 5</li></ul>
-<p>  cards in <code>wormhole-closure-cards.md</code> (8 cards total) have no brief in   <code>art-briefs.md</code> yet. <code>tools/composite-card-art.js</code> already surfaces this   live via a <code>no art brief for &quot;&lt;name&gt;&quot;</code> warning on every run (see Open Gap   1 below).</p>
+<ul><li><strong>Known gap — resolved:</strong> the 3 cards in <code>spatial-race-identity-set.md</code></li></ul>
+<p>  and the 5 cards in <code>wormhole-closure-cards.md</code> (8 cards total) previously   had no brief in <code>art-briefs.md</code>; both sets are now fully covered, closed   by the merged units <code>cardgame-art-briefs-wormhole-closure</code> and   <code>cardgame-art-briefs-spatial-race-identity</code> (see Open Gap 1 in Section 6   below, which already reflects this).</p>
 <h2>5. Authoring, Render, Site &amp; Sync Tooling</h2>
 <p>Per <code>design/ideas-inbox.md</code>&#39;s &quot;software gate ruling&quot; entry (I6): game <em>implementation</em> stays off-limits; tools for content generation and game authoring are allowed. Every tool below is authoring/presentation tooling — none implements game rules or a playable client:</p>
 <ul><li><strong><code>lib/parse-card-markdown.js</code></strong> — the single shared card-markdown parser</li></ul>
