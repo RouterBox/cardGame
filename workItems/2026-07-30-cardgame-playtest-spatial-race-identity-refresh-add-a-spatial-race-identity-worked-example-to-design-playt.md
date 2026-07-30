@@ -6,7 +6,7 @@
 - title: Add a Spatial Race Identity worked example to design/playtest-spatial.md — its 5 cards have never appeared in any playtest procedure
 - project: cardgame
 - completed: 2026-07-30
-- outcome: escalated
+- outcome: merged (orchestrator recovery: cmd.exe command-line-length limit killed worktree test runs; root cause fixed in pipeline)
 - start_sha: aada29365c197956d5d6684fe179c17b58115281
 - end_sha: 571bd1ccc2291ec71e8c9c27519861c1f82d2249
 
