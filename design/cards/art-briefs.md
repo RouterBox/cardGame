@@ -704,3 +704,84 @@ Composition: wide, landscape rectangle (~5:3), the large rectangular window
 beneath the Name Slot per card-anatomy.md — center the pilgrim at the
 Wormhole endpoint with the violet rite-light framing the passage behind
 them.
+
+## Wormhole Closure Cards — Sealing the Battlefield Graph
+
+### Bastion Seal Detachment
+
+Palette: Ash-grey — the Mass's industrial endurance, spent once to weld a
+passage shut for good.
+Subject/Scene: A Cindral Reach work crew welds a fresh seal across a
+Wormhole's endpoint at a Planet under their control, the passage
+undergoing Closure as its connection fades from the battlefield graph
+behind them.
+Key visual elements:
+- A welded-shut seam closing directly over a Wormhole's endpoint at a Planet under the crew's control, ash-grey Materials plating still sparking at the weld
+- The battlefield graph itself shown thinning where that Wormhole's connection is removed, the passage undergoing Closure rather than a fight
+Composition: wide, landscape rectangle (~5:3), the large rectangular window
+beneath the Name Slot per card-anatomy.md — center the welded endpoint
+with the fading graph connection receding toward the frame's edge.
+
+### Withering Conduit Rot
+
+Palette: Green — the Bloom's patient growth, spent once to let a passage
+be overtaken rather than fought over.
+Subject/Scene: A Mireth Bloom growth-mass spreads across the lining of a
+Wormhole's endpoint at a Planet its controller holds, spores thickening
+over the passage until it undergoes Closure and fades from the
+battlefield graph.
+Key visual elements:
+- Living spore-growth visibly overtaking the lining of a Wormhole's endpoint at a Planet the Bloom holds, Biology rather than force closing the passage
+- The battlefield graph shown losing that Wormhole's connection as the passage is removed, undergoing Closure without a single blow struck
+Composition: wide, landscape rectangle (~5:3), the large rectangular window
+beneath the Name Slot per card-anatomy.md — let the overtaking growth fill
+the endpoint from one edge of the frame, the graph connection fading at
+the other.
+
+### Severance Directive
+
+Palette: Cyan — the Signal's cool analytic watchfulness, an order that
+outpaces the reader.
+Subject/Scene: A Panoptic Concord cipher issues a severance directive in
+cyan light at a Wormhole's endpoint, the order already resolved before
+anyone can finish reading it, the passage undergoing Closure and
+vanishing from the battlefield graph.
+Key visual elements:
+- A cyan directive-order shown racing ahead of a reader's eye toward a Wormhole's endpoint at a Planet the Concord holds, the Signal outpacing the reading of its own text
+- The battlefield graph fading where that Wormhole's connection is removed, gone before the directive finishes unrolling
+Composition: wide, landscape rectangle (~5:3), the large rectangular window
+beneath the Name Slot per card-anatomy.md — angle the directive-order
+diagonally ahead of the reading gaze, outpacing it toward the fading
+endpoint.
+
+### Rite of the Sealed Tangle
+
+Palette: Violet — the Tangle's uncanny ritual mood, closure framed as a
+return rather than a loss.
+Subject/Scene: A Starweave Communion ritualist winds violet threads of
+light around a Wormhole's endpoint at a Planet they control, the rite
+framed as the Tangle returning to a shape it should never have left,
+until the passage undergoes Closure and fades from the battlefield graph.
+Key visual elements:
+- Violet ritual threads winding a Wormhole's endpoint closed at a Planet under the ritualist's control, framed as the Tangle returning to its proper shape rather than being torn
+- The battlefield graph shown losing that Wormhole's connection as it is removed, the rite ending in stillness rather than violence
+Composition: wide, landscape rectangle (~5:3), the large rectangular window
+beneath the Name Slot per card-anatomy.md — let the violet threads curl
+inward around the endpoint, closing the frame's center like the rite
+itself.
+
+### Chokepoint Demolition Charge
+
+Palette: Copper — the Circuit's warm mechanized precision, spent in a
+single pulse.
+Subject/Scene: A Wrought Assembly demolition charge fires one copper
+Circuit pulse into a Wormhole's endpoint at a Planet its controller
+holds, the chokepoint undergoing Closure in a single detonation and
+vanishing from the battlefield graph.
+Key visual elements:
+- A single charge and one copper Circuit pulse detonating at a Wormhole's endpoint at a Planet the Assembly holds, one shot rather than a sustained assault
+- The battlefield graph shown losing that Wormhole's connection the instant it is removed, the chokepoint gone as a variable for good
+Composition: wide, landscape rectangle (~5:3), the large rectangular window
+beneath the Name Slot per card-anatomy.md — center the single pulse at
+the moment of detonation, the chokepoint's graph connection fading at the
+frame's edge.
