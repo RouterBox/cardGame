@@ -1,9 +1,11 @@
 # Alt-Art Briefs
 
-This document gives one Alt-Art brief for each of five cards already
-briefed in `design/cards/art-briefs.md`, one card from each of the game's
-five Founts: Bloom, Mass, Circuit, Signal, and Tangle. Per the Alt-Art layer
-defined in `design/cards/card-anatomy.md`'s
+This document gives one Alt-Art brief for each of ten cards already
+briefed in `design/cards/art-briefs.md`, drawn from two source sets: five
+generic Fount Generators in `design/cards/alpha-set.md`, one from each of
+the game's five Founts (Bloom, Mass, Circuit, Signal, and Tangle), and the
+five named legendary/hero cards in `design/cards/character-signatures.md`.
+Per the Alt-Art layer defined in `design/cards/card-anatomy.md`'s
 "The Layers" section, an Alt-Art brief swaps only the Art Window's
 illustration for an alternate illustration of the same subject matter —
 every other zone keeps the base treatment's placement and content exactly.
@@ -94,3 +96,82 @@ Composition: wide, landscape rectangle (~5:3), the large rectangular window
 beneath the Name Slot per card-anatomy.md — keep the acolyte and shelved
 tokens low and central with the vault's candlelit darkness filling the
 frame's edges.
+
+### Kordelia Vess, Salvage-Marshal of the Cinder Yards
+
+Palette: Ash-grey — the Mass's industrial endurance, seen here in the raw,
+unsorted yards long before she imposed any order on them.
+Subject/Scene: Decades before she ran the yards, a young scavenger claws a
+single dented plate free from a mountain of Cinder Reach wreckage, unaware
+that the salvage law she is about to write will bear her name.
+Key visual elements:
+- A young, not-yet-named Kordelia Vess digging alone through open wreckage, decades before she commanded anything
+- One dented salvage plate pulled free by hand, the found object that seeds her future law that nothing leaves as less than useful
+- Vast, unsorted junk mountains stretching to the horizon, showing the yards with no order imposed on them yet
+Composition: wide, landscape rectangle (~5:3), the large rectangular window
+beneath the Name Slot per card-anatomy.md — place the young scavenger low
+in the foreground, dwarfed by towering junk piles receding to the horizon.
+
+### Mother-Thread Ilvex, First Voice of the Sprawl
+
+Palette: Green — the Bloom's patient growth, here caught in its dormant
+infancy rather than mid-spread.
+Subject/Scene: Long before any thread reached outward, a single seed-body
+burrows alone into barren soil under a starless Mireth sky, patiently
+waiting out its earliest silent season with nothing yet grown around it.
+Key visual elements:
+- A single dormant seed-body, the very first form Mother-Thread Ilvex took, with no growth-network yet surrounding it
+- Barren, unbroken soil stretching in every direction, emphasizing total solitude rather than a spreading Sprawl
+- A starless night sky overhead, marking this as a private beginning long before any other Biology permanent took root nearby
+Composition: wide, landscape rectangle (~5:3), the large rectangular window
+beneath the Name Slot per card-anatomy.md — center the lone seed-body small
+within a vast, empty expanse of bare soil.
+
+### Selin Vashti Corr, Whisper-Broker of the Glass Spires
+
+Palette: Cyan — the Signal's cool analytic watchfulness, turned inward on
+her own hoarded secrets rather than an opponent's.
+Subject/Scene: Alone in a spire chamber long after midnight, a broker sorts
+stacks of gathered secrets into locked drawers by cyan lamplight,
+cataloguing whispers she has already collected rather than reaching for a
+new one.
+Key visual elements:
+- Selin Vashti Corr working entirely alone, with no opponent or opposing Hand anywhere in the scene
+- Locked drawers of already-gathered secrets being filed and catalogued, not a live reading in progress
+- A private spire chamber lit only by cyan lamplight, emphasizing hoarding and record-keeping over active brokering
+Composition: wide, landscape rectangle (~5:3), the large rectangular window
+beneath the Name Slot per card-anatomy.md — keep the broker seated low and
+central, surrounded by the locked drawers and stacked secrets.
+
+### Meridian Aule, Star-Read Oracle of the Tangle
+
+Palette: Violet — the Tangle's uncanny ritual mood, paid out afterward
+rather than spent in the moment of reading.
+Subject/Scene: Days after the vision fades, an exhausted seer lies
+half-conscious on a cushioned pallet while faint violet afterimages of
+drifting starlight still flicker uselessly across the ceiling above her.
+Key visual elements:
+- Meridian Aule shown days later, spent and half-conscious, rather than actively hovering cards above her Archive
+- Faint, fading violet afterimages of the reading drifting uselessly overhead, no Archive or cards visible in the scene
+- A quiet recovery setting — a cushioned pallet in a dim room — emphasizing the toll her reading costs rather than the ritual itself
+Composition: wide, landscape rectangle (~5:3), the large rectangular window
+beneath the Name Slot per card-anatomy.md — keep the reclining seer low and
+central, with the fading violet afterimages drifting across the frame's
+upper half.
+
+### Unit 0-Prime "Cast-Aside", the First Flaw
+
+Palette: Copper — the Circuit's warm mechanized precision, caught here in
+the instant it first goes wrong.
+Subject/Scene: Deep inside a churning assembly line, a single stamping die
+slips for one fraction of a second, pressing an unplanned scar into fresh
+plating just before the still-glowing chassis is racked alongside its
+flawless siblings.
+Key visual elements:
+- The stamping die itself caught mid-slip, the exact mechanical instant the flaw is made rather than a finished Unit displaying it
+- A single fresh scar pressed into glowing, still-warm plating, shown as a fresh accident rather than an old mark
+- Rows of flawless siblings already racked and finished nearby, emphasizing that this one chassis has not yet joined them
+Composition: wide, landscape rectangle (~5:3), the large rectangular window
+beneath the Name Slot per card-anatomy.md — center the stamping die and
+scarring plate with the flawless racked units receding into the
+background.
