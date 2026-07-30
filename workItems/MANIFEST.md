@@ -478,3 +478,11 @@ Append-only requirements traceability log — one section per archived work item
 - AC4 [inferred]: Both decklists still total exactly 40 cards with no more than 3 copies of any one card Name (Section 11.1, Section 11.2) — PASS
 - AC5 [inferred] (held_out): test/design-full-game-playtest.test.js parses both decklists from the document and asserts at least one payable card per Fount is present in at least one deck — PASS
 - AC6 [inferred] (held_out): No file other than design/playtest-full-game.md, site/design/playtest-full-game.html, and test/design-full-game-playtest.test.js is modified — PASS
+
+## 2026-07-30-cardgame-art-briefs-spatial-race-identity-art-briefs-for-the-spatial-race-identity-set-3-cards.md
+
+- AC1 [paraphrase]: design/cards/art-briefs.md contains exactly one '###' section titled verbatim 'Preemptive Survey', one titled 'Unbound Passage', and one titled 'Chokepoint Garrison' (the 3 card titles in design/cards/spatial-race-identity-set.md), with no pre-existing brief sections removed, renamed, or altered — PASS
+- AC2 [paraphrase]: The 'Preemptive Survey' brief's Palette line names Cyan (Signal), the 'Unbound Passage' brief's Palette line names Violet (Tangle), and the 'Chokepoint Garrison' brief's Palette line names Ash-grey (Mass), matching each card's own Cost line per card-anatomy.md's Fount identity table — PASS
+- AC3 [paraphrase] (held_out): Each of the 3 new briefs has a 'Key visual elements:' list of at least 2 bullets that share at least 2 significant words with that card's own Type line/Rules text, and none of the bullets use generic filler phrases like 'epic composition' or 'stunning artwork' — PASS
+- AC4 [paraphrase]: Each of the 3 new briefs has a 'Composition:' line naming the Art Window's rectangular/landscape shape and an explicit aspect ratio (e.g. '5:3'), consistent with card-anatomy.md's Art Window description — PASS
+- AC5 [inferred]: Running tools/composite-card-art.js in its default (mock) mode no longer prints 'no art brief for "Preemptive Survey"', 'no art brief for "Unbound Passage"', or 'no art brief for "Chokepoint Garrison"' — PASS
