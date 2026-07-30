@@ -206,8 +206,8 @@ entry used to track (see Section 3 above).
    battlefield graph, the five-Fount economy, or the Conflict Phase's
    priority/response system actually play well in real time; the only
    games ever run against this design are the two on-paper procedures in
-   `design/playtest-spatial.md` and `design/playtest-full-game.md`,
-   each a single walkthrough of one prewritten deck pairing.
+   `design/playtest-spatial.md` and `design/playtest-full-game.md`, each a
+   single walkthrough of one prewritten deck pairing.
 
 3. **Jaina is wired up for card records only.** `design/ideas-inbox.md`'s
    "use Jaina as the content backbone" entry asked to make heavy use of

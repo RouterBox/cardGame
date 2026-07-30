@@ -301,7 +301,11 @@ test('sanity: rules.md still has its full Section 1-15 structure (untouched)', (
 });
 
 test('sanity: DESIGN-READINESS.md Open Gap 2 language is still present (for the closing note to reference)', () => {
-  const content = fs.readFileSync(READINESS_PATH, 'utf8');
+  // normalizeProse collapses line wraps: the quoted phrase spans a wrapped
+  // line in the raw file, and a byte-level includes() would only pass if the
+  // doc were reflowed — which is exactly the out-of-scope edit the cycle-2
+  // review rejected.
+  const content = normalizeProse(fs.readFileSync(READINESS_PATH, 'utf8'));
   assert.ok(
     content.includes('each a single walkthrough of one prewritten deck pairing'),
     'expected DESIGN-READINESS.md to still carry the Open Gap 2 language this doc\'s closing note quotes'
