@@ -622,3 +622,10 @@ Append-only requirements traceability log — one section per archived work item
 - AC3 [inferred]: Across character-signatures.md, character-signatures-wave-2.md, and character-signatures-wave-3.md combined, no named character is used by more than one card — FAIL
 - AC4 [inferred]: Each card's Cost line names that race's own primary Fount (per design/races/*.md) and each card follows the Section 9.1 template field order (Name, Cost line, Type line, Rules text, optional Stats/counters line) — FAIL
 - AC5 [paraphrase]: site/design/cards/character-signatures-wave-3.html exists via tools/build-site.js, and character-signatures.md, character-signatures-wave-2.md, and every design/characters/*.md file are byte-for-byte unchanged — FAIL
+
+## 2026-07-30-cardgame-character-markdown-slugify-dedup-remove-lib-parse-character-markdown-js-s-byte-identical-redeclar.md
+
+- AC1 [inferred]: lib/parse-character-markdown.js no longer contains a local function declaration for slugify; it imports slugify from lib/parse-card-markdown.js — PASS
+- AC2 [inferred]: lib/parse-character-markdown.js's module.exports still includes slugify, and calling it returns the same values as before (e.g. slugify('Torel Ashgrave') === 'torel-ashgrave') — PASS
+- AC3 [inferred] (held_out): lib/parse-card-markdown.js, lib/parse-race-markdown.js, lib/parse-star-atlas-markdown.js, lib/parse-lore-markdown.js, and lib/parse-founts-markdown.js are byte-for-byte unchanged — PASS
+- AC4 [paraphrase]: test/parse-character-markdown.test.js passes unmodified against the refactored file, and loadAllCharacters() called against the real design/characters/ files returns the same character records (including slug values) as before the refactor — PASS
