@@ -308,9 +308,9 @@ single turn, and a challenger MAY NOT play a Slow card unless the Queue is empty
 and it is their priority. The active player MAY also take one Discovery action
 and one Assault action here (Sections 8.3 and 8.6), each at most once per turn
 and under the same restriction as a Slow card: neither MAY be taken unless the
-Queue is empty and it is the active player's priority. Discovery (Section
-8.3), which can add a new Planet to the graph and always opens a new
-Wormhole, is one of the two special actions permitted here.
+Queue is empty and it is the active player's priority. Discovery, which can
+add a new Planet to the graph and always opens a new Wormhole (see Section
+8.3), is one of the two special actions permitted here.
 
 ### 5.4 Conflict Phase
 
