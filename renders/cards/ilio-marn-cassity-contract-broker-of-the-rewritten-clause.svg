@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 750 1050" width="750" height="1050">
+<title>Ilio Marn-Cassity, Contract-Broker of the Rewritten Clause</title>
+<rect class="frame-band" data-fount="Signal" data-color="cyan" x="0" y="0" width="750" height="1050" fill="#06b6d4"/>
+<rect class="name-slot" x="24" y="24" width="702" height="70" fill="#f5f1e6"/>
+<text x="40" y="69" font-family="Georgia, 'Times New Roman', serif" font-size="32" fill="#14151a" font-weight="bold"><tspan x="40" dy="0">Ilio Marn-Cassity, Contract-Broker of the Rewritten Clause</tspan></text>
+<rect class="art-window" x="24" y="94" width="702" height="420" fill="#c9ccd3" stroke="#9a9da5" stroke-width="2"/>
+<text x="375" y="304" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="22" fill="#5a5d66">Art Placeholder</text>
+<rect class="type-line" x="24" y="514" width="702" height="50" fill="#e4dfd0"/>
+<text x="40" y="546" font-family="Georgia, 'Times New Roman', serif" font-size="20" fill="#3a3a3f"><tspan x="40" dy="0">Intelligence</tspan></text>
+<rect class="rules-text-box" x="24" y="564" width="702" height="462" fill="#faf8f2" stroke="#c9ccd3" stroke-width="2"/>
+<text x="375" y="596" font-family="Georgia, 'Times New Roman', serif" font-size="20" fill="#1c1c22" text-anchor="middle"><tspan x="375" dy="0">Fast. When this resolves, look at an opponent&apos;s Hand;</tspan><tspan x="375" dy="26">choose a card there and swap its printed cost with the</tspan><tspan x="375" dy="26">printed cost of a card in your Hand.</tspan></text>
+<text x="375" y="694" font-family="Georgia, 'Times New Roman', serif" font-size="18" fill="#5a5d66" font-style="italic" text-anchor="middle"><tspan x="375" dy="0">Ilio Marn-Cassity has never once lost sleep over a contract&apos;s</tspan><tspan x="375" dy="24">fine print, because for The Panoptic Concord&apos;s best brokers, the</tspan><tspan x="375" dy="24">fine print is the whole point of the deal.</tspan></text>
+<g class="cost-pip" data-fount="Signal" data-color="cyan">
+<circle cx="682" cy="59" r="28" fill="#06b6d4" stroke="#14151a" stroke-width="3"/>
+<text x="682" y="67" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="26" font-weight="bold" fill="#14151a">2</text>
+</g>
+</svg>
