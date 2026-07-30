@@ -6,7 +6,7 @@
 - title: Write the missing art briefs for spatial-race-identity-set-wave-2.md's 2 cards (Bloom Fount, Circuit Fount)
 - project: cardgame
 - completed: 2026-07-30
-- outcome: escalated
+- outcome: merged (orchestrator recovery: builder blind under cmd.exe length bug; orchestrator finished doc count + composites + coupling unfreezes)
 - start_sha: aada29365c197956d5d6684fe179c17b58115281
 - end_sha: f8d5e2c0ca58c3ffa40888f7153045c2b9ecad25
 
