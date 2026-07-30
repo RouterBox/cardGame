@@ -8,7 +8,7 @@ const { parseSections, sectionText } = require('./helpers/markdown');
 
 const DOC_PATH = path.join(__dirname, '..', 'design', 'DESIGN-READINESS.md');
 
-const content = fs.existsSync(DOC_PATH) ? fs.readFileSync(DOC_PATH, 'utf8') : '';
+const content = (fs.existsSync(DOC_PATH) ? fs.readFileSync(DOC_PATH, 'utf8') : '').replace(/\r\n/g, '\n');
 const sections = parseSections(content);
 const toolingBody = sectionText(sections, /authoring, render, site.*sync tooling/i) || '';
 const gapsBody = sectionText(sections, /open gaps|unresolved questions/i) || '';
@@ -109,7 +109,7 @@ const SECTION4_BODY_VERBATIM = [
   '  9.1 template field to exactly one zone, and the premium-treatment layers',
   '  (borderless, foil, extended art) that dress the same skeleton without',
   '  changing what a card says or does.',
-  '- **`design/cards/art-briefs.md`** — 52 art-brief sections, covering every',
+  '- **`design/cards/art-briefs.md`** — 54 art-brief sections, covering every',
   '  card in `alpha-set.md`, `frontier-set.md`, `character-signatures.md`,',
   '  `character-signatures-wave-2.md`, `fount-economy-set.md`,',
   '  `wormhole-restrictions-set.md`, `wormhole-closure-cards.md`, and',
