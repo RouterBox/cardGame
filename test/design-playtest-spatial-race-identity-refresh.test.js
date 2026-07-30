@@ -50,10 +50,10 @@ const CARDS = [
 // AC1: the new step names all 5 cards verbatim.
 // ---------------------------------------------------------------------------
 
-test('AC1: step 11 names all 5 Spatial Race Identity cards verbatim', () => {
-  const body = stepText(readFile(PLAYTEST_PATH), 11);
+test('AC1: step 12 names all 5 Spatial Race Identity cards verbatim', () => {
+  const body = stepText(readFile(PLAYTEST_PATH), 12);
   for (const card of CARDS) {
-    assert.ok(body.includes(card.name), `expected step 11 to name "${card.name}"`);
+    assert.ok(body.includes(card.name), `expected step 12 to name "${card.name}"`);
   }
 });
 
@@ -61,12 +61,12 @@ test('AC1: step 11 names all 5 Spatial Race Identity cards verbatim', () => {
 // AC2: each card's narrated Cost line matches its source file exactly.
 // ---------------------------------------------------------------------------
 
-test('AC2: step 11 cites each card\'s exact Cost line', () => {
-  const body = stepText(readFile(PLAYTEST_PATH), 11);
+test('AC2: step 12 cites each card\'s exact Cost line', () => {
+  const body = stepText(readFile(PLAYTEST_PATH), 12);
   for (const card of CARDS) {
     assert.ok(
       new RegExp(`Cost line:\\s*${card.cost}`).test(body),
-      `expected step 11 to cite "${card.name}"'s Cost line "${card.cost}"`
+      `expected step 12 to cite "${card.name}"'s Cost line "${card.cost}"`
     );
   }
 });
@@ -92,13 +92,13 @@ test('AC2: each card\'s Cost line in its source file matches what step 11 narrat
 // AC3 (held_out): step 11 cites the correct rules.md sections per card.
 // ---------------------------------------------------------------------------
 
-test('AC3: step 11 cites the correct rules.md section(s) for each card', () => {
-  const body = stepText(readFile(PLAYTEST_PATH), 11);
+test('AC3: step 12 cites the correct rules.md section(s) for each card', () => {
+  const body = stepText(readFile(PLAYTEST_PATH), 12);
   for (const card of CARDS) {
     for (const section of card.sections) {
       assert.ok(
         new RegExp(`Section ${section.replace('.', '\\.')}`).test(body),
-        `expected step 11 to cite Section ${section} for ${card.name}`
+        `expected step 12 to cite Section ${section} for ${card.name}`
       );
     }
   }
@@ -107,7 +107,11 @@ test('AC3: step 11 cites the correct rules.md section(s) for each card', () => {
 // ---------------------------------------------------------------------------
 // AC4: steps 1-10, Materials, and existing "What to watch for" bullets are
 // unchanged; only additive changes were made (new step 11, renumbered
-// 12/13, one new "What to watch for" bullet).
+// 12/13, one new "What to watch for" bullet). NOTE: the step numbers 11+
+// referenced below were bumped by +1 when the later
+// cardgame-playtest-spatial-wormhole-coverage unit inserted its own new
+// step 10, pushing Assault (10->11), this step's own content (11->12), and
+// the trailing two steps (12->13, 13->14).
 // ---------------------------------------------------------------------------
 
 test('AC4: Materials section is unchanged', () => {
@@ -142,20 +146,20 @@ test('AC4: steps 1-10 are unchanged', () => {
     'expected step 9 to still end with its unchanged aloud confirmation'
   );
   assert.ok(
-    stepText(content, 10).includes('A Homeworld card MAY be Blockaded this way'),
-    'expected step 10 to be unchanged'
+    stepText(content, 11).includes('A Homeworld card MAY be Blockaded this way'),
+    'expected step 11 (Assault, renumbered from 10 by the wormhole-coverage unit) to be unchanged'
   );
 });
 
-test('AC4: renumbered steps 12 and 13 carry the old step 11/12 content', () => {
+test('AC4: renumbered steps 13 and 14 carry the old step 11/12 content', () => {
   const content = readFile(PLAYTEST_PATH);
   assert.ok(
-    stepText(content, 12).includes("Replay Section 8.7's worked example"),
-    'expected renumbered step 12 to be the old worked-example replay step'
+    stepText(content, 13).includes("Replay Section 8.7's worked example"),
+    'expected renumbered step 13 to be the old worked-example replay step'
   );
   assert.ok(
-    stepText(content, 13).includes('Play to a conclusion.'),
-    'expected renumbered step 13 to be the old play-to-a-conclusion step'
+    stepText(content, 14).includes('Play to a conclusion.'),
+    'expected renumbered step 14 to be the old play-to-a-conclusion step'
   );
 });
 
