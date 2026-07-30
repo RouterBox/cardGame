@@ -6,6 +6,8 @@ The Amaranth Expanse is a galaxy that keeps almost dying and never quite finishe
 
 It is a galaxy built for traders, raiders, and builders in equal measure. A world can be a factory floor one season and a battlefield the next; a fleet you spent years growing can be gone in an afternoon, and a single overlooked outpost can quietly become an empire's spine. Diplomacy here is a tactic, not a virtue — alliances are made to be spent. What endures is not any one civilization's borders, but the five deep currents of power every civilization, however different, has learned to draw on to survive.
 
+*Wreck Tangle* is the card game played in the Amaranth Expanse — the Expanse is the setting; Wreck Tangle is the game.
+
 ## A History in Brief
 
 Before the five civilizations, there was the First Weave — a name none of them chose for themselves, reconstructed from wreckage and half-translated glyphs by the archivists who came after. The First Weave did not conquer the Expanse so much as *tune* it: their megastructures — some still standing, most not — bent the galaxy's raw potential into five distinguishable currents where before there had only been undifferentiated possibility. Scholars across every modern civilization agree on almost nothing about the First Weave except this: they finished their work, and then they Sundered.

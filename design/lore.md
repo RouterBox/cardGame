@@ -13,6 +13,10 @@ where the galaxy stands at the point the Alpha card set is drawn from —
 Alpha-set flavor text, and any future set's, should stay consistent with it
 rather than inventing a new war or a new Fount.
 
+This chronicle is lore for *Wreck Tangle*, the card game the present day
+described above belongs to; "the Amaranth Expanse" remains the setting's
+name, not the game's.
+
 ## Timeline of Eras
 
 1. The Weave Age
