@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Spatial Race Identity Set, Wave 2 — Two More Races Grounded in the Graph — Amaranth Expanse Design</title>
+<style>:root { color-scheme: dark light; }
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  padding: 1.25rem;
+  background: #14151a;
+  color: #e6e6ea;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-size: 17px;
+  line-height: 1.6;
+}
+main, nav { max-width: 42rem; margin-left: auto; margin-right: auto; }
+h1, h2, h3, h4, h5, h6 { line-height: 1.25; color: #f4f1ff; }
+a { color: #8ab4ff; }
+a:visited { color: #b79cff; }
+nav {
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid #34363f;
+  font-size: 0.95rem;
+}
+nav .home-link { font-weight: 600; margin-right: 0.75rem; }
+nav .section-label { color: #9a9aa5; margin-right: 0.75rem; }
+nav .siblings { margin-top: 0.4rem; }
+nav .siblings .current { font-weight: 600; color: #f4f1ff; }
+blockquote {
+  margin: 1rem 0;
+  padding: 0.25rem 1rem;
+  border-left: 3px solid #5a5d6b;
+  color: #c7c7d1;
+}
+table { border-collapse: collapse; width: 100%; margin: 1rem 0; font-size: 0.95rem; }
+th, td { border: 1px solid #34363f; padding: 0.4rem 0.6rem; text-align: left; }
+code, pre {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  background: #1e2027;
+  border-radius: 4px;
+}
+code { padding: 0.1em 0.35em; }
+img.card-art { display: block; max-width: 100%; height: auto; margin: 0.75rem 0; border-radius: 6px; }
+pre { padding: 0.75rem; overflow-x: auto; }
+ul, ol { padding-left: 1.4rem; }
+section h2 { margin-top: 2rem; }
+@media (prefers-color-scheme: light) {
+  body { background: #fbfbfd; color: #1c1c22; }
+  a { color: #2454c7; }
+  blockquote { color: #454550; }
+  code, pre { background: #eef0f4; }
+  th, td { border-color: #d6d8e0; }
+}</style>
+</head>
+<body>
+<nav>
+<a class="home-link" href="../../index.html">&larr; Index</a>
+<span class="section-label">Cards</span>
+<div class="siblings"><a href="alpha-set.html">Alpha Set — First Cards of the Amaranth Expanse</a> &middot; <a href="alt-art-briefs.html">Alt-Art Briefs</a> &middot; <a href="art-briefs.html">Alpha Set — Art Briefs</a> &middot; <a href="card-anatomy.html">Card Anatomy — The Shared Skeleton, Variables, and Premium Layers</a> &middot; <a href="character-signatures-wave-2.html">Character Signatures, Wave 2 — More Named Cards for the Amaranth Expanse</a> &middot; <a href="character-signatures.html">Character Signatures — Named Cards for the Amaranth Expanse</a> &middot; <a href="fount-economy-set.html">Fount Economy Set — Closing the Generator Gap</a> &middot; <a href="frontier-set.html">Frontier Set — Cards of the Battlefield Graph</a> &middot; <span class="current">Spatial Race Identity Set, Wave 2 — Two More Races Grounded in the Graph</span> &middot; <a href="spatial-race-identity-set.html">Spatial Race Identity Set — Wormholes as Race Identity</a> &middot; <a href="wormhole-closure-cards.html">Wormhole Closure Cards — Sealing the Battlefield Graph</a> &middot; <a href="wormhole-restrictions-set.html">Wormhole Restrictions Set — Locks on the Battlefield Graph</a></div>
+</nav>
+<main>
+<h1>Spatial Race Identity Set, Wave 2 — Two More Races Grounded in the Graph</h1>
+<h2>Summary</h2>
+<p>This file contains 2 named cards, completing what <em>design/cards/spatial- race-identity-set.md</em> (the wave-1 proposal) left undone: <em>design/ideas- inbox.md</em>&#39;s first 2026-07-26 spatial-layer entry claims the battlefield graph &quot;Interacts with every race identity,&quot; naming a materials race and an intelligence race only as illustrative examples (&quot;e.g.&quot;), not an exhaustive list — yet the wave-1 file grounds only the three races named in the later 2026-07-26 entry (Panoptic Concord, Starweave Communion, Cindral Reach), leaving the Mireth Bloom and the Wrought Assembly with no card referencing a Planet, Wormhole, or Discovery. This file grounds both races&#39; own already-shipped identity text directly: <em>design/races/mireth- bloom.md</em>&#39;s signature hook &quot;Bloomfront Expansion — Biology generators can be built directly onto contested territory&quot; becomes the Bloom Fount, a Mireth Bloom Generator that MAY be built on a Planet its controller does not control, an unbuilt exception to <em>design/rules.md</em> Section 4.6; and <em>design/races/wrought-assembly.md</em>&#39;s identity paragraph describing a civilization that wants &quot;a single flawless design, copied without end across every system it can reach&quot; becomes the Circuit Fount, a Wrought Assembly Generator that costs less Circuit when built on a Planet reached via a Discovery action, an unbuilt exception to Section 8.3. No rules.md change is needed or made — both effects are stated exceptions to already-shipped defaults, the same pattern the wave-1 file uses. Every card follows the canonical template of <em>design/rules.md</em> Section 9.1.</p>
+<h2>The Mireth Bloom</h2>
+<h3>Bloom Fount</h3>
+<p>Cost line: 2 Bloom Type line: Biology — Permanent Rules text: Slow. This permanent is a Generator (Section 4) attuned to the Bloom: during the Generation Phase (Section 5.2), it produces 1 Bloom Point, added to its controller&#39;s Bloom resource pool. Unlike an ordinary Generator, which after a challenger&#39;s first MAY only be built on a Planet that challenger controls (Section 4.6), this Generator MAY be built on a Planet its controller does not control. Stats/counters line: Combat strength 1. Enters with no counters.</p>
+<p><em>Bloomfront Expansion, printed: the Mireth Bloom roots a Bloom Fount straight into contested ground, no permission asked and no Planet required to already be its own.</em></p>
+<h2>The Wrought Assembly</h2>
+<h3>Circuit Fount</h3>
+<p>Cost line: 2 Circuit Type line: Technology — Permanent Rules text: Slow. This permanent is a Generator (Section 4) attuned to the Circuit: during the Generation Phase (Section 5.2), it produces 1 Circuit Point, added to its controller&#39;s Circuit resource pool. When played, if this permanent is being built on a Planet that was added to the battlefield graph by a Discovery action taken this game (Section 8.3, which defines Discovery), it costs 1 fewer Circuit Point, to a minimum of 0.</p>
+<p><em>The Wrought Assembly copies one flawless design without end — cheapest of all the instant a Discovery hands it a fresh system to stamp it onto.</em></p>
+</main>
+</body>
+</html>
