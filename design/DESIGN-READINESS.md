@@ -162,6 +162,17 @@ none implements game rules or a playable client:
   design).
 - **`tools/sync-cards-to-jaina.js`** — dry-run and `--live` sync of parsed
   card records into Jaina.
+- **`tools/sync-characters-to-jaina.js`** — dry-run-only sync of parsed
+  character records (`design/characters/`) into Jaina.
+- **`tools/sync-races-to-jaina.js`** — dry-run-only sync of parsed race
+  records (`design/races/`) into Jaina.
+- **`tools/sync-star-atlas-to-jaina.js`** — dry-run-only sync of parsed
+  star-atlas world records (`design/star-atlas.md`) into Jaina.
+- **`tools/sync-lore-eras-to-jaina.js`** — dry-run-only sync of parsed lore
+  era records (`design/lore.md`'s "Timeline of Eras") into Jaina.
+- **`tools/sync-founts-to-jaina.js`** — dry-run-only sync of parsed Fount
+  cosmology records (`design/world.md`'s "Cosmology: The Five Founts"
+  section) into Jaina.
 - **`site/`** — the generated, browsable design shelf, including
   `site/cards-index.html`, `site/phoenix-gallery.html`, and
   `site/presentation/presentation.html`.
@@ -200,8 +211,15 @@ entry used to track (see Section 3 above).
 
 3. **Jaina is wired up for card records only.** `design/ideas-inbox.md`'s
    "use Jaina as the content backbone" entry asked to make heavy use of
-   Jaina "the whole way," but `tools/sync-cards-to-jaina.js` only syncs
-   parsed card records. Characters (`design/characters/`), races
-   (`design/races/`), world/lore (`design/world.md`, `design/lore.md`), and
-   the star atlas (`design/star-atlas.md`) remain markdown-only prose with
-   no Jaina schema or sync path yet.
+   Jaina "the whole way." `tools/sync-cards-to-jaina.js` was the first
+   slice (card records), and five more dry-run-only tools have since
+   landed, each with its own parser: `tools/sync-characters-to-jaina.js`
+   (`design/characters/`), `tools/sync-races-to-jaina.js`
+   (`design/races/`), `tools/sync-star-atlas-to-jaina.js`
+   (`design/star-atlas.md`), `tools/sync-lore-eras-to-jaina.js`
+   (`design/lore.md`'s eras — not all of `lore.md`'s prose), and
+   `tools/sync-founts-to-jaina.js` (`design/world.md`'s "Cosmology: The
+   Five Founts" section). What's left: `design/world.md`'s "The Setting"
+   and "A History in Brief" sections remain free-form narrative prose with
+   no per-item structure and no Jaina schema or sync path — the same
+   reason the Founts sync unit left them out of scope.
