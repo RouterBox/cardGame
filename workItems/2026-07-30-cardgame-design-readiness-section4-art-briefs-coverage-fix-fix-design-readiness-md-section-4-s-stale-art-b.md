@@ -6,7 +6,7 @@
 - title: Fix DESIGN-READINESS.md Section 4's stale art-brief coverage list and 'Known gap' bullet (both merged art-brief sets missing)
 - project: cardgame
 - completed: 2026-07-30
-- outcome: escalated
+- outcome: merged (orchestrator recovery: suite green 1002/1002; escalation red was transient, correlated with concurrent test run)
 - start_sha: 7287f7218e6d03a9a2618c0d7144d9f26d45be35
 - end_sha: 7287f7218e6d03a9a2618c0d7144d9f26d45be35
 
