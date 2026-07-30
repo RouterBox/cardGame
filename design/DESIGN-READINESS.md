@@ -175,15 +175,14 @@ none implements game rules or a playable client:
    `workItems/2026-07-29-cardgame-art-brief-coverage-warning-*.md`). No
    unit has yet been proposed to close it.
 
-2. **The Spatial Race Identity Set only speaks for 3 of 5 races.**
-   `design/cards/spatial-race-identity-set.md` realizes
-   `design/ideas-inbox.md`'s 2026-07-26 (later) entry — wormhole mechanics
-   as race identity — for the Panoptic Concord, Starweave Communion, and
-   Cindral Reach only. The Mireth Bloom and the Wrought Assembly have no
-   card in this wave, even though that same ideas-inbox entry frames the
-   mechanic as combining with "every race identity."
+**Resolved — the Spatial Race Identity Set now speaks for all 5 races.**
+`design/cards/spatial-race-identity-set.md` grounded only the Panoptic
+Concord, Starweave Communion, and Cindral Reach; the Mireth Bloom and the
+Wrought Assembly are now grounded by
+`design/cards/spatial-race-identity-set-wave-2.md`, closing the gap this
+entry used to track (see Section 3 above).
 
-3. **No digital implementation of the design has ever been built or run.**
+2. **No digital implementation of the design has ever been built or run.**
    `design/ideas-inbox.md`'s "software gate ruling" entry (I6 — the gate
    this review exists to inform) has, so far, kept every shipped unit to
    content-authoring tools. Nobody has yet tested whether the spatial
@@ -193,7 +192,7 @@ none implements game rules or a playable client:
    `design/playtest-spatial.md` and `design/playtest-full-game.md`, each a
    single walkthrough of one prewritten deck pairing.
 
-4. **Jaina is wired up for card records only.** `design/ideas-inbox.md`'s
+3. **Jaina is wired up for card records only.** `design/ideas-inbox.md`'s
    "use Jaina as the content backbone" entry asked to make heavy use of
    Jaina "the whole way," but `tools/sync-cards-to-jaina.js` only syncs
    parsed card records. Characters (`design/characters/`), races
