@@ -87,6 +87,10 @@ re-implementing its own parsing):
   character per race, distinct from wave 1's.
 - **Spatial Race Identity Set** — `design/cards/spatial-race-identity-set.md`
   — 3 cards. Race identity combined with the wormhole/battlefield graph.
+- **Spatial Race Identity Set, Wave 2** —
+  `design/cards/spatial-race-identity-set-wave-2.md` — 2 cards. Grounds the
+  two remaining races (Mireth Bloom, Wrought Assembly) in the
+  wormhole/battlefield graph, completing the wave-1 set above.
 - **Wormhole Restrictions Set** —
   `design/cards/wormhole-restrictions-set.md` — 5 cards. One per race,
   each placing a Directional or Team Restriction on a Wormhole (Section
@@ -97,7 +101,7 @@ re-implementing its own parsing):
   Closes the Bloom/Signal/Tangle Generator gap `design/playtest-full-game.md`
   surfaced.
 
-**Total: 52 named cards across 8 files.** This list is not a hand-typed
+**Total: 54 named cards across 9 files.** This list is not a hand-typed
 count: `test/design-readiness.test.js` re-derives it from
 `design/cards/*.md` via `lib/parse-card-markdown.js` on every test run and
 fails if any set on disk is missing from this section, so it cannot go
