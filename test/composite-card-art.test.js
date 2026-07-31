@@ -47,11 +47,26 @@ function listAltBriefTitles() {
 // hand-copied set of numbers — so this test can never encode a stale value.
 function readPlaceholderBounds(title) {
   const file = path.join(PLACEHOLDER_DIR, `${slugify(title)}.svg`);
-  assert.ok(
-    fs.existsSync(file),
-    `expected a placeholder-rendered SVG for "${title}" at ${file} (produced by tools/render-card.js)`
-  );
-  const svg = fs.readFileSync(file, 'utf8');
+  // renders/cards/ is rewritten via a tmp-dir swap by other test files in
+  // this suite; a read landing inside the swap window sees ENOENT for a
+  // file that exists again milliseconds later. Retry briefly (same idiom as
+  // the composited-SVG reader below).
+  let svg;
+  for (let attempt = 0; ; attempt++) {
+    try {
+      svg = fs.readFileSync(file, 'utf8');
+      break;
+    } catch (err) {
+      if (err.code !== 'ENOENT' || attempt >= 40) {
+        assert.ok(
+          false,
+          `expected a placeholder-rendered SVG for "${title}" at ${file} (produced by tools/render-card.js): ${err.message}`
+        );
+      }
+      const until = Date.now() + 25;
+      while (Date.now() < until) { /* brief spin; swap window is ms */ }
+    }
+  }
   const rectMatch = svg.match(/<rect[^>]*class="art-window"[^>]*\/>/);
   assert.ok(
     rectMatch,

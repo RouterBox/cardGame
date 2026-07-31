@@ -106,12 +106,14 @@ test('AC3: Section 5.4 (Conflict Phase) still defines Movement/attacker/blocker 
   assert.ok(/declaring attackers/i.test(body), 'expected Section 5.4 to still cover declaring attackers');
 });
 
-test('AC3: Section 8 (Spatial Battlefield) still carries its own unresolved-question prose, unchanged by this unit', () => {
+test('AC3: Section 8 (Spatial Battlefield) still carries its provisional-deployment note', () => {
   const body = normalizeProse(sectionText(rulesSections(), /^8\.\s+spatial battlefield/i) || '');
-  assert.ok(
-    /is an open question this section does not resolve/i.test(body),
-    'expected Section 8.4 to still carry its unresolved Restriction-and-movement open question'
-  );
+  // The companion assertion on Section 8.4's "is an open question this
+  // section does not resolve" hedge was removed 2026-07-31: the
+  // rules-restriction-movement-contradiction-fix unit exists precisely to
+  // resolve that hedge, so freezing it here pinned a contradiction the
+  // design later fixed on purpose. Section 8's resolved wording is owned by
+  // that unit's own test file.
   assert.ok(
     /This deployment freedom is provisional/i.test(body),
     'expected Section 8.1 to still carry its provisional-deployment note'
