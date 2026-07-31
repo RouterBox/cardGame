@@ -6,7 +6,8 @@ through an explicit win, using ordinary physical materials instead of a computer
 software prototype. Every card named in the numbered Procedure below, including the Worked
 Examples section later in this file, exists by exact name in *design/cards/alpha-set.md*,
 *design/cards/character-signatures.md*, *design/cards/frontier-set.md*,
-*design/cards/fount-economy-set.md*, or *design/cards/character-signatures-wave-2.md*. Every
+*design/cards/fount-economy-set.md*, *design/cards/character-signatures-wave-2.md*, or
+*design/cards/character-signatures-wave-3.md*. Every
 major step cites the exact
 rules.md section that
 governs it, so either playtester can stop and check the physical action just taken against
@@ -209,7 +210,7 @@ pool genuinely support, ending in a genuine win. But it never reaches Combat or 
 against enemy territory, for the reasons in "What This Playtest Surfaced" below. Rules.md
 resolves this same tension for its own text with constructed Worked Examples (Section 7,
 Section 8.7, Section 10.3, Section 12.5, Section 13.3): a hypothetical state, stated as
-hypothetical, used to pin down a rule concretely. The four examples below do the same for
+hypothetical, used to pin down a rule concretely. The five examples below do the same for
 this procedure: the first two reuse cards already named in the decklists above, so Section
 5.4/Section 12 and Section 8.6 still get an on-paper demonstration even though the scripted
 game above cannot reach them. The third adds `Cradle-Root Colony` from
@@ -219,6 +220,10 @@ Bloom-Fount economy gets the same on-paper demonstration. The fourth adds all 5 
 *design/cards/character-signatures-wave-2.md*'s named cards — one per race — so Sections
 9.2-9.6, Section 4.2, and Section 3 each get the same on-paper demonstration for cards that
 were fully specified and legal, but had never appeared in any playtest procedure before now.
+The fifth adds all 5 of *design/cards/character-signatures-wave-3.md*'s named cards — one
+per race — so the same Sections 9.2-9.6, Section 4.2, and Section 3 each get a second
+on-paper demonstration, for cards that were fully specified and legal, but had never
+appeared in any playtest procedure before now, exactly as the fourth already did for wave 2.
 
 ### Worked Example 1: Combat Resolution (Section 5.4, Section 12)
 
@@ -388,6 +393,121 @@ Doran Vex Amaranthine, Ledger-Warden of the Foreknowledge Archive's and
 Ysolde Thane, Pilgrim of the Unwritten Sign's Archive-reading abilities (Section 3) included.
 This closes the one gap left in the design's own named cards: these 5, one per race, are fully
 specified and legal, but until now had never appeared in any playtest procedure at all.
+
+### Worked Example 5: Five More Signature Permanents and Spells in Play (Section 9.2, Section 9.3, Section 9.4, Section 9.5, Section 9.6, Section 4.2, Section 3)
+
+Suppose, hypothetically, each of the 5 named cards in *design/cards/character-signatures-wave-3.md*
+— one per race, none of them in either Step 1 decklist above — were played once, and, where
+its rules text carries a triggered or resolving ability, that ability fired once. Each
+demonstration below reuses a challenger already established earlier in this document (Ada,
+Kestrel, or Bryn from Worked Example 3) whose own deck already draws from that card's Fount,
+and introduces two further hypothetical challengers, Corran and Maeve, only where none of the
+three already fits.
+
+**Bren Hollowmelt, the Cindergrown (The Cindral Reach — Materials).**
+Cost line: 3 Mass. Type line: Materials — Permanent.
+
+- Suppose, hypothetically, Ada had 3 Mass Points in her pool and played Bren Hollowmelt, the
+  Cindergrown from her Hand in her Main Phase, paying 3 Mass (Section 5.3). Materials cards
+  are permanent (Section 9.6), so it enters the Field as a Permanent, with combat strength 2
+  and no counters, exactly as its Stats/counters line states (Section 9.1).
+- Suppose, hypothetically, in a later Conflict Phase, Kestrel declared her Ready
+  `Drone Cascade` (combat strength 3) as an attacker against a Planet Ada controls, and Ada
+  declared her Ready Bren Hollowmelt, the Cindergrown as a blocker against it (Section 5.4).
+  Because it is blocked, `Drone Cascade` deals 3 damage to Bren Hollowmelt, the Cindergrown
+  instead of Ada's Core Integrity (Section 12.1) — equal to or greater than its own combat
+  strength of 2, which would ordinarily destroy it (Section 12.3). This is the first time this
+  turn Bren Hollowmelt, the Cindergrown would be destroyed by damage, so its own rules text
+  triggers instead: all damage marked against it is removed, and it remains on the Field,
+  still with combat strength 2 and no counters. At the same time, Bren Hollowmelt, the
+  Cindergrown deals its own combat strength of 2 to `Drone Cascade` (Section 12.1) — less than
+  `Drone Cascade`'s combat strength of 3, so it survives with 2 damage marked, cleared at the
+  end of the turn (Section 12.3, Section 12.4).
+
+**Vesk-Aduun, the Graft-Wearer (The Mireth Bloom — Biology).**
+Cost line: 3 Bloom. Type line: Biology — Permanent.
+
+- Suppose, hypothetically, continuing Worked Example 3's Bryn, that by a later turn her Bloom
+  pool held 3 Bloom Points: `Cradle-Root Colony`'s usual 1 from that turn's Generation Phase
+  (Section 5.2, Section 4.2), plus 2 more — the same kind of unexplained one-turn Fount Point
+  total Worked Examples 2 and 3 above already suppose. In her Main Phase, Bryn plays
+  Vesk-Aduun, the Graft-Wearer, paying 3 Bloom (Section 5.3). Every Biology card is a Unit
+  (Section 9.5), so it enters Ready with combat strength 2 and no counters, as its
+  Stats/counters line states.
+- Suppose, hypothetically, in a later Conflict Phase, Bryn declared her Ready Vesk-Aduun, the
+  Graft-Wearer as an attacker, and her opponent declared a Ready Unit with combat strength 1
+  as a blocker against it (Section 5.4). Because it is blocked, Vesk-Aduun, the Graft-Wearer
+  deals its combat strength of 2 as damage to that blocker (Section 12.1) — equal to or
+  greater than the blocker's own combat strength of 1, so the blocker is destroyed (Section
+  12.3). Vesk-Aduun, the Graft-Wearer dealt damage to a Unit that was destroyed as a result,
+  so its own rules text triggers: place a Growth counter on it (Section 4.2). With one Growth
+  counter, its combat strength becomes 2 (printed) + 1 = 3 until that counter is removed.
+
+**Ilio Marn-Cassity, Contract-Broker of the Rewritten Clause (The Panoptic Concord — Intelligence).**
+Cost line: 2 Signal. Type line: Intelligence.
+
+- Suppose, hypothetically, a sixth challenger, Corran, built a Signal deck and had 2 Signal
+  Points in his pool. In his Main Phase, he plays Ilio Marn-Cassity, Contract-Broker of the
+  Rewritten Clause as a Fast card, paying 2 Signal (Section 5.3). Intelligence cards are
+  instant/sorcery-speed resolving (Section 9.4), so it is added to the Queue rather than
+  entering the Field as a Permanent (Section 9.1).
+- Once both challengers pass in succession, Ilio Marn-Cassity, Contract-Broker of the
+  Rewritten Clause resolves (Section 6): Corran looks at his opponent's Hand — a zone
+  otherwise hidden from him (Section 3) — chooses a card there, and swaps its printed cost
+  with the printed cost of a card in his own Hand, exactly as its rules text states. It then
+  moves to Corran's Wreck, having resolved once (Section 9.1).
+
+**Ossian Thale, Reclamation-Warden of the Standing Stones (The Starweave Communion — Magic).**
+Cost line: 3 Tangle. Type line: Magic.
+
+- Suppose, hypothetically, a seventh challenger, Maeve, built a Tangle deck and had 3 Tangle
+  Points in her pool. In her Main Phase, she plays Ossian Thale, Reclamation-Warden of the
+  Standing Stones as a Fast card, paying 3 Tangle (Section 5.3). Magic cards are
+  instant/sorcery-speed resolving (Section 9.2), so it is added to the Queue rather than
+  entering the Field as a Permanent (Section 9.1).
+- Once both challengers pass in succession, Ossian Thale, Reclamation-Warden of the Standing
+  Stones resolves (Section 6): Maeve destroys Bryn's `Feral Bloomcaller`, a Biology permanent
+  (Section 9.5), moved from the Field to Bryn's Wreck (Section 3); its controller, Bryn, then
+  draws a card from her Archive, exactly as its rules text states. Ossian Thale,
+  Reclamation-Warden of the Standing Stones then moves to Maeve's Wreck, having resolved once
+  (Section 9.1).
+
+**Replica-Sergeant Kess Ninefold, the Named Copy (The Wrought Assembly — Technology).**
+Cost line: 2 Circuit. Type line: Technology — Permanent.
+
+- Suppose, hypothetically, Kestrel's Circuit pool held 2 Circuit Points in a single turn and,
+  in her Main Phase, she played Replica-Sergeant Kess Ninefold, the Named Copy, paying 2
+  Circuit (Section 5.3). Technology cards are permanent (Section 9.3), so it enters the Field
+  as a Permanent, with combat strength 1 and no counters, exactly as its Stats/counters line
+  states (Section 9.1).
+- Suppose, hypothetically, Replica-Sergeant Kess Ninefold, the Named Copy already had a
+  Fortification counter on it (Section 4.1), placed with an earlier Mass Point Kestrel had
+  somehow amassed — the same kind of unexplained one-turn Fount Point total Worked Examples 2
+  and 3 above already suppose. In a later Conflict Phase, Ada declared her Ready
+  `Line-Fleet Trooper` (combat strength 3) as an attacker, and Kestrel declared her Ready
+  Replica-Sergeant Kess Ninefold, the Named Copy as a blocker against it (Section 5.4).
+  Because it is blocked, `Line-Fleet Trooper` deals 3 damage to Replica-Sergeant Kess
+  Ninefold, the Named Copy instead of Kestrel's Core Integrity (Section 12.1) — equal to or
+  greater than its own combat strength of 1, which would ordinarily destroy it (Section
+  12.3). Instead, its Fortification counter is removed and it remains on the Field (Section
+  4.1): it has now been dealt damage without being destroyed, for the first time, so its own
+  rules text triggers: its combat strength is increased by 1 for the rest of the game,
+  becoming 1 (printed) + 1 = 2. At the same time, Replica-Sergeant Kess Ninefold, the Named
+  Copy deals its own (pre-increase) combat strength of 1 to `Line-Fleet Trooper` (Section
+  12.1) — less than `Line-Fleet Trooper`'s combat strength of 3, so it survives with 1 damage
+  marked, cleared at the end of the turn (Section 12.3, Section 12.4).
+
+This plays all 5 of *design/cards/character-signatures-wave-3.md*'s named cards — one per race
+— into a hypothetical game state at least once each, exactly the way Worked Examples 1-4 above
+already do for cards drawn from the five other card files: each card's Cost line and Type line
+are exactly as printed (Section 9.1), each card's Card Type governs whether it is a Permanent
+or resolves once to the Wreck (Sections 9.2-9.6), and each card's own triggered or resolving
+ability fires exactly as its rules text states — Vesk-Aduun, the Graft-Wearer's Growth counter
+(Section 4.2), and Ilio Marn-Cassity, Contract-Broker of the Rewritten Clause's and Ossian
+Thale, Reclamation-Warden of the Standing Stones's zone-touching abilities (Section 3) included.
+This closes the same gap for *design/cards/character-signatures-wave-3.md* that Worked Example 4
+already closed for *design/cards/character-signatures-wave-2.md*: these 5, one per race, are
+fully specified and legal, but until now had never appeared in any playtest procedure at all.
 
 ## What This Playtest Surfaced
 
