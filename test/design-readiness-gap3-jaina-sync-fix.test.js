@@ -102,18 +102,22 @@ test('AC2: Open Gaps item 3 no longer claims characters/races/world-lore/star-at
 // reflow or edit to these ranges breaks the match.
 // ---------------------------------------------------------------------------
 
-const SECTION4_BODY_VERBATIM = [
+// The art-briefs.md bullet that used to sit between these two chunks is
+// deliberately NOT snapshotted: its count and covering list legitimately
+// change with every new brief set (54->59 broke this three times in one
+// day) and are already asserted live-count-style by
+// design-readiness-section4-art-briefs-coverage.test.js. The two chunks
+// around it are checked as separate contiguous substrings.
+const SECTION4_ANATOMY_VERBATIM = [
   '- **`design/cards/card-anatomy.md`** — the shared card skeleton (Frame/',
   '  Border, Name Slot, Cost Slot, Art Window, Type Line, Rules-Text Box, Stats',
   '  Corner, Set/Collector Strip), the mapping from every `rules.md` Section',
   '  9.1 template field to exactly one zone, and the premium-treatment layers',
   '  (borderless, foil, extended art) that dress the same skeleton without',
   '  changing what a card says or does.',
-  '- **`design/cards/art-briefs.md`** — 54 art-brief sections, covering every',
-  '  card in `alpha-set.md`, `frontier-set.md`, `character-signatures.md`,',
-  '  `character-signatures-wave-2.md`, `fount-economy-set.md`,',
-  '  `wormhole-restrictions-set.md`, `wormhole-closure-cards.md`, and',
-  '  `spatial-race-identity-set.md`.',
+].join('\n');
+
+const SECTION4_ALTART_GAP_VERBATIM = [
   '- **`design/cards/alt-art-briefs.md`** — 5 alternate-art briefs for the',
   '  fount Generators (Sporeknit Warden, Salvage-Wrought Bastion, Replicant',
   '  Foundry Core, Foreknowledge Cipher, Unwritten Hour).',
@@ -142,7 +146,7 @@ const SECTION6_ITEM1_VERBATIM = [
 
 test('AC4: Section 4\'s art-brief coverage bullets are present byte-for-byte unchanged', () => {
   assert.ok(
-    content.includes(SECTION4_BODY_VERBATIM),
+    content.includes(SECTION4_ANATOMY_VERBATIM) && content.includes(SECTION4_ALTART_GAP_VERBATIM),
     'expected Section 4\'s art-brief coverage bullets to be untouched by this unit\'s edits'
   );
 });

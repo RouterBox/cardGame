@@ -684,3 +684,19 @@ Append-only requirements traceability log — one section per archived work item
 - AC3 [paraphrase] (held_out): Each card's Rules text names a Discovery-family or other Section 8 mechanic (Frontier Discovery, Contested Discovery, Neutral Planet, Blockade, or Wormhole Length) already defined in rules.md, not an invented mechanic — PASS
 - AC4 [inferred]: design/DESIGN-READINESS.md's Section 3 contains exactly one new bullet citing 'frontier-worlds-set.md', and every other section of that file, design/star-atlas.md, and every other design/cards/*.md file are byte-for-byte unchanged — PASS
 - AC5 [paraphrase]: site/design/cards/frontier-worlds-set.html exists and site/design/DESIGN-READINESS.html is regenerated via tools/build-site.js, and a new test file mechanically asserts all of the above — PASS
+
+## 2026-07-31-cardgame-rules-restriction-movement-contradiction-fix-fix-rules-md-s-section-8-1-8-4-contradiction-over-wh.md
+
+- AC1 [inferred]: design/rules.md Section 8.4 no longer contains a sentence stating it is an open/unresolved question whether a Directional or Team Restriction governs future Unit movement — no receipt (escalated before receipt computation)
+- AC2 [paraphrase]: design/rules.md Section 8.4 states definitively that a Directional or Team Restriction governs future Unit movement (Section 8.1) in addition to an Assault's path (Section 8.6), consistent with Section 8.1's existing unconditional wording — no receipt (escalated before receipt computation)
+- AC3 [inferred] (held_out): Unit-type Restriction's existing, already-confirmed governance of movement (Section 8.4's Unit-type Restriction paragraph) is textually unchanged — no receipt (escalated before receipt computation)
+- AC4 [inferred]: Section 8.1's own paragraph on Unit location and movement, every other section of design/rules.md, and every design/cards/*.md file are byte-for-byte unchanged — no receipt (escalated before receipt computation)
+- AC5 [paraphrase]: test/design-battlefield.test.js passes with one new assertion added for the resolved hedge, and site/design/rules.html is regenerated via tools/build-site.js to match the updated markdown — no receipt (escalated before receipt computation)
+
+## 2026-07-31-cardgame-art-briefs-character-signatures-wave-3-add-5-art-briefs-to-design-cards-art-briefs-md-for-charact.md
+
+- AC1 [inferred]: design/cards/art-briefs.md gains exactly 5 new "###" sections, titled verbatim: "Bren Hollowmelt, the Cindergrown", "Vesk-Aduun, the Graft-Wearer", "Ilio Marn-Cassity, Contract-Broker of the Rewritten Clause", "Ossian Thale, Reclamation-Warden of the Standing Stones", "Replica-Sergeant Kess Ninefold, the Named Copy", with no pre-existing section altered or removed — no receipt (escalated before receipt computation)
+- AC2 [inferred]: Each new section has Palette:, Subject/Scene:, a "Key visual elements:" bulleted list of 2 or more items, and Composition: fields, matching the existing sections' shape — no receipt (escalated before receipt computation)
+- AC3 [paraphrase] (held_out): Each new section's Palette line names the card-anatomy.md Fount-identity color matching that card's own single-Fount Cost line in character-signatures-wave-3.md: Bren Hollowmelt→Ash-grey, Vesk-Aduun→Green, Ilio Marn-Cassity→Cyan, Ossian Thale→Violet, Replica-Sergeant Kess Ninefold→Copper — no receipt (escalated before receipt computation)
+- AC4 [inferred]: design/cards/character-signatures-wave-3.md, design/cards/card-anatomy.md, and every pre-existing section of art-briefs.md are byte-for-byte unchanged — no receipt (escalated before receipt computation)
+- AC5 [paraphrase]: test/design-art-briefs-character-signatures-wave-3.test.js passes, mechanically asserting the above — no receipt (escalated before receipt computation)

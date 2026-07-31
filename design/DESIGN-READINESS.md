@@ -128,11 +128,11 @@ documents, not card sets, and correctly parse to 0 cards:
   9.1 template field to exactly one zone, and the premium-treatment layers
   (borderless, foil, extended art) that dress the same skeleton without
   changing what a card says or does.
-- **`design/cards/art-briefs.md`** — 54 art-brief sections, covering every
+- **`design/cards/art-briefs.md`** — 59 art-brief sections, covering every
   card in `alpha-set.md`, `frontier-set.md`, `character-signatures.md`,
-  `character-signatures-wave-2.md`, `fount-economy-set.md`,
-  `wormhole-restrictions-set.md`, `wormhole-closure-cards.md`, and
-  `spatial-race-identity-set.md`.
+  `character-signatures-wave-2.md`, `character-signatures-wave-3.md`,
+  `fount-economy-set.md`, `wormhole-restrictions-set.md`,
+  `wormhole-closure-cards.md`, and `spatial-race-identity-set.md`.
 - **`design/cards/alt-art-briefs.md`** — 5 alternate-art briefs for the
   fount Generators (Sporeknit Warden, Salvage-Wrought Bastion, Replicant
   Foundry Core, Foreknowledge Cipher, Unwritten Hour).
