@@ -14,6 +14,7 @@ Rules text and flavor text together name both the race the card belongs to
 and the character it's based on, so the cross-reference is checkable by
 name. Each card's Cost line draws from that race's own primary Fount, and
 its Type line matches that race's own domain, per `design/races/*.md`.
+With this third wave, every race now has three named signature cards playable in *Wreck Tangle*.
 
 ## The Cindral Reach — Materials
 

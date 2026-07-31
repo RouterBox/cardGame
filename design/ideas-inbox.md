@@ -133,7 +133,7 @@ Implications:
 - Markdown design docs remain the narrative/spec layer; Jaina holds the
   structured data layer the tools consume.
 
-## 2026-07-29 — The game's name (verbatim from RouterBox)
+## 2026-07-29 — The game's name (verbatim from RouterBox) [incorporated: cardgame-game-name-card-set-docs]
 
 > "Wreck Tangle" — "yeah thats the name of the game."
 

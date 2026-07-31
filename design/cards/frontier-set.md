@@ -10,6 +10,7 @@ Restriction, Section 8.4), the Starweave Communion (Magic, citing Closure,
 Section 8.5), and the Wrought Assembly (Technology, citing Assault and
 Capture, Section 8.6). Every card follows the canonical template of
 *design/rules.md* Section 9.1.
+These cards belong to *Wreck Tangle*, the game whose battlefield graph every card here is built to exercise.
 
 ## The Cindral Reach
 

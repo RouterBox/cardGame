@@ -10,6 +10,7 @@ Rules text, and, for Permanents, an optional Stats/counters line, always in
 that order), and every card's Rules text and flavor text together name both
 the race the card belongs to and the character it's based on, so the
 cross-reference is checkable by name.
+Each of these signature cards carries a named face into *Wreck Tangle*, the card game they are playable in.
 
 ## The Cindral Reach — Materials
 

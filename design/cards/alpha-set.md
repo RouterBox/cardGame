@@ -10,6 +10,7 @@ carries at least one card tied to its own primary Fount strength: the
 Cindral Reach (Materials), the Mireth Bloom (Biology), the Panoptic Concord
 (Intelligence), the Starweave Communion (Magic), and the Wrought Assembly
 (Technology).
+This starter set is the earliest published card list for *Wreck Tangle*, the game these five races and five Founts belong to.
 
 ## Magic — the Tangle
 

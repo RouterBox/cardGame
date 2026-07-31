@@ -24,6 +24,7 @@ via a Discovery action, an unbuilt exception to Section 8.3. No rules.md
 change is needed or made — both effects are stated exceptions to
 already-shipped defaults, the same pattern the wave-1 file uses. Every
 card follows the canonical template of *design/rules.md* Section 9.1.
+These two cards complete *Wreck Tangle*'s roster of wormhole-grounded race-identity cards, now covering all five races.
 
 ## The Mireth Bloom
 
