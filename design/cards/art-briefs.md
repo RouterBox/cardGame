@@ -853,3 +853,88 @@ Composition: wide, landscape rectangle (~5:3), the large rectangular
 window beneath the Name Slot per card-anatomy.md — center the Fount at
 the freshly discovered site with the discount ledger visible at the
 frame's edge.
+
+## Character Signatures, Wave 3
+
+### Bren Hollowmelt, the Cindergrown
+
+Palette: Ash-grey — the Mass's industrial endurance, refusing to fully
+surrender a wound to whatever claimed it.
+Subject/Scene: Bren Hollowmelt, the Cindergrown, stands over the
+Bloom-claimed debris field where he should have died, his ash-grey
+Materials plating fused at the wound with something that grew into it
+instead of finishing him.
+Key visual elements:
+- Bren Hollowmelt himself, a named Cindral Reach Materials Unit whose old wound has grown into something not fully his own, not a generic Unit
+- The wound itself shown mid-transformation, damage marked against this Unit fading and being removed rather than destroyed, per his own Rules text
+- The Bloom-claimed debris field around him, growth reclaiming wreckage the same uncertain way it reclaimed part of him
+Composition: wide, landscape rectangle (~5:3), the large rectangular
+window beneath the Name Slot per card-anatomy.md — place Bren
+center-frame with the transforming wound catching the light and the
+debris field receding behind him.
+
+### Vesk-Aduun, the Graft-Wearer
+
+Palette: Green — the Bloom's patient growth, closing over whatever it's
+grafted onto.
+Subject/Scene: Vesk-Aduun, the Graft-Wearer, stands mid-Sprawl with a
+stolen fragment of Assembly design-memory fused into his flesh, the
+straight-line geometry of it fighting against the Bloom's own green
+growth.
+Key visual elements:
+- Vesk-Aduun himself, a named Mireth Bloom Biology Unit whose flesh carries a fused design-memory fragment, not a generic creature
+- A Growth counter taking root on his form the instant a Unit he damages is destroyed, per his own Rules text
+- The rigid, machined lines of the stolen design-memory fragment visibly at odds with the organic growth spreading around it
+Composition: wide, landscape rectangle (~5:3), the large rectangular
+window beneath the Name Slot per card-anatomy.md — keep Vesk-Aduun low
+and central with the new Growth counter catching the light at the point
+of impact.
+
+### Ilio Marn-Cassity, Contract-Broker of the Rewritten Clause
+
+Palette: Cyan — the Signal's cool analytic watchfulness, reading the fine
+print before anyone else notices it's changed.
+Subject/Scene: Ilio Marn-Cassity, Contract-Broker of the Rewritten
+Clause, leans over an opponent's fanned Hand in cyan light, swapping a
+card's printed cost with one drawn from Ilio's own Hand.
+Key visual elements:
+- Ilio Marn-Cassity herself, a named Panoptic Concord Intelligence broker reading an opponent's Hand of cards, not a generic figure
+- Two contracts shown mid-swap, their printed cost fine print visibly exchanged between Ilio's Hand and the opponent's
+- A satisfied, unhurried expression — the swapped fine print is the whole point of the deal, not a trick played reluctantly
+Composition: wide, landscape rectangle (~5:3), the large rectangular
+window beneath the Name Slot per card-anatomy.md — keep Ilio close over
+the opponent's Hand with the two swapped cards lit at the frame's center.
+
+### Ossian Thale, Reclamation-Warden of the Standing Stones
+
+Palette: Violet — the Tangle's uncanny ritual mood, turned here toward
+burning a claim clean rather than losing it.
+Subject/Scene: Ossian Thale, Reclamation-Warden of the Standing Stones,
+stands over a reclaimed shrine the Bloom once swallowed, a violet Magic
+working destroying a Biology permanent as the ground around it is burned
+back to bare stone.
+Key visual elements:
+- Ossian Thale himself, a named Starweave Communion Magic warden reclaiming ground the Bloom has taken, not a generic caster
+- A Biology permanent shown being reduced to ruin by the same violet Magic working that will destroy it, per his own Rules text
+- The reclaimed shrine and the bare, burned stone Ossian leaves behind rather than let the Starweave Communion's claim lapse a fourth time
+Composition: wide, landscape rectangle (~5:3), the large rectangular
+window beneath the Name Slot per card-anatomy.md — center Ossian over the
+burning shrine ground with the dying Biology permanent lit at the frame's
+midpoint.
+
+### Replica-Sergeant Kess Ninefold, the Named Copy
+
+Palette: Copper — the Circuit's warm mechanized repetition, worn here by
+the one copy that was given a name.
+Subject/Scene: Replica-Sergeant Kess Ninefold, the Named Copy, stands
+apart from the Wrought Assembly's numbered patrol units, a broken-protocol
+name mark visible on copper Technology plating that grows stronger the
+more damage it survives.
+Key visual elements:
+- Replica-Sergeant Kess Ninefold himself, a named Wrought Assembly Technology Unit standing apart from the numbered patrol units around it, not a generic copy
+- The instant this Unit is dealt damage without being destroyed, its combat strength visibly increased for the rest of the game
+- The broken-protocol naming mark that gave Kess a name mid-raid, and the memory of the mostly-children Reach salvage crew it refused to destroy
+Composition: wide, landscape rectangle (~5:3), the large rectangular
+window beneath the Name Slot per card-anatomy.md — place Kess
+center-frame against a receding grid of numbered, unnamed patrol units
+behind them.
