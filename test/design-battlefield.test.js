@@ -276,3 +276,15 @@ test('Reconciliation: a Unit may be deployed located at a Planet its controller 
     'expected Section 8.1 to allow a Unit to be deployed at a Planet its controller does not control'
   );
 });
+
+test('Reconciliation AC5: Section 8.4 no longer treats Restriction-governed Unit movement as an open/unresolved question', () => {
+  const body = battlefieldBody();
+  assert.ok(
+    !/open question this section does not resolve/i.test(body),
+    'expected the "open question this section does not resolve" hedge to be removed from Section 8'
+  );
+  assert.ok(
+    /directional or\s+team restriction governs.{0,80}unit movement/i.test(battlefieldProse()),
+    'expected Section 8.4 to state definitively that a Directional or Team Restriction governs future Unit movement'
+  );
+});

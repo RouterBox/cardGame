@@ -557,11 +557,12 @@ none (Section 8.3).
 
 A Directional, Team, or Unit-type Restriction on a Wormhole never changes
 that Wormhole's Length or its Closed/un-Closed state, and a Wormhole may
-carry more than one Restriction of different kinds at once. Whether a
-Directional or Team Restriction also limits a future rule's or card's Unit
-movement (Section 8.1), and not only an Assault's path (Section 8.6), is an
-open question this section does not resolve; only the Unit-type Restriction
-is stated, by this rulebook, to govern such movement directly.
+carry more than one Restriction of different kinds at once. A Directional or
+Team Restriction governs a future rule's or card's Unit movement (Section
+8.1) exactly as it already governs an Assault's path (Section 8.6): the same
+Directional and Team constraints that limit which Wormholes an Assault may
+count as part of its path likewise limit which Wormholes a Unit may move
+across, whenever some future rule or card grants that movement.
 
 ### 8.5 Wormhole Closure
 
