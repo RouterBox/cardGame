@@ -676,3 +676,11 @@ Append-only requirements traceability log — one section per archived work item
 - AC3 [inferred]: tools/sync-world-narrative-to-jaina.js run with --dry-run prints exactly 2 JSON lines (one per record) and exits 0; run without --dry-run, it prints a not-yet-implemented message to stderr and exits 1; it calls lib/run-jaina-dryrun-cli.js's runDryRunSyncCli rather than hand-rolling this control flow — PASS
 - AC4 [inferred]: design/world.md, lib/parse-founts-markdown.js, lib/markdown-sections.js, lib/run-jaina-dryrun-cli.js, and every other existing tools/sync-*-to-jaina.js file and test are byte-for-byte unchanged — PASS
 - AC5 [paraphrase]: DESIGN-READINESS.md's Section 5 gains exactly one new bullet citing tools/sync-world-narrative-to-jaina.js, and Gap 3's text is updated to state the narrative-sync gap is closed, with no other section or line of that file changed — PASS
+
+## 2026-07-31-cardgame-frontier-worlds-cards-add-a-frontier-worlds-card-set-naming-halvorne-junction-kelmourn-drift-and.md
+
+- AC1 [inferred]: design/cards/frontier-worlds-set.md exists with exactly 5 cards, one per race under design/races/, each following the Section 9.1 template field order (Name, Cost line, Type line, Rules text, flavor text) — PASS
+- AC2 [inferred]: Across the 5 cards, the exact strings 'Halvorne Junction', 'Kelmourn Drift', and 'Tallowfen' each appear at least once — PASS
+- AC3 [paraphrase] (held_out): Each card's Rules text names a Discovery-family or other Section 8 mechanic (Frontier Discovery, Contested Discovery, Neutral Planet, Blockade, or Wormhole Length) already defined in rules.md, not an invented mechanic — PASS
+- AC4 [inferred]: design/DESIGN-READINESS.md's Section 3 contains exactly one new bullet citing 'frontier-worlds-set.md', and every other section of that file, design/star-atlas.md, and every other design/cards/*.md file are byte-for-byte unchanged — PASS
+- AC5 [paraphrase]: site/design/cards/frontier-worlds-set.html exists and site/design/DESIGN-READINESS.html is regenerated via tools/build-site.js, and a new test file mechanically asserts all of the above — PASS
