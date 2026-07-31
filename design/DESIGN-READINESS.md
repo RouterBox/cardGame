@@ -103,6 +103,11 @@ re-implementing its own parsing):
 - **Fount Economy Set** — `design/cards/fount-economy-set.md` — 6 cards.
   Closes the Bloom/Signal/Tangle Generator gap `design/playtest-full-game.md`
   surfaced.
+- **Frontier Worlds Set** — `design/cards/frontier-worlds-set.md` — 5
+  cards. One per race, each naming a specific world from
+  `star-atlas.md`'s "Frontier & Contested Worlds" section (Halvorne
+  Junction, Kelmourn Drift, Tallowfen) and grounding its mechanic in a
+  Section 8.3/8.6 term already defined by `rules.md`.
 
 **Total: 59 named cards across 10 files.** This list is not a hand-typed
 count: `test/design-readiness.test.js` re-derives it from
