@@ -708,3 +708,11 @@ Append-only requirements traceability log — one section per archived work item
 - AC3 [paraphrase] (held_out): The new test does not require design/cards/character-signatures-wave-3.md (currently 0% art-brief coverage) to be cited in Section 4 — proving the check keys off actual brief coverage, not mere file existence on disk — PASS
 - AC4 [inferred]: No section of design/DESIGN-READINESS.md other than Section 4's covered-files sentence, and no file under design/cards/, is changed from its content before this unit — PASS
 - AC5 [paraphrase]: All pre-existing AC1-AC5 tests in test/design-readiness.test.js continue to pass unmodified, and site/design/DESIGN-READINESS.html is regenerated via tools/build-site.js to match the updated markdown — PASS
+
+## 2026-07-31-cardgame-playtest-character-signatures-wave-3-refresh-add-worked-example-5-to-design-playtest-full-game-md.md
+
+- AC1 [inferred]: design/playtest-full-game.md contains a new 'Worked Example 5' section positioned after 'Worked Example 4' and before 'What This Playtest Surfaced' — PASS
+- AC2 [inferred]: The new section names all 5 character-signatures-wave-3.md cards verbatim by exact name: 'Bren Hollowmelt, the Cindergrown', 'Vesk-Aduun, the Graft-Wearer', 'Ilio Marn-Cassity, Contract-Broker of the Rewritten Clause', 'Ossian Thale, Reclamation-Warden of the Standing Stones', 'Replica-Sergeant Kess Ninefold, the Named Copy' — PASS
+- AC3 [paraphrase] (held_out): Each card's Cost line and Type line as quoted in the new section exactly match character-signatures-wave-3.md's own field values (Bren Hollowmelt: 3 Mass; Vesk-Aduun: 3 Bloom; Ilio Marn-Cassity: 2 Signal; Ossian Thale: 3 Tangle; Replica-Sergeant Kess Ninefold: 2 Circuit) — PASS
+- AC4 [inferred] (held_out): Worked Examples 1-4's existing text, Step 1's two decklists, Section 11's copy-count discussion, design/playtest-full-game-2.md, design/playtest-spatial.md, and character-signatures-wave-3.md are byte-for-byte unchanged — PASS
+- AC5 [paraphrase]: site/design/playtest-full-game.html is regenerated via tools/build-site.js and contains all 5 wave-3 card names, and a new test file mechanically asserts all of the above — PASS
