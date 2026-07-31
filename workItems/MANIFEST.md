@@ -692,3 +692,11 @@ Append-only requirements traceability log — one section per archived work item
 - AC3 [inferred] (held_out): Unit-type Restriction's existing, already-confirmed governance of movement (Section 8.4's Unit-type Restriction paragraph) is textually unchanged — no receipt (escalated before receipt computation)
 - AC4 [inferred]: Section 8.1's own paragraph on Unit location and movement, every other section of design/rules.md, and every design/cards/*.md file are byte-for-byte unchanged — no receipt (escalated before receipt computation)
 - AC5 [paraphrase]: test/design-battlefield.test.js passes with one new assertion added for the resolved hedge, and site/design/rules.html is regenerated via tools/build-site.js to match the updated markdown — no receipt (escalated before receipt computation)
+
+## 2026-07-31-cardgame-art-briefs-character-signatures-wave-3-add-5-art-briefs-to-design-cards-art-briefs-md-for-charact.md
+
+- AC1 [inferred]: design/cards/art-briefs.md gains exactly 5 new "###" sections, titled verbatim: "Bren Hollowmelt, the Cindergrown", "Vesk-Aduun, the Graft-Wearer", "Ilio Marn-Cassity, Contract-Broker of the Rewritten Clause", "Ossian Thale, Reclamation-Warden of the Standing Stones", "Replica-Sergeant Kess Ninefold, the Named Copy", with no pre-existing section altered or removed — no receipt (escalated before receipt computation)
+- AC2 [inferred]: Each new section has Palette:, Subject/Scene:, a "Key visual elements:" bulleted list of 2 or more items, and Composition: fields, matching the existing sections' shape — no receipt (escalated before receipt computation)
+- AC3 [paraphrase] (held_out): Each new section's Palette line names the card-anatomy.md Fount-identity color matching that card's own single-Fount Cost line in character-signatures-wave-3.md: Bren Hollowmelt→Ash-grey, Vesk-Aduun→Green, Ilio Marn-Cassity→Cyan, Ossian Thale→Violet, Replica-Sergeant Kess Ninefold→Copper — no receipt (escalated before receipt computation)
+- AC4 [inferred]: design/cards/character-signatures-wave-3.md, design/cards/card-anatomy.md, and every pre-existing section of art-briefs.md are byte-for-byte unchanged — no receipt (escalated before receipt computation)
+- AC5 [paraphrase]: test/design-art-briefs-character-signatures-wave-3.test.js passes, mechanically asserting the above — no receipt (escalated before receipt computation)
