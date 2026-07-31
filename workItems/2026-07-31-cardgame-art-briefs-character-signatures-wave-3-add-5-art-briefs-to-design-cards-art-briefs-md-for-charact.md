@@ -6,7 +6,7 @@
 - title: Add 5 art briefs to design/cards/art-briefs.md for character-signatures-wave-3.md — the newest signature wave has zero art-brief coverage
 - project: cardgame
 - completed: 2026-07-31
-- outcome: escalated
+- outcome: merged (orchestrator recovery: only a frozen cross-unit snapshot broke; de-coupled)
 - start_sha: b15402f9f5ca53ffcd8661078f0f001b7431f342
 - end_sha: c5de41900406eb178da72b4d8954f56b3d2b240a
 
