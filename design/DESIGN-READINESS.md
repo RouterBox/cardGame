@@ -132,7 +132,8 @@ documents, not card sets, and correctly parse to 0 cards:
   card in `alpha-set.md`, `frontier-set.md`, `character-signatures.md`,
   `character-signatures-wave-2.md`, `character-signatures-wave-3.md`,
   `fount-economy-set.md`, `wormhole-restrictions-set.md`,
-  `wormhole-closure-cards.md`, and `spatial-race-identity-set.md`.
+  `wormhole-closure-cards.md`, `spatial-race-identity-set.md`, and
+  `spatial-race-identity-set-wave-2.md`.
 - **`design/cards/alt-art-briefs.md`** — 5 alternate-art briefs for the
   fount Generators (Sporeknit Warden, Salvage-Wrought Bastion, Replicant
   Foundry Core, Foreknowledge Cipher, Unwritten Hour).
