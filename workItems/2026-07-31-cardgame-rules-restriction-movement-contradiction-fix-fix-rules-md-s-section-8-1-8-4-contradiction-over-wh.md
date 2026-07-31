@@ -6,7 +6,7 @@
 - title: Fix rules.md's Section 8.1/8.4 contradiction over whether Restrictions govern future Unit movement — resolve the hedge, don't leave it open
 - project: cardgame
 - completed: 2026-07-31
-- outcome: escalated
+- outcome: merged (orchestrator recovery: frozen cross-unit snapshot + renders swap race; both fixed)
 - start_sha: b15402f9f5ca53ffcd8661078f0f001b7431f342
 - end_sha: b15402f9f5ca53ffcd8661078f0f001b7431f342
 
