@@ -700,3 +700,11 @@ Append-only requirements traceability log — one section per archived work item
 - AC3 [paraphrase] (held_out): Each new section's Palette line names the card-anatomy.md Fount-identity color matching that card's own single-Fount Cost line in character-signatures-wave-3.md: Bren Hollowmelt→Ash-grey, Vesk-Aduun→Green, Ilio Marn-Cassity→Cyan, Ossian Thale→Violet, Replica-Sergeant Kess Ninefold→Copper — no receipt (escalated before receipt computation)
 - AC4 [inferred]: design/cards/character-signatures-wave-3.md, design/cards/card-anatomy.md, and every pre-existing section of art-briefs.md are byte-for-byte unchanged — no receipt (escalated before receipt computation)
 - AC5 [paraphrase]: test/design-art-briefs-character-signatures-wave-3.test.js passes, mechanically asserting the above — no receipt (escalated before receipt computation)
+
+## 2026-07-31-cardgame-design-readiness-section4-live-derived-check-make-design-readiness-md-section-4-s-art-brief-cover.md
+
+- AC1 [inferred]: test/design-readiness.test.js contains a new test asserting that for every design/cards/*.md file parsing to 1+ cards via lib/parse-card-markdown.js, if all of that file's card names appear as "###" headings in design/cards/art-briefs.md, the filename is cited in DESIGN-READINESS.md's Section 4 ("Card Anatomy & Art Brief Coverage") text — PASS
+- AC2 [paraphrase]: design/DESIGN-READINESS.md's Section 4 sentence is updated to cite "spatial-race-identity-set-wave-2.md" alongside the 8 files it already names, and this is the only content change made to the file — PASS
+- AC3 [paraphrase] (held_out): The new test does not require design/cards/character-signatures-wave-3.md (currently 0% art-brief coverage) to be cited in Section 4 — proving the check keys off actual brief coverage, not mere file existence on disk — PASS
+- AC4 [inferred]: No section of design/DESIGN-READINESS.md other than Section 4's covered-files sentence, and no file under design/cards/, is changed from its content before this unit — PASS
+- AC5 [paraphrase]: All pre-existing AC1-AC5 tests in test/design-readiness.test.js continue to pass unmodified, and site/design/DESIGN-READINESS.html is regenerated via tools/build-site.js to match the updated markdown — PASS
