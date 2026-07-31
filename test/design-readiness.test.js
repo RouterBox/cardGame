@@ -12,6 +12,7 @@ const CARDS_DIR = path.join(__dirname, '..', 'design', 'cards');
 const RULES_PATH = path.join(__dirname, '..', 'design', 'rules.md');
 const LORE_PATH = path.join(__dirname, '..', 'design', 'lore.md');
 const RACES_DIR = path.join(__dirname, '..', 'design', 'races');
+const ART_BRIEFS_PATH = path.join(__dirname, '..', 'design', 'cards', 'art-briefs.md');
 
 const content = fs.existsSync(DOC_PATH) ? fs.readFileSync(DOC_PATH, 'utf8') : '';
 const sections = parseSections(content);
@@ -128,4 +129,53 @@ test('AC5: closes with a numbered list of at least 3 open gaps', () => {
     items.length >= 3,
     `expected at least 3 numbered open-gap items, found ${items.length}`
   );
+});
+
+// ---------------------------------------------------------------------------
+// AC7 (new, mechanical): Section 4's art-brief-coverage sentence is derived
+// live from actual brief coverage, not hand-typed. For every design/cards/
+// file that parses to 1+ real cards, if every one of that file's card names
+// appears as a "###" heading anywhere in art-briefs.md, the filename must be
+// cited in the "Card Anatomy & Art Brief Coverage" section text. Files with
+// partial or zero art-brief coverage are NOT required to be cited — this is
+// what keeps the check from racing with an art-briefs proposal that's still
+// in flight for some other file.
+// ---------------------------------------------------------------------------
+
+test('AC7: every card-set file fully covered by art-briefs.md is cited in Section 4\'s coverage sentence', () => {
+  const artBriefsContent = fs.readFileSync(ART_BRIEFS_PATH, 'utf8');
+  const briefTitles = new Set(
+    parseSections(artBriefsContent)
+      .filter((s) => s.level === 3)
+      .map((s) => s.title)
+  );
+
+  const section4 = sectionText(sections, /card anatomy & art brief coverage/i);
+  assert.ok(
+    section4,
+    'expected a "Card Anatomy & Art Brief Coverage" section in design/DESIGN-READINESS.md'
+  );
+
+  const files = fs
+    .readdirSync(CARDS_DIR, { withFileTypes: true })
+    .filter((entry) => entry.isFile() && entry.name.endsWith('.md'))
+    .map((entry) => entry.name)
+    .sort();
+
+  const cardSetFiles = files.filter(
+    (file) => loadCardsFromFile(path.join(CARDS_DIR, file)).length > 0
+  );
+  assert.ok(cardSetFiles.length > 0, 'expected at least one real card-set file under design/cards/');
+
+  for (const file of cardSetFiles) {
+    const cardNames = loadCardsFromFile(path.join(CARDS_DIR, file)).map((c) => c.name);
+    const fullyCovered = cardNames.every((name) => briefTitles.has(name));
+    if (!fullyCovered) continue;
+
+    assert.ok(
+      section4.includes(file),
+      `expected Section 4 ("Card Anatomy & Art Brief Coverage") to cite "${file}" — ` +
+        `all ${cardNames.length} of its card(s) already have an art-brief section in art-briefs.md`
+    );
+  }
 });
