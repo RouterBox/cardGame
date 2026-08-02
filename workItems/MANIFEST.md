@@ -724,3 +724,11 @@ Append-only requirements traceability log — one section per archived work item
 - AC3 [paraphrase] (held_out): The 10 new sentences are not an identical copy-pasted string across all 10 files — each is tailored to reference that specific set's own subject matter — no receipt (escalated before receipt computation)
 - AC4 [paraphrase] (held_out): design/ideas-inbox.md's "## 2026-07-29 — The game's name" heading line contains `[incorporated: cardgame-game-name-card-set-docs]`, and no other line or entry in ideas-inbox.md is changed — no receipt (escalated before receipt computation)
 - AC5 [paraphrase]: The 10 corresponding site/design/cards/*.html pages are regenerated via tools/build-site.js and each contains "Wreck Tangle"; a new test file mechanically asserts all of the above — no receipt (escalated before receipt computation)
+
+## 2026-08-02-cardgame-character-markdown-section-splitter-dedup-remove-lib-parse-character-markdown-js-s-byte-identical.md
+
+- AC1 [inferred]: lib/parse-character-markdown.js no longer contains a source-level declaration of `function splitIntoH2Sections(` — PASS
+- AC2 [paraphrase]: lib/parse-character-markdown.js's exported splitIntoH2Sections is reference-equal (===) to lib/markdown-sections.js's exported splitIntoH2Sections, proving it is imported rather than a separately-declared identical copy — PASS
+- AC3 [inferred] (held_out): lib/parse-character-markdown.js's module.exports list, and every function other than splitIntoH2Sections in the file, are byte-for-byte unchanged from their content before this unit — PASS
+- AC4 [paraphrase]: loadAllCharacters() returns the exact same set of character records (name, slug, race, title, bio, threads) after the change as it did before, for every file in design/characters/ — PASS
+- AC5 [paraphrase]: test/parse-character-markdown.test.js and test/design-characters.test.js continue to pass unmodified, and a new test/parse-character-markdown-section-splitter-dedup.test.js mechanically asserts all of the above — PASS
