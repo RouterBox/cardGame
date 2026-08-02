@@ -15,6 +15,7 @@ file leaves untouched. Every card follows the canonical template of
 *design/rules.md* Section 9.1, and each is paid for from the one Fount
 matching its race, per the mapping *design/cards/frontier-set.md* already
 uses.
+These five cards give *Wreck Tangle* its first playable Wormhole Restrictions, one lock per race.
 
 ## The Cindral Reach
 

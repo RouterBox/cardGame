@@ -12,6 +12,7 @@ the mapping *design/cards/frontier-set.md* already uses. This is a distinct
 mechanic and a distinct file from *design/cards/wormhole-restrictions-set.md*
 — no card here adds, removes, or modifies a Restriction (Section 8.4)
 without also Closing the Wormhole it touches.
+These five cards give *Wreck Tangle* players their first way to Close a Wormhole outright, one per race.
 
 ## The Cindral Reach
 

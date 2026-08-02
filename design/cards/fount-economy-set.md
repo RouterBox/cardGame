@@ -24,6 +24,7 @@ a Signal or Tangle Generator — which by definition must be a Permanent
 existing `Signal-Wrought Prototype` and `Tangle-Forged Bolt` cards in
 *design/cards/alpha-set.md*, and lines up with each race's own complementary
 strengths in *design/races/*.
+These six cards close *Wreck Tangle*'s Fount-economy gap, making Combat, deep Discovery, and Capture reachable for every deck.
 
 ## The Mireth Bloom — Biology, the Bloom
 

@@ -12,6 +12,7 @@ optional Stats/counters line, always in that order), and every card's
 Rules text and flavor text together name both the race the card belongs to
 and the character it's based on, so the cross-reference is checkable by
 name.
+This second wave adds five more named faces to *Wreck Tangle*'s roster of playable signature cards.
 
 ## The Cindral Reach — Materials
 

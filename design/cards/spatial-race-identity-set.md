@@ -15,6 +15,7 @@ Assaults, citing Section 8.4 and Section 8.6; and the Cindral Reach
 8.5 and following the Fortification-counter pattern Section 4.1 already
 establishes for the Mass. Every card follows the canonical template of
 *design/rules.md* Section 9.1.
+These three cards are *Wreck Tangle*'s first proof that race identity and the wormhole graph combine into real, playable cards.
 
 ## The Panoptic Concord
 

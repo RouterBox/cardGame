@@ -415,23 +415,14 @@ test('AC4: Worked Example 5 does not appear inside Step 1 or alter its card coun
   }
 });
 
-// SHA-256 of the exact current bytes of the three files this unit must never touch.
-// Computed from the repo as it stood before this unit's changes (2026-07-30).
-const UNCHANGED_FILE_HASHES = {
-  'design/playtest-full-game-2.md': 'cc541038dbeffba2d189b1476ddc4210a07bfcf5e59e09ae43f2de34f070c5ab',
-  'design/playtest-spatial.md': '8b257e29913c1fd8a2eedf7cb313d9223d07230f2394f5b0ff28e5fa33a7419f',
-  'design/cards/character-signatures-wave-3.md': '5edec40711919cc75cb4508742c5e7f501ad3c220ca4e35bca807eef893ecf6c',
-};
-
-test('AC4: design/playtest-full-game-2.md, design/playtest-spatial.md, and character-signatures-wave-3.md are byte-for-byte unchanged', () => {
-  for (const [relPath, expectedHash] of Object.entries(UNCHANGED_FILE_HASHES)) {
-    const absPath = path.join(REPO_ROOT, relPath);
-    assert.ok(fs.existsSync(absPath), `expected ${absPath} to exist`);
-    const buf = fs.readFileSync(absPath);
-    const actualHash = crypto.createHash('sha256').update(buf).digest('hex');
-    assert.strictEqual(actualHash, expectedHash, `expected ${relPath} to be byte-for-byte unchanged (sha256 mismatch)`);
-  }
-});
+// AC4's sha256 pins of "files this unit must never touch" were removed
+// 2026-08-02: they froze a diff-time property of ONE unit's build as a
+// permanent repo invariant, breaking the moment any later unit legitimately
+// edited those files (game-name-card-set-docs adding the Wreck Tangle tag to
+// character-signatures-wave-3.md was AC-mandated work). Same anti-pattern as
+// the UNTOUCHED_FILES sha pins removed 2026-07-29 and TASTE T28. Whether a
+// unit's own diff stayed in scope is the blind reviewer's diff-time job, not
+// a suite invariant.
 
 // ---------------------------------------------------------------------------
 // AC5: site/design/playtest-full-game.html is regenerated from the updated
