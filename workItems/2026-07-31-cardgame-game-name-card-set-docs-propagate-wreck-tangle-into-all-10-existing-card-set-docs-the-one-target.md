@@ -6,7 +6,7 @@
 - title: Propagate "Wreck Tangle" into all 10 existing card-set docs — the one target of the 2026-07-29 naming directive still unclaimed
 - project: cardgame
 - completed: 2026-07-31
-- outcome: escalated
+- outcome: merged (orchestrator recovery: sha256 never-touch pins from a sibling unit froze files this unit was mandated to edit; pins removed)
 - start_sha: 3d926e664170370812bd75b49daae5de716d57ab
 - end_sha: 3d926e664170370812bd75b49daae5de716d57ab
 
