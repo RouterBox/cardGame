@@ -1,0 +1,53 @@
+{
+  "name": "cardgame-design-readiness-gap2-resolved-fix",
+  "title": "Fix DESIGN-READINESS.md's stale Open Gap 2 (already resolved by the shipped Wave 2 spatial set)",
+  "project": "cardgame",
+  "pitch": "design/DESIGN-READINESS.md's Open Gap 2 still claims the Mireth Bloom and Wrought Assembly have no spatial-identity card, but design/cards/spatial-race-identity-set-wave-2.md — cited two sections earlier in the same document — already ships exactly that card for both races.",
+  "why_now": "All 4 currently window-open proposals (2 art-brief sets, 2 Jaina dry-run sync slices) are new-feature growth; the portfolio rule asks each cycle to mix in a simplification/accuracy candidate, and DESIGN-READINESS.md's own stated job is to be a citation-backed, non-stale inventory of what's shipped — right now Section 6 contradicts Section 3 of the same file. This is a prose accuracy fix, not repo-state cleanup (avoids the T11 trap: it requires writing new resolution text, not asserting current file existence).",
+  "expected_outcome": "design/DESIGN-READINESS.md's Open Gaps section no longer states the Mireth Bloom/Wrought Assembly have 'no card in this wave'; it instead names design/cards/spatial-race-identity-set-wave-2.md as the file that resolved this gap. test/design-readiness.test.js's existing AC5 (>=3 numbered open-gap items) still passes with the list renumbered.",
+  "risk_class": "standard",
+  "mission_intent": "I6",
+  "taste_citations": [
+    "T9",
+    "T11",
+    "T12"
+  ],
+  "intent": "design/DESIGN-READINESS.md Section 3 already documents 'Spatial Race Identity Set, Wave 2 — 2 cards. Grounds the two remaining races (Mireth Bloom, Wrought Assembly) in the wormhole/battlefield graph, completing the wave-1 set above.' Yet Section 6's Open Gap 2 still reads 'The Spatial Race Identity Set only speaks for 3 of 5 races... The Mireth Bloom and the Wrought Assembly have no card in this wave' — a claim the wave-2 unit (shipped as cardgame-spatial-race-identity-cards-wave-2) already falsified. Since this document's entire purpose (per its own opening paragraph) is to make the I6 software-gate judgment call an informed one via file-citation-backed claims, a stale contradiction between two of its own sections undermines that purpose. Edit only the Open Gap 2 entry: replace its claim of an unresolved hole with a short resolved-status note citing design/cards/spatial-race-identity-set-wave-2.md by filename, and renumber the remaining gaps (art-brief coverage hole, no digital implementation, Jaina card-only) so the list stays a clean sequential numbered list. Do not touch Section 3's existing wave-2 description, the rulebook section list, the era timeline, or any other Open Gap's substance — only Gap 2's own text and the renumbering it requires.",
+  "criteria": [
+    {
+      "text": "design/DESIGN-READINESS.md's Open Gaps section no longer contains the sentence claiming the Mireth Bloom or the Wrought Assembly have 'no card in this wave'",
+      "provenance": "inferred",
+      "held_out": false
+    },
+    {
+      "text": "The same Open Gaps section now states that this gap was resolved and names 'spatial-race-identity-set-wave-2.md' verbatim as the resolving file",
+      "provenance": "inferred",
+      "held_out": false
+    },
+    {
+      "text": "The Open Gaps section still parses as a sequential numbered list (1., 2., 3., ... with no skipped or repeated numbers) with at least 3 items, so test/design-readiness.test.js's existing AC5 assertion continues to pass unmodified",
+      "provenance": "paraphrase",
+      "held_out": false
+    },
+    {
+      "text": "Section 3's existing description of 'Spatial Race Identity Set, Wave 2' (the 2-card, two-remaining-races summary) is present in the file byte-for-byte unchanged",
+      "provenance": "inferred",
+      "held_out": true
+    },
+    {
+      "text": "The other three Open Gap entries (art-brief coverage hole, no digital implementation ever built, Jaina wired for cards only) each still appear in the document with their original substantive text intact, only renumbered",
+      "provenance": "paraphrase",
+      "held_out": false
+    }
+  ],
+  "touches": [
+    "design/DESIGN-READINESS.md",
+    "test/design-readiness-gap2-resolved.test.js"
+  ],
+  "test_cmd": "node --test",
+  "id": "ms7482wj-cardgame-design-readiness-gap2-resolved-fix",
+  "filed_at": "2026-07-30T06:11:14.227Z",
+  "window_expires": "2026-07-30T10:11:14.229Z",
+  "status": "promoted",
+  "promoted_at": "2026-07-30T10:24:26.940Z"
+}

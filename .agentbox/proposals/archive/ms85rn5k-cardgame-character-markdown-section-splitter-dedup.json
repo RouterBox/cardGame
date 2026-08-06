@@ -1,0 +1,52 @@
+{
+  "name": "cardgame-character-markdown-section-splitter-dedup",
+  "title": "Remove lib/parse-character-markdown.js's byte-identical redeclaration of splitIntoH2Sections — the one straggler the section-parser dedup missed",
+  "project": "cardgame",
+  "pitch": "lib/parse-character-markdown.js (lines 17-36) still hand-rolls its own splitIntoH2Sections, byte-for-byte identical to the shared lib/markdown-sections.js version that parse-race/lore/star-atlas/founts-markdown.js already import — character-markdown was never migrated.",
+  "why_now": "Verified live: read lib/parse-character-markdown.js in full — its splitIntoH2Sections (lines 17-36) is character-for-character identical to lib/markdown-sections.js's exported splitIntoH2Sections (lines 13-32), including the same comment-free regex and control flow. Read test/markdown-section-parser-dedup.test.js in full: its PARSERS map covers exactly race/lore/starAtlas/founts — character is absent, confirming the already-shipped cardgame-lib-markdown-section-parser-dedup unit (memory/cardgame-lib-markdown-section-parser-dedup.md) never touched it despite its summary line loosely saying '4 newer lib/parse-*-markdown.js files (character/race/star-atlas/founts)'. Read memory/cardgame-character-markdown-slugify-dedup.md in full: that later unit explicitly deduped only parse-character-markdown.js's slugify function and its intent explicitly lists splitIntoH2Sections among the functions to 'leave... completely unchanged' — confirming by name that this specific duplication was seen and deliberately left for a separate unit, not missed by accident. grep confirms lib/parse-world-narrative-markdown.js (shipped 2026-07-30, the newest parser) already imports splitIntoH2Sections from markdown-sections.js correctly, so character-markdown is now the only parser in lib/ still carrying a local copy. Checked memory and all 6 currently window-open proposals (rules-restriction-movement-contradiction-fix, art-briefs-character-signatures-wave-3, design-readiness-section4-live-derived-check, playtest-character-signatures-wave-3-refresh, game-name-card-set-docs, alt-art-briefs-character-signatures-wave-2) plus the one in-flight escalated unit (cardgame-frontier-worlds-cards, stuck at planning, awaiting a human decision on its question card): none touches lib/parse-character-markdown.js or lib/markdown-sections.js. All 6 open proposals are content/doc-mechanization work; this cycle's queue has no dedup/simplification entry, and I4 + the portfolio rule ask for one.",
+  "expected_outcome": "lib/parse-character-markdown.js no longer declares its own splitIntoH2Sections function; it imports and re-exports the exact function from lib/markdown-sections.js instead (reference-equal, not just behavior-equal). A new test/parse-character-markdown-section-splitter-dedup.test.js asserts that reference equality, asserts no local `function splitIntoH2Sections(` declaration remains in the source, and confirms loadAllCharacters()/parseCharacterMarkdown() still produce identical output to before the change. test/parse-character-markdown.test.js and test/design-characters.test.js continue to pass unmodified.",
+  "risk_class": "standard",
+  "mission_intent": "I4",
+  "taste_citations": [
+    "T9",
+    "T24"
+  ],
+  "intent": "lib/markdown-sections.js exists specifically to hold the shared H2/H3-section-splitting and paragraph-extraction helpers 'used by lib/parse-race-markdown.js, lib/parse-lore-markdown.js, lib/parse-star-atlas-markdown.js, and lib/parse-founts-markdown.js' (its own file-header comment) — moved there verbatim by the already-shipped cardgame-lib-markdown-section-parser-dedup unit specifically to stop each parser hand-rolling its own copy. lib/parse-character-markdown.js was left out of that migration: its splitIntoH2Sections (current lines 17-36) is byte-for-byte identical to lib/markdown-sections.js's exported splitIntoH2Sections (lines 13-32) — same regex (`/^(#{1,6})\\s+(.+?)\\s*$/`), same level-2-heading branch, same line-accumulation logic. Delete the local function declaration from lib/parse-character-markdown.js, add `const { splitIntoH2Sections } = require('./markdown-sections');` near the top (mirroring lib/parse-founts-markdown.js's exact import style and placement, immediately after the `slugify` import on line 5), and leave every other function in the file (splitNameAndTitle, parseCharacterBody, parseCharacterMarkdown, raceFromFilename, loadCharactersFromFile, loadAllCharacters) and the module.exports list completely unchanged — splitIntoH2Sections stays exported, just re-exporting the imported function instead of a locally-defined one. Do not touch lib/markdown-sections.js, lib/parse-race-markdown.js, lib/parse-lore-markdown.js, lib/parse-star-atlas-markdown.js, lib/parse-founts-markdown.js, lib/parse-world-narrative-markdown.js, lib/parse-card-markdown.js, or any design/ or tools/ file — this unit only removes one redundant function body from one file and adds one new test file. Add a new, independent test/parse-character-markdown-section-splitter-dedup.test.js mirroring test/markdown-section-parser-dedup.test.js's AC1 reference-equality and source-text checks, scoped to parse-character-markdown.js and splitIntoH2Sections only, plus one behavioral check that loadAllCharacters() still returns the same character records as before (name/slug/race/title/bio/threads for every design/characters/*.md entry).",
+  "criteria": [
+    {
+      "text": "lib/parse-character-markdown.js no longer contains a source-level declaration of `function splitIntoH2Sections(`",
+      "provenance": "inferred",
+      "held_out": false
+    },
+    {
+      "text": "lib/parse-character-markdown.js's exported splitIntoH2Sections is reference-equal (===) to lib/markdown-sections.js's exported splitIntoH2Sections, proving it is imported rather than a separately-declared identical copy",
+      "provenance": "paraphrase",
+      "held_out": false
+    },
+    {
+      "text": "lib/parse-character-markdown.js's module.exports list, and every function other than splitIntoH2Sections in the file, are byte-for-byte unchanged from their content before this unit",
+      "provenance": "inferred",
+      "held_out": true
+    },
+    {
+      "text": "loadAllCharacters() returns the exact same set of character records (name, slug, race, title, bio, threads) after the change as it did before, for every file in design/characters/",
+      "provenance": "paraphrase",
+      "held_out": false
+    },
+    {
+      "text": "test/parse-character-markdown.test.js and test/design-characters.test.js continue to pass unmodified, and a new test/parse-character-markdown-section-splitter-dedup.test.js mechanically asserts all of the above",
+      "provenance": "paraphrase",
+      "held_out": false
+    }
+  ],
+  "touches": [
+    "lib/parse-character-markdown.js",
+    "test/parse-character-markdown-section-splitter-dedup.test.js"
+  ],
+  "test_cmd": "node --test",
+  "id": "ms85rn5k-cardgame-character-markdown-section-splitter-dedup",
+  "filed_at": "2026-07-30T23:42:12.728Z",
+  "window_expires": "2026-07-31T03:42:12.731Z",
+  "status": "promoted",
+  "promoted_at": "2026-07-31T03:54:34.483Z"
+}

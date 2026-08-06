@@ -1,0 +1,48 @@
+{
+  "name": "cardgame-art-briefs-character-signatures-wave-2",
+  "title": "Art briefs for Character Signatures Wave 2 — the one shipped card file the open art-briefs proposal doesn't reach",
+  "project": "cardgame",
+  "pitch": "Add 5 art briefs (Palette/Subject-Scene/Key-visual-elements/Composition) to art-briefs.md for every card in character-signatures-wave-2.md, so Torel Ashgrave, Rathe Ossuary-Kin, Doran Vex Amaranthine, Ysolde Thane, and Foreman-Prime Yssa Ductile have a path to composited art.",
+  "why_now": "tools/composite-card-art.js's loadBriefs() drives its whole compositing loop off '###' sections in art-briefs.md — a card missing from that file can never get art no matter how many times the tool runs. character-signatures-wave-2.md shipped one named card per race (5 total) and has zero briefs today. The currently window-open cardgame-art-briefs-fount-economy proposal explicitly scopes itself to fount-economy-set.md's 6 cards only and doesn't touch this file or claim to cover it; no other open or shipped proposal names character-signatures-wave-2.md. Once the in-flight frontier-signatures work and the fount-economy proposal both land, this file becomes the last un-briefed one, so filing it now keeps the gap from sitting unnoticed the way fount-economy's did.",
+  "expected_outcome": "design/cards/art-briefs.md gains exactly 5 new '###' brief sections, titled for the 5 wave-2 characters, each following the existing Palette/Subject-Scene/Key-visual-elements/Composition template; every Palette line names the card-anatomy.md Fount color(s) matching that card's Cost line (Ash-grey for Torel's Mass, Green for Rathe's Bloom, Cyan for Doran's Signal, Violet for Ysolde's Tangle, Copper for Foreman-Prime's Circuit); a new test/design-art-briefs-character-signatures-wave-2.test.js enforces this against real file content; node --test is green with no pre-existing brief or card file altered.",
+  "risk_class": "standard",
+  "mission_intent": "I6",
+  "taste_citations": [
+    "T9",
+    "T8",
+    "T1"
+  ],
+  "intent": "design/cards/art-briefs.md states its own purpose as giving one written art brief per card so illustration work can be approved before it starts (T8), but character-signatures-wave-2.md (shipped, one named card per race built from a design/characters/ entry) has never had briefs written for it, leaving its 5 cards with no path through tools/composite-card-art.js's brief-driven compositing loop. This unit adds one new '###' brief section per wave-2 card to art-briefs.md, using the identical Palette/Subject-Scene/Key-visual-elements/Composition template already established for alpha-set.md and fount-economy-set.md, with each Palette line naming the card-anatomy.md Fount-identity color matching the single Fount in that card's own Cost line, and each Key-visual-elements list drawing concretely on that card's own Rules text and flavor text (e.g. Torel Ashgrave's uniform Ember Vanguard hulls, Rathe Ossuary-Kin's Growth counters, Doran Vex Amaranthine's Archive-reading, Ysolde Thane's Unwritten Sign, Foreman-Prime Yssa Ductile's singular reproduced pattern) rather than generic filler. It adds a new, independent test/design-art-briefs-character-signatures-wave-2.test.js mirroring the assertion shape of the existing design-art-briefs tests, so it has zero touch-overlap with the in-flight frontier-signatures unit or the open fount-economy-art-briefs proposal, both of which edit different files. No card file, rules.md, or the compositing/rendering code itself is touched — only art-briefs.md grows and a new test file is added.",
+  "criteria": [
+    {
+      "text": "design/cards/art-briefs.md gains exactly 5 new '###' sections, titled exactly 'Torel Ashgrave, Line-Captain of the Ember Vanguard', 'Rathe Ossuary-Kin, Spore-Hound of the Sprawl', 'Doran Vex Amaranthine, Ledger-Warden of the Foreknowledge Archive', 'Ysolde Thane, Pilgrim of the Unwritten Sign', and 'Foreman-Prime Yssa Ductile, Keeper of the First Pattern' verbatim, with no pre-existing brief section removed, renamed, or altered.",
+      "provenance": "paraphrase",
+      "held_out": false
+    },
+    {
+      "text": "Each new brief's Palette line names the single Fount-driven color from card-anatomy.md's Fount identity table matching the Fount named in that card's own Cost line (Ash-grey for Mass, Green for Bloom, Cyan for Signal, Violet for Tangle, Copper for Circuit).",
+      "provenance": "paraphrase",
+      "held_out": false
+    },
+    {
+      "text": "Each new brief has a 'Key visual elements:' list of at least 2 bullets sharing at least 2 significant words with that card's own Rules text or flavor text (not generic filler phrasing), and a 'Composition:' line naming the Art Window's rectangular/landscape shape and an aspect ratio.",
+      "provenance": "paraphrase",
+      "held_out": false
+    },
+    {
+      "text": "test/design-art-briefs-character-signatures-wave-2.test.js exists and enforces the above against the real, current character-signatures-wave-2.md and art-briefs.md content; every other card file and the pre-existing art-briefs test files remain byte-identical to before this unit.",
+      "provenance": "inferred",
+      "held_out": true
+    }
+  ],
+  "touches": [
+    "design/cards/art-briefs.md",
+    "test/design-art-briefs-character-signatures-wave-2.test.js"
+  ],
+  "test_cmd": "node --test",
+  "id": "ms5pcglf-cardgame-art-briefs-character-signatures-wave-2",
+  "filed_at": "2026-07-29T06:26:58.179Z",
+  "window_expires": "2026-07-29T07:26:58.182Z",
+  "status": "promoted",
+  "promoted_at": "2026-07-29T07:29:57.644Z"
+}

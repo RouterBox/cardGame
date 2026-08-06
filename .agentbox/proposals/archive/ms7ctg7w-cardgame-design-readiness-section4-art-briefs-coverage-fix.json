@@ -1,0 +1,54 @@
+{
+  "name": "cardgame-design-readiness-section4-art-briefs-coverage-fix",
+  "title": "Fix DESIGN-READINESS.md Section 4's stale art-brief coverage list and 'Known gap' bullet (both merged art-brief sets missing)",
+  "project": "cardgame",
+  "pitch": "Section 4 of design/DESIGN-READINESS.md still lists art-briefs.md as covering only 6 card-set files with '44 art-brief sections' and an '8-card hole,' but the two already-merged units cardgame-art-briefs-wormhole-closure and cardgame-art-briefs-spatial-race-identity brought art-briefs.md to 52 sections across 8 files, closing that hole to zero.",
+  "why_now": "Verified live: grepping design/cards/art-briefs.md for '^### ' headings returns 52 entries, including all 5 wormhole-closure-cards.md titles (Bastion Seal Detachment, Withering Conduit Rot, Severance Directive, Rite of the Sealed Tangle, Chokepoint Demolition Charge) and all 3 spatial-race-identity-set.md titles (Preemptive Survey, Unbound Passage, Chokepoint Garrison). The two window-open proposals already in the queue (cardgame-design-readiness-gap1-wormhole-resolved-fix, cardgame-design-readiness-gap2-resolved-fix) only edit Section 6's Open Gaps list; neither touches Section 4's own coverage sentence or its 'Known gap' bullet, so this document would still contradict itself in a different paragraph even after both of those merge. Per T24's own lesson (check memory AND in-flight units before proposing), this is deliberately scoped to Section 4 only, disjoint from both open proposals' Section 6 edits.",
+  "expected_outcome": "design/DESIGN-READINESS.md Section 4's bullet listing art-briefs.md's coverage now names all 8 covered files (adding wormhole-closure-cards.md and spatial-race-identity-set.md) and the correct total of 52 art-brief sections; the 'Known gap' bullet no longer claims an 8-card hole exists. test/design-readiness.test.js's existing assertions still pass.",
+  "risk_class": "standard",
+  "mission_intent": "I6",
+  "taste_citations": [
+    "T9",
+    "T11",
+    "T12",
+    "T24"
+  ],
+  "intent": "design/DESIGN-READINESS.md Section 4 currently reads: '`design/cards/art-briefs.md` — 44 art-brief sections, covering every card in `alpha-set.md`, `frontier-set.md`, `character-signatures.md`, `character-signatures-wave-2.md`, `fount-economy-set.md`, and `wormhole-restrictions-set.md`.' and its 'Known gap' bullet states 'the 3 cards in `spatial-race-identity-set.md` and the 5 cards in `wormhole-closure-cards.md` (8 cards total) have no brief in `art-briefs.md` yet.' Both claims are now false: the merged units cardgame-art-briefs-wormhole-closure and cardgame-art-briefs-spatial-race-identity (confirmed via memory/cardgame-art-briefs-spatial-race-identity.md, merged 2026-07-30T09:54:51Z) appended briefs for all 8 of those cards, bringing art-briefs.md to 52 '###' sections across 8 files. Edit only Section 4's coverage-list bullet (add 'wormhole-closure-cards.md' and 'spatial-race-identity-set.md' to the covered-file list, update the count from 44 to 52) and the 'Known gap' bullet (replace the 8-card-hole claim with a note that both sets are now covered, citing the two merged unit names). Do not touch Section 3's card-set inventory, Section 6's Open Gaps list (already the subject of two separate in-flight proposals), or any other section's substance.",
+  "criteria": [
+    {
+      "text": "design/DESIGN-READINESS.md Section 4's art-briefs.md coverage bullet lists 'wormhole-closure-cards.md' and 'spatial-race-identity-set.md' alongside the existing 6 file names",
+      "provenance": "inferred",
+      "held_out": false
+    },
+    {
+      "text": "That same bullet states the total art-brief section count as 52, not 44",
+      "provenance": "inferred",
+      "held_out": false
+    },
+    {
+      "text": "Section 4's 'Known gap' bullet no longer contains the claim that 3 spatial-race-identity-set.md cards or 5 wormhole-closure-cards.md cards lack a matching art-brief entry",
+      "provenance": "inferred",
+      "held_out": false
+    },
+    {
+      "text": "Section 3's card-set inventory and Section 6's Open Gaps list are present in the file byte-for-byte unchanged",
+      "provenance": "inferred",
+      "held_out": true
+    },
+    {
+      "text": "test/design-readiness.test.js's existing assertions still pass unmodified",
+      "provenance": "paraphrase",
+      "held_out": false
+    }
+  ],
+  "touches": [
+    "design/DESIGN-READINESS.md",
+    "test/design-readiness-section4-coverage.test.js"
+  ],
+  "test_cmd": "node --test",
+  "id": "ms7ctg7w-cardgame-design-readiness-section4-art-briefs-coverage-fix",
+  "filed_at": "2026-07-30T10:11:48.188Z",
+  "window_expires": "2026-07-30T14:11:48.190Z",
+  "status": "promoted",
+  "promoted_at": "2026-07-30T14:24:27.134Z"
+}

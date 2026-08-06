@@ -1,0 +1,48 @@
+{
+  "name": "cardgame-combat-resolution-rules",
+  "title": "cardGame rules — Combat Resolution (blocked damage, multi-block assignment, lethal destruction)",
+  "project": "cardgame",
+  "pitch": "Add a numbered Combat Resolution section to design/rules.md defining what happens when an attacker IS blocked — damage to blockers, multi-blocker damage assignment order, and lethal-damage destruction to the Wreck — since Section 5.4 only ever states the unblocked case.",
+  "why_now": "Section 5.4 (Conflict Phase) states only that an unblocked attacker deals its combat strength to Core Integrity; it never says what a blocked attacker or its blocker(s) do, leaving 'one blocker or more per attacker' unformalizable — there's no rule for multi-block damage assignment order, no rule that lethal damage destroys a Unit, and no rule for when combat damage clears. This is a different, unblocked gap from the deck-construction-rules proposal currently sitting window-open, and both live-sync/live-art proposals are stuck on pending human security decisions per the pending-decision rule, so this advances different design work in parallel.",
+  "expected_outcome": "design/rules.md gains a new numbered top-level 'Combat Resolution' section (appended after the current last section, with every existing section's number and title unchanged) stating: a blocked attacker deals its combat strength to its blocker(s) rather than Core Integrity; when an attacker has more than one blocker, the attacking player chooses the damage assignment order among blockers; a Unit that has accumulated damage at least equal to its combat strength is destroyed and moved to its owner's Wreck; and damage marked on Units clears at a stated point each turn. `node --test` run from cardGame passes a new test/design-combat.test.js asserting all of the above via markdown parsing, alongside the full existing suite still green.",
+  "risk_class": "standard",
+  "mission_intent": "I6",
+  "taste_citations": [
+    "T9",
+    "T8",
+    "T1"
+  ],
+  "intent": "Extend design/rules.md with a new numbered top-level section, Combat Resolution, closing the gap Section 5.4 (Conflict Phase) leaves open: it defines the unblocked-attacker case (damage to Core Integrity) but never states what happens when an attacker IS blocked. The section must state that a blocked attacker deals its combat strength as damage to its blocker(s) instead of Core Integrity; that when more than one blocker is declared against a single attacker, the attacking player chooses the order in which damage is assigned among them (mirroring the existing convention in Section 6.1 that ties order-choice to the acting/active player); that a Unit carrying accumulated damage at least equal to its combat strength is destroyed and moved to its owner's Wreck (Section 3); and when damage marked on Units is cleared (end of the Conflict Phase or end of turn — the unit must pick one and state it). It is appended after whichever section is currently last, matching the pattern every prior rules-extension unit (spatial-battlefield-rules, map-setup-and-playtest-procedure, deck-construction-rules) has followed, so no already-numbered section is renumbered. This continues I6's MTG-Comprehensive-Rules-rigor bar (T9) and the decided full scope of the design phase (T1), with acceptance criteria as mechanical document checks per T8.",
+  "criteria": [
+    {
+      "text": "design/rules.md contains a new numbered top-level section titled 'Combat Resolution' appended after the current last top-level section, and every previously-existing section keeps its original number and title unchanged.",
+      "provenance": "paraphrase",
+      "held_out": false
+    },
+    {
+      "text": "The Combat Resolution section states that a blocked attacker deals its combat strength as damage to its blocker(s) rather than to the non-active player's Core Integrity.",
+      "provenance": "inferred",
+      "held_out": false
+    },
+    {
+      "text": "The Combat Resolution section states who chooses the damage assignment order when a single attacker has more than one blocker.",
+      "provenance": "inferred",
+      "held_out": false
+    },
+    {
+      "text": "The Combat Resolution section states that a Unit with accumulated damage at least equal to its combat strength is destroyed and moved to its owner's Wreck, and states when marked damage on Units is cleared; a new test/design-combat.test.js asserts both facts alongside the section-numbering and blocked-damage checks above.",
+      "provenance": "inferred",
+      "held_out": true
+    }
+  ],
+  "touches": [
+    "design/rules.md",
+    "test/design-combat.test.js"
+  ],
+  "test_cmd": "node --test",
+  "id": "ms4rf86r-cardgame-combat-resolution-rules",
+  "filed_at": "2026-07-28T14:37:20.307Z",
+  "window_expires": "1970-01-01T00:00:00.000Z",
+  "status": "promoted",
+  "promoted_at": "2026-07-28T14:37:41.999Z"
+}

@@ -1,0 +1,48 @@
+{
+  "name": "cardgame-playtest-spatial-restriction-refresh",
+  "title": "Fix playtest-spatial.md Step 8 — it says no card grants a Directional Restriction, but Bastion Lockdown Line shipped and does exactly that",
+  "project": "cardgame",
+  "pitch": "design/playtest-spatial.md Step 8 ('Add a Restriction to a Wormhole') tells playtesters 'this rulebook has no default action that grants one, so for this playtest simply declare which card would' — but design/cards/wormhole-restrictions-set.md has since shipped 5 real cards that do exactly this, so the step should walk the actual card instead of a hypothetical.",
+  "why_now": "design/cards/wormhole-restrictions-set.md (shipped, in the current shipped-units list) prints Bastion Lockdown Line: 'Spent: choose a Wormhole with an endpoint at a Planet you control; place a Directional Restriction ... permitting travel only from that Planet toward its other endpoint, never the reverse' — a word-for-word match for the exact 'one-way: [origin]→[destination]' narration Step 8 already asks playtesters to write on the table. Step 8's own text still says the rulebook has no such card and asks playtesters to invent one, which is now false and pedagogically worse than citing the real thing. This is the same stale-doc-after-new-cards-shipped pattern as the currently open cardgame-playtest-fount-economy-refresh proposal, but on the other playtest file: playtest-spatial.md, not playtest-full-game.md. None of the 8 currently open proposals (checked all: graph-driven-generation, site-all-cards-index, art-briefs-character-signatures-wave-2, art-brief-coverage-warning, rules-structure-integrity-check, art-briefs-wormhole-restrictions, main-phase-discovery-crossref, playtest-fount-economy-refresh) names playtest-spatial.md or test/design-map-setup-playtest.test.js, and this unit adds a new, independent test file rather than editing that existing one, so it has zero touch-overlap with any open or in-flight unit.",
+  "expected_outcome": "design/playtest-spatial.md Step 8 no longer states 'this rulebook has no default action that grants one, so for this playtest simply declare which card would'; instead it names Bastion Lockdown Line (Cindral Reach, 2 Mass) as the real card producing the Directional Restriction it walks, still ending with the same one-way sticky-note/line-labeling action and the same 'confirm aloud' check already in the step; every other numbered step (1-7, 9-12) and the 'What to watch for' section are byte-identical to before; node --test is green including a new test/design-playtest-spatial-restriction-refresh.test.js.",
+  "risk_class": "standard",
+  "mission_intent": "I6",
+  "taste_citations": [
+    "T9",
+    "T1",
+    "T8"
+  ],
+  "intent": "design/playtest-spatial.md (shipped) is a step-by-step on-paper procedure that cites exact rules.md sections for every action so playtesters can cross-check physical actions against rule text — but Step 8 ('Add a Restriction to a Wormhole') was written before any card existed that actually grants a Restriction, so it asks playtesters to narrate a hypothetical: 'this rulebook has no default action that grants one, so for this playtest simply declare which card would.' design/cards/wormhole-restrictions-set.md has since shipped with Bastion Lockdown Line, a real Cindral Reach card whose Rules text places exactly the Directional Restriction Step 8 already walks (one-way, permitting travel only from the controlled Planet toward the other endpoint) — the same 'one-way: [origin]→[destination]' notation the step already tells playtesters to write. This unit rewrites Step 8's setup sentence to name Bastion Lockdown Line as the concrete card being played (2 Mass, Cindral Reach) instead of asserting no such card exists, keeping every physical action in the step (writing the note, confirming aloud that a no-Restriction Wormhole defaults to two-way) exactly as written. It adds one new, independent test/design-playtest-spatial-restriction-refresh.test.js verifying Step 8 names a real card that exists by exact name and Cost line in design/cards/wormhole-restrictions-set.md and no longer contains the 'no default action' disclaimer. Only design/playtest-spatial.md and this new test file change — Steps 1-7 and 9-12, the Materials list, and the 'What to watch for' section are untouched, and test/design-map-setup-playtest.test.js (which exercises Step 2 and Section 8.8, not Step 8) is not touched either.",
+  "criteria": [
+    {
+      "text": "design/playtest-spatial.md Step 8 no longer contains the sentence 'this rulebook has no default action that grants one, so for this playtest simply declare which card would' or any equivalent claim that no card grants a Restriction.",
+      "provenance": "paraphrase",
+      "held_out": false
+    },
+    {
+      "text": "Step 8 names 'Bastion Lockdown Line' and its Cost line (2 Mass) as the card being played to place the Directional Restriction it walks.",
+      "provenance": "paraphrase",
+      "held_out": false
+    },
+    {
+      "text": "Step 8 still ends with the same physical action (writing 'one-way: [origin]→[destination]' on the line) and the same aloud-confirmation that a Wormhole with no such note defaults to two-way travel, unchanged from before this unit.",
+      "provenance": "paraphrase",
+      "held_out": false
+    },
+    {
+      "text": "Steps 1-7 and 9-12, the Materials list, and the 'What to watch for while playtesting' section of playtest-spatial.md are byte-identical to their content before this unit, and every existing assertion in test/design-map-setup-playtest.test.js still passes.",
+      "provenance": "inferred",
+      "held_out": true
+    }
+  ],
+  "touches": [
+    "design/playtest-spatial.md",
+    "test/design-playtest-spatial-restriction-refresh.test.js"
+  ],
+  "test_cmd": "node --test",
+  "id": "ms5r2opx-cardgame-playtest-spatial-restriction-refresh",
+  "filed_at": "2026-07-29T07:15:21.381Z",
+  "window_expires": "2026-07-29T08:15:21.383Z",
+  "status": "promoted",
+  "promoted_at": "2026-07-29T08:24:17.925Z"
+}

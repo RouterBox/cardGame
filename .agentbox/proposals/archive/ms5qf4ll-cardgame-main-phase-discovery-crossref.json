@@ -1,0 +1,47 @@
+{
+  "name": "cardgame-main-phase-discovery-crossref",
+  "title": "Resolve rules.md Section 5.3's leftover discovery-timing dev note — the one raw // marker no open rules proposal claims",
+  "project": "cardgame",
+  "pitch": "Delete the raw '//discovering new planets, and creating new wormholes goes in this phase.' comment at the end of Section 5.3 (Main Phase), replacing it with a proper cross-reference sentence into the Discovery action (Section 8.3) that the paragraph above it already gestures at but never states in rules prose.",
+  "why_now": "design/rules.md carries seven raw `//`-prefixed dev notes; six are already claimed by open work — line 275 (Section 5.2) by cardgame-graph-driven-generation, lines 294-298 and 300 (Section 5.4) by cardgame-conflict-phase-movement-rules, and lines 416, 424, 466, 519, 551 (all Section 8) by the in-flight cardgame-spatial-rules-notes-reconciliation build, whose own gate-confirm decision explicitly scoped it to 'Section 8 - the 5.2/5.4 // notes ... must NOT be ... resolved' by that unit. Line 290, sitting in Section 5.3 (Main Phase) right before the 5.4 header, is the one note none of them touch — it isn't Section 5.2, 5.4, or 8. It's also the last thing standing between the open cardgame-rules-structure-integrity-check proposal's promised zero-`//`-markers test actually passing once every claimed note lands, since that check reads the real file as-is. This is finishing already-decided scope (T1): the Main Phase paragraph immediately above the note (lines 285-286) already says the active player may take a Discovery action here, citing Sections 8.3 and 8.6 — the note is just an unresolved confirmation of something the prose already states, not a new design call.",
+  "expected_outcome": "design/rules.md Section 5.3 contains no line beginning with '//'; its Main Phase paragraph explicitly states that new Planets and Wormholes are created via the Discovery action during this phase, cross-referencing Section 8.3; Sections 5.2, 5.4, and 8 remain byte-identical to before this unit (their own `//` notes untouched, reserved for their own claiming proposals); node --test is green.",
+  "risk_class": "standard",
+  "mission_intent": "I6",
+  "taste_citations": [
+    "T1",
+    "T9"
+  ],
+  "intent": "design/rules.md's Section 5 Phase Sequence (shipped) states the game's turn structure at the MTG-Comprehensive-Rules structural bar (T9) RouterBox set for this project, but Section 5.3 (Main Phase) still ends with a raw, unresolved dev note — '//discovering new planets, and creating new wormholes goes in this phase.' — left over from drafting, distinct from the six other `//` notes elsewhere in the file that three separate open or in-flight proposals already claim by section. This unit deletes that one comment line and replaces it with a proper rules-prose sentence stating that the Discovery action (already described earlier in the same Main Phase paragraph, Section 8.3) is how new Planets and Wormholes enter the battlefield graph, matching the sentence style already used elsewhere in Section 5. It touches only Section 5.3's text and adds one new test file; it does not rewrite Section 5.4's placeholder combat, does not touch Section 5.2 or Section 8, and does not invent any resolution for those sections' own open notes — finishing this one already-decided, narrowly-scoped gap (T1) without creating touch overlap with cardgame-conflict-phase-movement-rules, cardgame-graph-driven-generation, or cardgame-spatial-rules-notes-reconciliation.",
+  "criteria": [
+    {
+      "text": "design/rules.md no longer contains any line reading exactly '//discovering new planets, and creating new wormholes goes in this phase.' anywhere in the file.",
+      "provenance": "paraphrase",
+      "held_out": false
+    },
+    {
+      "text": "Section 5.3 (Main Phase)'s prose explicitly states, in a full sentence (not a comment), that the Discovery action creates new Planets and/or Wormholes on the battlefield graph, and cross-references Section 8.3.",
+      "provenance": "paraphrase",
+      "held_out": false
+    },
+    {
+      "text": "Every other existing `//`-prefixed note in design/rules.md (Section 5.2 line ~275, Section 5.4 lines ~294-300, and Section 8's five notes) remains present, word-for-word unchanged, and no section other than 5.3 is modified.",
+      "provenance": "paraphrase",
+      "held_out": false
+    },
+    {
+      "text": "test/design-rules-main-phase-discovery-note.test.js exists and enforces all three criteria above against the real, current design/rules.md content.",
+      "provenance": "inferred",
+      "held_out": true
+    }
+  ],
+  "touches": [
+    "design/rules.md",
+    "test/design-rules-main-phase-discovery-note.test.js"
+  ],
+  "test_cmd": "node --test",
+  "id": "ms5qf4ll-cardgame-main-phase-discovery-crossref",
+  "filed_at": "2026-07-29T06:57:02.217Z",
+  "window_expires": "2026-07-29T07:57:02.220Z",
+  "status": "promoted",
+  "promoted_at": "2026-07-29T07:59:58.085Z"
+}

@@ -1,0 +1,52 @@
+{
+  "name": "cardgame-keyword-abilities-rules",
+  "title": "Keyword Abilities Rules (Amaranth Expanse rules — evergreen combat/utility keywords)",
+  "project": "cardgame",
+  "pitch": "Add a Keyword Abilities section to rules.md defining named, reusable rules-text shorthand tied to each Fount's identity — the one MTG-Comprehensive-Rules-shape chapter the rulebook is still missing.",
+  "why_now": "rules.md now runs 13 sections deep (Zones, Resources, Turn Structure, Priority, Spatial Battlefield, Card Types, Winning/Losing, Deck Construction, Combat, Targeting) and every one of them was built to the MTG Comprehensive Rules structural bar this project targets (T9): numbered subsections, glossary-first vocabulary, worked examples. Every shipped card's rules text still spells its effect out in full sentences because no keyword vocabulary exists yet to shorten it — a Keyword Abilities chapter is a foundational, expected piece of that structural bar and is the clearest remaining gap in rules.md itself (distinct from the pending fount-economy-generators proposal, which is a card-pool fix, not a rules-structure gap).",
+  "expected_outcome": "design/rules.md gains a new numbered 'Keyword Abilities' section defining at least 5 named keyword abilities — one tied to each of the five Founts (Mass, Bloom, Signal, Circuit, Tangle) and its established race identity — each with its own numbered rule and a Section 2 glossary entry, plus a numbered worked example applying one keyword to a concrete hypothetical state; test/design-keywords.test.js is checkable and `node --test` is green.",
+  "risk_class": "standard",
+  "mission_intent": "I6",
+  "taste_citations": [
+    "T9",
+    "T1"
+  ],
+  "intent": "design/rules.md's 13 existing sections define every core system of the game (turns, resources, priority/timing, spatial battlefield, card types, winning/losing, deck construction, combat, targeting), each written to the MTG Comprehensive Rules structural bar named in T9 — numbered subsections, glossary-first vocabulary defined in Section 2 before substantive use, and at least one worked example per major chapter (Section 7, 8.7, 10.3, 12.5, 13.3 all follow this pattern). One CR-shape chapter is conspicuously absent: Keyword Abilities. Every card printed so far (alpha-set.md, frontier-set.md, character-signatures.md) spells its effect out in full sentences because no named, reusable rules-text shorthand exists. This unit adds a new numbered section defining at least 5 keyword abilities, one bound to each Fount's already-established identity from world.md and the race files, following the same glossary-first, worked-example discipline as every other rules.md chapter. It adds vocabulary only — no existing card file is touched, and no card is retextualized to use a new keyword (that is left as a follow-on unit); this is pure design/rules text, no game software (T8).",
+  "criteria": [
+    {
+      "text": "design/rules.md gains a new numbered section (e.g. 'Keyword Abilities') defining at least 5 distinct named keyword abilities, each explicitly tied to exactly one of the five Founts (Mass, Bloom, Signal, Circuit, Tangle) and consistent with that Fount's identity as established in design/world.md and the corresponding race file.",
+      "provenance": "inferred",
+      "held_out": false
+    },
+    {
+      "text": "Each keyword ability has its own numbered subsection stating its full rules-text meaning precisely enough that a future card could invoke the keyword by name alone with no further explanation needed.",
+      "provenance": "inferred",
+      "held_out": false
+    },
+    {
+      "text": "Each new keyword's name is added to the Section 2 glossary before its substantive use later in the document, consistent with rules.md's existing glossary-first discipline already followed by every prior section.",
+      "provenance": "paraphrase",
+      "held_out": false
+    },
+    {
+      "text": "The new section includes at least one numbered worked example applying one or more of the new keywords to a concrete hypothetical game state, matching the same worked-example rigor used by Section 7, 8.7, 10.3, 12.5, and 13.3.",
+      "provenance": "paraphrase",
+      "held_out": false
+    },
+    {
+      "text": "design/cards/alpha-set.md, frontier-set.md, and character-signatures.md are byte-identical to before this unit — no existing card's rules text is rewritten to use a new keyword, and no other rules.md section is altered besides the new section and its Section 2 glossary additions.",
+      "provenance": "inferred",
+      "held_out": true
+    }
+  ],
+  "touches": [
+    "design/rules.md",
+    "test/design-keywords.test.js"
+  ],
+  "test_cmd": "node --test",
+  "id": "ms5kncle-cardgame-keyword-abilities-rules",
+  "filed_at": "2026-07-29T04:15:28.130Z",
+  "window_expires": "2026-07-29T05:15:28.133Z",
+  "status": "promoted",
+  "promoted_at": "2026-07-29T05:17:56.230Z"
+}

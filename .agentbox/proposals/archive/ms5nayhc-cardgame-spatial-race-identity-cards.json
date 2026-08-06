@@ -1,0 +1,48 @@
+{
+  "name": "cardgame-spatial-race-identity-cards",
+  "title": "Race-identity spatial cards — Concord's cheap Discovery, Communion's bent Restrictions, Reach's fortified Wormholes",
+  "project": "cardgame",
+  "pitch": "Add 3 named cards — one Panoptic Concord, one Starweave Communion, one Cindral Reach — that finally build the race-specific spatial 'combos' the 2026-07-26 ideas-inbox directive named but no card has ever realized: cheaper Discovery, bent Wormhole Restrictions, and fortified Wormholes.",
+  "why_now": "design/ideas-inbox.md's 2026-07-26 (later) entry states verbatim: 'Combos with race identity: the Concord discovering more cheaply (Signal), the Communion bending wormhole rules (Tangle), the Reach fortifying them.' That line is a specific, named implication of the spatial-layer directive, distinct from every one of the 9 cardgame proposals currently sitting in the window (wormhole-restriction-cards and wormhole-closure-cards give every race an identical generic effect; star-atlas only names places; render-engine-premium-layers, site-embeds, alt-art-briefs, and art-briefs-frontier-signatures are art/presentation tooling; card-template-test-helper-dedup and spatial-rules-notes-reconciliation touch tests and rules prose, not cards). Grepping every printed card file for a Discovery-cost reduction, a Restriction-bypass effect, or a Wormhole-targeted fortification returns zero matches — this exact callout has sat undesigned since the directive shipped as rules text. It needs no unshipped rules changes: Discovery cost (8.3), Restrictions (8.4), Closure (8.5), Assault paths (8.6), and the Mass Fortification-counter precedent (4.1) are all already-shipped mechanics, so this unit has no ordering dependency on any other open proposal and is safe to build in parallel with all of them.",
+  "expected_outcome": "design/cards/spatial-race-identity-set.md exists with exactly 3 named cards: a Panoptic Concord (Signal) card whose Rules text reduces the Fount Point cost of a Discovery action citing Section 8.3; a Starweave Communion (Tangle) card whose Rules text lets an Assault ignore a Directional or Team Restriction on a Wormhole when counting its path, citing Sections 8.4 and 8.6; and a Cindral Reach (Mass) card whose Rules text prevents a Wormhole from being Closed while a stated condition holds, citing Section 8.5. node --test is green.",
+  "risk_class": "standard",
+  "mission_intent": "I6",
+  "taste_citations": [
+    "T9",
+    "T1",
+    "T8"
+  ],
+  "intent": "design/ideas-inbox.md's 2026-07-26 (later) spatial-layer entry lists five implications to design through; four have since been built into rules.md Section 8 and into the wormhole-restriction-cards/wormhole-closure-cards card sets (generic, same-effect-per-race), but the fifth — 'Combos with race identity: the Concord discovering more cheaply (Signal), the Communion bending wormhole rules (Tangle), the Reach fortifying them' — has never been realized by any printed card. rules.md already fully specifies the mechanics each of these three cards needs: Section 8.3 fixes Discovery's Fount Point cost (Length for Frontier, double for Contested) as a number a card can modify; Section 8.4 defines Directional and Team Restrictions as limits on which Assault paths may count a Wormhole (Section 8.6), which a card can state an exception to; Section 8.5 defines Closure as an action only 'whatever card or effect states it' can take, meaning a card can equally state a condition that blocks it; and Section 4.1 already establishes the Mass's Fortification-counter pattern (paying Mass Points to protect a permanent from destruction) as the precedent for the Reach's fortifying identity. This unit adds a new design/cards/spatial-race-identity-set.md with exactly 3 cards, one each for Panoptic Concord, Starweave Communion, and Cindral Reach, following the same Cost/Type/Rules-text/Stats-line template test/design-frontier-cards.test.js already enforces for frontier-set.md, each card's Rules text citing the relevant rules.md section by number the same way frontier-set.md's cards do. No rules.md change is needed or made — every effect is expressible entirely within a card's own Rules text as a stated exception to an already-shipped default, and no other card file's names or content are touched.",
+  "criteria": [
+    {
+      "text": "design/cards/spatial-race-identity-set.md exists and contains exactly 3 distinct named cards — one under Panoptic Concord, one under Starweave Communion, one under Cindral Reach (per design/races/) — each with a Cost line, Type line, and Rules text in that order, and a Stats/counters line only when its Type line contains 'Permanent', matching the template test/design-frontier-cards.test.js enforces for frontier-set.md.",
+      "provenance": "paraphrase",
+      "held_out": false
+    },
+    {
+      "text": "The Panoptic Concord card's Cost line names the Signal Fount, and its Rules text explicitly reduces the Fount Point cost of a Discovery action, citing 'Section 8.3' by number.",
+      "provenance": "paraphrase",
+      "held_out": false
+    },
+    {
+      "text": "The Starweave Communion card's Cost line names the Tangle Fount, and its Rules text explicitly lets its controller's Assault treat a Directional or Team Restriction on a Wormhole as absent for the purpose of counting that Assault's path, citing both 'Section 8.4' and 'Section 8.6' by number.",
+      "provenance": "paraphrase",
+      "held_out": false
+    },
+    {
+      "text": "The Cindral Reach card's Cost line names the Mass Fount, its Rules text explicitly prevents a specified Wormhole from being Closed while a stated condition holds, citing 'Section 8.5' by number; design/rules.md and every other file under design/cards/ remain byte-identical to before this unit, and none of the 3 new card names collides with any card name already printed in alpha-set.md, frontier-set.md, or character-signatures.md.",
+      "provenance": "inferred",
+      "held_out": true
+    }
+  ],
+  "touches": [
+    "design/cards/spatial-race-identity-set.md",
+    "test/design-spatial-race-identity-cards.test.js"
+  ],
+  "test_cmd": "node --test",
+  "id": "ms5nayhc-cardgame-spatial-race-identity-cards",
+  "filed_at": "2026-07-29T05:29:48.816Z",
+  "window_expires": "2026-07-29T06:29:48.820Z",
+  "status": "promoted",
+  "promoted_at": "2026-07-29T06:29:57.195Z"
+}

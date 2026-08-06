@@ -1,0 +1,56 @@
+{
+  "name": "cardgame-jaina-world-narrative-sync-dryrun",
+  "title": "Sync design/world.md's \"The Setting\" and \"A History in Brief\" narrative sections to Jaina (dry-run) — closing DESIGN-READINESS Open Gap 3's last unclaimed piece",
+  "project": "cardgame",
+  "pitch": "DESIGN-READINESS.md Section 6 Open Gap 3 names design/world.md's \"The Setting\" and \"A History in Brief\" sections as the one remaining piece of the design with no Jaina schema or sync path, and lib/parse-founts-markdown.js's own comment confirms they are deliberately excluded from every existing sync tool.",
+  "why_now": "Verified live: DESIGN-READINESS.md Section 6 Gap 3 states verbatim 'design/world.md's \"The Setting\" and \"A History in Brief\" sections remain free-form narrative prose with no per-item structure and no Jaina schema or sync path -- the same reason the Founts sync unit left them out of scope.' Read lib/parse-founts-markdown.js in full: parseFountsMarkdown only keeps H3 sections whose parentH2 is exactly 'Cosmology: The Five Founts', and its own comment states this 'is what excludes \"The Setting\" and \"A History in Brief\" ... from being mistaken for Fount records.' Read design/world.md in full: it has exactly 3 H2 sections -- 'The Setting', 'A History in Brief', and 'Cosmology: The Five Founts' -- and lib/markdown-sections.js's splitIntoH2Sections + extractParagraph (already used by 4 other parsers) are sufficient to extract the first two as title+body records with no new parsing infrastructure. Checked memory and all 7 currently window-open proposals (character-signatures-wave-3, alt-art-briefs-character-signatures, character-markdown-slugify-dedup, jaina-sync-tools-dryrun-cli-dedup, playtest-spatial-wormhole-coverage, lore-docs-game-name-references, frontier-worlds-cards) per T24: lore-docs-game-name-references touches design/world.md but only adds one sentence inside 'The Setting' section and never touches lib/ or tools/; none of the 7 creates a world-narrative parser or sync tool, and none touches DESIGN-READINESS.md Section 5 or Section 6 Gap 3's text. This is also a different portfolio type -- a tooling/Jaina-sync gap closure named by the design's own readiness review -- than the new-card-content, art-brief, dedup, and lore-reference proposals already queued.",
+  "expected_outcome": "lib/parse-world-narrative-markdown.js exists exporting loadWorldNarrativeSections(), returning exactly 2 records (title, slug, body) for 'The Setting' and 'A History in Brief', built from design/world.md via the shared splitIntoH2Sections/extractParagraph helpers in lib/markdown-sections.js; tools/sync-world-narrative-to-jaina.js exists, delegating to lib/run-jaina-dryrun-cli.js's runDryRunSyncCli exactly as sync-characters-to-jaina.js and sync-races-to-jaina.js already do, printing one JSON record per section under --dry-run and exiting 1 with a not-yet-implemented message otherwise; DESIGN-READINESS.md's Section 5 tooling list gains one bullet citing the new tool and Section 6 Gap 3's text is updated to mark this narrative-sync piece resolved, with no other line of that file touched.",
+  "risk_class": "standard",
+  "mission_intent": "I6",
+  "taste_citations": [
+    "T9",
+    "T16",
+    "T24"
+  ],
+  "intent": "design/ideas-inbox.md's 'use Jaina as the content backbone' directive (2026-07-28) asked structured game content to become schema-backed Jaina records; five dry-run-only sync tools already cover cards, characters, races, star-atlas worlds, lore eras, and Fount cosmology, each with its own lib/parse-*-markdown.js parser. DESIGN-READINESS.md Section 6 Gap 3 names the one remaining piece: design/world.md's 'The Setting' and 'A History in Brief' H2 sections, pure narrative prose with no per-item structure, explicitly left out of lib/parse-founts-markdown.js's own H3-under-Founts scan. Add lib/parse-world-narrative-markdown.js exporting parseWorldNarrativeMarkdown(markdown) and loadWorldNarrativeSections(), using lib/markdown-sections.js's existing splitIntoH2Sections to find the two named H2 sections (by exact title match, in file order) and extractParagraph to build each record's body (joining that section's non-blank lines into one prose string, exactly as parse-founts-markdown.js does for a Fount's description); each record is { title, slug, body }, slug via lib/parse-card-markdown.js's shared slugify. Explicitly skip 'Cosmology: The Five Founts' -- that H2 stays lib/parse-founts-markdown.js's own territory, never re-parsed here. Add tools/sync-world-narrative-to-jaina.js mirroring tools/sync-races-to-jaina.js's structure: import loadWorldNarrativeSections, define buildRecord(section) returning { title, slug, body }, define a NOT_IMPLEMENTED_MESSAGE for World Narrative, and call lib/run-jaina-dryrun-cli.js's runDryRunSyncCli(loadWorldNarrativeSections, buildRecord, NOT_IMPLEMENTED_MESSAGE, process.argv) instead of hand-rolling the dry-run control flow. Add design/world.md's own bullet to DESIGN-READINESS.md Section 5's tooling list (matching the existing bullet format for every other sync tool) and rewrite Gap 3's final sentence to state the narrative-sync gap is now closed, citing the new tool by filename -- touch no other line of DESIGN-READINESS.md. Do not touch design/world.md, lib/parse-founts-markdown.js, lib/markdown-sections.js, lib/run-jaina-dryrun-cli.js, lib/parse-card-markdown.js, or any other existing tools/sync-*-to-jaina.js file or its test.",
+  "criteria": [
+    {
+      "text": "lib/parse-world-narrative-markdown.js exports loadWorldNarrativeSections(), returning exactly 2 records with title values 'The Setting' and 'A History in Brief', in that order, each with a non-empty body string matching that section's extracted paragraph text from design/world.md",
+      "provenance": "inferred",
+      "held_out": false
+    },
+    {
+      "text": "The returned records never include a 'Cosmology: The Five Founts' entry, and lib/parse-founts-markdown.js's own loadAllFounts() output is unaffected",
+      "provenance": "paraphrase",
+      "held_out": true
+    },
+    {
+      "text": "tools/sync-world-narrative-to-jaina.js run with --dry-run prints exactly 2 JSON lines (one per record) and exits 0; run without --dry-run, it prints a not-yet-implemented message to stderr and exits 1; it calls lib/run-jaina-dryrun-cli.js's runDryRunSyncCli rather than hand-rolling this control flow",
+      "provenance": "inferred",
+      "held_out": false
+    },
+    {
+      "text": "design/world.md, lib/parse-founts-markdown.js, lib/markdown-sections.js, lib/run-jaina-dryrun-cli.js, and every other existing tools/sync-*-to-jaina.js file and test are byte-for-byte unchanged",
+      "provenance": "inferred",
+      "held_out": false
+    },
+    {
+      "text": "DESIGN-READINESS.md's Section 5 gains exactly one new bullet citing tools/sync-world-narrative-to-jaina.js, and Gap 3's text is updated to state the narrative-sync gap is closed, with no other section or line of that file changed",
+      "provenance": "paraphrase",
+      "held_out": false
+    }
+  ],
+  "touches": [
+    "lib/parse-world-narrative-markdown.js",
+    "tools/sync-world-narrative-to-jaina.js",
+    "test/parse-world-narrative-markdown.test.js",
+    "test/sync-world-narrative-to-jaina.test.js",
+    "design/DESIGN-READINESS.md"
+  ],
+  "test_cmd": "node --test",
+  "id": "ms7vo3ze-cardgame-jaina-world-narrative-sync-dryrun",
+  "filed_at": "2026-07-30T18:59:31.754Z",
+  "window_expires": "2026-07-30T22:59:31.756Z",
+  "status": "promoted",
+  "promoted_at": "2026-07-30T23:09:31.057Z"
+}

@@ -1,0 +1,54 @@
+{
+  "name": "cardgame-character-signatures-wave-3",
+  "title": "Add Character Signatures, Wave 3 — a third named-character card per race, completing signature-card coverage for all 20 named characters",
+  "project": "cardgame",
+  "pitch": "Each of the 5 race files in design/characters/ names exactly 4 characters (20 total); Wave 1 and Wave 2 signature cards have each used a different one per race (10 of 20 carded), leaving 2 uncarded characters per race with zero signature card.",
+  "why_now": "Verified live by reading all 5 design/characters/*.md files plus character-signatures.md and character-signatures-wave-2.md in full: Cindral Reach's Bren Hollowmelt and Karrow Vantiss, Mireth Bloom's Vesk-Aduun and Nyth Corrow, Panoptic Concord's Yuen Ashcroft and Ilio Marn-Cassity, Starweave Communion's Ossian Thale and Wren Sable-Vow, and Wrought Assembly's Vantel Ninth-Chorus and Replica-Sergeant Kess Ninefold have never been built into a card, while their racemates already have two signature cards each. This mirrors exactly how Wave 2 itself was justified and shipped (a second named character per race, distinct from Wave 1's), so a Wave 3 is the same established pattern, not a new one. Checked memory and all 6 window-open proposals (jaina-sync-tools-dedup, playtest-spatial-race-identity-refresh, playtest-character-signatures-wave-2-refresh, design-readiness-gap3-jaina-sync-fix, lib-markdown-section-parser-dedup, playtest-second-deck-pairing) plus the 2 in-flight units (art-briefs-spatial-race-identity-wave-2, design-readiness-section4-art-briefs-coverage-fix) first per T24: none creates a new card file, touches design/characters/, or references any of these 10 character names. This is also a different portfolio type — new card content, not a dedup, doc fix, or worked-example refresh — than everything else currently queued.",
+  "expected_outcome": "design/cards/character-signatures-wave-3.md exists with 5 new named cards, one per race, each built from one of that race's two still-uncarded characters, following the same Section 9.1 template (Name, Cost line, Type line, Rules text, optional Stats/counters line) and Threads cross-reference discipline as character-signatures.md and character-signatures-wave-2.md; site/design/cards/character-signatures-wave-3.html exists via tools/build-site.js; a new mechanical test verifies all 5 names, confirms none of the 15 characters used across Waves 1-3 combined repeats, and confirms every card's Cost line uses that race's own primary Fount as named in design/races/*.md.",
+  "risk_class": "standard",
+  "mission_intent": "I6",
+  "taste_citations": [
+    "T8",
+    "T9",
+    "T24"
+  ],
+  "intent": "design/characters/ commits to 4 named characters per race (20 total) with interlinking Threads, per the 2026-07-27 ideas-inbox directive. character-signatures.md and character-signatures-wave-2.md have each carded one character per race (10 of 20), following the canonical Section 9.1 template and citing the source character by name in both rules text framing and flavor text. Write design/cards/character-signatures-wave-3.md mirroring that exact structure: for each of the 5 races, pick one of its two still-uncarded characters (Cindral Reach: Bren Hollowmelt or Karrow Vantiss; Mireth Bloom: Vesk-Aduun or Nyth Corrow; Panoptic Concord: Yuen Ashcroft or Ilio Marn-Cassity; Starweave Communion: Ossian Thale or Wren Sable-Vow; Wrought Assembly: Vantel Ninth-Chorus or Replica-Sergeant Kess Ninefold), build a card whose Cost line uses that race's own primary Fount (per design/races/*.md), whose Type line matches the character's own domain (Materials/Biology/Intelligence/Magic/Technology per race), and whose Rules text mechanizes a detail already present in that character's own design/characters/ entry (e.g. a per-copy buff, a counter-on-trigger effect, a look-and-choose ability) the way Waves 1-2 each did. Do not touch character-signatures.md, character-signatures-wave-2.md, any design/characters/ file, or any other card set. Regenerate site/ via tools/build-site.js. Art briefs for these 5 cards are out of scope for this unit, matching the established precedent that art-brief coverage ships as its own later unit (cardgame-art-briefs-character-signatures-wave-2 followed character-signatures-wave-2 the same way).",
+  "criteria": [
+    {
+      "text": "design/cards/character-signatures-wave-3.md exists with exactly 5 cards, one per race under design/races/",
+      "provenance": "inferred",
+      "held_out": false
+    },
+    {
+      "text": "Each card's named character, verified against that race's design/characters/*.md file, is one of the two characters not already used by character-signatures.md or character-signatures-wave-2.md for that race",
+      "provenance": "paraphrase",
+      "held_out": true
+    },
+    {
+      "text": "Across character-signatures.md, character-signatures-wave-2.md, and character-signatures-wave-3.md combined, no named character is used by more than one card",
+      "provenance": "inferred",
+      "held_out": false
+    },
+    {
+      "text": "Each card's Cost line names that race's own primary Fount (per design/races/*.md) and each card follows the Section 9.1 template field order (Name, Cost line, Type line, Rules text, optional Stats/counters line)",
+      "provenance": "inferred",
+      "held_out": false
+    },
+    {
+      "text": "site/design/cards/character-signatures-wave-3.html exists via tools/build-site.js, and character-signatures.md, character-signatures-wave-2.md, and every design/characters/*.md file are byte-for-byte unchanged",
+      "provenance": "paraphrase",
+      "held_out": false
+    }
+  ],
+  "touches": [
+    "design/cards/character-signatures-wave-3.md",
+    "site/design/cards/character-signatures-wave-3.html",
+    "test/design-cards-character-signatures-wave-3.test.js"
+  ],
+  "test_cmd": "node --test",
+  "id": "ms7n0ljv-cardgame-character-signatures-wave-3",
+  "filed_at": "2026-07-30T14:57:17.851Z",
+  "window_expires": "2026-07-30T18:57:17.853Z",
+  "status": "promoted",
+  "promoted_at": "2026-07-30T19:09:29.363Z"
+}

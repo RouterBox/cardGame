@@ -1,0 +1,66 @@
+{
+  "name": "cardgame-character-signatures-wave-4",
+  "title": "Character Signatures, Wave 4 — the last unsigned character per race, completing all 20 characters",
+  "project": "cardgame",
+  "pitch": "Waves 1-3 of character-signatures cards have each signed 5 of the 20 named characters under design/characters/ (15 total, 3 per race); Wave 4 signs the 5th and final character per race, completing full signature-card coverage of the entire character roster.",
+  "why_now": "Verified live: grepped every design/characters/*.md '## Name — Title' heading (4 per race x 5 races = 20) and every '### Name, Title' heading in character-signatures.md, -wave-2.md, and -wave-3.md (5 each = 15). Cross-referencing shows exactly one character per race is still unsigned: Cindral Reach's Karrow Vantiss, Orphan of the Ninth Cinder; Mireth Bloom's Nyth Corrow, The Shrine-Grown; Panoptic Concord's Yuen Ashcroft, Vantage-Clerk of the Dead Drop; Starweave Communion's Wren Sable-Vow, Oath-Sworn of the Standing Stones; Wrought Assembly's Vantel Ninth-Chorus, Iron-Choir Enforcer. Read test/design-signature-cards-wave-3.test.js in full as the exact structural/test template (races×domains×Fount mapping, cross-file no-collision roster check, template-shape checks, unchanged-prior-files check). Checked the current ready queue (6 promoted-but-unbuilt units) and confirmed none touches design/cards/character-signatures*.md, design/characters/, or design/DESIGN-READINESS.md Section 3 — three of the six (jaina-lore-narrative-sync-dryrun, jaina-character-web-threads-sync-dryrun, design-readiness-gap3-live-derived-check) all edit DESIGN-READINESS.md Section 5/6, so this unit deliberately touches only Section 3 (the live-derived card-set citation list, per test/design-readiness.test.js's AC3/AC6) to stay disjoint from that already-congested zone; art-briefs-frontier-worlds touches Section 4 and art-briefs.md, also avoided.",
+  "expected_outcome": "design/cards/character-signatures-wave-4.md exists with exactly 5 new cards, one per race, each naming that race's last remaining unsigned character. node --test passes across the whole cardGame suite including a new test/design-signature-cards-wave-4.test.js. design/DESIGN-READINESS.md Section 3 cites the new file (test-enforced). site/design/cards/character-signatures-wave-4.html exists via tools/build-site.js. Demoable proof: across character-signatures.md + wave-2 + wave-3 + wave-4 combined, all 20 named characters under design/characters/ are each signed by exactly one card — a completion milestone the new test asserts directly.",
+  "risk_class": "standard",
+  "mission_intent": "I6",
+  "taste_citations": [
+    "T9",
+    "T12",
+    "T28"
+  ],
+  "intent": "design/cards/character-signatures.md, -wave-2.md, and -wave-3.md each sign 5 named characters (one per race) from design/characters/*.md, using the canonical rules.md Section 9.1 template (Name, Cost line, Type line, Rules text, optional Stats/counters line for Permanents) and citing both the race and the character by name in the card's Rules text/flavor text so the cross-reference is checkable, exactly as design/DESIGN-READINESS.md Section 2 already documents. Each race file under design/characters/ names exactly 4 characters; waves 1-3 have together signed 3 of each race's 4, leaving exactly one unsigned character per race: Karrow Vantiss, Orphan of the Ninth Cinder (Cindral Reach); Nyth Corrow, The Shrine-Grown (Mireth Bloom); Yuen Ashcroft, Vantage-Clerk of the Dead Drop (Panoptic Concord); Wren Sable-Vow, Oath-Sworn of the Standing Stones (Starweave Communion); Vantel Ninth-Chorus, Iron-Choir Enforcer (Wrought Assembly). Add design/cards/character-signatures-wave-4.md with exactly 5 new '###' cards, one per race, each naming that race's own remaining character above, following the identical Cost-line/Type-line/Rules-text/flavor-text template and file structure (H1 title, '## Summary', then one '## The <Race> — <Domain>' H2 per race containing that race's card) that character-signatures-wave-3.md already establishes. Each card's Cost line must name that race's own primary Fount per design/races/*.md's 'Primary strength' bullet (Materials->Mass, Biology->Bloom, Intelligence->Signal, Magic->Tangle, Technology->Circuit); each card's Type line must match that race's own domain, saying 'Permanent' for Materials/Biology/Technology domains and never saying 'Permanent' for Intelligence/Magic domains (rules.md Section 9's fixed Permanent/instant-sorcery-speed classification, already followed by every prior wave). Add one new bullet to design/DESIGN-READINESS.md Section 3 citing character-signatures-wave-4.md by filename, in the same list-item style the 10 existing card-set bullets use (satisfies test/design-readiness.test.js's existing disk-derived AC3/AC6 citation check, which fails the suite if any real design/cards/*.md file goes uncited) — touch no other line, section, or file: not Section 4, Section 5, Section 6, design/cards/art-briefs.md, design/cards/alt-art-briefs.md, character-signatures.md, character-signatures-wave-2.md, character-signatures-wave-3.md, or any design/characters/*.md file. Regenerate site/ via tools/build-site.js. Add a new, independent test/design-signature-cards-wave-4.test.js mirroring test/design-signature-cards-wave-3.test.js's exact structure: AC1 (file exists, exactly 5 distinct cards, one per race), AC3 (no name/character collision against wave-1/2/3 combined, plus a new completion check that across all four files every one of the 20 design/characters/*.md entries is named by exactly one card total), AC4 (Cost-line Fount and Type-line domain/Permanent checks per race), AC5 (site HTML exists; character-signatures.md, -wave-2.md, -wave-3.md, and every design/characters/*.md file still exist, are non-empty, and still parse).",
+  "criteria": [
+    {
+      "text": "design/cards/character-signatures-wave-4.md exists and contains exactly 5 distinct named cards, one per race file under design/races/",
+      "provenance": "inferred",
+      "held_out": false
+    },
+    {
+      "text": "Each of the 5 cards names the specific remaining unsigned character for its race: Cindral Reach -> Karrow Vantiss, Orphan of the Ninth Cinder; Mireth Bloom -> Nyth Corrow, The Shrine-Grown; Panoptic Concord -> Yuen Ashcroft, Vantage-Clerk of the Dead Drop; Starweave Communion -> Wren Sable-Vow, Oath-Sworn of the Standing Stones; Wrought Assembly -> Vantel Ninth-Chorus, Iron-Choir Enforcer",
+      "provenance": "paraphrase",
+      "held_out": false
+    },
+    {
+      "text": "None of the wave-4 cards' named characters collides with any character already named by character-signatures.md, -wave-2.md, or -wave-3.md; across all four files combined, every one of the 20 characters under design/characters/ is named by exactly one card",
+      "provenance": "inferred",
+      "held_out": true
+    },
+    {
+      "text": "Each card's Cost line names that race's own primary Fount (Materials->Mass, Biology->Bloom, Intelligence->Signal, Magic->Tangle, Technology->Circuit) and its Type line matches that race's own domain, saying 'Permanent' only for Materials/Biology/Technology domains",
+      "provenance": "paraphrase",
+      "held_out": false
+    },
+    {
+      "text": "Every card follows the Section 9.1 template field order (Name, Cost line, Type line, Rules text, optional Stats/counters line for Permanents), matching the shape every prior character-signatures wave already uses",
+      "provenance": "inferred",
+      "held_out": false
+    },
+    {
+      "text": "design/DESIGN-READINESS.md Section 3 gains exactly one new bullet citing character-signatures-wave-4.md by filename; Section 4, Section 5, Section 6, character-signatures.md, -wave-2.md, -wave-3.md, and every design/characters/*.md file are byte-for-byte unchanged; site/design/cards/character-signatures-wave-4.html and the regenerated site/design/DESIGN-READINESS.html exist via tools/build-site.js",
+      "provenance": "paraphrase",
+      "held_out": true
+    },
+    {
+      "text": "node --test passes for the whole cardGame suite, including a new test/design-signature-cards-wave-4.test.js mirroring test/design-signature-cards-wave-3.test.js's structure",
+      "provenance": "paraphrase",
+      "held_out": false
+    }
+  ],
+  "touches": [
+    "design/cards/character-signatures-wave-4.md",
+    "design/DESIGN-READINESS.md",
+    "test/design-signature-cards-wave-4.test.js",
+    "site/design/cards/character-signatures-wave-4.html",
+    "site/design/DESIGN-READINESS.html"
+  ],
+  "test_cmd": "node --test",
+  "id": "msagewaw-cardgame-character-signatures-wave-4",
+  "filed_at": "2026-08-01T14:15:46.184Z",
+  "window_expires": "2026-08-01T18:15:46.185Z",
+  "status": "promoted",
+  "promoted_at": "2026-08-01T18:24:52.559Z"
+}

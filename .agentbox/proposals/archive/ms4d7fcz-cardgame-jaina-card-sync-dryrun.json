@@ -1,0 +1,46 @@
+{
+  "name": "cardgame-jaina-card-sync-dryrun",
+  "title": "cardGame tool — dry-run sync of card data into Jaina (content backbone, slice 1)",
+  "pitch": "A dry-run script that parses design/cards/*.md and prints the exact Jaina record payloads a future live sync would write, so card data can move onto Jaina as the system of record without touching game software.",
+  "why_now": "The newest entry in design/ideas-inbox.md (2026-07-28, verbatim from RouterBox) directs that the authoring tools 'make heavy use of Jaina the whole way' instead of inventing their own storage — it is the only ideas-inbox entry not yet marked [incorporated], and the just-shipped card-authoring-engine and design-browser-site tools both currently re-parse markdown independently, exactly the duplication that directive flags.",
+  "expected_outcome": "Running `node tools/sync-cards-to-jaina.js --dry-run` exits 0 and prints 18 JSON record payloads (one per design/cards/alpha-set.md card), each with name/slug/costLine/typeLine/rulesText/statsLine — reviewable as the proposed Jaina schema shape before any live write is built.",
+  "risk_class": "standard",
+  "mission_intent": "I6",
+  "taste_citations": [
+    "T16",
+    "T1"
+  ],
+  "intent": "User directive (2026-07-28, verbatim, logged in design/ideas-inbox.md): \"Oh also we need to make heavy use of Jaina the whole way which was built for this exact thing.\" ideas-inbox.md notes the authoring tools (card engine, design browser) should read from/write to Jaina rather than inventing their own storage, with markdown remaining the narrative/spec layer and Jaina holding the structured data layer. This is the first, deliberately narrow slice under that directive (T1 discipline: no decided schema exists yet, so this unit does not claim the full 'heavy use... the whole way' scope) — a dry-run sync tool, tools/sync-cards-to-jaina.js, that parses design/cards/*.md with the same field-prefix convention tools/render-card.js and tools/build-site.js already use, and prints the exact JSON record payloads a future live-sync step would write to a Jaina 'cards' schema. No live Jaina API calls are made by this unit — that follow-up is deferred until RouterBox reviews the printed schema shape, keeping this unit's acceptance checks network-free and deterministic under node --test. This is content-authoring tooling, not game implementation, so it falls within the T16 partial software-gate opening.",
+  "criteria": [
+    {
+      "text": "node tools/sync-cards-to-jaina.js --dry-run exits 0 and prints exactly one JSON object per card record found under design/cards/ (18 for the current alpha-set.md), each object carrying name, slug, costLine, typeLine, rulesText, and statsLine fields sourced by the same 'Cost line:'/'Type line:'/'Rules text:'/'Stats/counters line:' field-prefix parsing convention render-card.js and build-site.js already use.",
+      "provenance": "paraphrase",
+      "held_out": false
+    },
+    {
+      "text": "slug is computed with the identical slugify(name) algorithm already used in tools/render-card.js (lowercase, non-alphanumeric runs collapsed to a single hyphen, leading/trailing hyphens trimmed), so the same card produces the same slug across the card-authoring engine and this sync tool.",
+      "provenance": "inferred",
+      "held_out": false
+    },
+    {
+      "text": "Without --dry-run, the script makes no Jaina API calls in this unit — it prints a message that live sync is not yet implemented and exits 1 — so no Jaina credentials or network access are required by node --test or by this unit's acceptance checks.",
+      "provenance": "inferred",
+      "held_out": false
+    },
+    {
+      "text": "Running the dry-run twice in a row against unchanged markdown produces byte-identical stdout output (deterministic: no timestamps, no randomness, stable card and field ordering).",
+      "provenance": "inferred",
+      "held_out": true
+    }
+  ],
+  "touches": [
+    "tools/sync-cards-to-jaina.js",
+    "test/sync-cards-to-jaina.test.js"
+  ],
+  "test_cmd": "node --test",
+  "id": "ms4d7fcz-cardgame-jaina-card-sync-dryrun",
+  "filed_at": "2026-07-28T07:59:21.731Z",
+  "window_expires": "2026-07-28T08:59:21.734Z",
+  "status": "promoted",
+  "promoted_at": "2026-07-28T09:02:28.143Z"
+}

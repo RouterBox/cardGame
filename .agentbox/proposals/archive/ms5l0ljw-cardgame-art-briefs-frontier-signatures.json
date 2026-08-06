@@ -1,0 +1,47 @@
+{
+  "name": "cardgame-art-briefs-frontier-signatures",
+  "title": "Extend art briefs to the Frontier Set and Character Signatures cards",
+  "project": "cardgame",
+  "pitch": "Write the missing art briefs for the 10 cards in design/cards/frontier-set.md and design/cards/character-signatures.md, closing the only two shipped card files T8's art-briefs-precede-art rule was never applied to.",
+  "why_now": "design/cards/art-briefs.md (shipped) covers all 18 alpha-set.md cards, and tools/composite-card-art.js (shipped) already reads every brief in that file and matches it against loadAllCards() with no per-set filtering — so it silently produces zero composited art for the 5 frontier-set.md cards and 5 character-signatures.md cards shipped afterward, purely because no brief was ever written for them, not because of any code gap. The authoring engine (render-card.js) and Leonardo client (lib/leonardo-art-client.js) are both shipped and idle for these 10 cards. This is finishing already-decided scope (T1) with zero new code, using the exact template test/design-art-briefs.test.js already enforces.",
+  "expected_outcome": "design/cards/art-briefs.md contains 10 new '###' brief sections (one per card in frontier-set.md and character-signatures.md), each with Palette/Subject-Scene/Key-visual-elements/Composition lines in the same shape as the 18 existing alpha-set briefs; running `node tools/composite-card-art.js` (mock client, no network) succeeds and writes 28 composited SVGs instead of 18; `node --test` is green.",
+  "risk_class": "standard",
+  "mission_intent": "I6",
+  "taste_citations": [
+    "T8",
+    "T1"
+  ],
+  "intent": "design/cards/art-briefs.md (shipped, enforced by test/design-art-briefs.test.js) gives one written art brief per card in design/cards/alpha-set.md (18 cards), following T8's rule that art briefs must be approved before any illustration work begins. Two card files shipped after it — design/cards/frontier-set.md (5 cards, one per race, tied to the battlefield graph) and design/cards/character-signatures.md (5 cards, one per race, tied to a named character) — were never given briefs, so tools/composite-card-art.js's loadBriefs()/cardsByName lookup (which already spans all of loadAllCards(), not just alpha-set) has nothing to composite for them. This unit adds one new '###' brief section per card in both files (10 total) to the existing art-briefs.md, following the identical Palette/Subject-Scene/Key-visual-elements/Composition template the current file and its test already use for alpha-set, and widens test/design-art-briefs.test.js's card-source loop to also read frontier-set.md and character-signatures.md instead of only alpha-set.md. No card file, rules.md, or the compositing/rendering code itself is touched — only art-briefs.md grows and its test's coverage widens to match.",
+  "criteria": [
+    {
+      "text": "design/cards/art-briefs.md gains exactly one new '###' brief section per card in design/cards/frontier-set.md and design/cards/character-signatures.md (10 new sections total), each titled to match that card's heading verbatim, with no duplicates and none of the 18 existing alpha-set.md brief sections removed, renamed, or altered.",
+      "provenance": "paraphrase",
+      "held_out": false
+    },
+    {
+      "text": "Each of the 10 new brief sections has a 'Palette:' line naming the correct Fount-driven color(s) from card-anatomy.md's Fount identity table, matching the Founts named in that card's own Cost line.",
+      "provenance": "paraphrase",
+      "held_out": false
+    },
+    {
+      "text": "Each of the 10 new brief sections has a 'Key visual elements:' list of at least 2 bullets that are card-specific (overlap at least 2 significant words with that card's own Rules text or Type line) rather than generic filler phrasing.",
+      "provenance": "paraphrase",
+      "held_out": false
+    },
+    {
+      "text": "Each of the 10 new brief sections has a 'Composition:' line referencing the Art Window's rectangular/landscape shape and an aspect ratio (matching the existing alpha-set briefs' composition-note pattern), and design/cards/alpha-set.md, frontier-set.md, and character-signatures.md are byte-identical to before this unit — only art-briefs.md and its test file change.",
+      "provenance": "inferred",
+      "held_out": true
+    }
+  ],
+  "touches": [
+    "design/cards/art-briefs.md",
+    "test/design-art-briefs.test.js"
+  ],
+  "test_cmd": "node --test",
+  "id": "ms5l0ljw-cardgame-art-briefs-frontier-signatures",
+  "filed_at": "2026-07-29T04:25:46.268Z",
+  "window_expires": "2026-07-29T05:25:46.271Z",
+  "status": "promoted",
+  "promoted_at": "2026-07-29T05:29:56.244Z"
+}

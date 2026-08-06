@@ -1,0 +1,49 @@
+{
+  "name": "cardgame-jaina-card-sync-live",
+  "title": "cardGame tool — live sync of card records to Jaina (extends dry-run tool, slice 2)",
+  "project": "cardgame",
+  "pitch": "Replace the \"live sync not yet implemented\" stub in tools/sync-cards-to-jaina.js with a real upsert path, behind an injectable client so node --test stays network-free.",
+  "why_now": "cardgame-jaina-card-sync-dryrun (slice 1) shipped and merged; the competing live-sync unit was retired specifically because it collided with the dry-run tool's AC3, and its ledger entry directs the Producer to re-file the live step now, specced as an extension rather than a rewrite.",
+  "expected_outcome": "With JAINA_API_KEY/JAINA_PROJECT_ID set, `node tools/sync-cards-to-jaina.js` (no --dry-run) upserts all 18 alpha-set cards to Jaina and prints a one-line summary count exiting 0; `node --test` exercises that same path against an injected fake client with zero network calls; `--dry-run` output is byte-identical to before.",
+  "risk_class": "security",
+  "mission_intent": "I6",
+  "taste_citations": [
+    "T16",
+    "T17",
+    "T14"
+  ],
+  "intent": "Extend tools/sync-cards-to-jaina.js (added by cardgame-jaina-card-sync-dryrun) so the non-dry-run path performs a real Jaina upsert instead of printing 'not yet implemented' and exiting 1, continuing ideas-inbox.md's 'make heavy use of Jaina the whole way' directive now that the dry-run schema shape has been reviewed. This is content-authoring/presentation tooling (feeding the Jaina-backed design shelf), not gameplay software, so it stays inside the T16 gate opening. Live Jaina calls go through a small injectable client module (lib/jaina-client.js) so the acceptance suite (node --test) can verify the upsert path deterministically with a fake client and never needs real network access or credentials to pass.",
+  "criteria": [
+    {
+      "text": "Without --dry-run, the script calls an injectable Jaina client's upsert function once per parsed card record, then prints a one-line summary (e.g. record count synced) and exits 0 on success; the production client is constructed only when JAINA_API_KEY and JAINA_PROJECT_ID are both present in the environment.",
+      "provenance": "paraphrase",
+      "held_out": false
+    },
+    {
+      "text": "node --test exercises the live-sync (non-dry-run) code path using a fake/injected Jaina client — no require('http'), require('https'), or fetch() call reaches an external host during the test run, keeping the suite network-free and deterministic like every other unit in this repo.",
+      "provenance": "inferred",
+      "held_out": false
+    },
+    {
+      "text": "If JAINA_API_KEY or JAINA_PROJECT_ID is missing when the script is invoked without --dry-run, it exits 1 and prints a clear 'Jaina credentials not configured' message instead of throwing an unhandled exception or silently no-op'ing.",
+      "provenance": "inferred",
+      "held_out": false
+    },
+    {
+      "text": "--dry-run mode's output and behavior are unchanged byte-for-byte from the merged dry-run unit (same NDJSON records, still makes zero client/network calls) — this unit only adds behavior to the no-flag path.",
+      "provenance": "inferred",
+      "held_out": true
+    }
+  ],
+  "touches": [
+    "tools/sync-cards-to-jaina.js",
+    "lib/jaina-client.js",
+    "test/sync-cards-to-jaina.test.js"
+  ],
+  "test_cmd": "node --test",
+  "id": "ms4l0xre-cardgame-jaina-card-sync-live",
+  "filed_at": "2026-07-28T11:38:15.914Z",
+  "window_expires": "1970-01-01T00:00:00.000Z",
+  "status": "promoted",
+  "promoted_at": "2026-07-28T16:16:11.191Z"
+}

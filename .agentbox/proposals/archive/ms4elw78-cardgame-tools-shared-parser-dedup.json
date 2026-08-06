@@ -1,0 +1,48 @@
+{
+  "name": "cardgame-tools-shared-parser-dedup",
+  "title": "cardGame tooling — extract shared markdown card-parser module (dedup, not growth)",
+  "pitch": "One shared lib/parse-card-markdown.js used by tools/render-card.js and tools/build-site.js instead of two independent copies of the same field-prefix parsing logic, so the next authoring tool doesn't add a third copy.",
+  "why_now": "The last five shipped cardgame units (world-races, card-anatomy-skeleton, card-authoring-engine, spatial-battlefield-rules, alpha-set-starter-cards) were pure additions — no cardgame unit has ever removed or consolidated surface, and the ready queue already sits at 7. The just-filed cardgame-jaina-card-sync-dryrun proposal states outright that render-card.js and build-site.js 'both currently re-parse markdown independently' and would add a third independent copy of the same Cost-line/Type-line/Rules-text parsing convention if merged as-is. Consolidating now, before a third copy lands, is the deletion/simplification candidate this cycle owes.",
+  "expected_outcome": "node --test passes; tools/render-card.js and tools/build-site.js both import parseCardMarkdown and slugify from lib/parse-card-markdown.js; grepping both tool files for the literal field-prefix strings ('Cost line:', 'Type line:', 'Rules text:', 'Stats/counters line:') finds zero matches outside the shared module, and existing render-card/build-site test output is byte-identical to pre-refactor — a pure extraction, reviewable as one less duplicated parser before the Jaina sync tool needs a third copy.",
+  "risk_class": "standard",
+  "mission_intent": "I6",
+  "taste_citations": [
+    "T16",
+    "T1"
+  ],
+  "intent": "tools/render-card.js and tools/build-site.js (both shipped under cardgame-card-authoring-engine and its follow-ups) each independently implement the same field-prefix parsing convention for design/cards/*.md — recognizing 'Cost line:', 'Type line:', 'Rules text:', and 'Stats/counters line:' prefixes and a slugify(name) algorithm for computing card slugs. The pending cardgame-jaina-card-sync-dryrun proposal names this duplication explicitly and would introduce a third independent copy of the same convention in tools/sync-cards-to-jaina.js. This unit extracts the shared logic into lib/parse-card-markdown.js, exporting parseCardMarkdown(markdown) and slugify(name), and updates tools/render-card.js and tools/build-site.js to import and use it instead of their own copies. It is a pure refactor: output of both tools must be byte-identical before and after, verified by re-running their existing test suites. This is content-authoring tooling under T16's partial gate opening, not game software, and it is the deletion/simplification candidate the portfolio rules call for after five consecutive growth-only cardgame units — it also de-risks the still-open Jaina sync proposal by giving it one canonical parser to import rather than a third copy to maintain.",
+  "criteria": [
+    {
+      "text": "lib/parse-card-markdown.js exists and exports a parseCardMarkdown(markdown) function implementing the field-prefix parsing convention ('Cost line:', 'Type line:', 'Rules text:', 'Stats/counters line:') currently duplicated across tools/render-card.js and tools/build-site.js, plus a slugify(name) function matching the existing algorithm.",
+      "provenance": "paraphrase",
+      "held_out": false
+    },
+    {
+      "text": "tools/render-card.js and tools/build-site.js both import parseCardMarkdown and slugify from lib/parse-card-markdown.js; grepping either file for the literal strings 'Cost line:', 'Type line:', 'Rules text:', or 'Stats/counters line:' finds no matches outside lib/parse-card-markdown.js.",
+      "provenance": "inferred",
+      "held_out": false
+    },
+    {
+      "text": "node --test passes, and the existing render-card and build-site tests assert the identical output they asserted before this refactor — no behavioral change, pure extraction.",
+      "provenance": "inferred",
+      "held_out": false
+    },
+    {
+      "text": "lib/parse-card-markdown.js has its own direct unit tests (not just exercised indirectly through render-card/build-site) covering at least one card with all four field-prefix lines and one card missing an optional field.",
+      "provenance": "inferred",
+      "held_out": true
+    }
+  ],
+  "touches": [
+    "lib/parse-card-markdown.js",
+    "tools/render-card.js",
+    "tools/build-site.js",
+    "test/parse-card-markdown.test.js"
+  ],
+  "test_cmd": "node --test",
+  "id": "ms4elw78-cardgame-tools-shared-parser-dedup",
+  "filed_at": "2026-07-28T08:38:36.356Z",
+  "window_expires": "1970-01-01T00:00:00.000Z",
+  "status": "promoted",
+  "promoted_at": "2026-07-28T08:38:52.696Z"
+}

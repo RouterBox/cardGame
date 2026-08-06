@@ -1,0 +1,47 @@
+{
+  "name": "cardgame-graph-driven-generation",
+  "title": "Resolve rules.md Section 5.2's unbuilt graph-economy note — Fount Points tied to Planets controlled, not just Generators",
+  "project": "cardgame",
+  "pitch": "Add Section 4.7 (Graph-Driven Generation), giving the active player one bonus Fount Point per Planet they control beyond their Homeworld each Generation Phase, closing RouterBox's own unresolved inline note that resource generation should connect to the graph in ways beyond Generators.",
+  "why_now": "design/rules.md line 257, inside Section 5.2 (Generation Phase), carries a raw unresolved note: 'want resource generation to be connected to the graph in different ways. Default mechanism is the generators, but gain fount points per graph characteristics should be a thing.' No shipped rule, card, or open proposal ever built this second mechanism — Section 4.6 (Positional Generators) only ties a Generator's own production to which Planet it sits on for Blockade/Capture purposes; it never lets graph characteristics themselves (Planets controlled) grant Fount Points. This is distinct from every other open cardgame proposal: cardgame-spatial-rules-notes-reconciliation only touches Section 8's four notes (8.1, 8.3, 8.4, 8.6); cardgame-conflict-phase-movement-rules only touches Section 5.4's placeholder-combat notes and test/design-rules.test.js. Neither proposal's criteria list mentions Section 5.2, Section 4.7, or graph-driven generation, so this has zero touch-overlap with the six other open proposals or the seven units currently in flight. This is finishing already-decided scope (T1) — RouterBox's own note already states the design direction — written up as clean numbered prose per the MTG-Comprehensive-Rules structural bar (T9), using only vocabulary the Glossary already defines (Planet, Control, Homeworld, Fount Point, resource pool).",
+  "expected_outcome": "design/rules.md contains a new Section 4.7 'Graph-Driven Generation' stating that during the Generation Phase the active player gains one bonus Fount Point, of a single Fount they choose, for every Planet beyond their Homeworld that they currently control; Section 5.2 cross-references Section 4.7 and contains no remaining `//`-prefixed comment line; `node --test` is green including a new test/design-graph-generation.test.js.",
+  "risk_class": "standard",
+  "mission_intent": "I6",
+  "taste_citations": [
+    "T9",
+    "T1"
+  ],
+  "intent": "design/rules.md Section 5.2 (Generation Phase) was shipped with RouterBox's own review note left as a raw `//` comment instead of finished rules prose: 'want resource generation to be connected to the graph in different ways. Default mechanism is the generators, but gain fount points per graph characteristics should be a thing.' Today the only way to produce Fount Points is a Generator (Sections 4.1-4.6); nothing ties production to the graph's own shape, even though Section 8.1 already defines Planet control as a tracked, binary fact per Planet. This unit adds a new Section 4.7 'Graph-Driven Generation' immediately after 4.6 Positional Generators: during the Generation Phase (Section 5.2), after Generators produce their points, the active player gains one bonus Fount Point, of a single Fount of their choice, for every Planet beyond their Homeworld that they currently control (per Section 8.1's Control definition), added to their chosen resource pool as one lump step. This is the single concrete, minimally-scoped reading of the note consistent with already-shipped terms (Control, Planet, Homeworld, Fount Point) rather than inventing new undefined concepts like chokepoints or graph degree. Section 5.2's prose is updated to reference Section 4.7 and the raw `//` note is removed. Only design/rules.md (Sections 4 and 5.2) and a new, independent test/design-graph-generation.test.js change — no card file, no other rules.md section, and no code outside the new test file is touched, so this has no ordering dependency on the Section 8 reconciliation or Section 5.4 rewrite proposals currently open.",
+  "criteria": [
+    {
+      "text": "design/rules.md contains a numbered subsection titled 'Graph-Driven Generation' under Section 4 (Resources), immediately after the existing 4.6 Positional Generators subsection.",
+      "provenance": "paraphrase",
+      "held_out": false
+    },
+    {
+      "text": "That subsection states the active player gains one bonus Fount Point, of a single Fount they choose, during the Generation Phase, for every Planet beyond their Homeworld that they currently control.",
+      "provenance": "paraphrase",
+      "held_out": false
+    },
+    {
+      "text": "Section 5.2 (Generation Phase) contains no line beginning with a `//` inline comment, and its prose references the new Graph-Driven Generation subsection by number.",
+      "provenance": "paraphrase",
+      "held_out": false
+    },
+    {
+      "text": "design/rules.md's top-level section numbering remains strictly sequential starting at 1, Sections 1-3 and 6-10 are byte-identical to before this unit, and every pre-existing assertion in test/design-battlefield.test.js and test/design-rules.test.js still passes.",
+      "provenance": "inferred",
+      "held_out": true
+    }
+  ],
+  "touches": [
+    "design/rules.md",
+    "test/design-graph-generation.test.js"
+  ],
+  "test_cmd": "node --test",
+  "id": "ms5ozy83-cardgame-graph-driven-generation",
+  "filed_at": "2026-07-29T06:17:14.499Z",
+  "window_expires": "2026-07-29T07:17:14.502Z",
+  "status": "promoted",
+  "promoted_at": "2026-07-29T07:17:57.630Z"
+}

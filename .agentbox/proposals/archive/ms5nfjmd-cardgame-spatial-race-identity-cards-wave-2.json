@@ -1,0 +1,48 @@
+{
+  "name": "cardgame-spatial-race-identity-cards-wave-2",
+  "title": "Race-identity spatial cards, wave 2 — the Bloom's contested-ground Generators, the Assembly's replicated-world engines",
+  "project": "cardgame",
+  "pitch": "Add 2 named cards — one Mireth Bloom, one Wrought Assembly — that finally give the two races with zero spatial-identity cards a graph-interacting effect grounded in their own already-written identity text, closing the gap the just-filed spatial-race-identity-set proposal leaves (it only covers Concord/Communion/Reach).",
+  "why_now": "design/ideas-inbox.md's first 2026-07-26 spatial-layer entry states the graph 'Interacts with every race identity (e.g. a materials race that fortifies chokepoints vs an intelligence race that sees more of the graph)' — a general claim about all five races, illustrated with only two examples. The currently-open cardgame-spatial-race-identity-cards proposal realizes the later, narrower 2026-07-26 entry's verbatim-named trio (Concord/Signal, Communion/Tangle, Reach/Mass) in design/cards/spatial-race-identity-set.md — a different file this unit never touches. That leaves Mireth Bloom and Wrought Assembly with zero cards that interact with Planets, Wormholes, or Discovery at all, despite both races already having identity text that points straight at the spatial layer: Mireth Bloom's shipped signature hook 'Bloomfront Expansion — Biology generators can be built directly onto contested territory' (design/races/mireth-bloom.md) is an unbuilt exception to rules.md Section 4.6's you-must-control-the-Planet restriction on Generators; Wrought Assembly's shipped identity text describing a civilization that wants 'a single flawless design, copied without end across every system it can reach' (design/races/wrought-assembly.md) is an unbuilt discount on replicating its engine onto Planets reached by Section 8.3 Discovery. Both mechanics are expressible entirely as stated exceptions to already-shipped rules, need no new rules.md text, and use no card names or mechanics claimed by any of the 9 proposals currently in the window.",
+  "expected_outcome": "design/cards/spatial-race-identity-set-wave-2.md exists with exactly 2 named cards: a Mireth Bloom (Bloom Fount) Generator whose Rules text lets it be built on a Planet its controller does not control, explicitly citing Section 4.6's control restriction; and a Wrought Assembly (Circuit Fount) Generator whose Rules text costs fewer Circuit Points when built on a Planet that entered the battlefield graph via a Discovery taken that game, explicitly citing Section 8.3. node --test is green.",
+  "risk_class": "standard",
+  "mission_intent": "I6",
+  "taste_citations": [
+    "T9",
+    "T1",
+    "T8"
+  ],
+  "intent": "design/ideas-inbox.md's first 2026-07-26 spatial-layer entry claims the battlefield graph 'Interacts with every race identity,' offering a materials race and an intelligence race only as illustrative examples ('e.g.'), not an exhaustive list. The already-open cardgame-spatial-race-identity-cards proposal realizes the later, narrower 2026-07-26 entry naming exactly Panoptic Concord (Signal), Starweave Communion (Tangle), and Cindral Reach (Mass) in a new design/cards/spatial-race-identity-set.md — leaving Mireth Bloom and Wrought Assembly with no card anywhere that references a Planet, Wormhole, or Discovery. Both races already carry shipped identity text this unit grounds directly: design/races/mireth-bloom.md's signature hook 'Bloomfront Expansion — Biology generators can be built directly onto contested territory' is an unbuilt exception to rules.md Section 4.6 ('every Generator played after that MAY be built on any Planet that challenger controls'); design/races/wrought-assembly.md's identity paragraph describing a civilization that wants 'a single flawless design, copied without end across every system it can reach' is an unbuilt discount on replicating a Generator onto a Planet reached via Section 8.3 Discovery. This unit adds design/cards/spatial-race-identity-set-wave-2.md with exactly 2 cards, following the same Cost/Type/Rules-text/Stats-line template test/design-frontier-cards.test.js already enforces for frontier-set.md: a Mireth Bloom Generator (Bloom Fount) whose Rules text explicitly lets it be built on a Planet its controller does not currently control, citing 'Section 4.6' by number as the restriction it overrides; and a Wrought Assembly Generator (Circuit Fount) whose Rules text reduces its own Circuit Point cost when built on a Planet that was added to the battlefield graph by a Discovery action taken that game, citing 'Section 8.3' by number. No rules.md change is needed or made — both effects are stated exceptions to already-shipped defaults, the same pattern the sibling wave-1 proposal uses — and no other card file's names or content are touched.",
+  "criteria": [
+    {
+      "text": "design/cards/spatial-race-identity-set-wave-2.md exists and contains exactly 2 distinct named cards — one under Mireth Bloom, one under Wrought Assembly (per design/races/) — each with a Cost line, Type line, and Rules text in that order, and a Stats/counters line only when its Type line contains 'Permanent', matching the template test/design-frontier-cards.test.js enforces for frontier-set.md.",
+      "provenance": "paraphrase",
+      "held_out": false
+    },
+    {
+      "text": "The Mireth Bloom card's Cost line names the Bloom Fount, its Type line identifies it as a Generator, and its Rules text explicitly states it may be built on a Planet its controller does not control, citing 'Section 4.6' by number.",
+      "provenance": "paraphrase",
+      "held_out": false
+    },
+    {
+      "text": "The Wrought Assembly card's Cost line names the Circuit Fount, its Type line identifies it as a Generator, and its Rules text explicitly reduces its own Circuit Point cost when built on a Planet that entered the battlefield graph via a Discovery action taken that game, citing 'Section 8.3' by number.",
+      "provenance": "paraphrase",
+      "held_out": false
+    },
+    {
+      "text": "design/rules.md and every other file under design/cards/ (including spatial-race-identity-set.md if it exists by then) remain byte-identical to before this unit, and neither of the 2 new card names collides with any card name already printed in alpha-set.md, frontier-set.md, character-signatures.md, or spatial-race-identity-set.md.",
+      "provenance": "inferred",
+      "held_out": true
+    }
+  ],
+  "touches": [
+    "design/cards/spatial-race-identity-set-wave-2.md",
+    "test/design-spatial-race-identity-cards-wave-2.test.js"
+  ],
+  "test_cmd": "node --test",
+  "id": "ms5nfjmd-cardgame-spatial-race-identity-cards-wave-2",
+  "filed_at": "2026-07-29T05:33:22.837Z",
+  "window_expires": "2026-07-29T06:33:22.839Z",
+  "status": "promoted",
+  "promoted_at": "2026-07-29T06:35:57.443Z"
+}

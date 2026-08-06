@@ -1,0 +1,54 @@
+{
+  "name": "cardgame-design-readiness-gap1-wormhole-resolved-fix",
+  "title": "Fix DESIGN-READINESS.md's stale Open Gap 1 (wormhole-closure half already resolved by shipped art briefs)",
+  "project": "cardgame",
+  "pitch": "design/DESIGN-READINESS.md's Open Gap 1 still claims neither the spatial-race-identity-set's 3 cards nor the wormhole-closure-cards' 5 cards have an art-brief entry, but design/cards/art-briefs.md already contains all 5 wormhole-closure briefs (Bastion Seal Detachment, Withering Conduit Rot, Severance Directive, Rite of the Sealed Tangle, Chokepoint Demolition Charge), shipped via the merged unit cardgame-art-briefs-wormhole-closure.",
+  "why_now": "The only other proposal touching this document right now (window-open cardgame-design-readiness-gap2-resolved-fix) edits Gap 2's text exclusively and does not touch Gap 1; the window-open cardgame-art-briefs-spatial-race-identity proposal adds the still-missing 3 spatial-identity briefs but does not correct Gap 1's own stale wording. Nothing currently targets this specific inaccuracy, and the portfolio rule asks each cycle to include a simplification/accuracy candidate alongside growth work — this document's stated purpose (an informed, citation-backed I6 gate judgment) is undermined every time one of its own claims is already false.",
+  "expected_outcome": "design/DESIGN-READINESS.md's Open Gap 1 no longer states that the wormhole-closure-cards have no art-brief entry; it instead narrows the claim to the 3 still-uncovered spatial-race-identity-set cards and cites design/cards/art-briefs.md by name for the 5 now-resolved wormhole-closure card titles. test/design-readiness.test.js's existing AC5 (>=3 numbered open-gap items) still passes.",
+  "risk_class": "standard",
+  "mission_intent": "I6",
+  "taste_citations": [
+    "T9",
+    "T11",
+    "T12",
+    "T24"
+  ],
+  "intent": "design/DESIGN-READINESS.md Section 6, Open Gap 1 reads: 'Art-brief coverage has an 8-card hole. None of the 3 cards in design/cards/spatial-race-identity-set.md or the 5 cards in design/cards/wormhole-closure-cards.md have a matching entry in design/cards/art-briefs.md...' This is now half-false: design/cards/art-briefs.md (verified by grep of its own '###' headings) already contains entries for all 5 wormhole-closure-cards titles (Bastion Seal Detachment, Withering Conduit Rot, Severance Directive, Rite of the Sealed Tangle, Chokepoint Demolition Charge), shipped by the already-merged unit cardgame-art-briefs-wormhole-closure (T24: confirmed merged at commit a2ee234). Edit only Open Gap 1's own text: narrow its claim to the 3 remaining uncovered cards in spatial-race-identity-set.md (Preemptive Survey, Unbound Passage, Chokepoint Garrison), state that the wormhole-closure-cards half is resolved, and cite design/cards/art-briefs.md as the file where those 5 briefs now live. Do not touch Section 3, Section 4's 'Known gap' note, any other Open Gap entry's substance, or the numbered-list numbering beyond what this edit itself requires — leave Gap 2, 3, and 4 untouched (Gap 2 is already the subject of a separate in-flight proposal).",
+  "criteria": [
+    {
+      "text": "design/DESIGN-READINESS.md's Open Gap 1 no longer contains the claim that the 5 wormhole-closure-cards cards lack a matching art-brief entry",
+      "provenance": "inferred",
+      "held_out": false
+    },
+    {
+      "text": "Open Gap 1's text now states that design/cards/art-briefs.md already covers the wormhole-closure-cards set, naming that file verbatim, and narrows the remaining hole to the 3 cards in spatial-race-identity-set.md",
+      "provenance": "inferred",
+      "held_out": false
+    },
+    {
+      "text": "The Open Gaps section still parses as a sequential numbered list (1., 2., 3., ... no skipped or repeated numbers) with at least 3 items, so test/design-readiness.test.js's existing AC5 assertion continues to pass unmodified",
+      "provenance": "paraphrase",
+      "held_out": false
+    },
+    {
+      "text": "Section 3's card-set inventory and Section 4's 'Known gap' note are present in the file byte-for-byte unchanged",
+      "provenance": "inferred",
+      "held_out": true
+    },
+    {
+      "text": "Open Gaps 2, 3, and 4 each still appear with their original substantive text intact, only renumbered if the edit requires it",
+      "provenance": "paraphrase",
+      "held_out": false
+    }
+  ],
+  "touches": [
+    "design/DESIGN-READINESS.md",
+    "test/design-readiness-gap1-wormhole-resolved.test.js"
+  ],
+  "test_cmd": "node --test",
+  "id": "ms75agjx-cardgame-design-readiness-gap1-wormhole-resolved-fix",
+  "filed_at": "2026-07-30T06:41:04.845Z",
+  "window_expires": "2026-07-30T10:41:04.847Z",
+  "status": "promoted",
+  "promoted_at": "2026-07-30T10:54:26.954Z"
+}

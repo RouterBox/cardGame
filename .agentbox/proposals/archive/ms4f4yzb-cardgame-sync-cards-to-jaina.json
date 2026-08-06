@@ -1,0 +1,48 @@
+{
+  "name": "cardgame-sync-cards-to-jaina",
+  "title": "cardGame tools — sync Alpha-set cards into Jaina as the content backbone",
+  "pitch": "tools/sync-cards-to-jaina.js reads design/cards/alpha-set.md through the shared lib/parse-card-markdown.js parser and upserts each card as a structured record in a Jaina schema, so card data starts living in Jaina instead of only markdown prose.",
+  "why_now": "design/ideas-inbox.md has six directive entries; five already have shipped units or a filed proposal, but the 2026-07-28 'use Jaina as the content backbone' entry has neither — it is the one gap. cardgame-tools-shared-parser-dedup (approved and launched per the latest tick) extracts parseCardMarkdown/slugify into lib/parse-card-markdown.js specifically so a second consumer can share it, and that unit's own plan.md names the exact gap: 'the still-unbuilt tool... will import from lib/parse-card-markdown.js when it's built' referring to tools/sync-cards-to-jaina.js by name. This is that tool.",
+  "expected_outcome": "Running tools/sync-cards-to-jaina.js upserts one Jaina record per ### card entry in design/cards/alpha-set.md into a Card schema — demoable by listing records against that schema and seeing a record per card with name/costLine/typeLine/rulesText/statsLine/flavorText populated, matching alpha-set.md's current card count.",
+  "risk_class": "standard",
+  "mission_intent": "I6",
+  "taste_citations": [
+    "T16",
+    "T9",
+    "T1"
+  ],
+  "intent": "design/ideas-inbox.md (2026-07-28, verbatim from RouterBox): 'Oh also we need to make heavy use of Jaina the whole way which was built for this exact thing... The authoring tools (card engine, design browser) should read from / write to Jaina rather than inventing their own storage.' This is a TOOL for content generation/authoring, not game implementation, so it sits inside the partial software-gate opening (T16) rather than behind it. It builds directly on cardgame-tools-shared-parser-dedup's lib/parse-card-markdown.js (extracted for exactly this second consumer) to push Alpha-set card data into a Jaina schema as the first concrete step of the content backbone, and tags the now-satisfied ideas-inbox.md entry per the file's own [incorporated: <unit-name>] convention (avoiding the stale-bookkeeping problem T9/I6's design ledger depends on). Per T1, this is a first slice toward the full backbone (cards only, Alpha-set only), not a claim that races/characters/rules are migrated too.",
+  "criteria": [
+    {
+      "text": "tools/sync-cards-to-jaina.js exists, requires parseCardMarkdown/slugify from lib/parse-card-markdown.js (not a re-implementation), and reads its Jaina API key/project id from environment variables rather than hardcoding them in source.",
+      "provenance": "user",
+      "held_out": false
+    },
+    {
+      "text": "test/sync-cards-to-jaina.test.js exercises the script's markdown-to-record mapping against a fixture card (all four field-prefix lines) via a mocked/stubbed Jaina client — no live network call is made during the test run — and asserts the built record payload carries name, costLine, typeLine, rulesText, statsLine, and flavorText.",
+      "provenance": "paraphrase",
+      "held_out": false
+    },
+    {
+      "text": "design/ideas-inbox.md's 'use Jaina as the content backbone' heading is tagged [incorporated: cardgame-sync-cards-to-jaina], and no other heading or quote block in the file changes.",
+      "provenance": "inferred",
+      "held_out": false
+    },
+    {
+      "text": "Running the script twice against the same alpha-set.md content updates the existing Jaina records in place rather than creating duplicates (asserted against the mocked client by call count/upsert key, not a live Jaina call).",
+      "provenance": "inferred",
+      "held_out": true
+    }
+  ],
+  "touches": [
+    "tools/sync-cards-to-jaina.js",
+    "test/sync-cards-to-jaina.test.js",
+    "design/ideas-inbox.md"
+  ],
+  "test_cmd": "node --test",
+  "id": "ms4f4yzb-cardgame-sync-cards-to-jaina",
+  "filed_at": "2026-07-28T08:53:26.423Z",
+  "window_expires": "2026-07-28T09:53:26.425Z",
+  "status": "promoted",
+  "promoted_at": "2026-07-28T10:02:28.226Z"
+}

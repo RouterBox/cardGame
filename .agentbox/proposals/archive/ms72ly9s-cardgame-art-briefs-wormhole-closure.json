@@ -1,0 +1,53 @@
+{
+  "name": "cardgame-art-briefs-wormhole-closure",
+  "title": "Art briefs for the Wormhole Closure Cards (5 cards)",
+  "project": "cardgame",
+  "pitch": "Write the missing art briefs for design/cards/wormhole-closure-cards.md's 5 cards, closing the wormhole-closure half of DESIGN-READINESS.md's Open Gap 1.",
+  "why_now": "DESIGN-READINESS.md Open Gap 1 names an 8-card art-brief hole split across two sets; the spatial-race-identity-set half (3 cards) is already in-flight as the sibling proposal ms724jc2-cardgame-art-briefs-spatial-race-identity, leaving this 5-card wormhole-closure set the one remaining piece nothing yet targets. tools/composite-card-art.js already prints 'no art brief for \"<name>\"' for all 5 of these cards on every run (design/cards/card-anatomy.md line 253's warning path), so this is a live, observable gap, not a hypothetical one.",
+  "expected_outcome": "design/cards/art-briefs.md gains exactly 5 new '###' sections — 'Bastion Seal Detachment', 'Withering Conduit Rot', 'Severance Directive', 'Rite of the Sealed Tangle', 'Chokepoint Demolition Charge' — each with a Palette line naming its card's Fount color per card-anatomy.md's Fount identity table, a 'Key visual elements:' list of >=2 card-specific bullets, and a Composition line naming the Art Window's rectangular/landscape shape and aspect ratio; running tools/composite-card-art.js in its default (mock) mode no longer prints 'no art brief for' for any of these 5 names.",
+  "risk_class": "standard",
+  "mission_intent": "I6",
+  "taste_citations": [
+    "T8",
+    "T9",
+    "T16"
+  ],
+  "intent": "design/cards/art-briefs.md documents an art brief for every card in most shipped card sets (44 briefs today per DESIGN-READINESS.md Section 4), but design/cards/wormhole-closure-cards.md's 5 cards (Bastion Seal Detachment — Cindral Reach/Mass, Withering Conduit Rot — Mireth Bloom/Bloom, Severance Directive — Panoptic Concord/Signal, Rite of the Sealed Tangle — Starweave Communion/Tangle, Chokepoint Demolition Charge — Wrought Assembly/Circuit) have none. tools/composite-card-art.js already surfaces this live via its own 'no art brief for \"<name>\"' warning (composite-card-art.js:253) on every run. Add one brief per card, following the established format every prior art-briefs unit has used (Palette, Key visual elements, Composition), naming the Fount-driven palette color for each card's own Cost line (Mass→Ash-grey, Bloom→Green, Signal→Cyan, Tangle→Violet, Circuit→Copper per card-anatomy.md's Fount identity table) and a Composition line citing the Art Window's rectangular/landscape shape and aspect ratio — so these 5 cards can go through the compositing pipeline like every other shipped card set, fully closing Open Gap 1 once the sibling spatial-race-identity unit also merges.",
+  "criteria": [
+    {
+      "text": "design/cards/art-briefs.md contains exactly one '###' section titled verbatim 'Bastion Seal Detachment', one titled 'Withering Conduit Rot', one titled 'Severance Directive', one titled 'Rite of the Sealed Tangle', and one titled 'Chokepoint Demolition Charge' (the 5 card titles in design/cards/wormhole-closure-cards.md), with no pre-existing brief sections removed, renamed, or altered",
+      "provenance": "paraphrase",
+      "held_out": false
+    },
+    {
+      "text": "The Palette lines name Ash-grey for 'Bastion Seal Detachment' (Mass), Green for 'Withering Conduit Rot' (Bloom), Cyan for 'Severance Directive' (Signal), Violet for 'Rite of the Sealed Tangle' (Tangle), and Copper for 'Chokepoint Demolition Charge' (Circuit), matching each card's own Cost line per card-anatomy.md's Fount identity table",
+      "provenance": "paraphrase",
+      "held_out": false
+    },
+    {
+      "text": "Each of the 5 new briefs has a 'Key visual elements:' list of at least 2 bullets that share at least 2 significant words with that card's own Type line/Rules text, and none of the bullets use generic filler phrases like 'epic composition' or 'stunning artwork'",
+      "provenance": "paraphrase",
+      "held_out": true
+    },
+    {
+      "text": "Each of the 5 new briefs has a 'Composition:' line naming the Art Window's rectangular/landscape shape and an explicit aspect ratio (e.g. '5:3'), consistent with card-anatomy.md's Art Window description",
+      "provenance": "paraphrase",
+      "held_out": false
+    },
+    {
+      "text": "Running tools/composite-card-art.js in its default (mock) mode no longer prints 'no art brief for \"Bastion Seal Detachment\"', 'no art brief for \"Withering Conduit Rot\"', 'no art brief for \"Severance Directive\"', 'no art brief for \"Rite of the Sealed Tangle\"', or 'no art brief for \"Chokepoint Demolition Charge\"'",
+      "provenance": "inferred",
+      "held_out": false
+    }
+  ],
+  "touches": [
+    "design/cards/art-briefs.md",
+    "test/design-art-briefs-wormhole-closure.test.js"
+  ],
+  "test_cmd": "node --test",
+  "id": "ms72ly9s-cardgame-art-briefs-wormhole-closure",
+  "filed_at": "2026-07-30T05:26:02.176Z",
+  "window_expires": "2026-07-30T09:26:02.178Z",
+  "status": "vetoed",
+  "veto_reason": "duplicate: unit cardgame-art-briefs-wormhole-closure already merged (a2ee234) — proposal was filed while the unit was mid-build; check memory/ AND in-flight units before proposing"
+}

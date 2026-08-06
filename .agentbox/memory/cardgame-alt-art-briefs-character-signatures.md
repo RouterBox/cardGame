@@ -1,0 +1,16 @@
+# cardgame-alt-art-briefs-character-signatures
+
+- merged: 2026-07-30T21:19:01.343Z
+- intent: design/cards/alt-art-briefs.md implements the Alt-Art premium-treatment layer from design/cards/card-anatomy.md's "The Layers" section for exactly 5 cards today, all generic Fount Generators drawn from alpha-set.md. design/ideas-inbox.md's 2026-07-27 characters entry states named characters are "usable later as legendary/hero card identities and art briefs" — design/cards/character-signatures.md already delivers the legendary/hero cards themselves (Kordelia Vess, Salvage-Marshal of the Cinder Yards; Mother-Thread Ilvex, First Voice of the Sprawl; Selin Vashti Corr, Whisper-Broker of the Glass Spires; Meridian Aule, Star-Read Oracle of the Tangle; Unit 0-Prime "Cast-Aside", the First Flaw) and design/cards/art-briefs.md already gives each a base brief, but no alt-art brief exists for any of them. Add 5 new "###" sections to design/cards/alt-art-briefs.md, one per character-signatures.md card, titled with the card's exact name, each following the file's established template (Palette, Subject/Scene, Key visual elements bulleted list, Composition) and its own stated discipline that an alt-art brief "describes a genuinely different scene from that card's existing base brief, not a restatement of it." Update the file's intro paragraph to reflect 10 sections across two source sets instead of 5 from one. Update test/design-alt-art-briefs.test.js's EXPECTED_TITLES constant to include all 10 titles so its existing generalized per-title test loops (AC1 field-shape checks, AC2 Subject/Scene-divergence-from-base-brief checks) automatically cover the 5 new sections without new test logic. Do not touch design/cards/art-briefs.md, design/cards/character-signatures.md, design/cards/alpha-set.md, or the 5 existing Generator alt-art sections' content — this unit only adds 5 new sections and extends the existing test's title list.
+- criteria: AC1, AC2, AC3, AC4, AC5 (1 held out)
+
+## Reviewer notes worth keeping
+
+# Review: cardgame-alt-art-briefs-character-signatures, cycle 1
+
+## AC accounting
+
+- **AC1** (exactly 10 "###" sections, verbatim titles): PASS. `design/cards/alt-art-briefs.md` now has the 5 original Generator titles plus the 5 `character-signatures.md` titles, confirmed byte-identical against `character-signatures.md`'s own `###` headers (Kordelia Vess…, Mother-Thread Ilvex…, Selin Vashti Corr…, Meridian Aule…, Unit 0-Prime "Cast-Aside"…). `test/design-alt-art-briefs.test.js`'s `EXPECTED_TITLES` was extended to match, and its `AC1: alt-art-briefs.md has exactly 10 "###" sections` test enforces the count strictly.
+- **AC2** (Palette/Subject-Scene/Key visual elements (2+)/Composition shape): PASS. All 5 new sections have all four fields; each "Key visual elements:" list has 3 bullets (≥2).
+- **AC3** (held_out, Subject/Scene divergence from base brief): not gating per instructions, but verified anyway by hand-computing the test's own overlap algorithm against each new section vs. its `art-briefs.md` base brief — all 5 pairs come out well under the 50% threshold (worst case ~21%, e.g. Kordelia Vess: 4/19 shared significant words). No concern.
+- **AC4** (existing Generator sections + 

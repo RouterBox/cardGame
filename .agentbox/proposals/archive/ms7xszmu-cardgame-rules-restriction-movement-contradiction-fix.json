@@ -1,0 +1,53 @@
+{
+  "name": "cardgame-rules-restriction-movement-contradiction-fix",
+  "title": "Fix rules.md's Section 8.1/8.4 contradiction over whether Restrictions govern future Unit movement — resolve the hedge, don't leave it open",
+  "project": "cardgame",
+  "pitch": "Section 8.1 states unconditionally that any Unit movement 'must still traverse a Wormhole that is not Closed and whose Restrictions permit it,' while Section 8.4 says whether Directional/Team Restrictions govern that same future movement 'is an open question this section does not resolve' — two sections of the shipped rulebook flatly disagree on the same mechanic.",
+  "why_now": "Verified live by reading design/rules.md in full: Section 8.1 (line 468-470) reads 'Any such movement, however granted, must still traverse a Wormhole that is not Closed (Section 8.5) and whose Restrictions (Section 8.4) permit it' — unconditional, naming Restrictions generically, no carve-out. Section 8.4 (line 558-564) reads 'Whether a Directional or Team Restriction also limits a future rule's or card's Unit movement (Section 8.1), and not only an Assault's path (Section 8.6), is an open question this section does not resolve; only the Unit-type Restriction is stated, by this rulebook, to govern such movement directly.' These cannot both be true: 8.1 already commits to Restrictions-in-general gating movement; 8.4 hedges that only Unit-type Restriction is confirmed to do so. This is exactly the class of defect the already-merged cardgame-spatial-rules-notes-reconciliation unit fixed elsewhere in this same Section 8 (raw open notes and a contradiction between an inline strikethrough and the shipped rule text) — T9's MTG Comprehensive Rules bar names 'no contradictions... edge cases resolved on paper' as the structural standard, and this is a second, distinct instance of the same violation class in the same section, not a re-file of the already-shipped one (that unit's own memory ledger scopes it to four named spots: 8.1's location-tracking strikethrough, starting-Planets note, 8.3's Discovery cost direction, and 8.6 Blockade/Capture — this 8.1-vs-8.4 Restriction-movement contradiction is not among them). Checked memory and all 6 currently window-open proposals (alt-art-briefs-character-signatures, jaina-sync-tools-dryrun-cli-dedup, playtest-spatial-wormhole-coverage, lore-docs-game-name-references, frontier-worlds-cards, jaina-world-narrative-sync-dryrun) plus the two queued units with no proposal record (character-signatures-wave-3, character-markdown-slugify-dedup): none touches design/rules.md or test/design-battlefield.test.js. This cycle's queue is otherwise entirely new card/lore content plus two dedups; a rules-text correctness fix is a distinct, needed portfolio type none of them cover.",
+  "expected_outcome": "design/rules.md's Section 8.4 no longer contains the sentence hedging Restriction-vs-movement as an open question; it instead states definitively that a Directional or Team Restriction governs future Unit movement (Section 8.1) exactly as it already governs an Assault's path (Section 8.6), consistent with Section 8.1's own unconditional wording — Unit-type Restriction's already-confirmed status is preserved, not contradicted. site/design/rules.html is regenerated via tools/build-site.js. test/design-battlefield.test.js is extended with one new assertion that Section 8.4 contains no open-question hedge about Restriction-governed movement, and continues to pass otherwise unmodified.",
+  "risk_class": "standard",
+  "mission_intent": "I6",
+  "taste_citations": [
+    "T8",
+    "T9"
+  ],
+  "intent": "design/rules.md Section 8 (Spatial Battlefield) was drafted, then partially reconciled by the merged cardgame-spatial-rules-notes-reconciliation unit, which closed four named open-note/contradiction spots but did not touch a fifth: Section 8.1's paragraph on Unit location (lines 452-472) states unconditionally that 'any such movement, however granted, must still traverse a Wormhole that is not Closed (Section 8.5) and whose Restrictions (Section 8.4) permit it' — treating Restrictions in general, not just Unit-type Restriction, as movement-gating. Section 8.4 (lines 536-564), by contrast, explicitly hedges: after defining Directional, Team, and Unit-type Restrictions and stating a Unit-type Restriction 'governs such movement directly,' it adds 'Whether a Directional or Team Restriction also limits a future rule's or card's Unit movement (Section 8.1), and not only an Assault's path (Section 8.6), is an open question this section does not resolve.' Rewrite Section 8.4's final paragraph (replacing the 'is an open question this section does not resolve' sentence) to state definitively that a Directional or Team Restriction governs future Unit movement exactly as it already governs an Assault's path — i.e. movement across a Wormhole respects the same Directional/Team constraints Assault already respects, matching Section 8.1's unconditional 'Restrictions (Section 8.4) permit it' wording and removing the contradiction. Do not change what a Unit-type Restriction does (it remains the one Restriction kind already stated, elsewhere, to govern movement — this unit's change is additive to Directional/Team, not a revision of Unit-type's status), do not touch Section 8.1's own wording (it is already correct and is the anchor this fix aligns 8.4 to), and do not touch any other section of rules.md, any card file, or any other test file. Extend test/design-battlefield.test.js with one new assertion that Section 8.4's text contains no 'open question this section does not resolve' hedge (or equivalent unresolved-marginalia phrasing) about Restriction-governed movement, alongside its existing Section 8 checks, which must all still pass. Regenerate site/design/rules.html via tools/build-site.js.",
+  "criteria": [
+    {
+      "text": "design/rules.md Section 8.4 no longer contains a sentence stating it is an open/unresolved question whether a Directional or Team Restriction governs future Unit movement",
+      "provenance": "inferred",
+      "held_out": false
+    },
+    {
+      "text": "design/rules.md Section 8.4 states definitively that a Directional or Team Restriction governs future Unit movement (Section 8.1) in addition to an Assault's path (Section 8.6), consistent with Section 8.1's existing unconditional wording",
+      "provenance": "paraphrase",
+      "held_out": false
+    },
+    {
+      "text": "Unit-type Restriction's existing, already-confirmed governance of movement (Section 8.4's Unit-type Restriction paragraph) is textually unchanged",
+      "provenance": "inferred",
+      "held_out": true
+    },
+    {
+      "text": "Section 8.1's own paragraph on Unit location and movement, every other section of design/rules.md, and every design/cards/*.md file are byte-for-byte unchanged",
+      "provenance": "inferred",
+      "held_out": false
+    },
+    {
+      "text": "test/design-battlefield.test.js passes with one new assertion added for the resolved hedge, and site/design/rules.html is regenerated via tools/build-site.js to match the updated markdown",
+      "provenance": "paraphrase",
+      "held_out": false
+    }
+  ],
+  "touches": [
+    "design/rules.md",
+    "site/design/rules.html",
+    "test/design-battlefield.test.js"
+  ],
+  "test_cmd": "node --test",
+  "id": "ms7xszmu-cardgame-rules-restriction-movement-contradiction-fix",
+  "filed_at": "2026-07-30T19:59:18.630Z",
+  "window_expires": "2026-07-30T23:59:18.632Z",
+  "status": "promoted",
+  "promoted_at": "2026-07-31T00:09:31.083Z"
+}

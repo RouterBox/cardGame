@@ -1,0 +1,53 @@
+{
+  "name": "cardgame-alt-art-briefs-character-signatures",
+  "title": "Extend design/cards/alt-art-briefs.md with alt-art briefs for the 5 Character Signatures cards — first alt-art coverage for the design's legendary/hero identities",
+  "project": "cardgame",
+  "pitch": "design/cards/alt-art-briefs.md today covers only 5 generic Fount Generators from alpha-set.md; the 5 named legendary characters in design/cards/character-signatures.md — the cards design/ideas-inbox.md itself flags as 'usable later as legendary/hero card identities' — have zero alt-art brief despite being the most natural premium-treatment candidates in any TCG.",
+  "why_now": "Verified live by reading design/cards/alt-art-briefs.md in full: its 5 sections (Sporeknit Warden, Salvage-Wrought Bastion, Replicant Foundry Core, Foreknowledge Cipher, Unwritten Hour) are all Fount Generators sourced from design/cards/alpha-set.md (confirmed Unwritten Hour is alpha-set.md's Magic/Tangle card at art-briefs.md line 14). design/cards/character-signatures.md's 5 named cards (Kordelia Vess, Mother-Thread Ilvex, Selin Vashti Corr, Meridian Aule, Unit 0-Prime) each already have a base brief in design/cards/art-briefs.md (grepped: lines 372, 389, 406, 422, 437) but appear nowhere in alt-art-briefs.md. design/ideas-inbox.md's 2026-07-27 characters entry explicitly names these characters as destined for 'legendary/hero card identities and art briefs,' and card-anatomy.md's premium-treatment Layers section is exactly the mechanism alt-art-briefs.md already implements for the 5 Generators — extending it to the 5 signature characters is the same established pattern applied to the design's actual named-hero cards rather than economy pieces. Checked memory and all 4 currently window-open proposals (lib-markdown-section-parser-dedup, playtest-second-deck-pairing, character-signatures-wave-3, character-markdown-slugify-dedup) plus all 4 in-flight units (art-briefs-spatial-race-identity-wave-2, design-readiness-gap3-jaina-sync-fix, playtest-character-signatures-wave-2-refresh, playtest-spatial-race-identity-refresh) first per T24: none touches design/cards/alt-art-briefs.md or design/cards/character-signatures.md. This is also a different portfolio type — premium-treatment art content, not a new card set, a new playtest doc, or a lib dedup — than everything else currently queued.",
+  "expected_outcome": "design/cards/alt-art-briefs.md grows from 5 to 10 \"###\" sections: the existing 5 Generator briefs unchanged, plus 5 new sections titled exactly after character-signatures.md's 5 card names, each with Palette/Subject-Scene/Key visual elements/Composition fields describing a genuinely different scene than that card's existing base brief in art-briefs.md. test/design-alt-art-briefs.test.js is extended (its EXPECTED_TITLES list and per-title test loops already generalize) to cover all 10 titles and both AC1 (field-shape) and AC2 (Subject/Scene divergence from the base brief) checks for the 5 new sections, and still passes for the 5 existing ones unmodified.",
+  "risk_class": "standard",
+  "mission_intent": "I6",
+  "taste_citations": [
+    "T8",
+    "T9",
+    "T24"
+  ],
+  "intent": "design/cards/alt-art-briefs.md implements the Alt-Art premium-treatment layer from design/cards/card-anatomy.md's \"The Layers\" section for exactly 5 cards today, all generic Fount Generators drawn from alpha-set.md. design/ideas-inbox.md's 2026-07-27 characters entry states named characters are \"usable later as legendary/hero card identities and art briefs\" — design/cards/character-signatures.md already delivers the legendary/hero cards themselves (Kordelia Vess, Salvage-Marshal of the Cinder Yards; Mother-Thread Ilvex, First Voice of the Sprawl; Selin Vashti Corr, Whisper-Broker of the Glass Spires; Meridian Aule, Star-Read Oracle of the Tangle; Unit 0-Prime \"Cast-Aside\", the First Flaw) and design/cards/art-briefs.md already gives each a base brief, but no alt-art brief exists for any of them. Add 5 new \"###\" sections to design/cards/alt-art-briefs.md, one per character-signatures.md card, titled with the card's exact name, each following the file's established template (Palette, Subject/Scene, Key visual elements bulleted list, Composition) and its own stated discipline that an alt-art brief \"describes a genuinely different scene from that card's existing base brief, not a restatement of it.\" Update the file's intro paragraph to reflect 10 sections across two source sets instead of 5 from one. Update test/design-alt-art-briefs.test.js's EXPECTED_TITLES constant to include all 10 titles so its existing generalized per-title test loops (AC1 field-shape checks, AC2 Subject/Scene-divergence-from-base-brief checks) automatically cover the 5 new sections without new test logic. Do not touch design/cards/art-briefs.md, design/cards/character-signatures.md, design/cards/alpha-set.md, or the 5 existing Generator alt-art sections' content — this unit only adds 5 new sections and extends the existing test's title list.",
+  "criteria": [
+    {
+      "text": "design/cards/alt-art-briefs.md contains exactly 10 \"###\" brief sections: the 5 existing Generator titles (Sporeknit Warden, Salvage-Wrought Bastion, Replicant Foundry Core, Foreknowledge Cipher, Unwritten Hour) plus the 5 character-signatures.md card names, verbatim",
+      "provenance": "inferred",
+      "held_out": false
+    },
+    {
+      "text": "Each of the 5 new sections has Palette:, Subject/Scene:, a \"Key visual elements:\" bulleted list of 2 or more items, and Composition: fields, matching the existing 5 sections' shape",
+      "provenance": "inferred",
+      "held_out": false
+    },
+    {
+      "text": "For each of the 5 new sections, the Subject/Scene text shares fewer than half its significant words with that same card's base brief Subject/Scene text in design/cards/art-briefs.md — a genuinely different scene, not a restatement",
+      "provenance": "paraphrase",
+      "held_out": true
+    },
+    {
+      "text": "The 5 existing Generator sections in alt-art-briefs.md are byte-for-byte unchanged, and design/cards/art-briefs.md, design/cards/character-signatures.md, and design/cards/alpha-set.md are byte-for-byte unchanged",
+      "provenance": "inferred",
+      "held_out": false
+    },
+    {
+      "text": "test/design-alt-art-briefs.test.js passes with its EXPECTED_TITLES constant extended to all 10 titles, exercising both the AC1 field-shape loop and the AC2 Subject/Scene-divergence loop against the 5 new sections",
+      "provenance": "paraphrase",
+      "held_out": false
+    }
+  ],
+  "touches": [
+    "design/cards/alt-art-briefs.md",
+    "test/design-alt-art-briefs.test.js"
+  ],
+  "test_cmd": "node --test",
+  "id": "ms7p6xbf-cardgame-alt-art-briefs-character-signatures",
+  "filed_at": "2026-07-30T15:58:12.267Z",
+  "window_expires": "2026-07-30T19:58:12.269Z",
+  "status": "promoted",
+  "promoted_at": "2026-07-30T20:09:29.665Z"
+}

@@ -1,0 +1,63 @@
+{
+  "name": "cardgame-design-readiness-review",
+  "title": "Cardgame Design Readiness Review",
+  "project": "cardgame",
+  "pitch": "A single synthesis document that inventories every shipped world/rules/card/art pillar and names concrete open gaps, giving RouterBox the one artifact needed to judge the I6 ungate decision.",
+  "why_now": "The design surface has grown very wide (13 rulebook sections, 6 world eras, races, star atlas, five-plus card waves, art briefs, a static browsable site) with no single document that ties it together for a go/no-go read — RouterBox currently has to infer completeness by picking through files, which is exactly what T16's design-shelf server was meant to solve for browsing but not for a readiness judgment.",
+  "expected_outcome": "design/DESIGN-READINESS.md exists in cardGame naming every shipped rule section, card set/wave, and world pillar with file citations, plus a named list of at least 3 concrete open gaps; test/design-readiness.test.js proves each required section is present and that the card-set list is derived from design/cards/*.md rather than hand-typed, run via `node --test`.",
+  "risk_class": "standard",
+  "mission_intent": "I6",
+  "taste_citations": [
+    "T8",
+    "T9",
+    "T12"
+  ],
+  "intent": "Add design/DESIGN-READINESS.md to the cardGame repo: a single markdown document that inventories the design-phase deliverables shipped to date (rulebook sections by number and title, world lore eras, races, star atlas, every card set/wave by name, art brief coverage, the authoring/render/site tooling) with a citation (file path) for each claim, and closes with a named, numbered list of at least three concrete open gaps or unresolved questions relevant to whether the design is compelling enough to ungate game software per I6. The document must be generated/checked so its card-set list is derived programmatically from design/cards/*.md (via the existing shared parser) rather than a hand-typed count that goes stale, matching the lesson in T12 about frozen counts drifting from reality. This is a new standalone file with no edits to existing design or rules content, avoiding any shared-file collision with concurrently running bolts.",
+  "criteria": [
+    {
+      "text": "design/DESIGN-READINESS.md is created and is non-empty markdown",
+      "provenance": "paraphrase",
+      "held_out": false
+    },
+    {
+      "text": "The document names every numbered rulebook section (rules.md) by its section number and title",
+      "provenance": "inferred",
+      "held_out": false
+    },
+    {
+      "text": "The document names every shipped card set/wave (Alpha starters, Frontier spatial cards, character signature waves, spatial race identity waves, wormhole restriction/closure cards, fount economy cards) with a file citation for each",
+      "provenance": "inferred",
+      "held_out": false
+    },
+    {
+      "text": "The document names the world lore eras and the races/star atlas content with file citations",
+      "provenance": "inferred",
+      "held_out": false
+    },
+    {
+      "text": "The document closes with a numbered list of at least 3 concrete open gaps or unresolved questions, each citing specific evidence (a file or section)",
+      "provenance": "paraphrase",
+      "held_out": false
+    },
+    {
+      "text": "test/design-readiness.test.js asserts the document's card-set list, when cross-checked against design/cards/*.md loaded via the existing shared parser (lib/parse-card-markdown.js), does not omit any set present on disk",
+      "provenance": "inferred",
+      "held_out": true
+    },
+    {
+      "text": "test/design-readiness.test.js fails (RED) before the document exists and passes (GREEN) after, run via `node --test`",
+      "provenance": "inferred",
+      "held_out": true
+    }
+  ],
+  "touches": [
+    "design/DESIGN-READINESS.md",
+    "test/design-readiness.test.js"
+  ],
+  "test_cmd": "node --test",
+  "id": "ms63uo46-cardgame-design-readiness-review",
+  "filed_at": "2026-07-29T13:13:02.358Z",
+  "window_expires": "2026-07-29T17:13:02.360Z",
+  "status": "promoted",
+  "promoted_at": "2026-07-29T17:24:19.635Z"
+}

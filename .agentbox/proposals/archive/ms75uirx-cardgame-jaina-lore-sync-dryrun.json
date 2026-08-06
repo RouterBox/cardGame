@@ -1,0 +1,53 @@
+{
+  "name": "cardgame-jaina-lore-sync-dryrun",
+  "title": "cardGame tool — dry-run sync of lore era records into Jaina (content backbone, slice 5)",
+  "project": "cardgame",
+  "pitch": "A dry-run script that parses design/lore.md's 6 timeline eras into structured records and prints the exact Jaina payloads a future live sync would write, extending the content backbone from cards/characters/races/star-atlas to lore.",
+  "why_now": "DESIGN-READINESS.md Open Gap 4 names characters, races, world/lore, and the star atlas as the remaining markdown-only content with no Jaina schema or sync path. Characters, races, and the star atlas are already covered by open sibling proposals (cardgame-jaina-character-sync-dryrun, cardgame-jaina-race-sync-dryrun, cardgame-jaina-star-atlas-sync-dryrun); design/lore.md is the next self-contained slice nothing yet targets. Its 'Timeline of Eras' numbered list and matching 6 '##' era headings (verified: each heading's text matches its timeline entry verbatim, e.g. list item 6 'Current Era: The Uneasy Expanse' matches the heading '## Current Era: The Uneasy Expanse' exactly) already give it one consistent, parseable structure today — unlike design/world.md's differently-shaped Cosmology section, which the star-atlas proposal explicitly left for its own future slice and this proposal leaves untouched too.",
+  "expected_outcome": "Running `node tools/sync-lore-eras-to-jaina.js --dry-run` exits 0 and prints exactly 6 JSON record payloads, one per era heading in design/lore.md, in Timeline-of-Eras order (The Weave Age, The Sundering, The Long Dark, The Five Risings, The Cinderglass War, Current Era: The Uneasy Expanse), each with name/slug/order/summary fields — reviewable as the proposed Jaina 'lore_era' schema shape before any live write is built.",
+  "risk_class": "standard",
+  "mission_intent": "I6",
+  "taste_citations": [
+    "T16",
+    "T1"
+  ],
+  "intent": "design/DESIGN-READINESS.md's Open Gap 4 names the hole directly: only card records (and, once their sibling proposals merge, character/race/star-atlas records) are wired to Jaina, while design/lore.md's 6-era chronicle remains markdown-only prose with no Jaina schema or sync path. This is the next narrow slice under the same 2026-07-28 ideas-inbox 'use Jaina as the content backbone' directive that produced cardgame-jaina-card-sync-dryrun (T1 discipline: no live write, lore eras only — not design/world.md's Cosmology/Founts content, which has a different section shape and is explicitly out of scope here, matching how the star-atlas proposal deferred both world.md and lore.md). Add lib/parse-lore-markdown.js, a shared parser mirroring lib/parse-card-markdown.js's conventions (reusing its exported slugify), that reads design/lore.md, locates the ordered era names inside the '## Timeline of Eras' numbered list, and then extracts one record per matching '##' era section (excluding '## Summary' and '## Timeline of Eras' themselves): name (the heading text, verbatim), slug (slugify(name)), order (the era's 1-based position in the Timeline of Eras list), and summary (the full prose text of that section — every paragraph between this heading and the next '##' heading or end of file, joined). tools/sync-lore-eras-to-jaina.js prints one JSON payload per record in --dry-run mode and, mirroring its sibling dry-run-only proposals, makes no live Jaina API calls in this unit — printing a 'not yet implemented' message and exiting 1 without --dry-run, so no credentials or network access are required by node --test. This is content-authoring tooling under the T16 partial software-gate opening, not game implementation.",
+  "criteria": [
+    {
+      "text": "node tools/sync-lore-eras-to-jaina.js --dry-run exits 0 and prints exactly 6 JSON objects, one per era heading in design/lore.md, in Timeline-of-Eras order: The Weave Age, The Sundering, The Long Dark, The Five Risings, The Cinderglass War, Current Era: The Uneasy Expanse",
+      "provenance": "paraphrase",
+      "held_out": false
+    },
+    {
+      "text": "Each printed record has name, slug, order, and summary fields; slug is computed with the identical slugify(name) function already exported by lib/parse-card-markdown.js, so the same era name produces the same slug anywhere else in the repo",
+      "provenance": "paraphrase",
+      "held_out": false
+    },
+    {
+      "text": "Each record's order field is its 1-based position in the '## Timeline of Eras' numbered list (The Weave Age is 1, Current Era: The Uneasy Expanse is 6), and order values across the 6 records are the unique integers 1 through 6 with no gaps or repeats",
+      "provenance": "inferred",
+      "held_out": false
+    },
+    {
+      "text": "Each record's summary field contains that era's own prose text only — it must not contain the literal heading text of any other era (no bleed-through from an adjacent section), and must be non-empty",
+      "provenance": "inferred",
+      "held_out": true
+    },
+    {
+      "text": "Without --dry-run, the script makes no Jaina API calls, no network access, and no credentials are required by node --test — it prints a message that live sync is not yet implemented for lore eras and exits 1; running the dry-run twice in a row against unchanged markdown produces byte-identical stdout output",
+      "provenance": "inferred",
+      "held_out": false
+    }
+  ],
+  "touches": [
+    "lib/parse-lore-markdown.js",
+    "tools/sync-lore-eras-to-jaina.js",
+    "test/sync-lore-eras-to-jaina.test.js"
+  ],
+  "test_cmd": "node --test",
+  "id": "ms75uirx-cardgame-jaina-lore-sync-dryrun",
+  "filed_at": "2026-07-30T06:56:40.845Z",
+  "window_expires": "2026-07-30T10:56:40.847Z",
+  "status": "promoted",
+  "promoted_at": "2026-07-30T11:09:26.956Z"
+}

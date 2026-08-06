@@ -1,0 +1,48 @@
+{
+  "name": "cardgame-wormhole-closure-cards",
+  "title": "Wormhole Closure cards — the 'cut a chokepoint, strand a fleet' half of the spatial-layer directive rules.md leaves unused",
+  "project": "cardgame",
+  "pitch": "Add 5 named cards, one per race, that actually Close a Wormhole — rules.md Section 8.5 fully defines Closure's permanent, graph-mutating effect but not one printed card has ever triggered it.",
+  "why_now": "The 2026-07-26 spatial-layer ideas-inbox entry names two distinct card design spaces: Restriction ('locks, keys, tolls,' Section 8.4) and Closure ('wormholes can be closed... cut a chokepoint, strand a fleet, seal your flank,' Section 8.5). The already-open cardgame-wormhole-restriction-cards proposal covers only the first; grepping every printed card file for 'Close' + 'Wormhole' returns zero matches anywhere in alpha-set.md, frontier-set.md, or character-signatures.md — Closure, the more drastic and permanent of the two mechanics (it removes an edge from the battlefield graph forever, per Section 8.5's explicit 'MAY NOT be reopened' clause), has sat fully specified and completely unused since cardgame-spatial-battlefield-rules shipped. This is finishing already-decided, already-defined mechanics (T1), distinct from every one of the 9 units currently in the ready queue.",
+  "expected_outcome": "design/cards/wormhole-closure-cards.md exists with 5 new named cards, one per race, each following the Section 9.1 template (Cost line, Type line, Rules text, optional Stats/counters line only if a Permanent), and each card's Rules text Closes a Wormhole, explicitly citing Section 8.5; `node --test` is green.",
+  "risk_class": "standard",
+  "mission_intent": "I6",
+  "taste_citations": [
+    "T9",
+    "T1",
+    "T8"
+  ],
+  "intent": "design/rules.md Section 8.5 (shipped, part of cardgame-spatial-battlefield-rules) fully defines Wormhole Closure: a Wormhole MAY be Closed only by a card or effect that states it (no default action Closes one), and once Closed it is permanently removed from the battlefield graph, may never be traversed, counted along an Assault path, have its Restrictions changed, or be reopened — a new Discovery is required between the same two Planets. Despite this being one of the two card design spaces the 2026-07-26 ideas-inbox spatial-layer directive explicitly named ('wormholes can be closed... cut a chokepoint, strand a fleet, seal your flank'), a search of every printed card file (alpha-set.md, frontier-set.md, character-signatures.md) for a card that Closes a Wormhole returns zero results. This unit adds a new design/cards/wormhole-closure-cards.md with 5 cards, one per race, each with Rules text that Closes an existing Wormhole, citing 'Section 8.5' by number the same way frontier-set.md's cards cite their sections, paid in that race's own Fount (Cindral Reach/Mass, Mireth Bloom/Bloom, Panoptic Concord/Signal, Starweave Communion/Tangle, Wrought Assembly/Circuit) consistent with every other shipped card file, and using the same Cost/Type/Rules-text/Stats-line template test/design-frontier-cards.test.js already enforces for frontier-set.md. This is a distinct mechanic and a distinct new file from the currently-open cardgame-wormhole-restriction-cards proposal (which covers only Section 8.4 Directional/Team Restrictions) — no overlap in file, mechanic, or card names. No rules.md, alpha-set.md, frontier-set.md, or character-signatures.md change is needed or made.",
+  "criteria": [
+    {
+      "text": "design/cards/wormhole-closure-cards.md exists and contains exactly 5 distinct named cards, one per race under design/races/, each with a Cost line, Type line, and Rules text in that order, and a Stats/counters line only when its Type line contains 'Permanent' — the same template test/design-frontier-cards.test.js enforces for frontier-set.md.",
+      "provenance": "paraphrase",
+      "held_out": false
+    },
+    {
+      "text": "Every one of the 5 cards' Rules text explicitly Closes a Wormhole (as defined in rules.md Section 8.5) and cites 'Section 8.5' by number; no card's Rules text merely adds, removes, or modifies a Restriction (Section 8.4) without also Closing the Wormhole.",
+      "provenance": "paraphrase",
+      "held_out": false
+    },
+    {
+      "text": "Each card's Cost line names exactly the Fount matching its race per the existing race-to-Fount mapping used in frontier-set.md (Cindral Reach/Mass, Mireth Bloom/Bloom, Panoptic Concord/Signal, Starweave Communion/Tangle, Wrought Assembly/Circuit).",
+      "provenance": "paraphrase",
+      "held_out": false
+    },
+    {
+      "text": "design/rules.md, design/cards/alpha-set.md, design/cards/frontier-set.md, and design/cards/character-signatures.md are byte-identical to before this unit, and none of the 5 new card names collides with any card name already printed in those three files.",
+      "provenance": "inferred",
+      "held_out": true
+    }
+  ],
+  "touches": [
+    "design/cards/wormhole-closure-cards.md",
+    "test/design-wormhole-closure-cards.test.js"
+  ],
+  "test_cmd": "node --test",
+  "id": "ms5mjark-cardgame-wormhole-closure-cards",
+  "filed_at": "2026-07-29T05:08:18.368Z",
+  "window_expires": "2026-07-29T06:08:18.370Z",
+  "status": "promoted",
+  "promoted_at": "2026-07-29T06:11:57.170Z"
+}

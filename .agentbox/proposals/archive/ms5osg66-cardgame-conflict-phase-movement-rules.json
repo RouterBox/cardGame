@@ -1,0 +1,57 @@
+{
+  "name": "cardgame-conflict-phase-movement-rules",
+  "title": "Rewrite rules.md Section 5.4 Conflict Phase to define Unit movement and location-aware attacking/blocking, replacing the placeholder combat text",
+  "project": "cardgame",
+  "pitch": "design/rules.md Section 5.4 still runs \"place-holder magic combat\" — attackers/blockers declared with zero reference to which Planet a Unit occupies — while five of RouterBox's own unresolved `//` notes sitting directly above it describe the real system: Units move through Wormholes between Planets, moving precludes attacking by default, and blockers must share the defending Planet.",
+  "why_now": "Reading rules.md Section 5.4 (lines 274-288) top to bottom surfaces five raw `//` dev notes RouterBox left unresolved: units move planet-to-planet through wormholes and this supersedes the normal MTG-zone-style combat; moving a Unit precludes attacking that turn by default; wormhole movement costs time/resources; blockers can only block attackers at the same defending Planet; and the paragraph immediately below is explicitly flagged `//place-holder magic combat`. This is distinct from the currently window-open cardgame-spatial-rules-notes-reconciliation proposal, which only touches Section 8's four spots (8.1, 8.3, 8.4, 8.6) — its own criteria list Section 8.1 as stating Units have a tracked Planet location, but never rewrites Section 5.4 or Section 12's attacker/blocker mechanics to actually use that location, so the placeholder combat text and its adjacent notes are untouched even if that proposal lands. No open or shipped proposal touches Section 5.4. This is finishing already-decided scope (T1) — RouterBox's own inline notes already make the calls (graph is the battlefield, movement precludes attack, same-planet blocking) — written up as clean numbered rules per the MTG-Comprehensive-Rules structural bar (T9).",
+  "expected_outcome": "design/rules.md Section 5.4 contains no remaining `//`-prefixed comment lines; it states, in numbered rules prose, that the active player may take a Movement action moving one Ready Unit across a single Wormhole to an adjacent Planet during the Conflict Phase; that a Unit that moved this turn cannot be declared as an attacker this turn unless a card or ability specifically permits it; that Movement costs Fount Points equal to the traversed Wormhole's Length (mirroring the existing Length-based costing already used for Discovery and Assault); and that a Unit may only be declared as a blocker if it occupies the same Planet as the Planet being attacked. `node --test` is green including every pre-existing assertion in test/design-rules.test.js and test/design-combat.test.js.",
+  "risk_class": "standard",
+  "mission_intent": "I6",
+  "taste_citations": [
+    "T9",
+    "T1"
+  ],
+  "intent": "design/rules.md Section 5.4 (Conflict Phase) was shipped with RouterBox's own review notes left as raw `//` comments instead of finished rules prose, and the combat text immediately below them is explicitly marked `//place-holder magic combat` — attackers and blockers are declared with no reference to Planet location at all, contradicting the corrected model Section 8.1 already establishes elsewhere (a Unit occupies a specific Planet; the graph is the battlefield). This unit rewrites Section 5.4 into clean numbered prose: it defines a Movement action (moving a Ready Unit across one adjacent Wormhole, costing Fount Points equal to that Wormhole's Length), states that a Unit which moved this turn cannot attack this turn by default, and restates attacker/blocker declaration so a blocker must occupy the same Planet as the Planet under attack. The vaguer, explicitly speculative aside in the same notes (\"maybe two races need mainly time, two races need mainly resources\") is not decided design and is left alone — this unit picks the single concrete, already-implied Length-based Fount Point cost consistent with Discovery/Assault rather than inventing untested per-race asymmetry. Only design/rules.md's Section 5.4 and its owning test file, test/design-rules.test.js, change; Section 12's damage-resolution mechanics, which already cross-reference Section 5.4's attacker/blocker declaration by number, need no rewrite since they never assumed a location-agnostic model. No card file and no code outside the test file is touched — this is pure design/rules-text work (T8), not game software.",
+  "criteria": [
+    {
+      "text": "design/rules.md Section 5.4 contains no lines beginning with a `//` inline comment.",
+      "provenance": "paraphrase",
+      "held_out": false
+    },
+    {
+      "text": "Section 5.4 states, in numbered rules prose, that the active player may take a Movement action during the Conflict Phase moving one of their Ready Units across a single Wormhole to an adjacent Planet.",
+      "provenance": "paraphrase",
+      "held_out": false
+    },
+    {
+      "text": "Section 5.4 states that a Unit that moved this turn cannot be declared as an attacker this turn, unless a card or ability specifically says otherwise.",
+      "provenance": "paraphrase",
+      "held_out": false
+    },
+    {
+      "text": "Section 5.4 states that a Unit may only be declared as a blocker against an attacker if that Unit occupies the same Planet as the Planet being attacked.",
+      "provenance": "paraphrase",
+      "held_out": false
+    },
+    {
+      "text": "Section 5.4 states a Fount Point cost for the Movement action equal to the traversed Wormhole's Length.",
+      "provenance": "inferred",
+      "held_out": false
+    },
+    {
+      "text": "Every pre-existing assertion in test/design-rules.test.js and test/design-combat.test.js continues to pass against the rewritten Section 5.4 text.",
+      "provenance": "inferred",
+      "held_out": true
+    }
+  ],
+  "touches": [
+    "design/rules.md",
+    "test/design-rules.test.js"
+  ],
+  "test_cmd": "node --test",
+  "id": "ms5osg66-cardgame-conflict-phase-movement-rules",
+  "filed_at": "2026-07-29T06:11:24.510Z",
+  "window_expires": "2026-07-29T07:11:24.513Z",
+  "status": "promoted",
+  "promoted_at": "2026-07-29T07:11:57.628Z"
+}

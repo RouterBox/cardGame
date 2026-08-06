@@ -1,0 +1,61 @@
+{
+  "name": "cardgame-alpha-set-starter-cards",
+  "title": "cardGame design phase 4 — Alpha set starter cards",
+  "pitch": "Write the first batch of real Alpha-set cards against the now-complete rules.md template — the first content built ON the rules instead of defining them.",
+  "why_now": "design/rules.md is complete through Section 9 (Card Types & Templating, hand-recovered to cardGame master 9a4fa89 after a cross-repo grader bug), closing 'the last rules gap identified before card design and Leonardo art briefs can begin' per the card-types-templating-rules unit's own intent. Nothing blocks card design now, and I6's end goal (a design compelling enough to ungate software) needs actual cards, not just more rules text.",
+  "expected_outcome": "design/cards/alpha-set.md exists in the cardGame repo with at least 15 named cards, each using every field of rules.md Section 9.1's canonical template, spanning all five Card Types and all five Founts, checkable by reading the file against the template.",
+  "risk_class": "standard",
+  "mission_intent": "I6",
+  "taste_citations": [
+    "T8",
+    "T9",
+    "T1"
+  ],
+  "intent": "Fourth design deliverable for the cardGame pilot (gamePlan.md is the source of truth for scope). This is a DESIGN unit, not software (T8): output is a markdown document a human reads and reacts to. design/rules.md is shipped through Section 9, giving every future card a canonical template (Name, Cost line, Type line, Rules text, optional Stats/counters line), five Card Types each tied to one Fount, and the multi-type/multi-cost rule. This unit writes design/cards/alpha-set.md: the first batch of real Alpha-set cards built against that template rather than worked examples inside the rulebook itself. Cards should draw on design/world.md and the five design/races/*.md files so the set reads as belonging to this setting, not generic reskins. Completing this is the first concrete step toward I6's end goal — a card set compelling enough that RouterBox eventually opens the software gate — and keeps design moving at full decided scope (T1) rather than stalling after rules.",
+  "criteria": [
+    {
+      "text": "design/cards/alpha-set.md exists in the cardGame repo and contains at least 15 distinct named cards.",
+      "provenance": "user",
+      "held_out": false
+    },
+    {
+      "text": "Every card uses the canonical template from rules.md Section 9.1 in order (Name, Cost line, Type line, Rules text, and for Permanents an optional Stats/counters line) with no required field missing.",
+      "provenance": "user",
+      "held_out": false
+    },
+    {
+      "text": "The set includes at least one card for each of the five Card Types (Magic, Technology, Intelligence, Biology, Materials) and at least one card costed from each of the five Founts.",
+      "provenance": "paraphrase",
+      "held_out": false
+    },
+    {
+      "text": "Each of the five races (design/races/*.md) has at least one card in the set whose Rules text or flavor ties back to that race's own primary Fount strength as named in its race file.",
+      "provenance": "inferred",
+      "held_out": false
+    },
+    {
+      "text": "At least one card demonstrates the multi-type/multi-cost rule from rules.md Section 9.7 — a card listing more than one Card Type and drawing cost from more than one Fount.",
+      "provenance": "inferred",
+      "held_out": false
+    },
+    {
+      "text": "No card's Rules text references a Fount, Card Type, zone, or template field not already defined in rules.md — every card is legible against the existing rulebook without inventing new terms.",
+      "provenance": "inferred",
+      "held_out": true
+    },
+    {
+      "text": "The file opens with a short summary stating how many cards it contains and which races/Founts/types they span, so coverage is checkable without counting by hand.",
+      "provenance": "inferred",
+      "held_out": true
+    }
+  ],
+  "touches": [
+    "design/cards/alpha-set.md"
+  ],
+  "test_cmd": "node --test",
+  "id": "ms446oga-cardgame-alpha-set-starter-cards",
+  "filed_at": "2026-07-28T03:46:50.314Z",
+  "window_expires": "1970-01-01T00:00:00.000Z",
+  "status": "promoted",
+  "promoted_at": "2026-07-28T04:44:45.336Z"
+}

@@ -1,0 +1,48 @@
+{
+  "name": "cardgame-art-briefs-wormhole-closure",
+  "title": "Art briefs for the Wormhole Closure Cards — the newest shipped card file with zero briefs",
+  "project": "cardgame",
+  "pitch": "design/cards/wormhole-closure-cards.md just shipped 5 named cards (one per race) with no corresponding entries in art-briefs.md; add the 5 missing briefs following the exact template already used for alpha-set.md, wormhole-restrictions-set.md, and fount-economy-set.md.",
+  "why_now": "tools/composite-card-art.js's loadBriefs() drives its entire compositing loop off '###' sections in art-briefs.md — a card absent from that file can never be rendered no matter how many times the tool runs. design/cards/wormhole-closure-cards.md landed this cycle (Bastion Seal Detachment, Withering Conduit Rot, Severance Directive, Rite of the Sealed Tangle, Chokepoint Demolition Charge) and art-briefs.md has zero matches for any of those 5 titles or for 'wormhole-closure' (checked by grep). None of the 8 currently window-open proposals name this file (the one open art-briefs proposal, cardgame-art-briefs-wormhole-restrictions, scopes itself explicitly to wormhole-restrictions-set.md's 5 different cards), none of the 9 queued-but-unbuilt units touch it either (cardgame-art-briefs-fount-economy is scoped to fount-economy-set.md only), and it isn't part of any in-flight build. This is the same unclaimed-briefs gap that has recurred every time a card set ships (frontier-signatures, fount-economy, character-signatures-wave-2, wormhole-restrictions all needed the identical catch-up unit) — filing it immediately keeps the gap from sitting unnoticed.",
+  "expected_outcome": "design/cards/art-briefs.md gains exactly 5 new '###' brief sections, one per wormhole-closure-cards.md card, each with Palette/Subject-Scene/Key visual elements/Composition lines following the exact template already used for alpha-set.md; test/design-art-briefs-wormhole-closure.test.js proves each brief's Palette line names the correct single-Fount color for that card's Cost line (Ash-grey/Mass, Green/Bloom, Cyan/Signal, Copper/Circuit, Violet/Tangle), lists at least 2 card-specific visual elements, and has a Composition line citing the Art Window's rectangular shape and an aspect ratio; node --test is green.",
+  "risk_class": "standard",
+  "mission_intent": "I6",
+  "taste_citations": [
+    "T9",
+    "T8",
+    "T1"
+  ],
+  "intent": "design/cards/art-briefs.md (shipped) states its own purpose as giving one written art brief per card so illustration work can be approved before it starts (T8), and tools/composite-card-art.js's loadBriefs() drives its whole compositing loop off exactly that file's '###' sections — a card absent from art-briefs.md is permanently un-renderable. design/cards/wormhole-closure-cards.md (shipped) added 5 named cards, one per race, each Closing an existing Wormhole per rules.md Section 8.5: Bastion Seal Detachment (Cindral Reach, 2 Mass), Withering Conduit Rot (Mireth Bloom, 2 Bloom), Severance Directive (Panoptic Concord, 1 Signal), Rite of the Sealed Tangle (Starweave Communion, 2 Tangle), Chokepoint Demolition Charge (Wrought Assembly, 2 Circuit) — with no corresponding briefs ever written. This unit adds one new '###' brief section per card to art-briefs.md, following the identical Palette/Subject-Scene/Key-visual-elements/Composition template the file already uses for alpha-set.md, wormhole-restrictions-set.md, and fount-economy-set.md, with each Palette line naming the single card-anatomy.md Fount-identity color matching the one Fount in that card's own Cost line, and each Key-visual-elements list drawing concretely on that card's own rules text and flavor text (e.g. Bastion Seal Detachment's welded-shut border, Withering Conduit Rot's overtaken lining, Severance Directive's issued order outpacing the reader, Rite of the Sealed Tangle's returning-to-shape framing, Chokepoint Demolition Charge's single charge/pulse) rather than generic filler. It adds a new, independent test/design-art-briefs-wormhole-closure.test.js mirroring the assertion shape of the existing design-art-briefs tests, so it has zero touch-overlap with the open wormhole-restrictions or fount-economy art-briefs work, or with the open art-brief-test-helper-dedup proposal's edits to the shared test/design-art-briefs.test.js. No card file, rules.md, or the compositing/rendering code itself is touched — only art-briefs.md grows and a new test file is added.",
+  "criteria": [
+    {
+      "text": "design/cards/art-briefs.md gains exactly 5 new '###' sections, titled exactly 'Bastion Seal Detachment', 'Withering Conduit Rot', 'Severance Directive', 'Rite of the Sealed Tangle', and 'Chokepoint Demolition Charge' verbatim, with no pre-existing brief section removed, renamed, or altered.",
+      "provenance": "paraphrase",
+      "held_out": false
+    },
+    {
+      "text": "Each new brief's Palette line names the single Fount-driven color from card-anatomy.md's Fount identity table matching the one Fount named in that card's own Cost line (Ash-grey for Mass, Green for Bloom, Cyan for Signal, Copper for Circuit, Violet for Tangle).",
+      "provenance": "paraphrase",
+      "held_out": false
+    },
+    {
+      "text": "Each new brief has a 'Key visual elements:' list of at least 2 bullets sharing at least 2 significant words with that card's own rules text or flavor text (not generic filler phrasing), and a 'Composition:' line naming the Art Window's rectangular/landscape shape and an aspect ratio.",
+      "provenance": "paraphrase",
+      "held_out": false
+    },
+    {
+      "text": "test/design-art-briefs-wormhole-closure.test.js exists and enforces the above against the real, current wormhole-closure-cards.md and art-briefs.md content; every other card file and every pre-existing test file remain byte-identical to before this unit.",
+      "provenance": "inferred",
+      "held_out": true
+    }
+  ],
+  "touches": [
+    "design/cards/art-briefs.md",
+    "test/design-art-briefs-wormhole-closure.test.js"
+  ],
+  "test_cmd": "node --test",
+  "id": "ms5rvq75-cardgame-art-briefs-wormhole-closure",
+  "filed_at": "2026-07-29T07:37:56.321Z",
+  "window_expires": "2026-07-29T08:37:56.324Z",
+  "status": "promoted",
+  "promoted_at": "2026-07-29T08:39:17.891Z"
+}

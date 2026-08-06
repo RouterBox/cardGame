@@ -1,0 +1,8 @@
+{
+  "gate": "confirm",
+  "question": "Planner self-assessed this unit as risky/ambiguous. Approve the plan to continue.",
+  "raised_at": "2026-07-28T11:32:12.545Z",
+  "decision": "approve",
+  "comment": "Orchestrator approval under plan-gate delegation. The planner caught a real spec contradiction (AC1 assumed Homeworld Capture exists; Section 8 says Homeworlds can never be Captured, twice) and chose the only reading satisfying AC1+AC5 together: elimination = Core Integrity 0, with Section 8 cross-referenced to state Capture is NOT the trigger. Consistent with canon, no Section 8 rewrite. Game-content judgment stays with the pipeline (T18).",
+  "decided_at": "2026-07-28T11:33:28.454Z"
+}

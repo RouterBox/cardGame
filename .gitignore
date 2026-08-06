@@ -1,1 +1,4 @@
 .site-build.lock
+
+# AgentBox pipeline bookkeeping (units, work items, memory, proposals, mission/taste).
+# The engine lives in C:/github/AgentBox; this is its per-project working data.

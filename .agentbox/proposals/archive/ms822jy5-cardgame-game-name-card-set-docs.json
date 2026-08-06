@@ -1,0 +1,73 @@
+{
+  "name": "cardgame-game-name-card-set-docs",
+  "title": "Propagate \"Wreck Tangle\" into all 10 existing card-set docs — the one target of the 2026-07-29 naming directive still unclaimed",
+  "project": "cardgame",
+  "pitch": "design/ideas-inbox.md's 2026-07-29 game-name directive names 4 propagation targets (rulebook title, design-shelf site, card set docs, lore references); test/design-game-name.test.js locks in the first two, the already-merged cardgame-lore-docs-game-name-references unit closed the fourth, and grep confirms \"Wreck Tangle\" appears in zero of the 10 design/cards/*.md card-set files — the third target was never claimed.",
+  "why_now": "Verified live: design/ideas-inbox.md's \"2026-07-29 — The game's name\" entry (lines 136-145) states verbatim \"The name should propagate through the rulebook title, the design-shelf site, the card set docs, and lore references to the game itself\" and carries no `[incorporated: ...]` tag, unlike every other entry in the file (the inbox's own header rule: \"mark them [incorporated: <unit-name>] when a shipped unit lands them\"). Read test/design-game-name.test.js in full: its two tests assert \"Wreck Tangle\" appears only in design/rules.md and site/index.html — rulebook title and site, nothing about card docs. Read memory/cardgame-lore-docs-game-name-references.md (merged 2026-07-30): its intent explicitly states \"Do not touch ... any design/cards/*.md ... file\", confirming the lore unit closed only the fourth target (world.md, lore.md, star-atlas.md). Ran a grep for \"Wreck Tangle\" across design/cards/*.md: zero matches across all 10 existing card-set files (alpha-set.md, frontier-set.md, character-signatures.md, character-signatures-wave-2.md, character-signatures-wave-3.md, spatial-race-identity-set.md, spatial-race-identity-set-wave-2.md, wormhole-restrictions-set.md, wormhole-closure-cards.md, fount-economy-set.md — the exact 10-file list DESIGN-READINESS.md Section 3 already enumerates as \"every shipped card set/wave\"). Confirmed each of these 10 files opens with a H1 title followed immediately by a \"## Summary\" section (read alpha-set.md and fount-economy-set.md in full as structural samples) — the same additive, non-title-touching insertion point the lore unit already used for world.md/lore.md/star-atlas.md. Checked memory and all 5 currently window-open proposals (art-briefs-character-signatures-wave-3, jaina-world-narrative-sync-dryrun, rules-restriction-movement-contradiction-fix, design-readiness-section4-live-derived-check, playtest-character-signatures-wave-3-refresh) plus both in-flight units (cardgame-frontier-worlds-cards, cardgame-playtest-spatial-wormhole-coverage): none touches any of the 10 card-set files or design/ideas-inbox.md. frontier-worlds-set.md is a new file the in-flight unit is still creating and does not exist yet, so it is correctly out of scope for this unit — a later unit's problem once it ships.",
+  "expected_outcome": "Each of the 10 existing design/cards/*.md set files gains exactly one new sentence inside its existing \"## Summary\" section naming the game \"Wreck Tangle\", written to fit that file's own voice (not an identical copy-pasted string across all 10); every existing card entry and each file's H1 title are byte-for-byte unchanged; the 10 corresponding site/design/cards/*.html pages are regenerated via tools/build-site.js; design/ideas-inbox.md's \"2026-07-29 — The game's name\" heading gains `[incorporated: cardgame-game-name-card-set-docs]`, its only change; a new test file mechanically confirms all of the above across all 10 files plus the ideas-inbox tag.",
+  "risk_class": "standard",
+  "mission_intent": "I6",
+  "taste_citations": [
+    "T1",
+    "T8",
+    "T9"
+  ],
+  "intent": "design/ideas-inbox.md's 2026-07-29 entry directs the name \"Wreck Tangle\" to propagate through 4 targets: rulebook title (closed — test/design-game-name.test.js asserts it in design/rules.md), the design-shelf site (closed — same test, site/index.html), lore references (closed — cardgame-lore-docs-game-name-references, merged 2026-07-30, added one sentence each to world.md/lore.md/star-atlas.md), and the card set docs (never claimed). T1: \"MVP means the currently planned and decided scope\" — do not stop at a token single file when the directive names a category and DESIGN-READINESS.md Section 3 already gives that category's exact, enumerable membership: the 10 files parsing to 1+ cards via lib/parse-card-markdown.js's loadAllCards (alpha-set.md, frontier-set.md, character-signatures.md, character-signatures-wave-2.md, character-signatures-wave-3.md, spatial-race-identity-set.md, spatial-race-identity-set-wave-2.md, wormhole-restrictions-set.md, wormhole-closure-cards.md, fount-economy-set.md). For each of these 10 files, add one new sentence inside its existing \"## Summary\" section (append to the end of the section, not replacing any existing sentence) naming the game \"Wreck Tangle\", following the exact additive pattern and per-file tailored voice the lore unit already established (e.g. referencing what that specific set is/does, not a generic filler sentence, and not identical wording copy-pasted across all 10). Do not touch any file's H1 title, any \"###\" card entry (Name/Cost line/Type line/Rules text/flavor text), design/cards/card-anatomy.md, design/cards/art-briefs.md, design/cards/alt-art-briefs.md (these three are spec/brief docs, not card sets, per DESIGN-READINESS.md Section 3's own categorization — out of scope), design/rules.md, site/index.html, or design/cards/frontier-worlds-set.md (does not exist yet). Regenerate the 10 corresponding site/design/cards/*.html pages via tools/build-site.js. Update design/ideas-inbox.md: add `[incorporated: cardgame-game-name-card-set-docs]` to the \"## 2026-07-29 — The game's name\" heading line, matching the tag format every other incorporated entry in that file already uses — this is the only change to ideas-inbox.md; do not touch any other entry or any of its verbatim-quote blocks. Add a new, independent test file asserting: all 10 files contain \"Wreck Tangle\"; each file's card entries and H1 are unchanged from their pre-unit content; the 10 site pages are regenerated and contain \"Wreck Tangle\"; and design/ideas-inbox.md's game-name heading carries the incorporated tag.",
+  "criteria": [
+    {
+      "text": "All 10 existing design/cards/*.md set files (alpha-set.md, frontier-set.md, character-signatures.md, character-signatures-wave-2.md, character-signatures-wave-3.md, spatial-race-identity-set.md, spatial-race-identity-set-wave-2.md, wormhole-restrictions-set.md, wormhole-closure-cards.md, fount-economy-set.md) contain the string \"Wreck Tangle\" at least once, added inside each file's existing \"## Summary\" section",
+      "provenance": "inferred",
+      "held_out": false
+    },
+    {
+      "text": "Every \"###\" card entry (Name, Cost line, Type line, Rules text, flavor text) and every file's H1 title, across all 10 files, are byte-for-byte unchanged from their content before this unit",
+      "provenance": "inferred",
+      "held_out": false
+    },
+    {
+      "text": "The 10 new sentences are not an identical copy-pasted string across all 10 files — each is tailored to reference that specific set's own subject matter",
+      "provenance": "paraphrase",
+      "held_out": true
+    },
+    {
+      "text": "design/ideas-inbox.md's \"## 2026-07-29 — The game's name\" heading line contains `[incorporated: cardgame-game-name-card-set-docs]`, and no other line or entry in ideas-inbox.md is changed",
+      "provenance": "paraphrase",
+      "held_out": true
+    },
+    {
+      "text": "The 10 corresponding site/design/cards/*.html pages are regenerated via tools/build-site.js and each contains \"Wreck Tangle\"; a new test file mechanically asserts all of the above",
+      "provenance": "paraphrase",
+      "held_out": false
+    }
+  ],
+  "touches": [
+    "design/cards/alpha-set.md",
+    "design/cards/frontier-set.md",
+    "design/cards/character-signatures.md",
+    "design/cards/character-signatures-wave-2.md",
+    "design/cards/character-signatures-wave-3.md",
+    "design/cards/spatial-race-identity-set.md",
+    "design/cards/spatial-race-identity-set-wave-2.md",
+    "design/cards/wormhole-restrictions-set.md",
+    "design/cards/wormhole-closure-cards.md",
+    "design/cards/fount-economy-set.md",
+    "design/ideas-inbox.md",
+    "site/design/cards/alpha-set.html",
+    "site/design/cards/frontier-set.html",
+    "site/design/cards/character-signatures.html",
+    "site/design/cards/character-signatures-wave-2.html",
+    "site/design/cards/character-signatures-wave-3.html",
+    "site/design/cards/spatial-race-identity-set.html",
+    "site/design/cards/spatial-race-identity-set-wave-2.html",
+    "site/design/cards/wormhole-restrictions-set.html",
+    "site/design/cards/wormhole-closure-cards.html",
+    "site/design/cards/fount-economy-set.html",
+    "test/design-game-name-card-sets.test.js"
+  ],
+  "test_cmd": "node --test",
+  "id": "ms822jy5-cardgame-game-name-card-set-docs",
+  "filed_at": "2026-07-30T21:58:43.325Z",
+  "window_expires": "2026-07-31T01:58:43.327Z",
+  "status": "promoted",
+  "promoted_at": "2026-07-31T02:09:34.432Z"
+}

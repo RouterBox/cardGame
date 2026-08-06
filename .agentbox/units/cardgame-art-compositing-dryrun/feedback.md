@@ -1,0 +1,2 @@
+
+- [2026-07-28T12:41:53.338Z] Resolved by orchestrator hand-recovery with fix (T18). Reviewer finding was real: the injectable-client test overwrote renders/cards-composited/ with fake placeholder hrefs and never restored it, so a plain node --test run left corrupted output. Fixed on the branch (test now re-runs the default mock client after the fake-client assertion), verified 18 real composited SVGs with no fake residue, merged 404c3d9, 370/370 green.

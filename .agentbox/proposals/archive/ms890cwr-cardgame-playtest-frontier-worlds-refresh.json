@@ -1,0 +1,62 @@
+{
+  "name": "cardgame-playtest-frontier-worlds-refresh",
+  "title": "Narrate the Frontier Worlds Set in the spatial playtest procedure — 5 shipped cards, zero mentions in playtest-spatial.md",
+  "project": "cardgame",
+  "pitch": "design/cards/frontier-worlds-set.md shipped 5 named cards grounding Halvorne Junction, Kelmourn Drift, and Tallowfen in real Discovery/Blockade mechanics, but design/playtest-spatial.md — the on-paper procedure that narrates every other shipped card set against the physical graph — never mentions any of them.",
+  "why_now": "frontier-worlds-set.md merged this session (commit d24e686, 'all named worlds now have cards') and DESIGN-READINESS.md Section 3 already lists it among the 10 shipped card-set files, but a repo-wide grep for 'frontier-worlds', 'Halvorne', 'Kelmourn', and 'Tallowfen' finds zero hits anywhere under design/playtest*.md. This is the exact stale-doc-after-new-cards-shipped gap that cardgame-playtest-spatial-wormhole-coverage, -spatial-race-identity-refresh, -spatial-closure-refresh, and -spatial-restriction-refresh each closed for earlier sets (steps 8, 9, 10, 12 of playtest-spatial.md all exist because of that exact pattern) — frontier-worlds-set.md is now the one shipped set playtest-spatial.md has never caught up to. Checked all 6 currently window-open proposals and all 3 in-flight unit directories (cardgame-art-briefs-character-signatures-wave-3, cardgame-design-readiness-section4-live-derived-check, cardgame-rules-restriction-movement-contradiction-fix) for 'frontier-worlds', 'Halvorne', 'Kelmourn', 'Tallowfen' — zero matches outside already-archived (already-shipped) proposals, so there is no touch-overlap or duplicate in flight.",
+  "expected_outcome": "design/playtest-spatial.md gains one new numbered step, inserted before the closing 'Play to a conclusion' step and following the same 'Narrate the ... cards on this same graph' sub-step pattern already used by steps 10 and 12, naming all 5 Frontier Worlds Set cards (Halvorne Reclamation Fleet, Tanglekeeper's Vigil, Kelmourn Wreck-Bloom, Kelmourn Claim Ledger, Tallowfen Chokepoint Works) with their real Cost lines and the specific named world each targets — demoable as a diff to playtest-spatial.md plus a green `node --test` run including the new test file.",
+  "risk_class": "standard",
+  "mission_intent": "I6",
+  "taste_citations": [
+    "T9",
+    "T8"
+  ],
+  "intent": "design/playtest-spatial.md is the step-by-step on-paper procedure that lets two humans playtest design/rules.md's spatial battlefield with physical materials, and it earns its rigor by citing an exact rules.md section for every action and, where a card exists, naming the real card producing that action instead of narrating a bare rule. Steps 8, 9, 10, and 12 already do this for the Wormhole Restriction, Wormhole Closure, and Spatial Race Identity card sets as each shipped — but design/cards/frontier-worlds-set.md (5 cards, one per race, each grounding a mechanic in Section 8.3 Discovery-family terms or Section 8.6 Blockade, each naming a specific Frontier/Contested world from design/star-atlas.md) has since shipped with no corresponding narration anywhere in the file. This unit adds one new step, following the established 'Narrate the ... cards on this same graph' sub-step pattern (steps 10 and 12), inserted before the closing 'Play to a conclusion' step, narrating all 5 Frontier Worlds Set cards against the graph state already on the table from steps 6 (Discovery) and 11 (Assault/Blockade): Halvorne Reclamation Fleet and Tanglekeeper's Vigil naming Halvorne Junction, Kelmourn Wreck-Bloom and Kelmourn Claim Ledger naming Kelmourn Drift, and Tallowfen Chokepoint Works naming Tallowfen — each with its real Cost line and the Section 8.3/8.6 term its own Rules text already cites. Every existing step's body text is otherwise untouched aside from the renumbering the insertion causes. A new, independent test/design-playtest-frontier-worlds-refresh.test.js verifies the new step names all 5 cards with correct Cost lines and world attributions, cross-checked against design/cards/frontier-worlds-set.md's actual on-disk text, and that no existing step's content changed.",
+  "criteria": [
+    {
+      "text": "design/playtest-spatial.md gains a new numbered step narrating the Frontier Worlds Set (design/cards/frontier-worlds-set.md), inserted before the final 'Play to a conclusion' step, following the same 'Narrate the ... cards on this same graph' sub-step pattern already used by steps 10 and 12.",
+      "provenance": "paraphrase",
+      "held_out": false
+    },
+    {
+      "text": "The new step names all 5 Frontier Worlds Set cards by exact heading: Halvorne Reclamation Fleet, Tanglekeeper's Vigil, Kelmourn Wreck-Bloom, Kelmourn Claim Ledger, Tallowfen Chokepoint Works.",
+      "provenance": "paraphrase",
+      "held_out": false
+    },
+    {
+      "text": "Each named card's Cost line in the new step matches its Cost line in frontier-worlds-set.md exactly: Halvorne Reclamation Fleet 2 Mass, Tanglekeeper's Vigil 2 Tangle, Kelmourn Wreck-Bloom 2 Bloom, Kelmourn Claim Ledger 1 Signal, Tallowfen Chokepoint Works 2 Circuit.",
+      "provenance": "paraphrase",
+      "held_out": false
+    },
+    {
+      "text": "The new step names the specific Frontier/Contested world each card's trigger condition targets — Halvorne Junction for Halvorne Reclamation Fleet and Tanglekeeper's Vigil, Kelmourn Drift for Kelmourn Wreck-Bloom and Kelmourn Claim Ledger, Tallowfen for Tallowfen Chokepoint Works — matching frontier-worlds-set.md's own world attributions.",
+      "provenance": "inferred",
+      "held_out": true
+    },
+    {
+      "text": "The new step cites Section 8.3 or Section 8.6 by number for each card, matching whichever section that card's own Rules text in frontier-worlds-set.md already cites.",
+      "provenance": "paraphrase",
+      "held_out": false
+    },
+    {
+      "text": "All previously existing numbered steps' body text in playtest-spatial.md, plus the Materials list and 'What to watch for' section, are unchanged aside from renumbering caused by inserting the new step.",
+      "provenance": "inferred",
+      "held_out": true
+    },
+    {
+      "text": "node --test passes for the whole cardGame suite, including a new test file asserting the above against both playtest-spatial.md and frontier-worlds-set.md's actual on-disk text.",
+      "provenance": "inferred",
+      "held_out": false
+    }
+  ],
+  "touches": [
+    "design/playtest-spatial.md",
+    "test/design-playtest-frontier-worlds-refresh.test.js"
+  ],
+  "test_cmd": "node --test",
+  "id": "ms890cwr-cardgame-playtest-frontier-worlds-refresh",
+  "filed_at": "2026-07-31T01:12:58.203Z",
+  "window_expires": "2026-07-31T05:12:58.205Z",
+  "status": "promoted",
+  "promoted_at": "2026-07-31T05:24:34.519Z"
+}

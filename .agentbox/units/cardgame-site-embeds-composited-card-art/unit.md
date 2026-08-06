@@ -1,0 +1,17 @@
+name: cardgame-site-embeds-composited-card-art
+title: Show composited card art on the design-shelf site's card pages
+project: cardgame
+risk_class: standard
+mode: autopilot
+test_cmd: node --test
+
+## Intent
+
+tools/build-site.js (shipped) renders design/cards/*.md pages by feeding the raw markdown through renderMarkdown()/renderBlocks(), which only ever produces headings, paragraphs, lists, and tables from the source text — it has no awareness of renders/cards-composited/, the output directory tools/composite-card-art.js (shipped) already fills with one <slug>.svg per card named in design/cards/art-briefs.md, using the same slugify() from lib/parse-card-markdown.js that this unit will reuse to compute matching filenames. tools/serve-site.js (shipped) only serves files whose resolved path stays inside SITE_DIR (site/), so any image reference has to live under site/, not point out to renders/ directly. This unit changes build-site.js so that when it renders a page under design/cards/, for each level-3 (###) card-name heading it emits, if a matching renders/cards-composited/<slugify(name)>.svg exists on disk, the build (a) copies that SVG's current bytes into a site/-local path (e.g. site/_card-art/<slug>.svg) as part of the same build, and (b) inserts an <img class="card-art" src="..."> immediately after that card's rendered <h3> pointing at the copy, with a relative href computed the same way buildNav() already computes cross-page relative hrefs. Cards with no composited render yet (most of frontier-set.md and character-signatures.md, per the still-open art-briefs-frontier-signatures proposal) get no image and no broken reference — build-site.js must not throw when a card's SVG is simply absent. No card file, art-briefs.md, render-card.js, or composite-card-art.js is touched; this only changes how build-site.js turns already-existing composited output into something the shipped phone site actually shows.
+
+## Acceptance Criteria
+
+- AC1 [paraphrase]: For every card whose name (from a design/cards/*.md '###' heading) matches a file renders/cards-composited/<slug>.svg (slug computed via lib/parse-card-markdown.js's slugify, the same function tools/composite-card-art.js uses to name its output), running node tools/build-site.js produces a site/ page containing an <img> tag whose src, resolved relative to that page's own output path, points at an existing file inside site/ whose bytes are byte-identical to the source renders/cards-composited/<slug>.svg.
+- AC2 [paraphrase]: For a card with no matching file in renders/cards-composited/, the generated page for that card's source file contains no <img class="card-art"> tag referencing that card, and node tools/build-site.js exits 0 (does not throw) when some or all cards in a page lack a composited render.
+- AC3 [inferred]: Every copied site/-local card-art SVG file lives at a path under site/ that tools/serve-site.js's resolveFilePath() (from test/build-site.test.js's existing SITE_DIR-containment convention) would resolve and serve successfully, i.e. no card-art <img src> is an absolute filesystem path or a path that escapes site/.
+- AC4 [inferred] (held_out): Running node tools/composite-card-art.js then node tools/build-site.js twice in a row produces a byte-identical site/ tree (including the copied card-art SVGs) on the second run as the first, and every existing assertion in test/build-site.test.js against pages for non-card sections (World, Races, Characters, Rules, Plans & Ideas) still passes unchanged.

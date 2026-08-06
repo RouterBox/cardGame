@@ -1,0 +1,24 @@
+{
+  "stuck": "The finished work failed its final check before it could be merged.",
+  "tried": "The change had been built and sent for review.",
+  "options": [
+    {
+      "id": "retry",
+      "label": "Try again as-is",
+      "consequence": "Starts a fresh attempt using the same plan and instructions.",
+      "action": "retry"
+    },
+    {
+      "id": "guidance-retry",
+      "label": "Give guidance and try again",
+      "consequence": "Uses your note below as new instructions for a fresh attempt.",
+      "action": "custom"
+    },
+    {
+      "id": "abandon",
+      "label": "Abandon this task",
+      "consequence": "Stops work on this unit for good.",
+      "action": "abandon"
+    }
+  ]
+}

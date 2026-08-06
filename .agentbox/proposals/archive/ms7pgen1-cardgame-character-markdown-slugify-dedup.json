@@ -1,0 +1,46 @@
+{
+  "name": "cardgame-character-markdown-slugify-dedup",
+  "title": "Remove lib/parse-character-markdown.js's byte-identical redeclaration of slugify — import it from lib/parse-card-markdown.js instead",
+  "project": "cardgame",
+  "pitch": "lib/parse-character-markdown.js:103-108 redeclares the exact same slugify function lib/parse-card-markdown.js already exports, instead of importing it the way lib/parse-lore-markdown.js and lib/parse-founts-markdown.js already do.",
+  "why_now": "Verified live by reading both files in full: lib/parse-card-markdown.js:98-103 exports slugify (lowercase, non-alphanumeric runs to a single hyphen, trim leading/trailing hyphens) via its module.exports on line 127. lib/parse-character-markdown.js:103-108 defines the byte-identical function body and re-exports its own local copy. grep confirms nothing outside parse-character-markdown.js imports slugify from it directly (only loadAllCharacters is imported, by tools/sync-characters-to-jaina.js), so swapping the implementation is a safe, invisible-to-callers change. This is deliberately NOT a duplicate of the pending cardgame-lib-markdown-section-parser-dedup proposal: that proposal's own why_now and touches list scope its slugify fix to exactly two files, lib/parse-race-markdown.js and lib/parse-star-atlas-markdown.js, and its touches list never includes lib/parse-character-markdown.js or lib/parse-card-markdown.js at all — it also creates a separate lib/markdown-sections.js for a different duplication (H2/H3 section-splitting), which is not what this unit does. Checked memory and all 5 currently window-open proposals plus all 3 in-flight units (art-briefs-spatial-race-identity-wave-2, jaina-sync-tools-dedup, playtest-spatial-race-identity-refresh) first per T24: none references lib/parse-character-markdown.js.",
+  "expected_outcome": "lib/parse-character-markdown.js no longer defines its own slugify function; it imports slugify from lib/parse-card-markdown.js via the same require-and-destructure pattern lib/parse-lore-markdown.js and lib/parse-founts-markdown.js already use. Its module.exports still exports slugify (re-exporting the imported one, so existing callers of the export are unaffected). test/parse-character-markdown.test.js passes unmodified, and loadAllCharacters() against the real design/characters/ files returns identical slug values to before the change.",
+  "risk_class": "standard",
+  "mission_intent": "I6",
+  "taste_citations": [
+    "T16",
+    "T24"
+  ],
+  "intent": "lib/parse-character-markdown.js was written before the codebase's slugify convention settled: lib/parse-card-markdown.js exports the canonical implementation, and lib/parse-lore-markdown.js and lib/parse-founts-markdown.js both already import it (`const { slugify } = require('./parse-card-markdown')`) rather than redeclaring it. lib/parse-character-markdown.js and lib/parse-race-markdown.js/lib/parse-star-atlas-markdown.js are the three straggler files that still redeclare their own copy — the latter two are already claimed by the pending cardgame-lib-markdown-section-parser-dedup proposal, leaving parse-character-markdown.js as the one remaining, unclaimed instance. Delete lines 103-108 (the local slugify function) from lib/parse-character-markdown.js, add a `const { slugify } = require('./parse-card-markdown');` import near the top (mirroring parse-lore-markdown.js's exact import style and placement), and leave every other function (splitIntoH2Sections, splitNameAndTitle, parseCharacterBody, parseCharacterMarkdown, raceFromFilename, loadCharactersFromFile, loadAllCharacters) and the module.exports list itself completely unchanged — slugify stays exported, just re-exporting the imported function instead of a locally-defined one. Do not touch lib/parse-card-markdown.js, lib/parse-race-markdown.js, lib/parse-star-atlas-markdown.js, lib/parse-lore-markdown.js, lib/parse-founts-markdown.js, or any design/ or tools/ file — this unit only removes one redundant function body from one file.",
+  "criteria": [
+    {
+      "text": "lib/parse-character-markdown.js no longer contains a local function declaration for slugify; it imports slugify from lib/parse-card-markdown.js",
+      "provenance": "inferred",
+      "held_out": false
+    },
+    {
+      "text": "lib/parse-character-markdown.js's module.exports still includes slugify, and calling it returns the same values as before (e.g. slugify('Torel Ashgrave') === 'torel-ashgrave')",
+      "provenance": "inferred",
+      "held_out": false
+    },
+    {
+      "text": "lib/parse-card-markdown.js, lib/parse-race-markdown.js, lib/parse-star-atlas-markdown.js, lib/parse-lore-markdown.js, and lib/parse-founts-markdown.js are byte-for-byte unchanged",
+      "provenance": "inferred",
+      "held_out": true
+    },
+    {
+      "text": "test/parse-character-markdown.test.js passes unmodified against the refactored file, and loadAllCharacters() called against the real design/characters/ files returns the same character records (including slug values) as before the refactor",
+      "provenance": "paraphrase",
+      "held_out": false
+    }
+  ],
+  "touches": [
+    "lib/parse-character-markdown.js"
+  ],
+  "test_cmd": "node --test",
+  "id": "ms7pgen1-cardgame-character-markdown-slugify-dedup",
+  "filed_at": "2026-07-30T15:29:57.000Z",
+  "window_expires": "2026-07-30T19:30:02.000Z",
+  "status": "promoted",
+  "promoted_at": "2026-07-30T19:39:29.645Z"
+}

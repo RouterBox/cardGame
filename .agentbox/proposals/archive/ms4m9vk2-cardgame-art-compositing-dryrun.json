@@ -1,0 +1,48 @@
+{
+  "name": "cardgame-art-compositing-dryrun",
+  "title": "cardGame tool — mocked art-compositing pass fills the Art Window from the written briefs",
+  "project": "cardgame",
+  "pitch": "Extend the card authoring engine with a compositing script that reads design/cards/art-briefs.md and drops a generated image into each card's Art Window slot, wired through an injectable client whose default is a deterministic mock — no live Leonardo calls yet.",
+  "why_now": "Both inputs this needs already shipped — art-briefs.md (18 written briefs) and the layout engine that currently leaves the Art Window an empty placeholder rectangle — so the compositing step is the next buildable link in the T16 chain, and the ledger's own precedent (jaina-sync went dry-run before live) says prove the wiring with a mock before anyone has to decide about spending real Leonardo credits.",
+  "expected_outcome": "`node tools/composite-card-art.js` exits 0 and renders/cards-composited/ contains one SVG per brief in design/cards/art-briefs.md, each showing a mock-generated image filling the Art Window (not a blank rectangle), viewable directly as image files — no network calls made.",
+  "risk_class": "standard",
+  "mission_intent": "I6",
+  "taste_citations": [
+    "T16",
+    "T9",
+    "T17"
+  ],
+  "intent": "T16 named the art-compositing step explicitly: 'Leonardo/gen-AI produces ONLY the art-window image, composited into its slot, because generators can't do text/symbols or hold a style across runs.' The layout engine (cardgame-card-authoring-engine) already renders every other zone from data and leaves the Art Window a placeholder rectangle for exactly this follow-up. This unit builds tools/composite-card-art.js: it reads design/cards/art-briefs.md, turns each brief into a generation request, and replaces the Art Window placeholder with an <image> element sized to the Art Window bounds from design/cards/card-anatomy.md. The art-generation call goes through an injectable client interface so the default path (and the whole test suite) uses a deterministic mock and makes zero real Leonardo API calls or spend — mirroring the dry-run-before-live pattern the ledger already validated for the Jaina sync tool (T17/T19/T20), so wiring a real Leonardo key stays a separate, later decision rather than bundled into this unit.",
+  "criteria": [
+    {
+      "text": "tools/composite-card-art.js exists; running `node tools/composite-card-art.js` exits 0 and writes exactly one composited SVG per brief section in design/cards/art-briefs.md into renders/cards-composited/.",
+      "provenance": "user",
+      "held_out": false
+    },
+    {
+      "text": "Each composited SVG's Art Window slot contains an <image> element (not the placeholder rect) positioned and sized to match the Art Window bounds defined in design/cards/card-anatomy.md.",
+      "provenance": "paraphrase",
+      "held_out": false
+    },
+    {
+      "text": "Image generation goes through an injectable client; the default/test client is a deterministic mock that makes no network calls and requires no Leonardo API key, so `node --test` runs fully offline.",
+      "provenance": "inferred",
+      "held_out": false
+    },
+    {
+      "text": "Running the script twice in a row with the mock client produces byte-identical output across all composited SVGs, verifiable by hashing.",
+      "provenance": "inferred",
+      "held_out": true
+    }
+  ],
+  "touches": [
+    "tools/composite-card-art.js",
+    "test/composite-card-art.test.js"
+  ],
+  "test_cmd": "node --test",
+  "id": "ms4m9vk2-cardgame-art-compositing-dryrun",
+  "filed_at": "2026-07-28T12:13:12.578Z",
+  "window_expires": "1970-01-01T00:00:00.000Z",
+  "status": "promoted",
+  "promoted_at": "2026-07-28T12:18:25.873Z"
+}

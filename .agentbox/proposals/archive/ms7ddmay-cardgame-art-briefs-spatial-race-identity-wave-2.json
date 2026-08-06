@@ -1,0 +1,53 @@
+{
+  "name": "cardgame-art-briefs-spatial-race-identity-wave-2",
+  "title": "Write the missing art briefs for spatial-race-identity-set-wave-2.md's 2 cards (Bloom Fount, Circuit Fount)",
+  "project": "cardgame",
+  "pitch": "design/cards/art-briefs.md has zero entries for spatial-race-identity-set-wave-2.md's 2 cards (Bloom Fount — Mireth Bloom, Circuit Fount — Wrought Assembly), a hole DESIGN-READINESS.md's Open Gap 1 never named because it only tracked the wave-1 set and wormhole-closure-cards.",
+  "why_now": "Verified live: grepping design/cards/art-briefs.md's 52 '###' headings finds no 'Bloom Fount' or 'Circuit Fount' entry, even though the already-merged wave-1 sibling (cardgame-art-briefs-spatial-race-identity) and wormhole-closure briefs both shipped and both open DESIGN-READINESS-fix proposals (gap1-wormhole-resolved-fix, section4-art-briefs-coverage-fix) only reference those two sets — neither mentions the wave-2 file at all, so this 2-card hole would still exist even after both merge. Nothing in the current queue (the 3 Jaina-sync-dryrun tool units plus the 2 doc-accuracy fixes) touches art-briefs.md or spatial-race-identity-set-wave-2.md, so this is a genuinely disjoint gap, not a re-file (T24 discipline: checked memory and every open proposal first).",
+  "expected_outcome": "design/cards/art-briefs.md gains exactly 2 new '###' sections, titled 'Bloom Fount' and 'Circuit Fount' verbatim, each following the established Palette/Subject-Scene/Key-visual-elements/Composition format; running tools/composite-card-art.js against spatial-race-identity-set-wave-2.md no longer prints a 'no art brief for \"<name>\"' warning for either card.",
+  "risk_class": "standard",
+  "mission_intent": "I6",
+  "taste_citations": [
+    "T9",
+    "T16",
+    "T24"
+  ],
+  "intent": "design/cards/art-briefs.md documents an art brief for every card in every other shipped card set, but design/cards/spatial-race-identity-set-wave-2.md's 2 cards (Bloom Fount — a Mireth Bloom Generator built with 'Bloomfront Expansion,' costed 2 Bloom, that MAY be built on a Planet its controller does not control; Circuit Fount — a Wrought Assembly Generator costed 2 Circuit that costs 1 less when built on a Discovery-added Planet) have none. This wave-2 file shipped after the wave-1 spatial-race-identity-set.md briefs were already written, and DESIGN-READINESS.md's Open Gap 1 (and both open proposals fixing it) only ever tracked the wave-1 set plus wormhole-closure-cards.md — the wave-2 file was never named as a gap anywhere, so it was silently missed. Add one brief per card, following the exact format every prior art-briefs unit has used (Palette, Subject/Scene, Key visual elements, Composition), naming each card's Fount-driven palette color from design/cards/card-anatomy.md's Frame/Border color table (the Bloom (biology) -> Green, the Circuit (technology) -> Copper), a Subject/Scene naming the respective race (Mireth Bloom / Wrought Assembly) and the card's own specific mechanic, a Key visual elements bulleted list of at least 3 items, and a Composition line citing the Art Window's landscape rectangle shape and aspect ratio (matching the ~5:3 precedent every prior entry uses) — so these 2 cards can go through the compositing pipeline like every other shipped card.",
+  "criteria": [
+    {
+      "text": "design/cards/art-briefs.md gains exactly one '###' section per card, titled 'Bloom Fount' and 'Circuit Fount' verbatim, appended after the existing content with no pre-existing section touched",
+      "provenance": "inferred",
+      "held_out": false
+    },
+    {
+      "text": "Bloom Fount's Palette line names Green (card-anatomy.md's Frame/Border color for the Bloom) and Circuit Fount's Palette line names Copper (the Circuit's color), each explicitly naming its Fount",
+      "provenance": "inferred",
+      "held_out": false
+    },
+    {
+      "text": "Each brief's Subject/Scene names the card's own race (Mireth Bloom for Bloom Fount, Wrought Assembly for Circuit Fount) and references that card's specific printed mechanic (Bloomfront Expansion's build-on-uncontrolled-Planet exception / the Discovery-triggered cost reduction), and each includes a Key visual elements list of at least 3 bullet points",
+      "provenance": "paraphrase",
+      "held_out": true
+    },
+    {
+      "text": "Each brief's Composition line cites the Art Window as a wide landscape rectangle with an aspect ratio matching the ~5:3 precedent used by every prior art-briefs.md entry",
+      "provenance": "paraphrase",
+      "held_out": false
+    },
+    {
+      "text": "Running tools/composite-card-art.js against design/cards/spatial-race-identity-set-wave-2.md's cards no longer prints a 'no art brief for \"<name>\"' warning for Bloom Fount or Circuit Fount",
+      "provenance": "inferred",
+      "held_out": false
+    }
+  ],
+  "touches": [
+    "design/cards/art-briefs.md",
+    "test/design-art-briefs-spatial-race-identity-wave-2.test.js"
+  ],
+  "test_cmd": "node --test",
+  "id": "ms7ddmay-cardgame-art-briefs-spatial-race-identity-wave-2",
+  "filed_at": "2026-07-30T10:27:29.194Z",
+  "window_expires": "2026-07-30T14:27:29.196Z",
+  "status": "promoted",
+  "promoted_at": "2026-07-30T14:39:27.168Z"
+}

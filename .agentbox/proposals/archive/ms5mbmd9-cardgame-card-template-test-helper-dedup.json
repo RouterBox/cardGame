@@ -1,0 +1,49 @@
+{
+  "name": "cardgame-card-template-test-helper-dedup",
+  "title": "Extract the duplicated Section 9.1 card-template check into a shared test helper",
+  "project": "cardgame",
+  "pitch": "design-cards.test.js, design-frontier-cards.test.js, and design-signature-cards.test.js each carry a byte-identical copy-pasted block validating Cost-line->Type-line->Rules-text order and the Permanent-only Stats/counters line; extract it into one shared helper before three more open proposals paste it a 4th, 5th, and 6th time.",
+  "why_now": "The ready queue already holds three proposals (fount-economy-generators, wormhole-restriction-cards, character-signature-cards-wave-2) that each add a new card-set file needing this exact same template check, following the copy-paste pattern the three existing test files already show verbatim (same readCardsFile/listCards helpers, same two AC2 tests word-for-word). Every other currently-open cardgame proposal is pure content growth (new cards, new rules section, new art briefs, new render treatments) — none touch test infrastructure, so the roadmap this cycle is otherwise 100% additive. This is a mechanical, zero-risk extraction with direct precedent: cardgame-tools-shared-parser-dedup and cardgame-tools-loader-dedup (both shipped) already consolidated duplicated logic across cardgame tool/test files the same way.",
+  "expected_outcome": "test/helpers/card-template.js exists exporting the shared Section-9.1 template check; design-cards.test.js, design-frontier-cards.test.js, and design-signature-cards.test.js each call it instead of carrying their own inline copy of the AC2 block; `node --test` passes with the same test outcomes for all three files as before the refactor; no design/*.md content file is touched.",
+  "risk_class": "standard",
+  "mission_intent": "I4",
+  "taste_citations": [
+    "T9",
+    "T1"
+  ],
+  "intent": "test/design-cards.test.js, test/design-frontier-cards.test.js, and test/design-signature-cards.test.js each independently implement the same Section 9.1 canonical-card-template check: a pair of tests per card asserting Cost line -> Type line -> Rules text appear in that order, and that a Stats/counters line only follows Rules text when the Type line contains 'Permanent'. The implementing code (the two test-body closures and their body.indexOf/regex logic) is byte-for-byte identical across all three files today. Three units already sitting in the ready queue (cardgame-fount-economy-generators, cardgame-wormhole-restriction-cards, cardgame-character-signature-cards-wave-2) each add a new card-set file that will need this exact check, meaning without intervention the same block gets pasted a fourth, fifth, and sixth time. This unit extracts the check into test/helpers/card-template.js (alongside the existing test/helpers/markdown.js parseSections helper already shared by all three files) as a single exported function taking a card's title and body and registering the same two node:test assertions, then updates all three existing test files to call it instead of defining their own copies. This is a pure test-code refactor with the exact same precedent as the already-shipped cardgame-tools-shared-parser-dedup and cardgame-tools-loader-dedup units: no design/*.md file, no rules.md, and no card content changes; only test/ files change, and the refactor must not change which assertions run or their pass/fail outcome against the current design/cards/*.md content.",
+  "criteria": [
+    {
+      "text": "test/helpers/card-template.js exists and exports a function that, given a card's title and body text, registers the same two checks currently duplicated in design-cards.test.js, design-frontier-cards.test.js, and design-signature-cards.test.js: Cost line -> Type line -> Rules text ordering, and Stats/counters line only present and only after Rules text when the Type line contains 'Permanent'.",
+      "provenance": "paraphrase",
+      "held_out": false
+    },
+    {
+      "text": "design-cards.test.js, design-frontier-cards.test.js, and design-signature-cards.test.js no longer contain their own inline implementation of the Cost/Type/Rules-text-order and Stats-line-only-if-Permanent checks — each calls the shared helper from test/helpers/card-template.js instead.",
+      "provenance": "paraphrase",
+      "held_out": false
+    },
+    {
+      "text": "Running `node --test` produces the same number of passing and failing tests for design-cards.test.js, design-frontier-cards.test.js, and design-signature-cards.test.js after the refactor as it did before, run against the current unmodified design/cards/*.md files.",
+      "provenance": "inferred",
+      "held_out": true
+    },
+    {
+      "text": "No file under design/ is modified by this unit — git diff against design/ is empty; only files under test/ change.",
+      "provenance": "inferred",
+      "held_out": false
+    }
+  ],
+  "touches": [
+    "test/helpers/card-template.js",
+    "test/design-cards.test.js",
+    "test/design-frontier-cards.test.js",
+    "test/design-signature-cards.test.js"
+  ],
+  "test_cmd": "node --test",
+  "id": "ms5mbmd9-cardgame-card-template-test-helper-dedup",
+  "filed_at": "2026-07-29T05:02:20.157Z",
+  "window_expires": "2026-07-29T06:02:20.160Z",
+  "status": "promoted",
+  "promoted_at": "2026-07-29T06:05:56.963Z"
+}

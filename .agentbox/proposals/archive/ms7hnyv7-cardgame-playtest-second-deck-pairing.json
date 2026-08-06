@@ -1,0 +1,55 @@
+{
+  "name": "cardgame-playtest-second-deck-pairing",
+  "title": "Write a second Full Game Playtest Procedure (design/playtest-full-game-2.md) built around the 5 card sets no decklist has ever used, closing DESIGN-READINESS.md Open Gap 2's 'only one deck pairing' critique",
+  "project": "cardgame",
+  "pitch": "design/playtest-full-game.md's Deck A/Deck B pairing is the only full-game decklist ever built, and it draws only from alpha-set.md, frontier-set.md, character-signatures.md, and fount-economy-set.md — wormhole-restrictions-set.md, wormhole-closure-cards.md, spatial-race-identity-set.md, spatial-race-identity-set-wave-2.md, and character-signatures-wave-2.md (20 named cards, 5 files) have never appeared in any full 40-card deck or full-game playtest.",
+  "why_now": "Verified live: design/DESIGN-READINESS.md Section 6 Open Gap 2 states plainly that 'the only games ever run against this design are the two on-paper procedures... each a single walkthrough of one prewritten deck pairing.' Reading design/playtest-full-game.md's own Step 1 confirms Deck A ('Ada') and Deck B ('Kestrel') are built exclusively from alpha-set.md, frontier-set.md, character-signatures.md, and fount-economy-set.md — none of wormhole-restrictions-set.md's 5 cards, wormhole-closure-cards.md's 5 cards, spatial-race-identity-set.md's 3 cards, spatial-race-identity-set-wave-2.md's 2 cards, or character-signatures-wave-2.md's 5 cards (20 cards total, read in full from disk to confirm exact names/costs) appear in either decklist, and design/playtest-spatial.md only narrates single cards in isolation rather than building a legal deck around them. This is disjoint from all 7 currently window-open proposals: none creates a new decklist, a new playtest file, or touches these 5 card-set files together — checked memory and every open proposal first per T24. It is also a different portfolio type (new design content, not a doc fix, dedup, or an additive worked-example patch to an existing file) than the doc-accuracy fixes, dedups, and worked-example refreshes currently stacked in the queue.",
+  "expected_outcome": "A new design/playtest-full-game-2.md exists with two distinct, Section-11-legal 40-card decklists (new challenger names, not 'Ada'/'Kestrel') built so that all 20 named cards from wormhole-restrictions-set.md, wormhole-closure-cards.md, spatial-race-identity-set.md, spatial-race-identity-set-wave-2.md, and character-signatures-wave-2.md each appear at least once, every Fount used has a Generator so nothing is uncastable, and a numbered Procedure (citing rules.md sections throughout) carries the pairing from deck legality through an explicit declared winner; site/design/playtest-full-game-2.html exists via tools/build-site.js; a mechanical test verifies deck legality, the 20-card coverage, and an explicit winner in the procedure text.",
+  "risk_class": "standard",
+  "mission_intent": "I6",
+  "taste_citations": [
+    "T8",
+    "T9",
+    "T16",
+    "T24"
+  ],
+  "intent": "design/DESIGN-READINESS.md Section 6's Open Gap 2 names a real weakness in the design's own evidence base: every playtest procedure ever written builds exactly one prewritten deck pairing (Deck A 'Ada' / Deck B 'Kestrel' in design/playtest-full-game.md), and that pairing draws only from alpha-set.md, frontier-set.md, character-signatures.md, and fount-economy-set.md. Five later-shipped card-set files — wormhole-restrictions-set.md (Bastion Lockdown Line, Conveyance Directive, Rootbound Corridor, Vector Interdiction, Pilgrim's Right of Way), wormhole-closure-cards.md (Bastion Seal Detachment, Withering Conduit Rot, Severance Directive, Rite of the Sealed Tangle, Chokepoint Demolition Charge), spatial-race-identity-set.md (Preemptive Survey, Unbound Passage, Chokepoint Garrison), spatial-race-identity-set-wave-2.md (Bloom Fount, Circuit Fount), and character-signatures-wave-2.md (Torel Ashgrave, Rathe Ossuary-Kin, Doran Vex Amaranthine, Ysolde Thane, Foreman-Prime Yssa Ductile) — have never been built into a legal deck or played end-to-end. Write design/playtest-full-game-2.md, mirroring design/playtest-full-game.md's own structure (Materials list, numbered Procedure citing exact rules.md sections, a closing note), with two new challenger names distinct from 'Ada'/'Kestrel' and from rules.md Section 11.3's own worked-example names 'Reva'/'Toma'. Build two Section-11-legal 40-card decks (Section 11.1's 40-card minimum, Section 11.2's 3-copy-per-Name maximum) so that, between them, all 20 cards named above appear at least once each (up to 3 copies), splitting the 5 races' cards across the two decks in a way that gives each deck a coherent identity; fill out each deck to 40 legal cards using Generators and support cards pulled from alpha-set.md/frontier-set.md/fount-economy-set.md wherever a Fount used by the new cards (Mass, Bloom, Signal, Circuit, Tangle) lacks its own Generator among the 20, so no card in either deck is ever uncastable (Section 5.2). Write the Procedure to walk through map setup, opening hands, and enough turns to let a majority of the 20 focus cards actually resolve on the table (Discoveries, Restrictions, Closures, Fortifications, and the wave-2 characters' triggered abilities all included at least once), citing the exact rules.md section each action exercises, and ending in an explicit declared winner (Section 10). Close with a short note explicitly naming this as the design's second full-game deck pairing and referencing DESIGN-READINESS.md Open Gap 2's language directly. Do not touch design/playtest-full-game.md, design/playtest-spatial.md, or any card file's own content — this unit only adds a new playtest procedure. Regenerate site/ via tools/build-site.js.",
+  "criteria": [
+    {
+      "text": "design/playtest-full-game-2.md exists and contains two 40-card (or larger) decklists, each satisfying rules.md Section 11.1 (at least 40 cards) and Section 11.2 (no more than 3 copies of any single card Name)",
+      "provenance": "inferred",
+      "held_out": false
+    },
+    {
+      "text": "Across the two decklists combined, all 20 named cards from wormhole-restrictions-set.md, wormhole-closure-cards.md, spatial-race-identity-set.md, spatial-race-identity-set-wave-2.md, and character-signatures-wave-2.md appear at least once each, with each card's Cost line as printed in the decklist matching that card's Cost line exactly as printed in its own source file",
+      "provenance": "inferred",
+      "held_out": false
+    },
+    {
+      "text": "Every Fount (Mass, Bloom, Signal, Circuit, Tangle) used by either deck has at least one card in that same deck whose rules text names it as a Generator attuned to that Fount, so no card in either deck is uncastable",
+      "provenance": "paraphrase",
+      "held_out": true
+    },
+    {
+      "text": "The numbered Procedure cites specific rules.md section numbers throughout and ends with an explicit declared winner (a challenger stated to have won, or the opposing challenger stated to be Eliminated per Section 10)",
+      "provenance": "inferred",
+      "held_out": false
+    },
+    {
+      "text": "site/design/playtest-full-game-2.html exists, generated via tools/build-site.js from the new markdown file, and design/playtest-full-game.md, design/playtest-spatial.md, and every design/cards/*.md file are present byte-for-byte unchanged",
+      "provenance": "paraphrase",
+      "held_out": false
+    }
+  ],
+  "touches": [
+    "design/playtest-full-game-2.md",
+    "site/design/playtest-full-game-2.html",
+    "test/design-playtest-full-game-2.test.js"
+  ],
+  "test_cmd": "node --test",
+  "id": "ms7hnyv7-cardgame-playtest-second-deck-pairing",
+  "filed_at": "2026-07-30T12:27:30.499Z",
+  "window_expires": "2026-07-30T16:27:30.501Z",
+  "status": "promoted",
+  "promoted_at": "2026-07-30T16:39:27.474Z"
+}

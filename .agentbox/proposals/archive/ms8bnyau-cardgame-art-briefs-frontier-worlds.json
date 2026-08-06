@@ -1,0 +1,64 @@
+{
+  "name": "cardgame-art-briefs-frontier-worlds",
+  "title": "Add 5 art briefs for frontier-worlds-set.md's cards — the one shipped card set art-briefs.md's own coverage list still excludes",
+  "project": "cardgame",
+  "pitch": "design/cards/art-briefs.md's Section 4 coverage list in DESIGN-READINESS.md names 10 covered set files and art-briefs.md itself sums to exactly 59 sections matching those 10 files' card counts (18+5+5+5+5+6+5+5+3+2), but design/cards/frontier-worlds-set.md's 5 cards (shipped this session, commit d24e686) appear in neither list — the newest shipped set is the one gap the just-closed Gap 1 pattern (wormhole-closure, spatial-race-identity) hasn't caught yet.",
+  "why_now": "Verified live: grepped design/cards/art-briefs.md for all 5 frontier-worlds-set.md card titles (Halvorne Reclamation Fleet, Tanglekeeper's Vigil, Kelmourn Wreck-Bloom, Kelmourn Claim Ledger, Tallowfen Chokepoint Works) — zero matches among its 59 '###' sections. Read design/DESIGN-READINESS.md Section 4 in full: its own coverage sentence names exactly 10 files art-briefs.md covers ('alpha-set.md, frontier-set.md, character-signatures.md, character-signatures-wave-2.md, character-signatures-wave-3.md, fount-economy-set.md, wormhole-restrictions-set.md, wormhole-closure-cards.md, spatial-race-identity-set.md, and spatial-race-identity-set-wave-2.md') and frontier-worlds-set.md is absent; Section 3's own per-file card counts for those 10 files sum to exactly 59, matching art-briefs.md's stated section count with no room left for frontier-worlds-set.md's 5. This is structurally the same gap Open Gap 1 tracked for wormhole-closure-cards.md and spatial-race-identity-set.md before cardgame-art-briefs-wormhole-closure and cardgame-art-briefs-spatial-race-identity closed it (memory/cardgame-art-briefs-spatial-race-identity.md confirms the exact append-only pattern: one new '###' section per card, Palette/Subject-Scene/Key-visual-elements/Composition fields, own dedicated test/design-art-briefs-<set>.test.js file). Read test/design-art-briefs.test.js in full: its cardsToCheck only covers alpha-set/frontier-set/character-signatures, so it won't force this gap closed on its own — exactly why each later set (fount-economy, wormhole-restrictions, wormhole-closure, spatial-race-identity, spatial-race-identity-wave-2, character-signatures-wave-2/3) needed its own dedicated test file, confirmed by ls of test/design-art-briefs-*.test.js (8 such files already exist, none named frontier-worlds). Checked memory and all 6 currently window-open proposals (alt-art-briefs-character-signatures-wave-2, character-markdown-section-splitter-dedup, jaina-lore-narrative-sync-dryrun, jaina-character-web-threads-sync-dryrun, playtest-frontier-worlds-refresh, design-readiness-gap3-live-derived-check) plus the one in-flight unit (cardgame-game-name-card-set-docs, which only appends one Summary sentence per card-set file, not touching art-briefs.md or any '###' card section) — none touches design/cards/art-briefs.md or any test/design-art-briefs*.test.js file. playtest-frontier-worlds-refresh touches design/playtest-spatial.md (the physical-playtest narration), a disjoint concern from art-brief compositing input; no file overlap.",
+  "expected_outcome": "design/cards/art-briefs.md gains exactly 5 new '###' sections (titled verbatim to each frontier-worlds-set.md card), each with Palette/Subject-Scene/Key-visual-elements/Composition fields — Palette naming the Fount-identity color matching that card's Cost line (Halvorne Reclamation Fleet: Ash-grey, Tanglekeeper's Vigil: Violet, Kelmourn Wreck-Bloom: Green, Kelmourn Claim Ledger: Cyan, Tallowfen Chokepoint Works: Copper) and Composition citing the Art Window's rectangular/landscape aspect ratio. design/DESIGN-READINESS.md's Section 4 coverage sentence and Section 3's total gain frontier-worlds-set.md/'64 named cards'. A new test/design-art-briefs-frontier-worlds.test.js passes; tools/composite-card-art.js's --live run stops printing a 'no art brief for' warning for all 5 frontier-worlds-set.md cards.",
+  "risk_class": "standard",
+  "mission_intent": "I6",
+  "taste_citations": [
+    "T9",
+    "T16",
+    "T28"
+  ],
+  "intent": "design/cards/art-briefs.md documents an art brief for every card in every shipped card set so tools/composite-card-art.js has an input for each — DESIGN-READINESS.md Section 6's Open Gap 1 already closed this exact class of hole twice (wormhole-closure-cards.md, spatial-race-identity-set.md), each time by appending one brief per card in the established Palette/Subject-Scene/Key-visual-elements/Composition format. design/cards/frontier-worlds-set.md (5 cards: Halvorne Reclamation Fleet — Cindral Reach, 2 Mass, Materials-Permanent; Tanglekeeper's Vigil — Starweave Communion, 2 Tangle, Magic; Kelmourn Wreck-Bloom — Mireth Bloom, 2 Bloom, Biology-Permanent; Kelmourn Claim Ledger — Panoptic Concord, 1 Signal, Intelligence; Tallowfen Chokepoint Works — Wrought Assembly, 2 Circuit, Technology-Permanent) shipped this session and has never been briefed. Add one new '###' section per card to design/cards/art-briefs.md, appended after the file's existing final section, using the identical template every prior art-briefs unit used. Each Palette line must name the card-anatomy.md Fount-identity color matching that card's own Cost line, exactly per the mapping above. Each brief's Key visual elements must draw at least 2 concrete words from that card's own Rules text/Type line (mirroring test/design-art-briefs.test.js's AC2 overlap check), grounded in each card's own named world (Halvorne Junction, Kelmourn Drift, Tallowfen from design/star-atlas.md) and Section 8.3/8.6 mechanic (Contested Discovery, Frontier Discovery, Neutral Planet, Blockade) rather than generic filler. Each Composition line must reference the Art Window's rectangular/landscape shape and aspect ratio (mirroring the '5:3'-style note every existing brief uses). Update design/DESIGN-READINESS.md Section 4's coverage sentence to add 'frontier-worlds-set.md' to the list of files art-briefs.md covers, and update Section 3's 'Total: 59 named cards' sentence's cross-reference if it names art-briefs.md's section count (leave the live-derived test assertions in test/design-readiness.test.js untouched — they already re-derive counts from disk). Do not touch frontier-worlds-set.md itself, card-anatomy.md, alt-art-briefs.md, or any of art-briefs.md's 59 pre-existing sections. Add a new, independent test/design-art-briefs-frontier-worlds.test.js mirroring test/design-art-briefs-spatial-race-identity.test.js's exact structure (AC1 section-shape/uniqueness, AC2 palette-color-and-visual-overlap, AC3 composition-aspect-ratio), scoped to frontier-worlds-set.md's 5 cards only.",
+  "criteria": [
+    {
+      "text": "design/cards/art-briefs.md gains exactly 5 new '###' sections, titled verbatim: 'Halvorne Reclamation Fleet', 'Tanglekeeper's Vigil', 'Kelmourn Wreck-Bloom', 'Kelmourn Claim Ledger', 'Tallowfen Chokepoint Works', with none of the 59 pre-existing sections altered, removed, or reordered",
+      "provenance": "inferred",
+      "held_out": false
+    },
+    {
+      "text": "Each new section has Palette:, Subject/Scene:, a 'Key visual elements:' bulleted list of 2 or more items, and Composition: fields, matching the existing sections' shape",
+      "provenance": "inferred",
+      "held_out": false
+    },
+    {
+      "text": "Each new section's Palette line names the Fount-identity color matching that card's own Cost line: Halvorne Reclamation Fleet -> Ash-grey, Tanglekeeper's Vigil -> Violet, Kelmourn Wreck-Bloom -> Green, Kelmourn Claim Ledger -> Cyan, Tallowfen Chokepoint Works -> Copper",
+      "provenance": "paraphrase",
+      "held_out": true
+    },
+    {
+      "text": "Each new brief's 'Key visual elements' bullets share at least 2 significant words with that same card's own Rules text or Type line in frontier-worlds-set.md, and avoid the generic-filler phrases (e.g. 'dramatic lighting', 'epic composition') the existing test suite checks for",
+      "provenance": "paraphrase",
+      "held_out": false
+    },
+    {
+      "text": "Each new brief's Composition line references the Art Window's rectangular/landscape shape and includes an aspect-ratio figure (e.g. '5:3'), matching the pattern every existing brief uses",
+      "provenance": "paraphrase",
+      "held_out": false
+    },
+    {
+      "text": "design/DESIGN-READINESS.md Section 4's coverage sentence is updated to name frontier-worlds-set.md among the files art-briefs.md covers; frontier-worlds-set.md, card-anatomy.md, alt-art-briefs.md, and all 59 pre-existing art-briefs.md sections are byte-for-byte unchanged",
+      "provenance": "inferred",
+      "held_out": true
+    },
+    {
+      "text": "node --test passes for the whole cardGame suite, including a new test/design-art-briefs-frontier-worlds.test.js mechanically asserting all of the above against the actual on-disk files",
+      "provenance": "paraphrase",
+      "held_out": false
+    }
+  ],
+  "touches": [
+    "design/cards/art-briefs.md",
+    "design/DESIGN-READINESS.md",
+    "test/design-art-briefs-frontier-worlds.test.js"
+  ],
+  "test_cmd": "node --test",
+  "id": "ms8bnyau-cardgame-art-briefs-frontier-worlds",
+  "filed_at": "2026-07-31T02:27:18.246Z",
+  "window_expires": "2026-07-31T06:27:18.248Z",
+  "status": "promoted",
+  "promoted_at": "2026-07-31T06:39:34.592Z"
+}

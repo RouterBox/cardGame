@@ -1,0 +1,48 @@
+{
+  "name": "cardgame-card-catalog-name-collision-check",
+  "title": "One mechanical no-duplicate-card-name check across the whole design/cards/ catalog",
+  "project": "cardgame",
+  "pitch": "Add a fixture-tested collision detector over lib/parse-card-markdown.js's loadAllCards() so no two cards anywhere under design/cards/ can share a name — replacing six proposals' individual pairwise promises with one shared, automated check.",
+  "why_now": "Eight proposals and units are currently open or in-flight that each add a new design/cards/*.md file (wormhole-restriction-cards, wormhole-closure-cards, spatial-race-identity-set, spatial-race-identity-set-wave-2, fount-economy-set, character-signatures-wave-2), and every single one defends against a name collision only with its own held-out, pairwise 'byte-identical to before' promise — checked by no shared, automated mechanism. RouterBox's queue_low_water=72 (T19) was deliberately set to run this many concurrent card-authoring bolts at once specifically to stress-test concurrency, which is exactly the scenario where an uncaught cross-file name collision is most likely. lib/parse-card-markdown.js's loadAllCards() already walks every file under design/cards/ (used today by tools/render-card.js and tools/composite-card-art.js) but no test or tool ever calls it to check the whole catalog for duplicate names — test/design-cards.test.js's AC1 Set-based uniqueness check, for example, only covers alpha-set.md in isolation. This closes that gap with one mechanical check instead of N scattered promises (T3: enforcement should be mechanical, not prompt doctrine).",
+  "expected_outcome": "lib/card-catalog.js exists and exports a duplicate-name detector; test/card-catalog-collision.test.js proves it flags an injected duplicate pair via fixture data and reports zero duplicates when run against the real design/cards/ catalog today; node --test is green with no other file touched.",
+  "risk_class": "standard",
+  "mission_intent": "I4",
+  "taste_citations": [
+    "T3",
+    "T11",
+    "T19"
+  ],
+  "intent": "lib/parse-card-markdown.js's loadAllCards() (shipped) already reads every file in design/cards/ into one flat array of card records, but nothing in the repo ever uses that full-catalog view to check for duplicate names — every existing uniqueness check (test/design-cards.test.js AC1, and the equivalent checks in design-frontier-cards.test.js and design-signature-cards.test.js) only compares names within its own single file via a Set, so a card added in a new file (frontier-set.md, character-signatures.md, or any of the several new card-set files currently open as proposals or in-flight as units) could silently reuse a name already printed in another file with nothing catching it except each proposal's own manually-written, non-enforced promise not to collide. This unit adds a new lib/card-catalog.js exporting a function that takes the array loadAllCards() already produces (or any array of {name} records) and returns the list of names that occur more than once, comparing case-insensitively so trivial-casing variants also collide. It does not modify lib/parse-card-markdown.js, any file under design/cards/, or any existing test file — it only adds the new lib file and a new test/card-catalog-collision.test.js that (a) proves detection works via fixture data containing an injected duplicate (including a same-name-different-case pair), and (b) runs the same function against the real, current design/cards/ catalog via loadAllCards() and asserts zero duplicates today. This gives every future card-adding unit — including the six already sitting in the queue or in-flight — a single, real, mechanical safety net instead of a held-out promise repeated per-proposal, directly serving the concurrency stress-test RouterBox set up on purpose (T19) at a moment when several parallel card-authoring bolts are running at once.",
+  "criteria": [
+    {
+      "text": "lib/card-catalog.js exists and exports a function that, given an array of card records each with a `name` field, returns the list of names that appear more than once (comparing case-insensitively, so 'Wormhole Ledger' and 'wormhole ledger' count as the same name).",
+      "provenance": "inferred",
+      "held_out": false
+    },
+    {
+      "text": "test/card-catalog-collision.test.js proves detection with fixture data: given a synthetic set of card records containing one name repeated across two entries (including at least one case-only variant), the function returns that name as a duplicate; given a synthetic set with no repeated names, it returns an empty list.",
+      "provenance": "inferred",
+      "held_out": false
+    },
+    {
+      "text": "test/card-catalog-collision.test.js also calls the same function against the real card catalog returned by lib/parse-card-markdown.js's loadAllCards(), and asserts it currently returns zero duplicate names.",
+      "provenance": "paraphrase",
+      "held_out": false
+    },
+    {
+      "text": "No file under design/cards/, lib/parse-card-markdown.js, or any pre-existing test/*.js file is modified by this unit — only lib/card-catalog.js and test/card-catalog-collision.test.js are added, and every pre-existing test file's pass/fail outcome under `node --test` is unchanged.",
+      "provenance": "inferred",
+      "held_out": true
+    }
+  ],
+  "touches": [
+    "lib/card-catalog.js",
+    "test/card-catalog-collision.test.js"
+  ],
+  "test_cmd": "node --test",
+  "id": "ms5o30rd-cardgame-card-catalog-name-collision-check",
+  "filed_at": "2026-07-29T05:51:38.137Z",
+  "window_expires": "2026-07-29T06:51:38.139Z",
+  "status": "promoted",
+  "promoted_at": "2026-07-29T06:53:57.462Z"
+}

@@ -1,0 +1,52 @@
+{
+  "name": "cardgame-site-index-search",
+  "title": "Add a client-side search box to the design-shelf index — the site has 28+ pages and zero find-by-name today",
+  "project": "cardgame",
+  "pitch": "tools/build-site.js's index.html lists every design doc under flat per-section <ul> lists with no way to jump straight to a card or doc by name — add a plain-JS, no-dependency search box that live-filters the index by title, matching the tool's existing zero-build-tooling style.",
+  "why_now": "Reading the full current tools/build-site.js (568 lines) confirms there is no search, filter, or JS of any kind anywhere in the generated site — buildIndexHtml() only emits static <section><h2>...<ul><li><a> blocks per SECTION_ORDER bucket, and the CSS constant has no interactive affordance at all. The design shelf this site serves has grown well past a skim-able flat list: a Glob over design/ finds 28 markdown source files today (10 in design/cards/ alone: alpha-set, frontier-set, character-signatures + wave-2, fount-economy-set, wormhole-restrictions-set, wormhole-closure-cards, art-briefs, alt-art-briefs, card-anatomy), each becoming its own page, with the open cardgame-alt-art-briefs-signal-tangle and promoted cardgame-spatial-race-identity-cards(-wave-2)/cardgame-art-briefs-* units about to grow the Cards section further still. RouterBox's own verbatim want for this tool (design/ideas-inbox.md, 2026-07-28, incorporated by cardgame-design-browser-site) is explicitly about not having to go 'picking through files and folders' — a flat unsearchable list on a phone screen recreates exactly that friction one layer up. Checked all 8 currently window-open proposals (playtest-fount-economy-refresh, playtest-spatial-restriction-refresh, playtest-spatial-closure-refresh, alt-art-briefs-signal-tangle, art-brief-test-helper-dedup, art-briefs-wormhole-closure, rules-game-start-procedure, site-world-section-categorization) — only site-world-section-categorization touches tools/build-site.js, and it scopes itself entirely to sectionFor() and test/build-site.test.js; this unit adds a new function (buildIndexHtml's search markup) and a new, independent test file, so it has no scope or touch overlap with that proposal's actual edits, only a shared file.",
+  "expected_outcome": "site/index.html contains a <input type=\"search\" id=\"site-search\"> above the section list and an inline <script> defining a pure matching function (case-insensitive substring, empty query matches everything) wired via an 'input' event listener that shows/hides each <li> and hides any <section> left with zero visible items; test/build-site-index-search.test.js runs the real build, extracts that function's source text from the generated HTML, evals it in isolation, and asserts it correctly matches/rejects sample card and doc titles from the current design shelf (e.g. matches 'Cradle-Root Colony' against query 'root', rejects it against 'zzz'); node --test is green.",
+  "risk_class": "standard",
+  "mission_intent": "I6",
+  "taste_citations": [
+    "T16",
+    "T1"
+  ],
+  "intent": "tools/build-site.js (shipped) generates the phone-browsable design shelf RouterBox asked for specifically to avoid 'picking through files and folders' (design/ideas-inbox.md, T16) — but its buildIndexHtml() only ever emits static per-section <ul> lists with no way to jump to a specific card or doc by name, and the shelf has grown to 28 source pages across World, Races, Characters, Cards (8 card-set files), Rules, and Plans & Ideas, with more Cards-section growth already promoted in the ready queue. This unit adds a search box to the generated index.html: a <input type=\"search\" id=\"site-search\"> placed above the section list, and an inline <script> block containing a small pure function (e.g. `function siteSearchMatches(title, query)`) implementing case-insensitive substring matching with an empty query matching everything, wired to the input's 'input' event to toggle each <li>'s visibility and hide any <section> whose every item is hidden. No server, build step, or new dependency is introduced — the script is inlined the same way the existing CSS constant is inlined, matching the file's established zero-tooling style. The matching logic is written as a standalone, evalable function specifically so it can be tested directly: the new test/build-site-index-search.test.js runs the real build (mirroring test/build-site.test.js's execFileSync pattern), extracts the function's source text from the generated site/index.html via regex, evals it in the test process, and asserts correct behavior against real titles drawn from the current design shelf. Only tools/build-site.js (buildIndexHtml, the CSS constant, and the new matching function) and the new test file change — sectionFor(), SECTION_ORDER, per-page rendering (buildPageHtml, renderMarkdown, cardArtImgHtml), and every design/*.md source are untouched, and test/build-site.test.js is not edited, so this has zero scope overlap with the open cardgame-site-world-section-categorization proposal.",
+  "criteria": [
+    {
+      "text": "The generated site/index.html contains an <input type=\"search\" id=\"site-search\"> element positioned before the first <section>.",
+      "provenance": "paraphrase",
+      "held_out": false
+    },
+    {
+      "text": "site/index.html contains an inline <script> defining a standalone matching function that performs case-insensitive substring matching between a title and a query, and treats an empty/whitespace-only query as matching every title.",
+      "provenance": "paraphrase",
+      "held_out": false
+    },
+    {
+      "text": "The extracted matching function, evaluated directly in the test process against real titles from the current design shelf (e.g. a card title from alpha-set.md and one from wormhole-closure-cards.md), returns true for a substring query matching that title case-insensitively and false for a query matching none of its words.",
+      "provenance": "inferred",
+      "held_out": false
+    },
+    {
+      "text": "The script wires the search input via an 'input' event listener that sets the visibility of each <li> in the index and hides a <section> entirely once none of its <li> items remain visible, without triggering a page navigation or reload.",
+      "provenance": "inferred",
+      "held_out": true
+    },
+    {
+      "text": "No file other than tools/build-site.js and the new test/build-site-index-search.test.js is created or modified; sectionFor(), SECTION_ORDER, buildPageHtml, renderMarkdown, and cardArtImgHtml behavior are unchanged from before this unit, and every pre-existing assertion in test/build-site.test.js still passes.",
+      "provenance": "inferred",
+      "held_out": true
+    }
+  ],
+  "touches": [
+    "tools/build-site.js",
+    "test/build-site-index-search.test.js"
+  ],
+  "test_cmd": "node --test",
+  "id": "ms5sz9c4-cardgame-site-index-search",
+  "filed_at": "2026-07-29T08:08:40.708Z",
+  "window_expires": "2026-07-29T09:08:40.711Z",
+  "status": "promoted",
+  "promoted_at": "2026-07-29T09:09:18.340Z"
+}

@@ -1,0 +1,18 @@
+name: cardgame-art-briefs-character-signatures-wave-3
+title: Add 5 art briefs to design/cards/art-briefs.md for character-signatures-wave-3.md — the newest signature wave has zero art-brief coverage
+project: cardgame
+risk_class: standard
+mode: autopilot
+test_cmd: node --test
+
+## Intent
+
+design/cards/art-briefs.md states its own purpose as giving one written art brief per card so illustration work can be approved before it starts (T8). design/cards/character-signatures-wave-3.md (shipped 2026-07-30, commit b254838) adds a third named card per race, built from a character in design/characters/, following the exact structure wave-1 and wave-2 already established — but unlike those two waves, none of its 5 cards has a matching brief in art-briefs.md yet, so tools/composite-card-art.js's brief-driven compositing loop has no path for them. Add one new "###" brief section per wave-3 card to design/cards/art-briefs.md, appended after the existing content, using the identical Palette/Subject-Scene/Key-visual-elements/Composition template the wave-2 unit already established for character-signature cards. Each Palette line must name the card-anatomy.md Fount-identity color matching the single Fount in that card's own Cost line (Mass→Ash-grey, Bloom→Green, Signal→Cyan, Circuit→Copper, Tangle→Violet, per design/cards/card-anatomy.md): Bren Hollowmelt (3 Mass)→Ash-grey, Vesk-Aduun (3 Bloom)→Green, Ilio Marn-Cassity (2 Signal)→Cyan, Ossian Thale (3 Tangle)→Violet, Replica-Sergeant Kess Ninefold (2 Circuit)→Copper. Each Key-visual-elements list must draw concretely on that card's own Rules text and flavor text (e.g. Bren Hollowmelt's wound that grew into something not fully his own; Vesk-Aduun's fused design-memory fragment and Growth counters; Ilio Marn-Cassity's swapped contract fine print; Ossian Thale's reclaimed shrine and burned ground; Kess Ninefold's broken-protocol naming and mercy kept anyway), not generic filler. Add a new, independent test/design-art-briefs-character-signatures-wave-3.test.js mirroring the assertion shape of test/design-art-briefs-character-signatures-wave-2.test.js (title-exists checks, field-shape checks, Palette-matches-Fount checks). Do not touch design/cards/character-signatures-wave-3.md, design/cards/card-anatomy.md, any existing section of art-briefs.md, or any other test file — this unit only appends 5 new sections and adds one new test file.
+
+## Acceptance Criteria
+
+- AC1 [inferred]: design/cards/art-briefs.md gains exactly 5 new "###" sections, titled verbatim: "Bren Hollowmelt, the Cindergrown", "Vesk-Aduun, the Graft-Wearer", "Ilio Marn-Cassity, Contract-Broker of the Rewritten Clause", "Ossian Thale, Reclamation-Warden of the Standing Stones", "Replica-Sergeant Kess Ninefold, the Named Copy", with no pre-existing section altered or removed
+- AC2 [inferred]: Each new section has Palette:, Subject/Scene:, a "Key visual elements:" bulleted list of 2 or more items, and Composition: fields, matching the existing sections' shape
+- AC3 [paraphrase] (held_out): Each new section's Palette line names the card-anatomy.md Fount-identity color matching that card's own single-Fount Cost line in character-signatures-wave-3.md: Bren Hollowmelt→Ash-grey, Vesk-Aduun→Green, Ilio Marn-Cassity→Cyan, Ossian Thale→Violet, Replica-Sergeant Kess Ninefold→Copper
+- AC4 [inferred]: design/cards/character-signatures-wave-3.md, design/cards/card-anatomy.md, and every pre-existing section of art-briefs.md are byte-for-byte unchanged
+- AC5 [paraphrase]: test/design-art-briefs-character-signatures-wave-3.test.js passes, mechanically asserting the above

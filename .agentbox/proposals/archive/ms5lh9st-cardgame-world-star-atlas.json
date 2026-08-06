@@ -1,0 +1,47 @@
+{
+  "name": "cardgame-world-star-atlas",
+  "title": "Name each race's Homeworld and a shared Star Atlas of frontier worlds",
+  "project": "cardgame",
+  "pitch": "Give the five races real, named Homeworlds and a handful of contested frontier worlds — right now the only two named planets anywhere in the design are throwaway illustration names in rules.md's own worked example, unconnected to any actual race.",
+  "why_now": "rules.md Section 8.2's worked example (the paragraph beginning \"This example follows Reva (Homeworld: Solmere) and Toma (Homeworld: Kethis)\") is the only place in the entire design corpus a Planet is ever given a proper name — and those two names belong to a generic illustration, not to any of the five races. design/world.md and every design/races/*.md file are rich on identity, strengths, and visual style but name zero locations; design/playtest-spatial.md's procedure labels each side's starting Planet only as \"that challenger's Homeworld's name\" with nothing to draw an actual name from; frontier-set.md's five cards reference \"the battlefield graph\" and \"a Planet\" with no specific world ever named. The 2026-07-26 ideas-inbox spatial-layer directive explicitly calls for Homeworlds and Discovery of new worlds, and rules.md/playtest-spatial.md already incorporated the mechanics — but the actual place names were never written. Every other layer of the world (races, characters, six eras of lore) already has this level of proper-noun grounding; the spatial layer is the one gap, and it's pure world-building, not code or rules mechanics.",
+  "expected_outcome": "design/star-atlas.md exists, naming exactly one proper-named Homeworld per race (5 total, keyed to each race's design/races/ title) plus at least 3 additional frontier/contested worlds that are nobody's Homeworld, each consistent with that race's Fount identity and lore.md's Cinderglass War outcome; none of the 8 names collide with each other or with rules.md's illustration-only \"Solmere\"/\"Kethis\"; `node --test` is green.",
+  "risk_class": "standard",
+  "mission_intent": "I6",
+  "taste_citations": [
+    "T1",
+    "T8"
+  ],
+  "intent": "design/rules.md Section 8.2 defines Homeworld as a mechanical concept and its own worked example (the Reva/Solmere, Toma/Kethis illustration) invents two placeholder planet names that belong to no established race. design/playtest-spatial.md's on-paper procedure instructs playtesters to label each side's starting Planet card with \"that challenger's Homeworld's name\" but no design document has ever supplied such a name for any of the five actual races (Cindral Reach, Mireth Bloom, Panoptic Concord, Starweave Communion, Wrought Assembly). design/world.md and design/races/*.md establish each race's identity, Fount, strengths, and visual style in depth, and design/lore.md traces six eras of shared history including the Cinderglass War that pulls in four of the five races directly — but none of these files, nor frontier-set.md's battlefield-graph-tied cards, ever name a single planet, system, or world. This unit adds a new design/star-atlas.md naming exactly one Homeworld per race, each consistent with that race's Fount identity (Materials/Biology/Intelligence/Technology/Magic) and with its role in lore.md's Cinderglass War (e.g., the Mireth Bloom entry must be consistent with lore.md's statement that the Bloom fought no battles in that war but inherited its wreckage), plus at least 3 further frontier or contested worlds that are nobody's Homeworld, giving playtest-spatial.md's Discovery concept and frontier-set.md's battlefield-graph cards real places to eventually reference by name. This is pure world-building prose, mechanically checkable by name-collision and cross-reference against the existing race/lore files — no rules.md, world.md, race file, card file, or code file is touched or needs to be, and no game software is implicated (T8).",
+  "criteria": [
+    {
+      "text": "design/star-atlas.md exists and names exactly one Homeworld, with a distinct proper name, for each of the five races as titled in their design/races/<race>.md files — Cindral Reach, Mireth Bloom, Panoptic Concord, Starweave Communion, and Wrought Assembly.",
+      "provenance": "paraphrase",
+      "held_out": false
+    },
+    {
+      "text": "None of the 5 Homeworld names, nor any of the additional frontier-world names, is 'Solmere' or 'Kethis' (rules.md Section 8.2's illustration-only placeholder names), and no two named worlds in star-atlas.md share the same name.",
+      "provenance": "inferred",
+      "held_out": false
+    },
+    {
+      "text": "Each Homeworld's description names its race's primary Fount (Mass/Bloom/Signal/Circuit/Tangle, per design/world.md's Cosmology section) and is consistent with that race's role in design/lore.md's Cinderglass War section (in particular, the Mireth Bloom's Homeworld entry must not describe it fighting battles in the Cinderglass War, consistent with lore.md's statement that the Bloom inherits the war's wreckage rather than fighting in it).",
+      "provenance": "paraphrase",
+      "held_out": false
+    },
+    {
+      "text": "design/star-atlas.md separately names at least 3 additional worlds that are not listed as any race's Homeworld, each with at least one sentence of description; design/world.md, design/lore.md, design/rules.md, design/playtest-spatial.md, and every file under design/races/ and design/cards/ remain byte-identical to before this unit.",
+      "provenance": "inferred",
+      "held_out": true
+    }
+  ],
+  "touches": [
+    "design/star-atlas.md",
+    "test/design-star-atlas.test.js"
+  ],
+  "test_cmd": "node --test",
+  "id": "ms5lh9st-cardgame-world-star-atlas",
+  "filed_at": "2026-07-29T04:38:44.189Z",
+  "window_expires": "2026-07-29T05:38:44.191Z",
+  "status": "promoted",
+  "promoted_at": "2026-07-29T05:47:56.812Z"
+}

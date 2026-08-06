@@ -1,0 +1,48 @@
+{
+  "name": "cardgame-art-brief-coverage-warning",
+  "title": "composite-card-art.js warns on cards with no matching art brief, instead of silently skipping them",
+  "project": "cardgame",
+  "pitch": "tools/composite-card-art.js (shipped) iterates design/cards/art-briefs.md's briefs to produce composited SVGs, so any card with no matching brief is silently skipped instead of surfaced — the exact gap that produced three separate 'missing art briefs' catch-up proposals (frontier-signatures shipped, fount-economy and character-signatures-wave-2 open); make the tool print a named warning for every such card so the gap is visible the moment a new card set ships, not discovered later by hand.",
+  "why_now": "Three of the last several card-content proposals (cardgame-art-briefs-frontier-signatures, cardgame-art-briefs-fount-economy, cardgame-art-briefs-character-signatures-wave-2) exist purely because a shipped card file quietly had zero briefs and nothing said so. wormhole-restriction-cards, wormhole-closure-cards, and spatial-race-identity-cards are bolting or queued right now and will land the same way unless the tool starts naming the gap itself instead of the Producer re-discovering it by hand each time.",
+  "expected_outcome": "Running `node tools/composite-card-art.js` against the current design/cards/ tree prints one warning line per card with no matching brief (today that includes every card in fount-economy-set.md and character-signatures-wave-2.md), while still exiting 0 and writing the same composited SVGs as before for every card that does have a brief; `node --test` green.",
+  "risk_class": "standard",
+  "mission_intent": "I6",
+  "taste_citations": [
+    "T9",
+    "T16",
+    "T1"
+  ],
+  "intent": "tools/composite-card-art.js (shipped) reads design/cards/art-briefs.md and, for each brief section, writes one composited SVG — it never looks at the full card catalog, so a card with no matching brief is not an error, not a warning, just invisible. That silence is exactly what let frontier-set.md and character-signatures.md ship with zero briefs for a while (T1: finish the full decided scope, don't declare victory early) before a Producer proposal caught it by hand, and it's about to repeat: fount-economy-set.md and character-signatures-wave-2.md carry the same gap right now, and wormhole-restriction-cards, wormhole-closure-cards, and spatial-race-identity-cards are bolting or queued behind them. This unit changes composite-card-art.js to also load the full card catalog (via the same lib/parse-card-markdown.js loadAllCards() the rest of the toolchain already uses) and, after writing composited output for every matched brief, print one warning line per card that has no matching brief, naming the card so the gap is actionable without re-deriving the diff by hand. The warning is informational only — exit code stays 0, no card, brief, or renders/ file is modified — keeping this a T16 authoring/presentation tool, not a gate on card content.",
+  "criteria": [
+    {
+      "text": "Running `node tools/composite-card-art.js` prints a warning line naming any card (loaded via loadAllCards()) that has no matching brief in design/cards/art-briefs.md, and the process still exits 0.",
+      "provenance": "user",
+      "held_out": false
+    },
+    {
+      "text": "A card that DOES have a matching brief still produces its composited SVG in renders/cards-composited/ exactly as before — no change in output for already-covered cards.",
+      "provenance": "paraphrase",
+      "held_out": false
+    },
+    {
+      "text": "The warning text names the specific card (e.g. 'no art brief for \"Card Name\"'), not just an aggregate count, so the gap is actionable without re-deriving the diff by hand.",
+      "provenance": "inferred",
+      "held_out": false
+    },
+    {
+      "text": "Running the script twice in a row against the same fixture data produces the same set of warnings, in the same order, and byte-identical composited SVGs both times — the new check introduces no nondeterminism.",
+      "provenance": "inferred",
+      "held_out": true
+    }
+  ],
+  "touches": [
+    "tools/composite-card-art.js",
+    "test/composite-card-art.test.js"
+  ],
+  "test_cmd": "node --test",
+  "id": "ms5pmp28-cardgame-art-brief-coverage-warning",
+  "filed_at": "2026-07-29T06:34:55.712Z",
+  "window_expires": "2026-07-29T07:34:55.715Z",
+  "status": "promoted",
+  "promoted_at": "2026-07-29T07:41:57.807Z"
+}

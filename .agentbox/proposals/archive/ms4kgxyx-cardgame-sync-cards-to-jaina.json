@@ -1,0 +1,48 @@
+{
+  "name": "cardgame-sync-cards-to-jaina",
+  "title": "cardGame tools — extend sync-cards-to-jaina.js with a live (mocked) Jaina upsert path",
+  "pitch": "Replace the dry-run tool's 'live sync not yet implemented' stub with a real Jaina upsert path (mocked in tests), so Alpha-set cards actually land in Jaina as the content backbone's first live slice.",
+  "why_now": "cardgame-jaina-card-sync-dryrun merged 2026-07-28 (tick log), which is exactly the trigger T17's veto named: re-file the live-sync step only after the dry-run lands, specced as an extension of the same tool rather than a competing spec that reintroduces the AC1/AC3 conflict the veto caught.",
+  "expected_outcome": "Running `node tools/sync-cards-to-jaina.js` (no flag) against design/cards/alpha-set.md exits 0 having upserted 18 card records through the mocked Jaina client, verified by call args/count in test/sync-cards-to-jaina.test.js — while `--dry-run`'s existing print-only behavior is unchanged, and design/ideas-inbox.md's Jaina directive is tagged [incorporated: cardgame-sync-cards-to-jaina].",
+  "risk_class": "standard",
+  "mission_intent": "I6",
+  "taste_citations": [
+    "T17",
+    "T16",
+    "T1"
+  ],
+  "intent": "design/ideas-inbox.md (2026-07-28, verbatim from RouterBox): 'Oh also we need to make heavy use of Jaina the whole way which was built for this exact thing... The authoring tools (card engine, design browser) should read from / write to Jaina rather than inventing their own storage.' cardgame-jaina-card-sync-dryrun already shipped the print-only slice of this directive (tools/sync-cards-to-jaina.js, --dry-run flag) and merged 2026-07-28. This unit is the deliberately narrow next slice (T1 discipline: cards only, Alpha-set only, not the full backbone claim): it extends that same tool's non-dry-run path, currently a stub that exits 1 with 'not yet implemented', to actually upsert parsed card records into a Jaina 'cards' schema, exercised in tests against a mocked/stubbed Jaina client so no live network call or credential is required by node --test. This is content-authoring tooling, not game implementation, so it stays inside the T16 partial software-gate opening. Per the retirement note on the previous cardgame-sync-cards-to-jaina unit (ledger resolution:retired, 2026-07-28), this spec deliberately extends the existing tool/flag contract instead of contradicting it.",
+  "criteria": [
+    {
+      "text": "Invoking tools/sync-cards-to-jaina.js without --dry-run upserts each parsed card record into a Jaina 'cards' schema via a real Jaina client (JAINA_API_KEY/JAINA_PROJECT_ID read from environment variables, never hardcoded), replacing the current 'live sync not yet implemented, exit 1' stub — the --dry-run flag's existing print-only behavior is unchanged.",
+      "provenance": "user",
+      "held_out": false
+    },
+    {
+      "text": "test/sync-cards-to-jaina.test.js adds coverage for the live path against a mocked/stubbed Jaina client (no network call made during node --test) asserting the upsert payload for a fixture card carries name, slug, costLine, typeLine, rulesText, and statsLine.",
+      "provenance": "paraphrase",
+      "held_out": false
+    },
+    {
+      "text": "Running the live path twice in a row against unchanged alpha-set.md content updates the existing mocked-client records in place (upsert keyed by slug) rather than creating duplicates, asserted by call count/upsert key against the mock.",
+      "provenance": "inferred",
+      "held_out": false
+    },
+    {
+      "text": "design/ideas-inbox.md's 'use Jaina as the content backbone' heading is tagged [incorporated: cardgame-sync-cards-to-jaina], and no other heading or quote block in the file changes.",
+      "provenance": "inferred",
+      "held_out": true
+    }
+  ],
+  "touches": [
+    "tools/sync-cards-to-jaina.js",
+    "test/sync-cards-to-jaina.test.js",
+    "design/ideas-inbox.md"
+  ],
+  "test_cmd": "node --test",
+  "id": "ms4kgxyx-cardgame-sync-cards-to-jaina",
+  "filed_at": "2026-07-28T11:22:43.065Z",
+  "window_expires": "2026-07-28T12:22:43.067Z",
+  "status": "vetoed",
+  "veto_reason": "Duplicate of ms4l0xre-cardgame-jaina-card-sync-live (the canonical live-sync step, correctly filed as security-risk since it writes to RouterBox's real Jaina account). Four re-filings of the same step accumulated because the security gate keeps it pending � that is the gate WORKING; do not re-file the live sync again until RouterBox decides ms4l0xre."
+}

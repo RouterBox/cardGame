@@ -1,0 +1,8 @@
+{
+  "gate": "confirm",
+  "question": "Planner self-assessed this unit as risky/ambiguous. Approve the plan to continue.",
+  "raised_at": "2026-07-29T19:19:51.747Z",
+  "decision": "approve",
+  "comment": "Both interpretive calls approved: (1) introduce the # Wreck Tangle - Game Plan heading in gamePlan.md (matches sibling doc conventions and the propagate-everywhere intent); (2) update DESIGN-READINESS.md line 14 quoted title so the readiness doc does not misquote the rulebook. Good ask-dont-assume discipline.",
+  "decided_at": "2026-07-29T19:23:41.404Z"
+}

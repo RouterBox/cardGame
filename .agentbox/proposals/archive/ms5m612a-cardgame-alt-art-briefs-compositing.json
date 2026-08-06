@@ -1,0 +1,49 @@
+{
+  "name": "cardgame-alt-art-briefs-compositing",
+  "title": "Alt-Art briefs and compositing — the fourth Layer treatment card-anatomy.md defines but no tool touches",
+  "project": "cardgame",
+  "pitch": "Give 3 alpha-set cards a second, alternate-scene art brief and extend composite-card-art.js to render both the base and Alt-Art SVG for them, closing the one premium Layer from card-anatomy.md's own 'Layers' section that render-engine-premium-layers explicitly left out of scope.",
+  "why_now": "card-anatomy.md (shipped) names five treatments — Base, Borderless, Foil, Alt-Art, Extended Art — as layer swaps on one shared skeleton. The just-filed render-engine-premium-layers proposal implements Borderless/Foil/Extended-Art in tools/render-card.js but explicitly excludes Alt-Art, stating it 'swaps which illustration is composited, a concern of tools/composite-card-art.js's brief-selection step... left for a follow-on unit.' composite-card-art.js (shipped) already reads exactly one brief per card from art-briefs.md and produces exactly one output SVG per card — there is no second-brief, second-render path anywhere in the tool. This unit is that named follow-on: it touches only tools/composite-card-art.js and adds a new brief file, so it has zero overlap with any of the 8 units already sitting in the ready queue (none of them touch composite-card-art.js, and the new alt-art-briefs.md file is untouched by the pending art-briefs-frontier-signatures unit, which only extends the existing art-briefs.md). Scoped to 3 already-briefed alpha-set cards so it doesn't depend on that pending unit landing first.",
+  "expected_outcome": "design/cards/alt-art-briefs.md exists with 3 new Alt-Art briefs (Sporeknit Warden, Salvage-Wrought Bastion, Replicant Foundry Core — all already briefed in art-briefs.md); running node tools/composite-card-art.js writes the existing 18 base SVGs unchanged plus 3 new <slug>-alt.svg files whose Name/Cost/Type/Rules-text/Stats content is byte-identical to the base file and differs only in the art-window image; node --test is green.",
+  "risk_class": "standard",
+  "mission_intent": "I6",
+  "taste_citations": [
+    "T16",
+    "T9",
+    "T1"
+  ],
+  "intent": "design/cards/card-anatomy.md's 'The Layers' section (shipped) defines Alt-Art as a layer swap: 'the Art Window's illustration is swapped for an alternate illustration of the same subject matter... every other zone keeps the base treatment's placement and content exactly.' tools/composite-card-art.js (shipped) loads exactly one brief per card name from design/cards/art-briefs.md via loadBriefs() and writes exactly one renders/cards-composited/<slug>.svg per card via compositeArtWindow() — there is no concept of a second brief or a second render for the same card anywhere in the file. This unit adds a new design/cards/alt-art-briefs.md containing one Alt-Art brief each for three already-briefed alpha-set.md cards (Sporeknit Warden, Salvage-Wrought Bastion, Replicant Foundry Core — spanning Bloom, Mass, and Circuit), following the identical Palette/Subject-Scene/Key-visual-elements/Composition template art-briefs.md already uses, with each brief's Subject/Scene describing a genuinely different scene from that card's existing base brief (not a restatement). It extends composite-card-art.js's main() to also load alt-art-briefs.md when present and, for each alt brief whose card name has both a matching card in loadAllCards() and an existing base brief in art-briefs.md, run the same renderCardSvg()/compositeArtWindow() pipeline against the alt brief's text and write the result to renders/cards-composited/<slug>-alt.svg alongside (never replacing) the existing <slug>.svg. An alt brief naming a card with no base brief throws the same clear error loadBriefs() already throws for an unmatched card name, rather than silently skipping it. No existing brief, card file, or tools/render-card.js is touched — this only adds a second, optional brief source and a second, additively-named output file to the already-shipped compositing tool.",
+  "criteria": [
+    {
+      "text": "design/cards/alt-art-briefs.md exists and contains exactly 3 '###' brief sections, titled 'Sporeknit Warden', 'Salvage-Wrought Bastion', and 'Replicant Foundry Core' verbatim, each with Palette/Subject-Scene/Key-visual-elements/Composition lines in the same shape art-briefs.md's existing briefs use.",
+      "provenance": "paraphrase",
+      "held_out": false
+    },
+    {
+      "text": "Each of the 3 new briefs' Subject/Scene line has fewer than half its significant words in common with that same card's existing base brief in design/cards/art-briefs.md, so it describes a genuinely alternate scene rather than a restatement.",
+      "provenance": "inferred",
+      "held_out": false
+    },
+    {
+      "text": "Running node tools/composite-card-art.js (mock client) writes renders/cards-composited/<slug>.svg for all 18 alpha-set cards unchanged in content from a run before this unit, plus exactly 3 new files named <slug>-alt.svg for the three cards named in alt-art-briefs.md, and no other card gets a '-alt.svg' file.",
+      "provenance": "paraphrase",
+      "held_out": false
+    },
+    {
+      "text": "For each of the 3 cards, the Name Slot, Cost Slot, Type Line, Rules-Text Box, and Stats Corner content in <slug>-alt.svg is byte-identical to the same elements in <slug>.svg from the same run, and only the art-window image element's href differs; design/cards/art-briefs.md, alpha-set.md, frontier-set.md, character-signatures.md, and tools/render-card.js remain byte-identical to before this unit.",
+      "provenance": "inferred",
+      "held_out": true
+    }
+  ],
+  "touches": [
+    "design/cards/alt-art-briefs.md",
+    "tools/composite-card-art.js",
+    "test/composite-alt-art.test.js"
+  ],
+  "test_cmd": "node --test",
+  "id": "ms5m612a-cardgame-alt-art-briefs-compositing",
+  "filed_at": "2026-07-29T04:57:59.266Z",
+  "window_expires": "2026-07-29T05:57:59.268Z",
+  "status": "promoted",
+  "promoted_at": "2026-07-29T06:05:56.958Z"
+}

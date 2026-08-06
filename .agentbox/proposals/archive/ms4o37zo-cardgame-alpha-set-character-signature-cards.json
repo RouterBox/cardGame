@@ -1,0 +1,48 @@
+{
+  "name": "cardgame-alpha-set-character-signature-cards",
+  "title": "cardGame cards — Character Signature cards (one per race, tied to a named character)",
+  "project": "cardgame",
+  "pitch": "Add a five-card 'Character Signatures' set, one per race, each explicitly naming a character from design/characters/<race>.md, so the 15-25 named characters RouterBox asked for finally become the 'legendary/hero card identities' the ideas-inbox said they'd feed into.",
+  "why_now": "design/characters/*.md already describes each race's characters with an explicit 'As a card, she'd be...' hook (e.g. Kordelia Vess: 'a slow, unstoppable engine... powered by every wreck she's allowed to rot in her hold'), and the 2026-07-27 ideas-inbox entry says these narratives are 'usable later as legendary/hero card identities and art briefs' — but no card in design/cards/alpha-set.md names any of them yet, so that promised link is still unbuilt. Both rules.md gaps (combat resolution, deck construction) already have open, window-open proposals filed against this exact step per the pending-decision rule, and the two Jaina/Leonardo live-wiring steps are correctly stuck behind ms4l0xre/ms4n1pvi security decisions — this unit advances a different, unblocked piece of the design shelf instead of re-filing any of those.",
+  "expected_outcome": "design/cards/character-signatures.md gains exactly 5 new named cards, one per race, each using the canonical Section 9.1 template (Cost line, Type line, Rules text, and an optional Stats/counters line if a Permanent, in that order) and each naming, in its rules text or flavor text, both its own race (matching that race's title in design/races/) and one specific named character drawn from that race's own file under design/characters/. `node --test` run from cardGame passes a new test/design-signature-cards.test.js asserting card count, template order/field rules, the race+character cross-reference, and that no two signature cards name the same character, alongside the full existing suite still green.",
+  "risk_class": "standard",
+  "mission_intent": "I6",
+  "taste_citations": [
+    "T9",
+    "T8",
+    "T1"
+  ],
+  "intent": "Add a new design/cards/character-signatures.md file containing exactly five new cards — one per race (the Cindral Reach, the Mireth Bloom, the Panoptic Concord, the Starweave Communion, the Wrought Assembly) — each built from a specific named character already described in that race's own file under design/characters/. Each card follows the canonical card template from rules.md Section 9.1 (Name, Cost line, Type line, Rules text, and, for Permanents, an optional Stats/counters line, always in that order), and each card's rules text or flavor text must explicitly name both the race it belongs to and the character it is based on, so the cross-reference is checkable by name rather than implied. This closes the gap the 2026-07-27 characters ideas-inbox entry named but did not yet deliver: named characters intended as future 'legendary/hero card identities' that no card has yet instantiated. It continues I6's MTG-Comprehensive-Rules-rigor bar (T9), the decided full scope of the design phase rather than stopping at the first working slice (T1), and mechanical, document-based acceptance criteria (T8). It deliberately does not touch design/cards/alpha-set.md, rules.md, or either tool under the pending Jaina/Leonardo security decisions.",
+  "criteria": [
+    {
+      "text": "design/cards/character-signatures.md exists and contains exactly 5 distinct named cards, one per race under design/races/.",
+      "provenance": "paraphrase",
+      "held_out": false
+    },
+    {
+      "text": "Every card in the file uses the canonical template from rules.md Section 9.1 in order (Cost line, then Type line, then Rules text, and, only for Permanents, an optional Stats/counters line after Rules text).",
+      "provenance": "inferred",
+      "held_out": false
+    },
+    {
+      "text": "Each card's combined rules text and flavor text names both its own race's title (as printed in that race's design/races/ file) and one specific named character drawn from that race's own file under design/characters/.",
+      "provenance": "inferred",
+      "held_out": false
+    },
+    {
+      "text": "No two signature cards name the same character, and a new test/design-signature-cards.test.js asserts this uniqueness alongside the count, template-order, and race/character cross-reference checks above.",
+      "provenance": "inferred",
+      "held_out": true
+    }
+  ],
+  "touches": [
+    "design/cards/character-signatures.md",
+    "test/design-signature-cards.test.js"
+  ],
+  "test_cmd": "node --test",
+  "id": "ms4o37zo-cardgame-alpha-set-character-signature-cards",
+  "filed_at": "2026-07-28T13:04:01.332Z",
+  "window_expires": "1970-01-01T00:00:00.000Z",
+  "status": "promoted",
+  "promoted_at": "2026-07-28T13:37:10.796Z"
+}

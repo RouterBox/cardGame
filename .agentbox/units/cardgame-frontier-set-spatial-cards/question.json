@@ -1,0 +1,24 @@
+{
+  "stuck": "After 3 attempts, the work still is not passing its checks.",
+  "tried": "Three attempts were made to fix this, and each one still did not pass the checks.",
+  "options": [
+    {
+      "id": "retry",
+      "label": "Try again as-is",
+      "consequence": "Starts a fresh attempt using the same plan and instructions.",
+      "action": "retry"
+    },
+    {
+      "id": "guidance-retry",
+      "label": "Give guidance and try again",
+      "consequence": "Uses your note below as new instructions for a fresh attempt.",
+      "action": "custom"
+    },
+    {
+      "id": "abandon",
+      "label": "Abandon this task",
+      "consequence": "Stops work on this unit for good.",
+      "action": "abandon"
+    }
+  ]
+}

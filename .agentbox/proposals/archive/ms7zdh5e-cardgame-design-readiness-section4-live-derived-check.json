@@ -1,0 +1,54 @@
+{
+  "name": "cardgame-design-readiness-section4-live-derived-check",
+  "title": "Make DESIGN-READINESS.md Section 4's art-brief-coverage list mechanically derived, like Section 3 already is — and fix the one file it's currently missing",
+  "project": "cardgame",
+  "pitch": "Section 4 hand-lists 8 card-set files as covered by art-briefs.md's 54 briefs, but design/cards/spatial-race-identity-set-wave-2.md's 2 cards (Bloom Fount, Circuit Fount) are both already briefed — the file just never got added to the sentence, and nothing catches this the way Section 3's card-set list already mechanically does.",
+  "why_now": "Verified live: design/cards/art-briefs.md's last two \"###\" headings (lines 832, 844) are \"Bloom Fount\" and \"Circuit Fount\" — the exact 2 card names in design/cards/spatial-race-identity-set-wave-2.md (read in full) — so that set has 100% art-brief coverage today. But design/DESIGN-READINESS.md Section 4 (\"## 4. Card Anatomy & Art Brief Coverage\", lines 126-130) names only 8 files as covered (\"alpha-set.md, frontier-set.md, character-signatures.md, character-signatures-wave-2.md, fount-economy-set.md, wormhole-restrictions-set.md, wormhole-closure-cards.md, and spatial-race-identity-set.md\") and never names spatial-race-identity-set-wave-2.md, even though its own \"54 art-brief sections\" count already includes both Bloom Fount and Circuit Fount (52 cards across the 8 named files + these 2 = 54). Read test/design-readiness.test.js in full: AC3/AC6 already re-derives Section 3's card-set citation list live from disk via lib/parse-card-markdown.js (the T12-driven fix — 'so it cannot go stale the way a frozen count would'), but no equivalent check exists for Section 4's art-brief-coverage sentence, which is why this specific drift went uncaught. This is the same class of doc-staleness T12 already named, recurring in a second, never-mechanized location. Checked memory and all 6 currently window-open proposals (playtest-spatial-wormhole-coverage, lore-docs-game-name-references, frontier-worlds-cards, jaina-world-narrative-sync-dryrun, rules-restriction-movement-contradiction-fix, art-briefs-character-signatures-wave-3) plus both in-flight units with no proposal record (alt-art-briefs-character-signatures, jaina-sync-tools-dryrun-cli-dedup) per T24: none touches design/DESIGN-READINESS.md or test/design-readiness.test.js. art-briefs-character-signatures-wave-3 explicitly declares it does not touch DESIGN-READINESS.md, so a future 100%-covered wave-3 will need this same citation added later — this unit makes that future update mechanically enforced instead of relying on someone remembering, without itself requiring wave-3's citation today (wave-3 has 0% coverage until that proposal ships, so the live-derived check correctly leaves it uncited for now).",
+  "expected_outcome": "test/design-readiness.test.js gains a new assertion that, for every design/cards/*.md file parsing to 1+ cards (via lib/parse-card-markdown.js), if every one of that file's card names appears as a \"###\" heading in design/cards/art-briefs.md, the filename is cited in DESIGN-READINESS.md's Section 4 text; design/DESIGN-READINESS.md's Section 4 sentence is updated to add the currently-missing \"spatial-race-identity-set-wave-2.md\" citation, turning the new assertion GREEN; site/design/DESIGN-READINESS.html is regenerated via tools/build-site.js.",
+  "risk_class": "standard",
+  "mission_intent": "I6",
+  "taste_citations": [
+    "T9",
+    "T12",
+    "T24"
+  ],
+  "intent": "design/DESIGN-READINESS.md exists to make the software-gate judgment call (I6) an informed one, with a file citation for every claim (T9's structural-rigor bar). Section 3's card-set list already learned T12's lesson — test/design-readiness.test.js's AC3/AC6 re-derives it live from design/cards/*.md via lib/parse-card-markdown.js's loadCardsFromFile so it cannot silently drift. Section 4 (\"Card Anatomy & Art Brief Coverage\") never got the same treatment: its sentence naming which card-set files are fully covered by design/cards/art-briefs.md's brief sections is hand-typed, and design/cards/spatial-race-identity-set-wave-2.md's 2 cards (Bloom Fount, Circuit Fount, both already briefed at art-briefs.md lines 832 and 844) are missing from it. Add a new test in test/design-readiness.test.js: for every file under design/cards/ that loadCardsFromFile parses to 1+ cards, extract that file's card names, then check whether every one of those names appears as a \"###\" heading anywhere in design/cards/art-briefs.md (parsed the same way test/design-alt-art-briefs.test.js's helpers already scan that file's headings); if and only if every card name is found, assert the DESIGN-READINESS.md Section 4 section text (use the existing sectionText/parseSections helpers already imported in this test file, matched against the section titled \"Card Anatomy & Art Brief Coverage\") includes that filename. Do not require citation for any file with partial or zero art-brief coverage (e.g. character-signatures-wave-3.md today) — the check is coverage-driven, not disk-presence-driven, so it does not race with the still-open art-briefs-character-signatures-wave-3 proposal. Then update design/DESIGN-READINESS.md Section 4's sentence (lines 126-130) to add \"spatial-race-identity-set-wave-2.md\" to the list of covered files, making the new test GREEN. Do not change Section 4's card-anatomy paragraph, alt-art-briefs.md paragraph, the \"Known gap — resolved\" bullet, any other section of DESIGN-READINESS.md, or any file under design/cards/ — this unit only adds the one missing filename to Section 4's existing sentence and adds the new mechanical test. Regenerate site/ via tools/build-site.js.",
+  "criteria": [
+    {
+      "text": "test/design-readiness.test.js contains a new test asserting that for every design/cards/*.md file parsing to 1+ cards via lib/parse-card-markdown.js, if all of that file's card names appear as \"###\" headings in design/cards/art-briefs.md, the filename is cited in DESIGN-READINESS.md's Section 4 (\"Card Anatomy & Art Brief Coverage\") text",
+      "provenance": "inferred",
+      "held_out": false
+    },
+    {
+      "text": "design/DESIGN-READINESS.md's Section 4 sentence is updated to cite \"spatial-race-identity-set-wave-2.md\" alongside the 8 files it already names, and this is the only content change made to the file",
+      "provenance": "paraphrase",
+      "held_out": false
+    },
+    {
+      "text": "The new test does not require design/cards/character-signatures-wave-3.md (currently 0% art-brief coverage) to be cited in Section 4 — proving the check keys off actual brief coverage, not mere file existence on disk",
+      "provenance": "paraphrase",
+      "held_out": true
+    },
+    {
+      "text": "No section of design/DESIGN-READINESS.md other than Section 4's covered-files sentence, and no file under design/cards/, is changed from its content before this unit",
+      "provenance": "inferred",
+      "held_out": false
+    },
+    {
+      "text": "All pre-existing AC1-AC5 tests in test/design-readiness.test.js continue to pass unmodified, and site/design/DESIGN-READINESS.html is regenerated via tools/build-site.js to match the updated markdown",
+      "provenance": "paraphrase",
+      "held_out": false
+    }
+  ],
+  "touches": [
+    "design/DESIGN-READINESS.md",
+    "test/design-readiness.test.js",
+    "site/design/DESIGN-READINESS.html"
+  ],
+  "test_cmd": "node --test",
+  "id": "ms7zdh5e-cardgame-design-readiness-section4-live-derived-check",
+  "filed_at": "2026-07-30T20:43:14.066Z",
+  "window_expires": "2026-07-31T00:43:14.069Z",
+  "status": "promoted",
+  "promoted_at": "2026-07-31T00:54:31.100Z"
+}

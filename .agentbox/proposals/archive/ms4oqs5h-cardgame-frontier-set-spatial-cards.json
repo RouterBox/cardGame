@@ -1,0 +1,48 @@
+{
+  "name": "cardgame-frontier-set-spatial-cards",
+  "title": "cardGame cards — Frontier Set (5 cards that actually use the spatial battlefield graph)",
+  "project": "cardgame",
+  "pitch": "Add a 5-card 'Frontier Set' (one per race) where each card's rules text keys off a Section 8 spatial-layer mechanic — Discovery, Wormhole Restriction/Closure, Assault, Blockade, or Capture — since not one of the 18 shipped Alpha-set cards touches the spatial battlefield at all.",
+  "why_now": "cardgame-spatial-battlefield-rules and cardgame-spatial-map-setup-and-playtest-procedure shipped a full graph-of-planets-and-wormholes layer (Section 8: Discovery, Restriction, Closure, Assault, Blockade, Capture), but a grep of design/cards/alpha-set.md for Wormhole/Discovery/Assault/Blockade/Capture/Planet returns zero matches — the spatial rules have no cards that use them, so the mechanic RouterBox asked for is undemoable in an actual hand of cards. This is a different, unclaimed piece of 'grow the card set' than the two rules-gap proposals (combat-resolution, deck-construction, both already window-open against rules.md) or the character-signature-cards proposal (window-open against a different new file); it also doesn't touch design/rules.md, so it can't compound the append-conflict those two already carry.",
+  "expected_outcome": "design/cards/frontier-set.md gains exactly 5 new named cards, one per race, each using the canonical Section 9.1 template (Cost line, Type line, Rules text, optional Stats/counters line for Permanents) and each naming, in its rules text, one specific Section 8 spatial term (Discovery, Restriction, Closure, Assault, Blockade, or Capture) and citing that term's subsection number. `node --test` run from cardGame passes a new test/design-frontier-cards.test.js asserting card count, template order/field rules, and that each card's spatial-term citation matches an actual Section 8 subsection, alongside the full existing suite still green.",
+  "risk_class": "standard",
+  "mission_intent": "I6",
+  "taste_citations": [
+    "T9",
+    "T8",
+    "T1"
+  ],
+  "intent": "Add a new design/cards/frontier-set.md file containing exactly five new cards — one per race (the Cindral Reach, the Mireth Bloom, the Panoptic Concord, the Starweave Communion, the Wrought Assembly) — each mechanically tied to the spatial battlefield graph shipped in rules.md Section 8 (Planets, Wormholes, Discovery, Restriction, Closure, Assault, Blockade, Capture). Each card follows the canonical card template from rules.md Section 9.1 (Name, Cost line, Type line, Rules text, and, for Permanents, an optional Stats/counters line, always in that order), and each card's rules text must name one specific Section 8 term and cite the subsection number that defines it, so the tie between card and spatial rule is checkable by name rather than merely thematic. This closes a real, previously-unaddressed gap: two card-shipping units (alpha-set-starter-cards) and two spatial-layer units (spatial-battlefield-rules, spatial-map-setup-and-playtest-procedure) have shipped, but no card built since either spatial unit landed references the graph at all. It continues I6's MTG-Comprehensive-Rules-rigor bar (T9), the decided full scope of the design phase rather than stopping at the first working slice (T1), and mechanical, document-based acceptance criteria (T8). It deliberately does not touch design/rules.md, design/cards/alpha-set.md, or design/cards/character-signatures.md.",
+  "criteria": [
+    {
+      "text": "design/cards/frontier-set.md exists and contains exactly 5 distinct named cards, one per race under design/races/.",
+      "provenance": "paraphrase",
+      "held_out": false
+    },
+    {
+      "text": "Every card uses the canonical template from rules.md Section 9.1 in order (Cost line, then Type line, then Rules text, and, only for Permanents, an optional Stats/counters line after Rules text).",
+      "provenance": "inferred",
+      "held_out": false
+    },
+    {
+      "text": "Each card's rules text names at least one of: Discovery, Restriction, Closure, Assault, Blockade, or Capture, and cites the specific rules.md Section 8 subsection number that defines the named term.",
+      "provenance": "inferred",
+      "held_out": false
+    },
+    {
+      "text": "No two Frontier Set cards name the same race, and a new test/design-frontier-cards.test.js asserts this alongside the count, template-order, and spatial-term-citation checks above.",
+      "provenance": "inferred",
+      "held_out": true
+    }
+  ],
+  "touches": [
+    "design/cards/frontier-set.md",
+    "test/design-frontier-cards.test.js"
+  ],
+  "test_cmd": "node --test",
+  "id": "ms4oqs5h-cardgame-frontier-set-spatial-cards",
+  "filed_at": "2026-07-28T13:22:20.549Z",
+  "window_expires": "1970-01-01T00:00:00.000Z",
+  "status": "promoted",
+  "promoted_at": "2026-07-28T13:37:11.513Z"
+}

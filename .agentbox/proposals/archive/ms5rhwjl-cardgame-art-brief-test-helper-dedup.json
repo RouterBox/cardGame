@@ -1,0 +1,48 @@
+{
+  "name": "cardgame-art-brief-test-helper-dedup",
+  "title": "Extract the duplicated art-brief assertion check (Palette/Fount-color, Key-visual-elements, Composition) into a shared test helper before the next three brief-adding units freeze it as copy-paste",
+  "project": "cardgame",
+  "pitch": "test/design-art-briefs.test.js implements the Palette-names-correct-Fount-color / Key-visual-elements-2-bullets-card-specific / Composition-has-aspect-ratio check inline; three open proposals (character-signatures-wave-2, wormhole-restrictions, and alt-art-signal-tangle's sibling files) each hand-copy that same shape into a brand-new test file rather than reusing it — extract it into test/helpers/art-brief.js now, the same fix already applied to the analogous Section 9.1 card-template duplication by the currently-bolting cardgame-card-template-test-helper-dedup unit.",
+  "why_now": "Every open art-briefs proposal this cycle (ms5pcglf character-signatures-wave-2, ms5q88fm wormhole-restrictions) describes its new test file as 'mirroring the assertion shape of the existing design-art-briefs tests' — i.e. hand-copying the same Palette/Key-visual-elements/Composition logic test/design-art-briefs.test.js already implements for alpha-set.md, frontier-set.md, and character-signatures.md (per the shipped cardgame-art-briefs-frontier-signatures unit, which widened that one file's loop rather than duplicating it). That was fine at one file; it stops being fine at four. This is the exact pattern T11 named for repo-state work and that cardgame-card-template-test-helper-dedup (bolting right now, unit dir present) is fixing in parallel for a different duplicated check (Section 9.1 template ordering across design-cards.test.js/design-frontier-cards.test.js/design-signature-cards.test.js) — same root cause, different file family, so this is not a duplicate of that unit. Landing the extraction now, before wave-2 and wormhole-restrictions merge their own copies, means only one existing file needs migrating instead of a shared helper arriving after three more hand-copies already exist. Today's cycle is otherwise all net-new content (5 open proposals adding cards/briefs/docs, 5 bolts adding more) — this is the deliberate simplification counterweight the portfolio rule asks for.",
+  "expected_outcome": "test/helpers/art-brief.js exists, exporting a function that, given a card's title/body and the art-briefs.md text, registers the same three checks test/design-art-briefs.test.js currently implements inline (exact-title brief section exists; Palette line names the correct card-anatomy.md Fount color for that card's Cost line; Key-visual-elements has 2+ card-specific bullets; Composition line names an aspect ratio); test/design-art-briefs.test.js calls this helper instead of its own inline copy; `node --test` produces the identical pass/fail set for that file as before the refactor; no design/*.md file is touched.",
+  "risk_class": "standard",
+  "mission_intent": "I6",
+  "taste_citations": [
+    "T11",
+    "T1",
+    "T3"
+  ],
+  "intent": "test/design-art-briefs.test.js (shipped) enforces T8's art-briefs-precede-art rule by checking, per card, that art-briefs.md contains a matching '###' section whose Palette line names the correct Fount-driven color, whose Key-visual-elements list is card-specific rather than generic filler, and whose Composition line references an aspect ratio — logic written once, inline, when the file covered only alpha-set.md, and widened in place (not duplicated) when frontier-set.md and character-signatures.md were added by the shipped cardgame-art-briefs-frontier-signatures unit. That inline-widening approach breaks down once units need their own, non-conflicting test files for concurrent bolting: the open cardgame-art-briefs-character-signatures-wave-2 and cardgame-art-briefs-wormhole-restrictions proposals each describe adding a brand-new test file that re-implements this exact same three-part check by hand, precisely the copy-paste-under-parallelism pattern T11 already flagged once and that the currently-bolting cardgame-card-template-test-helper-dedup unit is independently fixing for a different duplicated check (Section 9.1 card-template ordering) on a different file family (design-cards.test.js/design-frontier-cards.test.js/design-signature-cards.test.js) — confirming this is a recognized, recurring shape rather than premature abstraction. This unit extracts the Palette/Key-visual-elements/Composition check out of test/design-art-briefs.test.js into a new test/helpers/art-brief.js (mirroring the existing test/helpers/markdown.js and the in-flight test/helpers/card-template.js precedents) as a single exported function, and updates test/design-art-briefs.test.js to call it instead of defining its own copy. It does not touch or rewrite the wave-2 or wormhole-restrictions proposals' not-yet-created test files — those remain free to either adopt the helper or land as filed, since they are outside this unit's scope — and it does not touch any design/*.md content, art-briefs.md, or the compositing/rendering code itself; only test/design-art-briefs.test.js changes and test/helpers/art-brief.js is added.",
+  "criteria": [
+    {
+      "text": "test/helpers/art-brief.js exists and exports a function that, given a card's title, body text, and the art-briefs.md text, registers node:test assertions for: an exact-title matching '###' brief section exists; its Palette line names the Fount color from card-anatomy.md's Fount identity table matching the card's own Cost line; its Key-visual-elements list has at least 2 bullets sharing at least 2 significant words with the card's own rules/flavor text; its Composition line references an aspect ratio.",
+      "provenance": "paraphrase",
+      "held_out": false
+    },
+    {
+      "text": "test/design-art-briefs.test.js no longer contains its own inline implementation of the Palette/Key-visual-elements/Composition check — it calls the shared helper from test/helpers/art-brief.js instead, for every card it currently covers (alpha-set.md, frontier-set.md, character-signatures.md).",
+      "provenance": "paraphrase",
+      "held_out": false
+    },
+    {
+      "text": "Running `node --test` produces the same number of passing and failing tests for test/design-art-briefs.test.js after the refactor as it did before, run against the current unmodified design/cards/*.md and art-briefs.md content.",
+      "provenance": "inferred",
+      "held_out": true
+    },
+    {
+      "text": "No file under design/ is modified by this unit and no other existing test file is touched — git diff is limited to test/design-art-briefs.test.js (modified) and test/helpers/art-brief.js (added).",
+      "provenance": "inferred",
+      "held_out": false
+    }
+  ],
+  "touches": [
+    "test/helpers/art-brief.js",
+    "test/design-art-briefs.test.js"
+  ],
+  "test_cmd": "node --test",
+  "id": "ms5rhwjl-cardgame-art-brief-test-helper-dedup",
+  "filed_at": "2026-07-29T07:27:11.361Z",
+  "window_expires": "2026-07-29T08:27:11.364Z",
+  "status": "promoted",
+  "promoted_at": "2026-07-29T08:39:17.888Z"
+}

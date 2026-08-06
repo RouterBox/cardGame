@@ -1,0 +1,8 @@
+{
+  "gate": "confirm",
+  "question": "Planner self-assessed this unit as risky/ambiguous. Approve the plan to continue.",
+  "raised_at": "2026-07-30T11:02:37.018Z",
+  "decision": "approve",
+  "comment": "Approved: adopt the fully-resolved framing. The planner verified all 8 briefs exist in art-briefs.md (both wormhole-closure and spatial-race-identity halves), so AC2 as literally written would insert a false claim into a citation-backed document. Mark Open Gap 1 resolved citing both closing units, keep it as numbered item 1 so design-readiness.test.js AC5 (>=3 items) passes unmodified, and update the one stale assertion in design-readiness-gap2-resolved.test.js. Tests should assert the truthful resolved-state text (AC1, AC2 citable parts, AC3, AC4, AC5), not the stale 3-card-hole sentence.",
+  "decided_at": "2026-07-30T11:49:05.201Z"
+}

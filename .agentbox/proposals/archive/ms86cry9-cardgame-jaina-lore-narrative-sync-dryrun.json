@@ -1,0 +1,55 @@
+{
+  "name": "cardgame-jaina-lore-narrative-sync-dryrun",
+  "title": "Add a dry-run Jaina sync tool for lore.md's 'Summary' narrative section — the one prose section every lore parser has always skipped",
+  "project": "cardgame",
+  "pitch": "lib/parse-lore-markdown.js explicitly skips design/lore.md's '## Summary' section (only Timeline-of-Eras + numbered era sections become records), so that narrative prose has never reached Jaina — the exact gap sync-world-narrative-to-jaina.js just closed for world.md's 'The Setting'/'A History in Brief' sections.",
+  "why_now": "Verified live: read lib/parse-lore-markdown.js in full — parseLoreMarkdown's loop (line 44) reads `if (section.title === SUMMARY_TITLE || section.title === TIMELINE_TITLE) continue;`, so the Summary H2 (design/lore.md lines 3-18, two paragraphs of narrative overview prose) is structurally excluded from every era record tools/sync-lore-eras-to-jaina.js produces. Read tools/sync-world-narrative-to-jaina.js, lib/parse-world-narrative-markdown.js, and memory/cardgame-jaina-world-narrative-sync-dryrun.md in full: that unit (merged 2026-07-30) closed the identical class of gap for design/world.md, whose own Founts parser likewise skips its two free-form narrative H2s — the merged unit's own comment names the pattern explicitly ('Cosmology: The Five Founts is deliberately absent from this list -- that section stays lib/parse-founts-markdown.js's own territory, never re-parsed here'). design/lore.md's Summary section is lore.md's equivalent orphan: never claimed by lib/parse-lore-markdown.js (era-only) and not a card/character/race/star-atlas/founts record either. Grepped test/ for any existing lore-narrative test: none exists (only design-lore.test.js, parse-lore-markdown.test.js, sync-lore-eras-to-jaina.test.js, and design-lore-docs-game-name-references.test.js touch lore.md, and none reference the Summary section's prose). Checked memory and all 7 currently window-open proposals (rules-restriction-movement-contradiction-fix, art-briefs-character-signatures-wave-3, design-readiness-section4-live-derived-check, playtest-character-signatures-wave-3-refresh, game-name-card-set-docs, alt-art-briefs-character-signatures-wave-2, character-markdown-section-splitter-dedup) plus the in-flight escalated unit (cardgame-frontier-worlds-cards, stuck at planning, unrelated card-set work): none touches design/lore.md, lib/parse-lore-markdown.js, tools/sync-lore-eras-to-jaina.js, or any lore-narrative sync. One file overlap to flag: ms7zdh5e-cardgame-design-readiness-section4-live-derived-check also edits design/DESIGN-READINESS.md, but scopes itself to Section 4 (art-brief coverage) — this unit only touches Section 5 (tooling list) and Section 6 Gap 3 (Jaina coverage), disjoint subsections, mirroring how the already-merged world-narrative unit made the identical two-section edit without conflict.",
+  "expected_outcome": "A new lib/parse-lore-narrative-markdown.js exports loadLoreNarrativeSections(), returning exactly one record ({ title: 'Summary', slug: 'summary', body: <joined prose> }) parsed from design/lore.md via the shared splitIntoH2Sections/extractParagraph helpers. A new tools/sync-lore-narrative-to-jaina.js prints that record's dry-run payload via lib/run-jaina-dryrun-cli.js's runDryRunSyncCli and exits 1 with a not-yet-implemented message on --live, mirroring tools/sync-world-narrative-to-jaina.js's structure exactly. design/DESIGN-READINESS.md Section 5 gains one new tooling bullet for the new tool, and Section 6 Gap 3's closing sentence is extended to name lore.md's Summary section as now covered too. New test/parse-lore-narrative-markdown.test.js and test/sync-lore-narrative-to-jaina.test.js pass; every existing lore test continues to pass unmodified.",
+  "risk_class": "standard",
+  "mission_intent": "I6",
+  "taste_citations": [
+    "T9",
+    "T16"
+  ],
+  "intent": "design/ideas-inbox.md's 2026-07-28 'use Jaina as the content backbone' directive asked structured game content to become schema-backed Jaina records. Cards, characters, races, star-atlas worlds, lore eras, Fount cosmology, and (as of the just-merged cardgame-jaina-world-narrative-sync-dryrun unit) world.md's free-form narrative prose all now have their own dry-run sync tool. design/lore.md's '## Summary' section is the one remaining orphaned prose section: lib/parse-lore-markdown.js's parseLoreMarkdown explicitly skips it (it only emits records for '## Timeline of Eras' and the numbered era sections it names), so it has never been represented in Jaina at all. Add lib/parse-lore-narrative-markdown.js exporting parseLoreNarrativeMarkdown(markdown) and loadLoreNarrativeSections(), following lib/parse-world-narrative-markdown.js's exact shape: use lib/markdown-sections.js's splitIntoH2Sections to find the 'Summary' H2 by exact title match, lib/markdown-sections.js's extractParagraph to build its body (joining the section's non-blank lines into one prose string), and lib/parse-card-markdown.js's slugify for the slug -- re-export all three by reference, do not reimplement any of them. Return exactly one record: { title: 'Summary', slug: 'summary', body }. Add tools/sync-lore-narrative-to-jaina.js mirroring tools/sync-world-narrative-to-jaina.js's structure precisely: import loadLoreNarrativeSections, define buildRecord(section) returning { title, slug, body }, define a NOT_IMPLEMENTED_MESSAGE naming 'Lore Narrative', and call lib/run-jaina-dryrun-cli.js's runDryRunSyncCli({ loadItems, buildRecord, notImplementedMessage, argv: process.argv }) instead of hand-rolling any dry-run control flow. Add one new bullet to design/DESIGN-READINESS.md Section 5's tooling list for the new tool, matching the existing bullet format and placement style used for the other sync-*-to-jaina.js entries, and extend Section 6 Gap 3's closing sentence to name design/lore.md's Summary section as now covered too, citing the new tool by filename. Touch no other line of DESIGN-READINESS.md (leave Section 4's art-brief-coverage sentence alone -- that belongs to a different open proposal). Do not touch design/lore.md itself, lib/parse-lore-markdown.js, lib/parse-world-narrative-markdown.js, lib/markdown-sections.js, lib/run-jaina-dryrun-cli.js, lib/parse-card-markdown.js, tools/sync-lore-eras-to-jaina.js, tools/sync-world-narrative-to-jaina.js, or any other existing tools/sync-*-to-jaina.js file or its test.",
+  "criteria": [
+    {
+      "text": "lib/parse-lore-narrative-markdown.js exports loadLoreNarrativeSections(), which returns exactly one record for design/lore.md's 'Summary' H2 section with shape { title: 'Summary', slug: 'summary', body: <non-empty string> }",
+      "provenance": "inferred",
+      "held_out": false
+    },
+    {
+      "text": "the record's body is built via lib/markdown-sections.js's extractParagraph and its slug via lib/parse-card-markdown.js's slugify, both imported by reference (reference-equal), not reimplemented",
+      "provenance": "paraphrase",
+      "held_out": false
+    },
+    {
+      "text": "tools/sync-lore-narrative-to-jaina.js calls lib/run-jaina-dryrun-cli.js's runDryRunSyncCli with { loadItems, buildRecord, notImplementedMessage, argv }, prints the dry-run record payload by default, and exits 1 with a not-yet-implemented message when run with --live",
+      "provenance": "paraphrase",
+      "held_out": false
+    },
+    {
+      "text": "design/DESIGN-READINESS.md Section 5 gains exactly one new tooling bullet for tools/sync-lore-narrative-to-jaina.js, and Section 6 Gap 3's text is updated to name lore.md's Summary section as covered; Section 4 is untouched",
+      "provenance": "inferred",
+      "held_out": true
+    },
+    {
+      "text": "all pre-existing lore-related tests (test/design-lore.test.js, test/parse-lore-markdown.test.js, test/sync-lore-eras-to-jaina.test.js, test/design-lore-docs-game-name-references.test.js) continue to pass unmodified, and the two new test files mechanically assert the criteria above",
+      "provenance": "paraphrase",
+      "held_out": false
+    }
+  ],
+  "touches": [
+    "lib/parse-lore-narrative-markdown.js",
+    "tools/sync-lore-narrative-to-jaina.js",
+    "test/parse-lore-narrative-markdown.test.js",
+    "test/sync-lore-narrative-to-jaina.test.js",
+    "design/DESIGN-READINESS.md"
+  ],
+  "test_cmd": "node --test",
+  "id": "ms86cry9-cardgame-jaina-lore-narrative-sync-dryrun",
+  "filed_at": "2026-07-30T23:58:38.721Z",
+  "window_expires": "2026-07-31T03:58:38.724Z",
+  "status": "promoted",
+  "promoted_at": "2026-07-31T04:09:34.475Z"
+}

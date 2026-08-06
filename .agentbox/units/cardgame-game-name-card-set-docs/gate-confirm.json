@@ -1,0 +1,8 @@
+{
+  "gate": "confirm",
+  "question": "Planner self-assessed this unit as risky/ambiguous. Approve the plan to continue.",
+  "raised_at": "2026-07-31T02:35:22.471Z",
+  "decision": "approve",
+  "comment": "Approved: implement exactly the 10-file list the ACs enumerate. The frontier-worlds-set.md premise-staleness is real but expanding to an 11th file no AC names risks tripping scope guards for zero AC credit � the Producer will file the follow-up (or the orchestrator adds the one-liner after merge). Your flag is exactly right.",
+  "decided_at": "2026-07-31T02:53:29.076Z"
+}

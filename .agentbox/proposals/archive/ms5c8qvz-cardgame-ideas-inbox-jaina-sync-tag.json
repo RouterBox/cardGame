@@ -1,0 +1,47 @@
+{
+  "name": "cardgame-ideas-inbox-jaina-sync-tag",
+  "title": "Tag the Jaina content-backbone idea as incorporated",
+  "project": "cardgame",
+  "pitch": "Flip the last open ideas-inbox.md entry now that live Jaina card sync has actually merged.",
+  "why_now": "cardgame-jaina-card-sync-live shipped (tools/sync-cards-to-jaina.js's live path is real, not a stub, and AgentBox's own log shows it hand-recovered+merged), but design/ideas-inbox.md's 'use Jaina as the content backbone' heading and test/design-ideas-inbox.test.js's AC3 test still assert it is untagged — the design shelf's own traceability record is now stale and would mislead anyone reading it as the source of truth.",
+  "expected_outcome": "design/ideas-inbox.md's Jaina heading reads '... [incorporated: cardgame-jaina-card-sync-live]', the flipped assertion in test/design-ideas-inbox.test.js passes, and `node --test` is green.",
+  "risk_class": "standard",
+  "mission_intent": "I6",
+  "taste_citations": [
+    "T9",
+    "T16"
+  ],
+  "intent": "Now that the live Jaina card-sync tool has merged, close the loop on design/ideas-inbox.md's tracked-idea ledger: the 'use Jaina as the content backbone' entry is the only one of seven still untagged, and its own test file still hard-asserts that it must stay untagged. This unit updates the heading with the standard [incorporated: <unit-name>] tag (matching the pattern already used for the other five entries) and updates test/design-ideas-inbox.test.js so its AC3 test asserts the new tag instead of the tag's absence, without touching any other heading, quote block, or test in either file.",
+  "criteria": [
+    {
+      "text": "design/ideas-inbox.md's 'use Jaina as the content backbone' heading ends with '[incorporated: cardgame-jaina-card-sync-live]'.",
+      "provenance": "user",
+      "held_out": false
+    },
+    {
+      "text": "test/design-ideas-inbox.test.js's existing test asserting that heading 'remains untagged' is replaced with a test asserting it now ends with '[incorporated: cardgame-jaina-card-sync-live]'; no other existing test in the file is weakened, removed, or renamed.",
+      "provenance": "paraphrase",
+      "held_out": false
+    },
+    {
+      "text": "All six other '## ' headings and their existing [incorporated: ...] tags in design/ideas-inbox.md are byte-identical to before this edit, and every '>' verbatim quote block in the file is unchanged.",
+      "provenance": "inferred",
+      "held_out": false
+    },
+    {
+      "text": "design/ideas-inbox.md still contains exactly 7 '## ' entry headings after the edit, in the same order, none added or removed, and `node --test` passes with no other test file needing modification.",
+      "provenance": "inferred",
+      "held_out": true
+    }
+  ],
+  "touches": [
+    "design/ideas-inbox.md",
+    "test/design-ideas-inbox.test.js"
+  ],
+  "test_cmd": "node --test",
+  "id": "ms5c8qvz-cardgame-ideas-inbox-jaina-sync-tag",
+  "filed_at": "2026-07-29T00:20:09.887Z",
+  "window_expires": "2026-07-29T01:20:09.889Z",
+  "status": "promoted",
+  "promoted_at": "2026-07-29T01:23:22.294Z"
+}

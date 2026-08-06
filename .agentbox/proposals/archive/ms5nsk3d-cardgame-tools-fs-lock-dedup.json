@@ -1,0 +1,54 @@
+{
+  "name": "cardgame-tools-fs-lock-dedup",
+  "title": "Extract the two independently-reinvented cross-process file locks in tools/ into one shared, tested lib/fs-lock.js",
+  "project": "cardgame",
+  "pitch": "tools/build-site.js and tools/composite-card-art.js each hand-roll their own cross-process stale-lock-reclaim logic; consolidate into one shared, directly-tested lib/fs-lock.js module.",
+  "why_now": "The recent roadmap has been almost entirely growth (world races, alpha set cards, art briefs, render-engine layers, spatial cards) with no simplification pass; this is the clearest concrete dedup target in the repo. It's also not cosmetic: build-site.js's home-grown lock/rmSync path already caused a real intermittent receipt failure that the orchestrator hand-fixed on 2026-07-29 (commit 9036582), and composite-card-art.js independently reinvents the same stale-lock-reclaim pattern with a different mechanism (mkdir-based, async-poll vs openSync-based, Atomics.wait) — a second differently-shaped copy of the exact bug class that already bit once.",
+  "expected_outcome": "`node --test` passes with new lib/fs-lock.js tests proving mutual exclusion and stale-lock reclaim; grepping tools/build-site.js and tools/composite-card-art.js for lock/mtimeMs/stale-detection logic returns nothing — each file shows a single `require('../lib/fs-lock')` line instead of its own reimplementation.",
+  "risk_class": "standard",
+  "mission_intent": "I6",
+  "taste_citations": [
+    "T11",
+    "T21"
+  ],
+  "intent": "tools/build-site.js's withBuildLock/isLockStale and tools/composite-card-art.js's withOutDirLock independently implement the same cross-process exclusive-lock-with-stale-reclaim pattern (open-or-wait, compare mtimeMs against a 30s staleness threshold, reclaim and retry) with near-duplicate rationale comments but different mechanics. Extract a single shared implementation into lib/fs-lock.js, update both tools to call it instead of declaring their own lock functions, and add a direct unit test for the shared module's mutual-exclusion and stale-reclaim behavior. This is a behavior-preserving refactor verified by passing tests, not a repo-state assertion (avoids the T11 pitfall) — every existing build-site and composite-card-art test must stay green unmodified.",
+  "criteria": [
+    {
+      "text": "lib/fs-lock.js exists and exports a lock function implementing exclusive acquire-or-wait plus stale-lock reclaim (lock older than a threshold is treated as abandoned and reclaimed rather than blocking forever)",
+      "provenance": "inferred",
+      "held_out": false
+    },
+    {
+      "text": "tools/build-site.js contains no local withBuildLock/isLockStale function declarations and instead requires the lock helper from lib/fs-lock.js; test/build-site.test.js passes unmodified",
+      "provenance": "inferred",
+      "held_out": false
+    },
+    {
+      "text": "tools/composite-card-art.js contains no local withOutDirLock function declaration and instead requires the lock helper from lib/fs-lock.js; test/composite-card-art.test.js passes unmodified",
+      "provenance": "inferred",
+      "held_out": false
+    },
+    {
+      "text": "A new test/fs-lock-dedup.test.js exercises lib/fs-lock.js directly: a second concurrent acquire attempt is excluded until the first releases, and a lock left behind by a killed process (mtime older than the stale threshold) is automatically reclaimed rather than hanging",
+      "provenance": "inferred",
+      "held_out": true
+    },
+    {
+      "text": "Full `node --test` run is green (pre-existing suite plus the new fs-lock tests)",
+      "provenance": "paraphrase",
+      "held_out": false
+    }
+  ],
+  "touches": [
+    "lib/fs-lock.js",
+    "tools/build-site.js",
+    "tools/composite-card-art.js",
+    "test/fs-lock-dedup.test.js"
+  ],
+  "test_cmd": "node --test",
+  "id": "ms5nsk3d-cardgame-tools-fs-lock-dedup",
+  "filed_at": "2026-07-29T05:43:29.977Z",
+  "window_expires": "2026-07-29T06:43:29.980Z",
+  "status": "promoted",
+  "promoted_at": "2026-07-29T06:47:57.460Z"
+}

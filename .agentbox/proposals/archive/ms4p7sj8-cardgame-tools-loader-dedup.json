@@ -1,0 +1,49 @@
+{
+  "name": "cardgame-tools-loader-dedup",
+  "title": "cardGame tools — dedupe loadCardsFromFile/loadAllCards into lib/parse-card-markdown.js",
+  "project": "cardgame",
+  "pitch": "tools/render-card.js and tools/sync-cards-to-jaina.js each define byte-for-byte identical loadCardsFromFile/loadAllCards helpers instead of sharing one; move the pair into lib/parse-card-markdown.js and have both tools import it.",
+  "why_now": "The ready queue and proposal window are already carrying four fresh additive cardgame proposals (combat-resolution-rules, deck-construction-rules, character-signature-cards, frontier-set-spatial-cards) plus two security-gated tool extensions awaiting human decision — the recent roadmap has only grown. Portfolio policy calls for a deletion/simplification candidate this cycle. Inspection of tools/render-card.js:52-68 and tools/sync-cards-to-jaina.js:19-35 shows the exact duplication the shipped cardgame-tools-shared-parser-dedup unit was meant to eliminate crept back in when sync-cards-to-jaina.js re-implemented the directory-walk loader from scratch instead of reusing render-card.js's version — tools/composite-card-art.js already imports loadAllCards from render-card.js, so there's working precedent for treating it as shared code.",
+  "expected_outcome": "grep across tools/*.js for a local function declaration named loadCardsFromFile or loadAllCards outside lib/parse-card-markdown.js returns zero matches; node --test passes the full existing suite (render-card, sync-cards-to-jaina, composite-card-art tests) unmodified in behavior, plus a new test/tools-loader-dedup.test.js asserting no duplicate loader logic remains.",
+  "risk_class": "standard",
+  "mission_intent": "I6",
+  "taste_citations": [
+    "T16",
+    "T11"
+  ],
+  "intent": "Move the identical loadCardsFromFile/loadAllCards helper pair — currently duplicated verbatim in tools/render-card.js and tools/sync-cards-to-jaina.js — into lib/parse-card-markdown.js (which already owns the CARDS_DIR-adjacent parsing concerns both tools depend on), export it, and update both tools to import the shared version instead of defining their own. This is a pure internal refactor with zero behavior change: it touches only game-authoring tooling explicitly named as in-bounds by T16's software-gate carve-out (tools for content generation/authoring, not gameplay implementation), and it follows the same working pattern as the already-shipped cardgame-tools-shared-parser-dedup unit and test/parse-card-markdown-dedup.test.js — a mechanical, testable assertion that no duplicate logic remains, per T11's guidance that cleanup work must be framed as testable future behavior rather than an assertion about current repo state.",
+  "criteria": [
+    {
+      "text": "lib/parse-card-markdown.js exports loadCardsFromFile and loadAllCards, which read design/cards/*.md filenames in sorted order and parse each via parseCardMarkdown.",
+      "provenance": "paraphrase",
+      "held_out": false
+    },
+    {
+      "text": "tools/render-card.js no longer declares its own loadCardsFromFile or loadAllCards functions; it imports both from lib/parse-card-markdown.js.",
+      "provenance": "inferred",
+      "held_out": false
+    },
+    {
+      "text": "tools/sync-cards-to-jaina.js no longer declares its own loadCardsFromFile or loadAllCards functions; it imports both from lib/parse-card-markdown.js.",
+      "provenance": "inferred",
+      "held_out": false
+    },
+    {
+      "text": "A new test/tools-loader-dedup.test.js statically asserts neither tools/render-card.js nor tools/sync-cards-to-jaina.js source text contains a local function declaration named loadCardsFromFile or loadAllCards, and the existing render-card/sync-cards-to-jaina/composite-card-art test suites still pass unmodified.",
+      "provenance": "inferred",
+      "held_out": true
+    }
+  ],
+  "touches": [
+    "lib/parse-card-markdown.js",
+    "tools/render-card.js",
+    "tools/sync-cards-to-jaina.js",
+    "test/tools-loader-dedup.test.js"
+  ],
+  "test_cmd": "node --test",
+  "id": "ms4p7sj8-cardgame-tools-loader-dedup",
+  "filed_at": "2026-07-28T13:35:34.197Z",
+  "window_expires": "1970-01-01T00:00:00.000Z",
+  "status": "promoted",
+  "promoted_at": "2026-07-28T13:37:12.226Z"
+}

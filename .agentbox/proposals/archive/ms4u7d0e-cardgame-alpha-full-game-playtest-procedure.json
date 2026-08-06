@@ -1,0 +1,49 @@
+{
+  "name": "cardgame-alpha-full-game-playtest-procedure",
+  "title": "cardGame — Full-game playtest-on-paper procedure using the shipped Alpha/Signature/Frontier card sets",
+  "project": "cardgame",
+  "pitch": "Write a numbered, two-player playtest procedure that plays a complete game start-to-finish using real shipped cards (Alpha Set, Character Signatures, Frontier Set) under the full shipped ruleset, citing rule section numbers at each step — the first document that proves the design holds together end-to-end rather than section-by-section.",
+  "why_now": "design/playtest-spatial.md only exercises the spatial subsystem in isolation; core rules, deck construction, card types, combat resolution, and winning/losing conditions have all shipped alongside three card sets (18 Alpha cards, 5 Character Signatures, 5 Frontier Set), but no document walks a full two-player game from deck build through an actual win condition using those real cards. I6's bar is a design compelling enough to earn software, and end-to-end playability is the strongest missing piece of proof. This deliberately does not touch design/rules.md or any design/cards/*.md file, so it carries zero collision risk with the concurrently in-flight cardgame-targeting-rules unit, which is mid-build against rules.md right now (T12's append-conflict lesson).",
+  "expected_outcome": "design/playtest-full-game.md exists with a numbered step-by-step procedure for two human players building decks from the shipped card sets and playing turn-by-turn to an explicit win condition, citing the specific rules.md section number governing each major step (turn structure, priority/Queue, combat resolution, capture/win); `node --test` passes a new test asserting every cited section number exists in rules.md and every named card exists by exact name in a shipped card file.",
+  "risk_class": "standard",
+  "mission_intent": "I6",
+  "taste_citations": [
+    "T1",
+    "T8",
+    "T9",
+    "T12"
+  ],
+  "intent": "Add a new design/playtest-full-game.md file containing a numbered, step-by-step playtest-on-paper procedure that two human players can follow with physical materials (decks built from the shipped card sets, tokens, index cards) to play one complete game from deck construction through an explicit win condition, using only cards that exist by name in design/cards/alpha-set.md, design/cards/character-signatures.md, and design/cards/frontier-set.md, and citing the exact rules.md section number that governs each major step. This closes the gap between section-by-section rules rigor (already shipped: core rules, resources, deck construction, card types/templating, spatial battlefield + map setup, combat resolution, winning/losing conditions) and an actual demonstration that the whole system coheres as a playable game, which is the single strongest lever toward I6's end goal of a design compelling enough to ungate software. It reads but never modifies design/rules.md or any design/cards/*.md file, avoiding any conflict with the concurrently in-flight cardgame-targeting-rules unit that is currently editing rules.md.",
+  "criteria": [
+    {
+      "text": "design/playtest-full-game.md exists and contains a numbered, step-by-step procedure two human players can follow with physical materials, starting from deck construction and ending at an explicit win condition being reached.",
+      "provenance": "paraphrase",
+      "held_out": false
+    },
+    {
+      "text": "Every card named in the walkthrough exists by exact name in one of design/cards/alpha-set.md, design/cards/character-signatures.md, or design/cards/frontier-set.md.",
+      "provenance": "inferred",
+      "held_out": false
+    },
+    {
+      "text": "Each major step (turn start, resource use, combat, capture/win) cites the specific rules.md section number that governs it, and a new test verifies every cited section number corresponds to a section that actually exists in rules.md.",
+      "provenance": "inferred",
+      "held_out": false
+    },
+    {
+      "text": "The unit does not modify design/rules.md, design/cards/alpha-set.md, design/cards/character-signatures.md, or design/cards/frontier-set.md — it only reads and cites them, carrying zero merge-conflict risk with the concurrently in-flight cardgame-targeting-rules unit.",
+      "provenance": "inferred",
+      "held_out": true
+    }
+  ],
+  "touches": [
+    "design/playtest-full-game.md",
+    "test/design-playtest-full-game.test.js"
+  ],
+  "test_cmd": "node --test",
+  "id": "ms4u7d0e-cardgame-alpha-full-game-playtest-procedure",
+  "filed_at": "2026-07-28T15:55:12.158Z",
+  "window_expires": "1970-01-01T00:00:00.000Z",
+  "status": "promoted",
+  "promoted_at": "2026-07-28T16:16:17.299Z"
+}

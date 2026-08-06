@@ -1,0 +1,56 @@
+{
+  "name": "cardgame-lib-markdown-section-parser-dedup",
+  "title": "Extract the duplicated H2/H3-section-splitting and paragraph-extraction helpers shared by cardGame's 4 newer lib/parse-*-markdown.js files into one shared module",
+  "project": "cardgame",
+  "pitch": "lib/parse-race-markdown.js and lib/parse-lore-markdown.js each define a byte-identical splitIntoH2Sections; lib/parse-star-atlas-markdown.js and lib/parse-founts-markdown.js each define a byte-identical splitIntoH3SectionsWithParent; extractParagraph's blank-line-join logic and (in 2 of the 4) a redundant local slugify are copy-pasted across all four files — dedup this before a future 6th domain parser copies it again.",
+  "why_now": "Verified live by reading all 4 files in full: lib/parse-race-markdown.js lines 17-36 and lib/parse-lore-markdown.js lines 21-40 contain the identical splitIntoH2Sections function, down to the same regex and a comment in each explicitly referencing the other as the source of the convention. lib/parse-star-atlas-markdown.js lines 23-46 and lib/parse-founts-markdown.js lines 19-42 contain the identical splitIntoH3SectionsWithParent function, same comment-cross-reference pattern. extractParagraph (trim non-blank lines, join with a space) appears near-verbatim in all four files (parse-race-markdown.js:45-50, parse-star-atlas-markdown.js:72-76, parse-lore-markdown.js:58-61, parse-founts-markdown.js:58-62). Additionally, parse-race-markdown.js:142-147 and parse-star-atlas-markdown.js:103-108 each re-declare their own slugify instead of importing the one lib/parse-card-markdown.js already exports, which parse-lore-markdown.js and parse-founts-markdown.js already do correctly — a fourth duplication, and an inconsistency between otherwise-identical files. This is the exact shape of the three previously shipped dedup units (cardgame-tools-loader-dedup, cardgame-tools-shared-parser-dedup, cardgame-tools-fs-lock-dedup), applied to lib/ files none of those touched. None of the 5 currently window-open proposals (design-readiness section4/gap3 doc fixes, art-briefs-spatial-race-identity-wave-2, jaina-sync-tools-dedup, both playtest refreshes) reference any lib/parse-*-markdown.js file or design/races.md, design/star-atlas.md, design/lore.md, or design/world.md — checked memory and every open proposal first per T24.",
+  "expected_outcome": "A new lib/markdown-sections.js exports splitIntoH2Sections, splitIntoH3SectionsWithParent, and extractParagraph; lib/parse-race-markdown.js, lib/parse-star-atlas-markdown.js, lib/parse-lore-markdown.js, and lib/parse-founts-markdown.js each import these three helpers, plus slugify from lib/parse-card-markdown.js, instead of re-implementing any of them. Each parser's own existing test suite passes unmodified, and calling loadAllRaces(), loadAllWorlds(), loadAllEras(), and loadAllFounts() against the real design/ files returns output identical to before the refactor.",
+  "risk_class": "standard",
+  "mission_intent": "I6",
+  "taste_citations": [
+    "T16",
+    "T24"
+  ],
+  "intent": "Four of cardGame's lib/parse-*-markdown.js domain parsers — parse-race-markdown.js, parse-star-atlas-markdown.js, parse-lore-markdown.js, and parse-founts-markdown.js — were each written to parse a different design/ file, but they hand-roll the same three low-level building blocks. splitIntoH2Sections (walk lines, track the current level-2-heading section, push non-heading lines into it) is copy-pasted verbatim between parse-race-markdown.js and parse-lore-markdown.js. splitIntoH3SectionsWithParent (the same walk, but for level-3 headings, additionally remembering the nearest preceding level-2 heading so callers can tell which group a record fell under) is copy-pasted verbatim between parse-star-atlas-markdown.js and parse-founts-markdown.js. extractParagraph (trim each line, drop blanks, join the rest with a single space) is copy-pasted, with only cosmetic parameter differences, across all four files. And slugify (lowercase, non-alphanumeric runs to a single hyphen, trim leading/trailing hyphens) is redeclared locally in parse-race-markdown.js and parse-star-atlas-markdown.js even though lib/parse-card-markdown.js already exports the identical function and parse-lore-markdown.js/parse-founts-markdown.js already import it from there instead of redeclaring it. Add lib/markdown-sections.js exporting splitIntoH2Sections, splitIntoH3SectionsWithParent, and extractParagraph exactly as currently implemented (no behavior change — same regexes, same trimming, same return shapes), then update all four parser files to import these three functions from it and to import slugify from lib/parse-card-markdown.js, deleting each file's own now-redundant copy. Do not change any parser's public exports, field names, record shape, or the markdown convention it parses (H1-per-file for races, H2-Timeline-of-Eras-driven ordering for lore, H2/H3-parent-tagged for star-atlas and founts) — this unit only moves duplicated internals into one place, it does not touch design/races/, design/star-atlas.md, design/lore.md, design/world.md, or any tool that calls these parsers.",
+  "criteria": [
+    {
+      "text": "lib/markdown-sections.js exists and exports splitIntoH2Sections, splitIntoH3SectionsWithParent, and extractParagraph; lib/parse-race-markdown.js and lib/parse-lore-markdown.js both import splitIntoH2Sections from it instead of defining their own copy; lib/parse-star-atlas-markdown.js and lib/parse-founts-markdown.js both import splitIntoH3SectionsWithParent from it instead of defining their own copy",
+      "provenance": "inferred",
+      "held_out": false
+    },
+    {
+      "text": "All four parser files import extractParagraph from lib/markdown-sections.js instead of each defining its own version, and lib/parse-race-markdown.js and lib/parse-star-atlas-markdown.js both import slugify from lib/parse-card-markdown.js instead of redeclaring it locally",
+      "provenance": "inferred",
+      "held_out": false
+    },
+    {
+      "text": "Each of the four parser modules' own existing test suite passes unmodified against the refactored code",
+      "provenance": "paraphrase",
+      "held_out": false
+    },
+    {
+      "text": "Calling loadAllRaces(), loadAllWorlds(), loadAllEras(), and loadAllFounts() against the real design/ files after the refactor returns the same records in the same order with the same field values as calling them did before the refactor",
+      "provenance": "inferred",
+      "held_out": true
+    },
+    {
+      "text": "lib/markdown-sections.js has its own direct unit test exercising splitIntoH2Sections, splitIntoH3SectionsWithParent, and extractParagraph independent of any of the four domain parsers",
+      "provenance": "inferred",
+      "held_out": false
+    }
+  ],
+  "touches": [
+    "lib/markdown-sections.js",
+    "lib/parse-race-markdown.js",
+    "lib/parse-star-atlas-markdown.js",
+    "lib/parse-lore-markdown.js",
+    "lib/parse-founts-markdown.js",
+    "test/markdown-sections.test.js"
+  ],
+  "test_cmd": "node --test",
+  "id": "ms7h73qc-cardgame-lib-markdown-section-parser-dedup",
+  "filed_at": "2026-07-30T12:14:23.652Z",
+  "window_expires": "2026-07-30T16:14:23.654Z",
+  "status": "promoted",
+  "promoted_at": "2026-07-30T16:24:27.243Z"
+}

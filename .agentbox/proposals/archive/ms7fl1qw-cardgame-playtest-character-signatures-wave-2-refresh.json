@@ -1,0 +1,54 @@
+{
+  "name": "cardgame-playtest-character-signatures-wave-2-refresh",
+  "title": "Add a Worked Example to design/playtest-full-game.md narrating character-signatures-wave-2.md's 5 named cards — never played in any playtest procedure",
+  "project": "cardgame",
+  "pitch": "design/cards/character-signatures-wave-2.md's 5 cards (one wave-2 named character per race) have zero appearances in either playtest procedure; mirroring the established 'Worked Example N' pattern already used for Combat, Capture, and the Bloom economy, add Worked Example 4 narrating all 5 without touching the fixed 40-card decklists.",
+  "why_now": "Verified live: grepping design/ for all 5 wave-2 character-card names (Torel Ashgrave, Rathe Ossuary-Kin, Doran Vex Amaranthine, Ysolde Thane, Foreman-Prime Yssa Ductile) finds them only in character-signatures-wave-2.md, art-briefs.md, and their own race's design/characters/ file — zero hits in design/playtest-full-game.md or design/playtest-spatial.md. playtest-full-game.md's own Step 1 fixes its two decks to 34 cards drawn from alpha-set.md, frontier-set.md, character-signatures.md (wave 1 only), and fount-economy-set.md, so wave-2 was never in scope for the core decklists — but the file already has precedent for covering additional cards WITHOUT touching those decklists: Worked Example 3 narrates a hypothetical third challenger (Bryn) playing fount-economy-set.md cards the core decks don't include. The open proposal ms7f02wo (cardgame-playtest-spatial-race-identity-refresh) fixes the exact same class of gap but for spatial-race-identity cards inside playtest-spatial.md only — disjoint file, disjoint card set. Checked memory and all 4 open proposals plus in-flight units first (T24 discipline); none touch playtest-full-game.md or character-signatures-wave-2.md.",
+  "expected_outcome": "design/playtest-full-game.md gains a new 'Worked Example 4' section narrating all 5 character-signatures-wave-2.md cards by name — Torel Ashgrave's per-Materials-Unit combat buff, Rathe Ossuary-Kin's damage-triggered Growth counter, Doran Vex Amaranthine looking at an opponent's Archive top card, Ysolde Thane looking at her own Archive top card and optionally drawing it, and Foreman-Prime Yssa Ductile as a Circuit Generator — each citing its own card's Type line's rules section (9.6/9.5/9.4/9.2/9.3) plus Section 4.2 for Growth counters and Section 3 for the Archive zone; a new mechanical test asserts all 5 names and their Cost lines appear verbatim and that the existing two 40-card decklists and Worked Examples 1-3 are byte-unchanged.",
+  "risk_class": "standard",
+  "mission_intent": "I6",
+  "taste_citations": [
+    "T9",
+    "T16",
+    "T24"
+  ],
+  "intent": "design/playtest-full-game.md already establishes, via Worked Examples 1-3, a pattern for demonstrating cards that are real and shipped but not part of either challenger's fixed 40-card decklist (Section 11.1): narrate a hypothetical turn sequence citing the exact rules sections it exercises, without adding the card to Step 1's decklists or Section 11 accounting. character-signatures-wave-2.md's 5 cards — Torel Ashgrave, Line-Captain of the Ember Vanguard (Cindral Reach, 2 Mass, Materials Permanent, Slow, combat strength +1 per other Materials Unit controlled); Rathe Ossuary-Kin, Spore-Hound of the Sprawl (Mireth Bloom, 3 Bloom, Biology Permanent, Slow, gains a Growth counter (Section 4.2) whenever dealt damage); Doran Vex Amaranthine, Ledger-Warden of the Foreknowledge Archive (Panoptic Concord, 2 Signal, Intelligence, Fast, look at the top card of an opponent's Archive (Section 3) then replace it); Ysolde Thane, Pilgrim of the Unwritten Sign (Starweave Communion, 2 Tangle, Magic, Fast, look at her own Archive's top card, optionally moving it to Hand); and Foreman-Prime Yssa Ductile, Keeper of the First Pattern (Wrought Assembly, 4 Circuit, Technology Permanent, Slow, a Generator attuned to the Circuit per Section 9.3's own canonical template) — have never been played in any worked example. Add 'Worked Example 4: Five Signature Permanents and Spells in Play (Section 9.2, Section 9.3, Section 9.4, Section 9.5, Section 9.6, Section 4.2, Section 3)' after the existing Worked Example 3, following the same 'Suppose, hypothetically...' voice and per-step citation style, walking through each of the 5 cards being played and resolving/triggering once, quoting each card's Cost line and Type line verbatim from character-signatures-wave-2.md. End the new section with a short paragraph (mirroring Worked Example 3's closing paragraph) stating plainly which gap it closes: these 5 named cards, one per race, had never appeared in a playtest procedure despite being fully specified and Legal. Do not touch Step 1's two decklists, Section 11's copy-count math, or Worked Examples 1-3's existing text. Regenerate site/design/playtest-full-game.html via tools/build-site.js so the design-shelf twin matches.",
+  "criteria": [
+    {
+      "text": "design/playtest-full-game.md contains a new 'Worked Example 4' section (following Worked Example 3) naming all 5 wave-2 cards verbatim: Torel Ashgrave, Line-Captain of the Ember Vanguard; Rathe Ossuary-Kin, Spore-Hound of the Sprawl; Doran Vex Amaranthine, Ledger-Warden of the Foreknowledge Archive; Ysolde Thane, Pilgrim of the Unwritten Sign; Foreman-Prime Yssa Ductile, Keeper of the First Pattern",
+      "provenance": "inferred",
+      "held_out": false
+    },
+    {
+      "text": "Each card's Cost line as narrated in the new section matches character-signatures-wave-2.md exactly: Torel Ashgrave 2 Mass, Rathe Ossuary-Kin 3 Bloom, Doran Vex Amaranthine 2 Signal, Ysolde Thane 2 Tangle, Foreman-Prime Yssa Ductile 4 Circuit",
+      "provenance": "paraphrase",
+      "held_out": false
+    },
+    {
+      "text": "The new section cites Section 4.2 in connection with Rathe Ossuary-Kin's Growth counter and Section 3 in connection with Doran Vex Amaranthine's and Ysolde Thane's Archive-reading abilities",
+      "provenance": "inferred",
+      "held_out": true
+    },
+    {
+      "text": "Step 1's two 40-card decklists, Section 11's copy-count discussion, and the existing text of Worked Examples 1, 2, and 3 are all present unchanged (only additive: the new Worked Example 4 section)",
+      "provenance": "inferred",
+      "held_out": false
+    },
+    {
+      "text": "site/design/playtest-full-game.html is regenerated from the updated markdown via tools/build-site.js and contains all 5 card names",
+      "provenance": "paraphrase",
+      "held_out": false
+    }
+  ],
+  "touches": [
+    "design/playtest-full-game.md",
+    "site/design/playtest-full-game.html",
+    "test/design-playtest-character-signatures-wave-2-refresh.test.js"
+  ],
+  "test_cmd": "node --test",
+  "id": "ms7fl1qw-cardgame-playtest-character-signatures-wave-2-refresh",
+  "filed_at": "2026-07-30T11:29:15.032Z",
+  "window_expires": "2026-07-30T15:29:15.036Z",
+  "status": "promoted",
+  "promoted_at": "2026-07-30T15:39:27.167Z"
+}

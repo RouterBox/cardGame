@@ -1,0 +1,47 @@
+{
+  "name": "cardgame-wormhole-restriction-cards",
+  "title": "Wormhole Restriction cards — the 'locks, keys, tolls' design space rules.md left open",
+  "project": "cardgame",
+  "pitch": "Add 5 named cards, one per race, that actually create a Directional or Team Restriction on a Wormhole — rules.md Section 8.4 defines the mechanic in full but not one printed card has ever used it to create a Restriction.",
+  "why_now": "The 2026-07-26 spatial-layer ideas-inbox entry names Restriction effects as 'a whole card design space (locks, keys, tolls)', and rules.md Section 8.4 (shipped) fully defines Directional and Team Restrictions with real operative effect on Section 8.6 Assault paths. But across all 28 printed cards, exactly one (Wormhole Ledger, Panoptic Concord) even reads a Restriction, and none creates one — the design space the directive called for was never actually built, distinct from every other pending proposal (none of the 7 currently open touch Wormholes or Section 8.4). This is finishing already-decided, already-defined mechanics (T1), not new speculative rules.",
+  "expected_outcome": "design/cards/wormhole-restrictions-set.md exists with 5 new named cards, one per race, each following the Section 9.1 template (Cost line, Type line, Rules text, optional Stats/counters line only if a Permanent), and each card's Rules text places a Directional Restriction or a Team Restriction (or both) on a Wormhole, explicitly citing Section 8.4; `node --test` is green.",
+  "risk_class": "standard",
+  "mission_intent": "I6",
+  "taste_citations": [
+    "T9",
+    "T1"
+  ],
+  "intent": "design/rules.md Section 8.4 (shipped, part of cardgame-spatial-battlefield-rules) fully defines three kinds of Wormhole Restriction — Directional, Team, and Unit-type — but its own text states the Unit-type Restriction currently has no operative effect because no card yet lets a Unit move or deploy between Planets ('a design space this rulebook leaves open'), while a Directional or Team Restriction already changes what Section 8.6's Assault action can legally path through today. Across alpha-set.md, frontier-set.md, and character-signatures.md (28 cards total), only Wormhole Ledger (frontier-set.md, Panoptic Concord) ever reads a Restriction — no card creates one, even though the 2026-07-26 ideas-inbox spatial-layer directive explicitly named 'Restriction effects become a whole card design space (locks, keys, tolls)' as an implication to design through. This unit adds a new design/cards/wormhole-restrictions-set.md with 5 cards, one per race, each with Rules text that places a Directional Restriction or a Team Restriction (never a Unit-type Restriction, which stays out of scope per rules.md's own inert-until-future-cards statement) onto an existing Wormhole, citing Section 8.4 by number the same way frontier-set.md's cards cite their sections, and paid in that race's own Fount (Cindral Reach/Mass, Mireth Bloom/Bloom, Panoptic Concord/Signal, Starweave Communion/Tangle, Wrought Assembly/Circuit) consistent with every other shipped card file. No rules.md, alpha-set.md, frontier-set.md, or character-signatures.md change is needed or made — this only exercises an already-defined mechanic that has sat unused since it shipped.",
+  "criteria": [
+    {
+      "text": "design/cards/wormhole-restrictions-set.md exists and contains exactly 5 distinct named cards, one per race under design/races/, each with a Cost line, Type line, and Rules text in that order, and a Stats/counters line only when its Type line contains 'Permanent' — the same template test/design-frontier-cards.test.js enforces for frontier-set.md.",
+      "provenance": "paraphrase",
+      "held_out": false
+    },
+    {
+      "text": "Every one of the 5 cards' Rules text explicitly places a Directional Restriction or a Team Restriction (as defined in rules.md Section 8.4) onto a Wormhole, and cites 'Section 8.4' by number; no card's Rules text creates or references a Unit-type Restriction.",
+      "provenance": "paraphrase",
+      "held_out": false
+    },
+    {
+      "text": "Each card's Cost line names exactly the Fount matching its race per the existing race-to-Fount mapping used in frontier-set.md (Cindral Reach/Mass, Mireth Bloom/Bloom, Panoptic Concord/Signal, Starweave Communion/Tangle, Wrought Assembly/Circuit).",
+      "provenance": "paraphrase",
+      "held_out": false
+    },
+    {
+      "text": "design/rules.md, design/cards/alpha-set.md, design/cards/frontier-set.md, and design/cards/character-signatures.md are byte-identical to before this unit, and none of the 5 new card names collides with any card name already printed in those three files.",
+      "provenance": "inferred",
+      "held_out": true
+    }
+  ],
+  "touches": [
+    "design/cards/wormhole-restrictions-set.md",
+    "test/design-wormhole-restriction-cards.test.js"
+  ],
+  "test_cmd": "node --test",
+  "id": "ms5lxg74-cardgame-wormhole-restriction-cards",
+  "filed_at": "2026-07-29T04:51:18.976Z",
+  "window_expires": "2026-07-29T05:51:18.979Z",
+  "status": "promoted",
+  "promoted_at": "2026-07-29T05:53:56.938Z"
+}

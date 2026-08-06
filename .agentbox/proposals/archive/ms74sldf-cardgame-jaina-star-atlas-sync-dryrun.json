@@ -1,0 +1,53 @@
+{
+  "name": "cardgame-jaina-star-atlas-sync-dryrun",
+  "title": "cardGame tool — dry-run sync of star atlas world records into Jaina (content backbone, slice 4)",
+  "project": "cardgame",
+  "pitch": "A dry-run script that parses design/star-atlas.md's 8 named worlds into structured records and prints the exact Jaina payloads a future live sync would write, extending the content backbone from cards to the star atlas.",
+  "why_now": "design/DESIGN-READINESS.md's Open Gap 4 names characters, races, world/lore, and the star atlas as the remaining markdown-only content with no Jaina schema or sync path. The character and race slices are already filed as the open sibling proposals cardgame-jaina-character-sync-dryrun and cardgame-jaina-race-sync-dryrun; the star atlas is the next self-contained slice nothing yet targets, and unlike world.md/lore.md (free-form prose/timeline), its 8 '###' sections (5 Homeworlds + 3 Frontier worlds) already follow one consistent, parseable structure today.",
+  "expected_outcome": "Running `node tools/sync-star-atlas-to-jaina.js --dry-run` exits 0 and prints exactly 8 JSON record payloads, one per '###' heading in design/star-atlas.md in file order (Ashkeel, Fenwreath, Vantaris, Ansareth, Corewright, Halvorne Junction, Kelmourn Drift, Tallowfen), each with name/slug/type/race/description fields — reviewable as the proposed Jaina 'world' schema shape before any live write is built.",
+  "risk_class": "standard",
+  "mission_intent": "I6",
+  "taste_citations": [
+    "T16",
+    "T1"
+  ],
+  "intent": "design/DESIGN-READINESS.md's Open Gap 4 names the hole directly: tools/sync-cards-to-jaina.js only syncs card records, and while the character and race slices are already in flight as open sibling proposals, design/star-atlas.md (5 Homeworld sections plus 3 Frontier & Contested World sections, 8 total) remains markdown-only prose with no Jaina schema or sync path. This is the next narrow slice under the same 2026-07-28 ideas-inbox 'use Jaina as the content backbone' directive that produced cardgame-jaina-card-sync-dryrun (T1 discipline: no live write, star atlas only, not world.md's or lore.md's free-form prose in the same shot — those need their own parsing approach and are explicitly left out of scope here). Add lib/parse-star-atlas-markdown.js, a shared parser mirroring lib/parse-card-markdown.js's conventions, that reads design/star-atlas.md and extracts one record per '###' section: name (the heading text before any em-dash), slug (the identical slugify algorithm already used by lib/parse-card-markdown.js), type ('homeworld' for the 5 sections under '## Homeworlds', 'frontier' for the 3 sections under '## Frontier & Contested Worlds'), race (the civilization named after the heading's em-dash for Homeworld sections, e.g. 'Ashkeel — Homeworld of the Cindral Reach' -> race 'Cindral Reach'; null for Frontier sections, which have no em-dash), and description (that section's prose paragraph). tools/sync-star-atlas-to-jaina.js prints one JSON payload per record in --dry-run mode and, mirroring the dry-run-only scope of its sibling proposals, makes no live Jaina API calls in this unit — printing a 'not yet implemented' message and exiting 1 without --dry-run, so no credentials or network access are required by node --test. This is content-authoring tooling under the T16 partial software-gate opening, not game implementation.",
+  "criteria": [
+    {
+      "text": "node tools/sync-star-atlas-to-jaina.js --dry-run exits 0 and prints exactly 8 JSON objects, one per '###' heading in design/star-atlas.md, in the same order they appear in the file (Ashkeel, Fenwreath, Vantaris, Ansareth, Corewright, Halvorne Junction, Kelmourn Drift, Tallowfen)",
+      "provenance": "paraphrase",
+      "held_out": false
+    },
+    {
+      "text": "Each printed record has name, slug, type, race, and description fields; slug is computed with the identical slugify(name) algorithm already used by lib/parse-card-markdown.js, so the same world name produces the same slug anywhere else in the repo",
+      "provenance": "paraphrase",
+      "held_out": false
+    },
+    {
+      "text": "The 5 records parsed from sections under '## Homeworlds' have type 'homeworld' and a race field matching the civilization named after the em-dash in that section's own heading (e.g. Ashkeel's race is 'Cindral Reach'); the 3 records parsed from sections under '## Frontier & Contested Worlds' have type 'frontier' and race null",
+      "provenance": "inferred",
+      "held_out": true
+    },
+    {
+      "text": "Without --dry-run, the script makes no Jaina API calls, no network access, and no credentials are required by node --test — it prints a message that live sync is not yet implemented for the star atlas and exits 1",
+      "provenance": "inferred",
+      "held_out": false
+    },
+    {
+      "text": "Running the dry-run twice in a row against unchanged markdown produces byte-identical stdout output (deterministic: no timestamps, no randomness, stable record ordering matching the file's own section order)",
+      "provenance": "inferred",
+      "held_out": false
+    }
+  ],
+  "touches": [
+    "lib/parse-star-atlas-markdown.js",
+    "tools/sync-star-atlas-to-jaina.js",
+    "test/sync-star-atlas-to-jaina.test.js"
+  ],
+  "test_cmd": "node --test",
+  "id": "ms74sldf-cardgame-jaina-star-atlas-sync-dryrun",
+  "filed_at": "2026-07-30T06:27:11.283Z",
+  "window_expires": "2026-07-30T10:27:11.285Z",
+  "status": "promoted",
+  "promoted_at": "2026-07-30T10:39:26.942Z"
+}

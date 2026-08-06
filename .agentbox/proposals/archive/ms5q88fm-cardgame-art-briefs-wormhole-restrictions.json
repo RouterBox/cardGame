@@ -1,0 +1,48 @@
+{
+  "name": "cardgame-art-briefs-wormhole-restrictions",
+  "title": "Art briefs for the Wormhole Restrictions Set — the one shipped card file with zero briefs and no open proposal claiming it",
+  "project": "cardgame",
+  "pitch": "Add 5 art briefs (Palette/Subject-Scene/Key-visual-elements/Composition) to art-briefs.md for every card in wormhole-restrictions-set.md, so Bastion Lockdown Line, Conveyance Directive, Rootbound Corridor, Vector Interdiction, and Pilgrim's Right of Way have a path to composited art.",
+  "why_now": "tools/composite-card-art.js's loadBriefs() drives its whole compositing loop off '###' sections in art-briefs.md — a card missing from that file can never get art no matter how many times the tool runs. design/cards/wormhole-restrictions-set.md shipped 5 named cards, one per race, and none of their titles appear anywhere in art-briefs.md's 27 existing sections. The two currently window-open art-briefs proposals scope themselves explicitly to fount-economy-set.md and character-signatures-wave-2.md — neither's criteria mention wormhole-restrictions-set.md, and no other open proposal or in-flight unit names this file either, so it is a real, unclaimed gap of exactly the kind that produced those two proposals and the already-shipped frontier-signatures one. Filing it now, following the identical precedent, keeps the gap from sitting unnoticed the way the other two did before a Producer pass caught them.",
+  "expected_outcome": "design/cards/art-briefs.md gains exactly 5 new '###' brief sections, one per wormhole-restrictions-set.md card, each with Palette/Subject-Scene/Key visual elements/Composition lines following the exact template already used for alpha-set.md; test/design-art-briefs-wormhole-restrictions.test.js proves each brief's Palette line names the correct Fount-driven color for that card's single-Fount Cost line, lists at least 2 card-specific visual elements, and has a Composition line citing the Art Window's rectangular shape and an aspect ratio; node --test is green.",
+  "risk_class": "standard",
+  "mission_intent": "I6",
+  "taste_citations": [
+    "T9",
+    "T8",
+    "T1"
+  ],
+  "intent": "design/cards/art-briefs.md (shipped) states its own purpose as giving one written art brief per card so illustration work can be approved before it starts (T8), and tools/composite-card-art.js's loadBriefs() drives its entire compositing loop off exactly that file's '###' sections — a card absent from art-briefs.md is permanently un-renderable. design/cards/wormhole-restrictions-set.md (shipped) added 5 named cards, one per race — Bastion Lockdown Line (Cindral Reach, 2 Mass), Conveyance Directive (Wrought Assembly, 2 Circuit), Rootbound Corridor (Mireth Bloom, 2 Bloom), Vector Interdiction (Panoptic Concord, 1 Signal), Pilgrim's Right of Way (Starweave Communion, 2 Tangle) — with no corresponding briefs ever written. This unit adds one new '###' brief section per card to art-briefs.md, following the identical Palette/Subject-Scene/Key-visual-elements/Composition template the file already uses for alpha-set.md and fount-economy-set.md, with each Palette line naming the single card-anatomy.md Fount-identity color matching the one Fount in that card's own Cost line (Ash-grey for Mass, Copper for Circuit, Green for Bloom, Cyan for Signal, Violet for Tangle), and each Key-visual-elements list drawing concretely on that card's own rules text and flavor text (e.g. Bastion Lockdown Line's one-way welded door, Conveyance Directive's one-way outward flow, Rootbound Corridor's growth taking root in a Wormhole, Vector Interdiction's manifest/route-writing, Pilgrim's Right of Way's rite of passage) rather than generic filler. It adds a new, independent test/design-art-briefs-wormhole-restrictions.test.js mirroring the assertion shape of the existing design-art-briefs tests, so it has zero touch-overlap with the two open art-briefs proposals or any in-flight unit, all of which edit different card files or the shared test file this unit avoids. No card file, rules.md, or the compositing/rendering code itself is touched — only art-briefs.md grows and a new test file is added.",
+  "criteria": [
+    {
+      "text": "design/cards/art-briefs.md gains exactly 5 new '###' sections, titled exactly 'Bastion Lockdown Line', 'Conveyance Directive', 'Rootbound Corridor', 'Vector Interdiction', and 'Pilgrim's Right of Way' verbatim, with no pre-existing brief section removed, renamed, or altered.",
+      "provenance": "paraphrase",
+      "held_out": false
+    },
+    {
+      "text": "Each new brief's Palette line names the single Fount-driven color from card-anatomy.md's Fount identity table matching the one Fount named in that card's own Cost line (Ash-grey for Mass, Copper for Circuit, Green for Bloom, Cyan for Signal, Violet for Tangle).",
+      "provenance": "paraphrase",
+      "held_out": false
+    },
+    {
+      "text": "Each new brief has a 'Key visual elements:' list of at least 2 bullets sharing at least 2 significant words with that card's own rules text or flavor text (not generic filler phrasing), and a 'Composition:' line naming the Art Window's rectangular/landscape shape and an aspect ratio.",
+      "provenance": "paraphrase",
+      "held_out": false
+    },
+    {
+      "text": "test/design-art-briefs-wormhole-restrictions.test.js exists and enforces the above against the real, current wormhole-restrictions-set.md and art-briefs.md content; every other card file and every pre-existing test file remain byte-identical to before this unit.",
+      "provenance": "inferred",
+      "held_out": true
+    }
+  ],
+  "touches": [
+    "design/cards/art-briefs.md",
+    "test/design-art-briefs-wormhole-restrictions.test.js"
+  ],
+  "test_cmd": "node --test",
+  "id": "ms5q88fm-cardgame-art-briefs-wormhole-restrictions",
+  "filed_at": "2026-07-29T06:51:40.594Z",
+  "window_expires": "2026-07-29T07:51:40.596Z",
+  "status": "promoted",
+  "promoted_at": "2026-07-29T07:53:57.961Z"
+}

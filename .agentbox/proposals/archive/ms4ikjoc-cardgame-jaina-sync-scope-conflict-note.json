@@ -1,0 +1,46 @@
+{
+  "name": "cardgame-jaina-sync-scope-conflict-note",
+  "title": "Flag the tools/sync-cards-to-jaina.js scope conflict before both queued units build",
+  "pitch": "Two units already sitting in the 12-deep ready queue — cardgame-jaina-card-sync-dryrun and cardgame-sync-cards-to-jaina — both claim tools/sync-cards-to-jaina.js with incompatible acceptance criteria (dry-run print-only vs. live mocked-upsert); file a mechanical conflict note now instead of letting them collide mid-build.",
+  "why_now": "The ready queue is 12 deep and every recent tick added cardgame units without pruning any — exactly the 'roadmap only grew' case where portfolio rules call for a deletion/simplification candidate. Reading units/cardgame-jaina-card-sync-dryrun/unit.md and units/cardgame-sync-cards-to-jaina/unit.md side by side shows both target the same output path with different contracts: one is a network-free stdout dry-run, the other requires a mocked Jaina client and upsert-by-call-count assertions. If both get promoted and built as-is, the second to land silently overwrites or contradicts the first's tests. T13 already vetoed one duplicate-proposal case as 'overlap-guard bait, one unit suffices' — this is the same shape, caught before either burns a build cycle.",
+  "expected_outcome": "design/tooling-conflicts.md exists, names both units by their exact unit names, documents the same-file/incompatible-criteria conflict, and contains the literal marker 'NEEDS ROUTERBOX DECISION' — readable and actionable at the next walkthrough in under a minute.",
+  "risk_class": "standard",
+  "mission_intent": "I6",
+  "taste_citations": [
+    "T11",
+    "T13"
+  ],
+  "intent": "units/cardgame-jaina-card-sync-dryrun/unit.md and units/cardgame-sync-cards-to-jaina/unit.md are both currently ready-to-build and both specify tools/sync-cards-to-jaina.js as their primary deliverable, but with mutually exclusive behavior: the dryrun unit's AC3 requires the script to print a 'not yet implemented' message and exit 1 when run without --dry-run, while the sync unit requires that same invocation to perform a live (mocked-in-test) upsert. Per T11, a pure repo-state cleanup or silent pick-a-winner unit cannot pass TDD honestly and isn't the Producer's call to make — the right shape is an investigation-only unit that surfaces the conflict by name for RouterBox to resolve via the normal promote/veto gate, not a new ad-hoc escalation mechanism. This unit adds design/tooling-conflicts.md, a short mechanical document naming both units, quoting the specific contradicting acceptance criteria, and stating a suggested resolution (dryrun ships first as the narrower slice; sync-cards-to-jaina should be re-scoped to build on the dryrun's output rather than redefining the same script) while flagging the final call as unresolved. No cardgame design content, rules, or tooling code is touched.",
+  "criteria": [
+    {
+      "text": "design/tooling-conflicts.md exists and contains a section naming both cardgame-jaina-card-sync-dryrun and cardgame-sync-cards-to-jaina by their exact unit names",
+      "provenance": "inferred",
+      "held_out": false
+    },
+    {
+      "text": "The document quotes or paraphrases the specific contradiction: both units specify tools/sync-cards-to-jaina.js as their deliverable, but one requires a network-free dry-run-only script (exit 1 without --dry-run) and the other requires a live/mocked upsert on the same invocation shape",
+      "provenance": "inferred",
+      "held_out": false
+    },
+    {
+      "text": "The document contains the literal string 'NEEDS ROUTERBOX DECISION' so the open question is greppable and cannot be mistaken for a resolved decision",
+      "provenance": "paraphrase",
+      "held_out": false
+    },
+    {
+      "text": "The document states a suggested (non-binding) resolution ordering — which unit's scope is recommended to ship first and how the other should be re-scoped to build on it rather than redefine the same file",
+      "provenance": "inferred",
+      "held_out": true
+    }
+  ],
+  "touches": [
+    "design/tooling-conflicts.md",
+    "test/tooling-conflicts.test.js"
+  ],
+  "test_cmd": "node --test",
+  "id": "ms4ikjoc-cardgame-jaina-sync-scope-conflict-note",
+  "filed_at": "2026-07-28T10:29:31.932Z",
+  "window_expires": "2026-07-28T11:29:31.934Z",
+  "status": "vetoed",
+  "veto_reason": "Conflict is real and well caught, but a conflict-note unit is not needed: orchestrator resolved it directly � retired cardgame-sync-cards-to-jaina (ledger resolution:retired) in favor of the already-running dryrun unit; Producer re-files the live-sync step after dryrun merges, specced to extend the tool."
+}

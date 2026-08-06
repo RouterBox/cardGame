@@ -1,0 +1,58 @@
+{
+  "name": "cardgame-lore-docs-game-name-references",
+  "title": "Add \"Wreck Tangle\" game-name references to design/world.md, design/lore.md, and design/star-atlas.md — the last unclaimed piece of the 2026-07-29 naming directive",
+  "project": "cardgame",
+  "pitch": "design/ideas-inbox.md's 2026-07-29 entry asked \"Wreck Tangle\" to propagate through \"the rulebook title, the design-shelf site, the card set docs, and lore references to the game itself\" — rules.md and site/index.html already name it (test/design-game-name.test.js), but world.md, lore.md, and star-atlas.md never mention the game by name.",
+  "why_now": "Verified live: grepping design/*.md and design/cards/*.md for the literal string \"Wreck Tangle\" returns exactly 3 hits — design/DESIGN-READINESS.md, design/rules.md (title line 1: \"# Wreck Tangle — Core Rules\", and line 3: \"*Wreck Tangle* is set in the Amaranth Expanse\"), and design/ideas-inbox.md (the directive itself). test/design-game-name.test.js (the only existing mechanical check) covers exactly 2 of the directive's 4 named targets: rules.md's title and site/index.html (regenerated from build-site.js) — it does not touch world.md, lore.md, star-atlas.md, or any design/cards/*.md file. Read design/world.md (title \"# The Amaranth Expanse\", opening \"The Setting\" section), design/lore.md (title \"# The Long Record — A Chronicle of the Amaranth Expanse\"), and design/star-atlas.md (title \"# The Star Atlas\") in full: none names the game anywhere, only the setting. This unit deliberately excludes design/cards/*.md (the 'card set docs' part of the directive) because units/cardgame-playtest-second-deck-pairing (filed, not yet built) has AC5 requiring 'every design/cards/*.md file... byte-for-byte unchanged', and the window-open cardgame-playtest-spatial-wormhole-coverage proposal separately claims design/playtest-spatial.md — touching either file class right now risks exactly the kind of same-file collision T17 already burned a unit on. Checked memory and all 5 currently window-open proposals (character-signatures-wave-3, alt-art-briefs-character-signatures, character-markdown-slugify-dedup, jaina-sync-tools-dryrun-cli-dedup, playtest-spatial-wormhole-coverage) plus all 4 in-flight units (design-readiness-gap3-jaina-sync-fix, lib-markdown-section-parser-dedup, playtest-character-signatures-wave-2-refresh, playtest-second-deck-pairing) per T24: none touches design/world.md, design/lore.md, or design/star-atlas.md.",
+  "expected_outcome": "design/world.md, design/lore.md, and design/star-atlas.md each contain the exact string \"Wreck Tangle\" at least once, each phrased to preserve ideas-inbox.md's own distinction (\"'The Amaranth Expanse' remains the SETTING name... Wreck Tangle is the GAME\") rather than renaming any file's title; site/design/world.html, site/design/lore.html, and site/design/star-atlas.html are regenerated via tools/build-site.js to match; a new test file mechanically confirms all 3 markdown files and all 3 regenerated site pages contain the string, and that design/rules.md, site/index.html, and every design/cards/*.md file are byte-for-byte unchanged.",
+  "risk_class": "standard",
+  "mission_intent": "I6",
+  "taste_citations": [
+    "T8",
+    "T9",
+    "T24"
+  ],
+  "intent": "design/ideas-inbox.md's 2026-07-29 entry names the game \"Wreck Tangle\" and states: \"The name should propagate through the rulebook title, the design-shelf site, the card set docs, and lore references to the game itself.\" test/design-game-name.test.js already locks in the first two targets (design/rules.md's title, site/index.html). The remaining 'lore references to the game itself' target is unclaimed: design/world.md (the setting overview), design/lore.md (\"The Long Record\", the eras chronicle), and design/star-atlas.md (the world atlas) never mention \"Wreck Tangle\" anywhere, even though each is exactly the kind of lore document the directive means. Add one sentence to each of the 3 files — near the top, after the H1 title, not replacing it — naming the game \"Wreck Tangle\" and preserving the setting/game distinction ideas-inbox.md itself states (\"The Amaranth Expanse\" stays the SETTING name; \"Wreck Tangle\" is the GAME). For design/world.md, the sentence belongs in or right after \"The Setting\" section. For design/lore.md, it belongs in the \"Summary\" section, naturally alongside its existing reference to \"the present day the Alpha card set is set in.\" For design/star-atlas.md, it belongs in the opening paragraph, alongside its existing framing of what the atlas is for. Do not change any file's H1 title, do not touch design/rules.md, site/index.html, design/ideas-inbox.md, or any design/cards/*.md or design/playtest-*.md file — this unit is purely additive to 3 lore files. Regenerate site/design/world.html, site/design/lore.html, and site/design/star-atlas.html via tools/build-site.js. Add one new test file that mechanically asserts the string \"Wreck Tangle\" appears in all 3 markdown files and all 3 regenerated site pages, and that design/rules.md, site/index.html, and every file under design/cards/ are unchanged from their current content.",
+  "criteria": [
+    {
+      "text": "design/world.md contains the string \"Wreck Tangle\" at least once, and its H1 title (\"# The Amaranth Expanse\") is unchanged",
+      "provenance": "inferred",
+      "held_out": false
+    },
+    {
+      "text": "design/lore.md contains the string \"Wreck Tangle\" at least once, and its H1 title is unchanged",
+      "provenance": "inferred",
+      "held_out": false
+    },
+    {
+      "text": "design/star-atlas.md contains the string \"Wreck Tangle\" at least once, and its H1 title is unchanged",
+      "provenance": "inferred",
+      "held_out": false
+    },
+    {
+      "text": "design/rules.md, site/index.html, and every file under design/cards/ are byte-for-byte unchanged from their content before this unit",
+      "provenance": "paraphrase",
+      "held_out": true
+    },
+    {
+      "text": "site/design/world.html, site/design/lore.html, and site/design/star-atlas.html are regenerated via tools/build-site.js and each contains \"Wreck Tangle\"; a new test file mechanically asserts all of the above",
+      "provenance": "paraphrase",
+      "held_out": false
+    }
+  ],
+  "touches": [
+    "design/world.md",
+    "design/lore.md",
+    "design/star-atlas.md",
+    "site/design/world.html",
+    "site/design/lore.html",
+    "site/design/star-atlas.html",
+    "test/design-lore-docs-game-name.test.js"
+  ],
+  "test_cmd": "node --test",
+  "id": "ms7rvwa5-cardgame-lore-docs-game-name-references",
+  "filed_at": "2026-07-30T17:13:36.557Z",
+  "window_expires": "2026-07-30T21:13:36.559Z",
+  "status": "promoted",
+  "promoted_at": "2026-07-30T21:24:29.701Z"
+}

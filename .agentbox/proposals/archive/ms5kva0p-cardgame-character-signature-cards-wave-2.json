@@ -1,0 +1,47 @@
+{
+  "name": "cardgame-character-signature-cards-wave-2",
+  "title": "Second wave of character signature cards, one more per race",
+  "project": "cardgame",
+  "pitch": "Add a second named signature card per race, drawn from the 3 still-uncarded characters each race file already defines, continuing the interlinking-character-roster directive that only 1 of 4 named characters per race has graduated into a card.",
+  "why_now": "The 2026-07-27 ideas-inbox directive (\"3 to 5 characters per race with individual but interlinking narratives\") is fully incorporated as prose: every design/characters/<race>.md file already names exactly 4 characters (20 total), and design/characters/web.md already interlinks them across races. But cardgame-alpha-set-character-signature-cards (shipped) only graduated 1 character per race into a playable card — 5 of 20 named characters have signature cards, 15 do not. The roster and narratives are already written and stable, so this is finishing already-decided scope (T1) with the same mechanically-checkable template the shipped wave already proved out, not new speculative design.",
+  "expected_outcome": "design/cards/character-signatures-wave-2.md exists with 5 new named cards, one per race, each built from a character in that race's design/characters/ file who is NOT the character already named in design/cards/character-signatures.md, each following the Section 9.1 template (Cost line, Type line, Rules text, optional Stats/counters line for Permanents only) exactly as the shipped wave does; test/design-signature-cards-wave-2.test.js is checkable and `node --test` is green.",
+  "risk_class": "standard",
+  "mission_intent": "I6",
+  "taste_citations": [
+    "T9",
+    "T1"
+  ],
+  "intent": "design/characters/cindral-reach.md, mireth-bloom.md, panoptic-concord.md, starweave-communion.md, and wrought-assembly.md each name exactly 4 characters (20 total across the five races), per the 2026-07-27 RouterBox directive captured in design/ideas-inbox.md calling for 3-5 interlinking characters per race. design/cards/character-signatures.md (shipped, enforced by test/design-signature-cards.test.js) graduated exactly one character per race into a playable card, following rules.md Section 9.1's canonical template. This unit adds a second card per race, in a NEW file (design/cards/character-signatures-wave-2.md) with its own test file — it does not edit character-signatures.md or its test, so the shipped wave-1 file, roster, and test stay byte-identical (T12: never let a later unit's writes land on or disturb an earlier unit's shipped artifact). Each new card names its race's title (as printed in design/races/) and exactly one character from that race's own characters file, distinct from the character already named in wave 1 (cross-checked against both files so no character is signed twice). No rules.md change is needed since Cost/Type/Rules-text/Stats-line and the Generator/Unit/Permanent vocabulary the cards may use are already-defined mechanics.",
+  "criteria": [
+    {
+      "text": "design/cards/character-signatures-wave-2.md exists and contains exactly 5 distinct named cards, one per race under design/races/, and none of the 5 names collides with any name in design/cards/character-signatures.md.",
+      "provenance": "paraphrase",
+      "held_out": false
+    },
+    {
+      "text": "Every card in the new file has a Cost line, Type line, and Rules text in that order, and only carries a Stats/counters line after Rules text when its Type line contains 'Permanent' — the same template enforced by test/design-signature-cards.test.js for the shipped wave.",
+      "provenance": "paraphrase",
+      "held_out": false
+    },
+    {
+      "text": "Each of the 5 new cards' combined rules text and flavor text names both its own race's title (as printed in that race's design/races/ file) and exactly one character drawn from that race's own design/characters/ file, and that named character is not the one already named in design/cards/character-signatures.md.",
+      "provenance": "inferred",
+      "held_out": false
+    },
+    {
+      "text": "design/cards/character-signatures.md, design/cards/alpha-set.md, design/cards/frontier-set.md, and all files under design/characters/ and design/races/ are byte-identical to before this unit — only the new card file and its new test file are added.",
+      "provenance": "inferred",
+      "held_out": true
+    }
+  ],
+  "touches": [
+    "design/cards/character-signatures-wave-2.md",
+    "test/design-signature-cards-wave-2.test.js"
+  ],
+  "test_cmd": "node --test",
+  "id": "ms5kva0p-cardgame-character-signature-cards-wave-2",
+  "filed_at": "2026-07-29T04:21:38.041Z",
+  "window_expires": "2026-07-29T05:21:38.043Z",
+  "status": "promoted",
+  "promoted_at": "2026-07-29T05:23:56.248Z"
+}

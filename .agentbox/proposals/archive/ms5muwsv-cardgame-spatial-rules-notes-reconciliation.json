@@ -1,0 +1,52 @@
+{
+  "name": "cardgame-spatial-rules-notes-reconciliation",
+  "title": "Reconcile RouterBox's unresolved inline design notes in rules.md Section 8 into finished rules text",
+  "project": "cardgame",
+  "pitch": "design/rules.md Section 8 (Spatial Battlefield) still carries four of RouterBox's own raw inline notes — including a struck-through passage marked \"Wrong\" and a same-day (2026-07-28) correction to how Blockade/Capture works — that were never converted into finished numbered rules text, leaving the shipped rulebook internally self-contradictory.",
+  "why_now": "Reading rules.md Section 8 top to bottom surfaces four unresolved RouterBox comments never reconciled into prose: (1) a <strikethrough>-marked passage at 8.1 claiming Units have no tracked location, immediately followed by RouterBox's own \"//Wrong ... Units are located at planets and move through wormholes between them... The graph is the battlefield\" correction; (2) an unincorporated clarifying note on which Planets exist at game start; (3) a note at 8.3 stating Discovery cost should run INVERTED from Length (shorter Wormholes cost MORE because they're more valuable/easier to traverse) which directly contradicts the shipped formula two lines above it (cost = Length, i.e. longer costs more); and (4) a same-day note at 8.6 stating Blockade/Capture is only \"an ok start\" and actually requires Units to be present at the Planet and deal damage equal to its Generator count — a real fix, since the current shipped Assault/Blockade/Capture text never mentions Units or combat damage at all, purely a Fount-Point toll. A `//As far as I read 07/28/26 4:00pm.` checkpoint marks RouterBox's own review frontier sitting unresolved in the doc. None of the 10 proposals currently sitting in the window (wormhole-restriction-cards, wormhole-closure-cards, keyword-abilities-rules, world-star-atlas, etc.) touch this passage or fix these contradictions, and two of them (wormhole-restriction-cards' Unit-type Restriction cards, wormhole-closure-cards) build directly on top of a Section 8.4 that still describes Unit-type Restrictions as inert future-only text — contradicted by the very correction sitting three subsections above it. This is finishing already-decided scope (T1): RouterBox already made these calls inline, they were just never written up as clean rules.",
+  "expected_outcome": "design/rules.md contains zero remaining <strikethrough> tags or `//`-prefixed inline comment lines; Section 8.1 states Units are located at a specific Planet; Section 8.3's Discovery cost step runs inversely with Length (shorter = more Fount Points) while Contested still costs double Frontier at the same Length; Section 8.6 requires the assaulting challenger's Units to be present at the target Planet and deal damage totaling at least its Generator count to Blockade, and that much again to Capture; Section 8.4's Unit-type Restriction text no longer calls itself inert/future-only; `node --test` is green including all pre-existing test/design-battlefield.test.js assertions.",
+  "risk_class": "standard",
+  "mission_intent": "I6",
+  "taste_citations": [
+    "T9",
+    "T1"
+  ],
+  "intent": "design/rules.md's Section 8 (Spatial Battlefield, shipped as part of cardgame-spatial-battlefield-rules) was drafted with several of RouterBox's own inline review notes left as raw `//` comments and one <strikethrough>-marked passage instead of being incorporated into finished, numbered rules prose — a violation of the MTG-Comprehensive-Rules structural bar T9 sets for this document (no contradictions, no unresolved marginalia). Four spots need reconciliation: the 8.1 passage stating a Unit's location is untracked, struck through and marked \"Wrong\" by RouterBox with a same-passage correction that Units are located at Planets and move between them via Wormholes (\"the graph is the battlefield\", superseding the implicit MTG-zone analogy); an unincorporated note on which Planets exist at game start; the 8.3 Discovery cost formula, which a RouterBox note says should be inverted (shorter Wormholes cost MORE Fount Points, being more valuable/easier to traverse) but which the adjacent shipped rule text still states as directly proportional to Length; and 8.6 Blockade & Capture, which a 2026-07-28 RouterBox note flags as merely \"an ok start\" needing a real combat tie-in — Units present at the target Planet dealing damage equal to the Planet's Generator count to Blockade, and that amount again to Capture — replacing today's shipped mechanic, which never references Units or damage at all. This unit rewrites these four spots into clean numbered prose (removing all raw comment/strikethrough markup in the process, including the 07/28 4:00pm review-checkpoint marker once its note is resolved), and updates 8.4's Unit-type Restriction description so it no longer claims to be inert/for-future-cards-only, since Unit location is now a real, current mechanic per the corrected 8.1. Only design/rules.md and its existing owning test file change; no card file, no other rules.md section, and no code outside the test file is touched. This is pure design/rules-text correctness work (T8), not game software.",
+  "criteria": [
+    {
+      "text": "design/rules.md contains no remaining <strikethrough> tags and no lines beginning with a `//` inline comment anywhere in the document.",
+      "provenance": "paraphrase",
+      "held_out": false
+    },
+    {
+      "text": "Section 8.1 states, in finished numbered-rules prose (not a struck-through or commented passage), that each Unit occupies and has a tracked location at a specific Planet, and Section 8.4's Unit-type Restriction subsection no longer states the Restriction is inert or exists only for future cards.",
+      "provenance": "paraphrase",
+      "held_out": false
+    },
+    {
+      "text": "Section 8.3's Discovery cost rule states that, for Discoveries of the same kind (Frontier or Contested), a Wormhole of lesser Length costs more Fount Points to open than one of greater Length, while a Contested Discovery still costs exactly double what a Frontier Discovery of the same Length costs.",
+      "provenance": "paraphrase",
+      "held_out": false
+    },
+    {
+      "text": "Section 8.6 states that Blockading a Planet requires the assaulting challenger's Units to be present at that Planet and to deal damage totaling at least the number of Generators on it, and that Capturing an already-Blockaded Planet requires dealing that same damage total again.",
+      "provenance": "paraphrase",
+      "held_out": false
+    },
+    {
+      "text": "Every assertion in test/design-battlefield.test.js that existed before this unit (Blockade halts Generator production, Capture destroys the Generator into the Wreck, wormholes remain restrictable by direction/team/unit-type, Sections 1-7 remain unchanged and in order before Section 8) still passes against the rewritten Section 8 text.",
+      "provenance": "inferred",
+      "held_out": true
+    }
+  ],
+  "touches": [
+    "design/rules.md",
+    "test/design-battlefield.test.js"
+  ],
+  "test_cmd": "node --test",
+  "id": "ms5muwsv-cardgame-spatial-rules-notes-reconciliation",
+  "filed_at": "2026-07-29T05:17:20.143Z",
+  "window_expires": "2026-07-29T06:17:20.145Z",
+  "status": "promoted",
+  "promoted_at": "2026-07-29T06:17:57.167Z"
+}

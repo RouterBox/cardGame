@@ -1,0 +1,49 @@
+{
+  "name": "cardgame-jaina-card-sync-live-mock",
+  "title": "cardGame tool — live sync of card data to Jaina via mock upsert client (slice 2)",
+  "project": "cardgame",
+  "pitch": "Extend the dry-run Jaina card sync tool so the no-flag path exercises a real live-sync code path against an injectable mock upsert client, proving the wiring before real Jaina credentials are added.",
+  "why_now": "T17 explicitly flagged this as the next unit to file once cardgame-jaina-card-sync-dryrun merged (it did, 2026-07-28); the tool's only non-dry-run path currently hard-exits 1 with a 'not yet implemented' stub, so this is the natural next narrow slice under the same T1 MVP discipline that shipped the dry-run.",
+  "expected_outcome": "node tools/sync-cards-to-jaina.js (no flags) exits 0 and prints 'Synced 18 cards to Jaina (mock)'; node --test is green including new tests asserting the injected mock client recorded 18 upsert calls whose payloads match the existing --dry-run record shape.",
+  "risk_class": "standard",
+  "mission_intent": "I6",
+  "taste_citations": [
+    "T17",
+    "T16",
+    "T1"
+  ],
+  "intent": "cardgame-jaina-card-sync-dryrun (merged 2026-07-28) deliberately stopped short of live sync: without --dry-run, tools/sync-cards-to-jaina.js prints a 'not yet implemented' message and exits 1. T17's resolution note commits the Producer to re-filing the live-sync step once the dry-run merged, specced to extend (not replace) the existing tool. This slice wires the no-flag path to build the same record payloads --dry-run already prints and hand them to an injectable upsert client, one call per card. The default/test client is an in-memory mock (lib/jaina-mock-client.js) that records calls and performs no network I/O — no mcp__jaina__* tool usage, no fetch, no http/https require — keeping node --test deterministic and credential-free, consistent with how the dry-run unit was scoped. Swapping in a real Jaina API client is explicit follow-up work, not this unit. This is content-authoring tooling extending an existing tool, within the T16 partial software-gate opening (authoring/content tools allowed; gameplay software still gated).",
+  "criteria": [
+    {
+      "text": "node tools/sync-cards-to-jaina.js (no --dry-run) exits 0 and calls the injected upsert client exactly once per card found under design/cards/ (18 calls for the current alpha-set.md), each call receiving the same record shape (name, slug, costLine, typeLine, rulesText, statsLine) --dry-run already prints.",
+      "provenance": "paraphrase",
+      "held_out": false
+    },
+    {
+      "text": "The upsert client is dependency-injectable (tests substitute an in-memory mock that records calls); the shipped default is lib/jaina-mock-client.js, a local in-memory mock with no network I/O — no mcp__jaina__* usage, fetch, or http/https require is added anywhere in this unit.",
+      "provenance": "inferred",
+      "held_out": false
+    },
+    {
+      "text": "--dry-run behavior is unchanged: it still prints the NDJSON preview and makes zero calls to the upsert client (regression guard on the dry-run unit's existing behavior).",
+      "provenance": "inferred",
+      "held_out": false
+    },
+    {
+      "text": "Running the no-flag sync twice in a row against unchanged markdown results in the mock client recording byte-identical call payloads both times (deterministic — no timestamps or randomness in the record shape).",
+      "provenance": "inferred",
+      "held_out": true
+    }
+  ],
+  "touches": [
+    "tools/sync-cards-to-jaina.js",
+    "lib/jaina-mock-client.js",
+    "test/sync-cards-to-jaina.test.js"
+  ],
+  "test_cmd": "node --test",
+  "id": "ms4m1o1d-cardgame-jaina-card-sync-live-mock",
+  "filed_at": "2026-07-28T12:06:49.585Z",
+  "window_expires": "2026-07-28T13:06:49.587Z",
+  "status": "vetoed",
+  "veto_reason": "Duplicate of ms4l0xre-cardgame-jaina-card-sync-live (the canonical live-sync step, correctly filed as security-risk since it writes to RouterBox's real Jaina account). Four re-filings of the same step accumulated because the security gate keeps it pending � that is the gate WORKING; do not re-file the live sync again until RouterBox decides ms4l0xre."
+}

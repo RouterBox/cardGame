@@ -1,0 +1,54 @@
+{
+  "name": "cardgame-design-readiness-gap3-jaina-sync-fix",
+  "title": "Fix DESIGN-READINESS.md's stale 'Jaina wired up for card records only' claim — 4 more sync tools already shipped since it was written",
+  "project": "cardgame",
+  "pitch": "Section 6's Open Gap 3 and Section 5's tooling list still say only tools/sync-cards-to-jaina.js exists and characters/races/world/lore/star-atlas 'remain markdown-only prose with no Jaina schema or sync path yet,' but tools/sync-characters-to-jaina.js, tools/sync-races-to-jaina.js, tools/sync-star-atlas-to-jaina.js, and tools/sync-lore-eras-to-jaina.js have all since merged.",
+  "why_now": "Verified live: Glob confirms all 4 files exist on disk (tools/sync-characters-to-jaina.js, tools/sync-races-to-jaina.js, tools/sync-star-atlas-to-jaina.js, tools/sync-lore-eras-to-jaina.js), and memory/cardgame-jaina-{character,race,star-atlas,lore}-sync-dryrun.md each record a 2026-07-30 merge timestamp — all four landed after Section 5/6's current text was authored. None of the 5 window-open proposals (section4-art-briefs-coverage-fix, art-briefs-spatial-race-identity-wave-2, jaina-sync-tools-dedup, playtest-spatial-race-identity-refresh, playtest-character-signatures-wave-2-refresh) or the in-flight cardgame-design-readiness-gap1-wormhole-resolved-fix unit touch Section 5's tooling bullet list or Section 6's item 3 — gap1 fixes the art-brief coverage gap, section4-fix fixes a different paragraph in Section 4, and jaina-sync-tools-dedup only refactors tool internals, not this document. This is the same disjoint doc-accuracy pattern T24 already validated for gap2 and section4 (check memory + open proposals first, fix a stale sentence a live grep disproves), applied to the one remaining stale claim in Sections 5-6.",
+  "expected_outcome": "design/DESIGN-READINESS.md Section 5's tooling list gains bullets naming tools/sync-characters-to-jaina.js, tools/sync-races-to-jaina.js, tools/sync-star-atlas-to-jaina.js, and tools/sync-lore-eras-to-jaina.js alongside the existing sync-cards-to-jaina.js entry; Section 6 item 3 no longer claims characters/races/lore/star-atlas lack a Jaina sync path, instead naming design/world.md's Cosmology/Founts prose (and the still-in-flight founts economy set) as the narrower remaining gap. test/design-readiness.test.js and test/design-readiness-gap2-resolved.test.js's existing assertions still pass unmodified.",
+  "risk_class": "standard",
+  "mission_intent": "I6",
+  "taste_citations": [
+    "T9",
+    "T11",
+    "T12",
+    "T24"
+  ],
+  "intent": "design/DESIGN-READINESS.md Section 5 currently lists only 'tools/sync-cards-to-jaina.js — dry-run and --live sync of parsed card records into Jaina' under its tooling inventory, and Section 6's Open Gap 3 states: 'Jaina is wired up for card records only. tools/sync-cards-to-jaina.js only syncs parsed card records. Characters (design/characters/), races (design/races/), world/lore (design/world.md, design/lore.md), and the star atlas (design/star-atlas.md) remain markdown-only prose with no Jaina schema or sync path yet.' Both claims are now stale: cardgame-jaina-character-sync-dryrun, cardgame-jaina-race-sync-dryrun, cardgame-jaina-star-atlas-sync-dryrun, and cardgame-jaina-lore-sync-dryrun all merged on 2026-07-30, adding tools/sync-characters-to-jaina.js, tools/sync-races-to-jaina.js, tools/sync-star-atlas-to-jaina.js, and tools/sync-lore-eras-to-jaina.js (each a dry-run-only tool backed by its own lib/parse-*-markdown.js parser, per those units' own merged intents). Edit Section 5 to add one bullet per new tool, matching the existing sync-cards-to-jaina.js bullet's style (one line naming the tool and what it dry-run-syncs). Edit Section 6 item 3 to drop the now-false claim about characters/races/star-atlas/lore, replacing it with an accurate narrower statement: design/lore.md's eras are now synced (lore-eras, not all of lore.md's prose) but design/world.md's Cosmology/Founts section still has no parser or sync tool, and design/cards/fount-economy-set.md-adjacent Fount records are only in flight (cardgame-jaina-founts-sync-dryrun, not yet merged) — so the item should state world.md and the founts sync as the remaining hole, not the four now-closed ones. Do not touch Section 4's art-brief coverage bullets (subject of the separate open section4-art-briefs-coverage-fix proposal), Section 6 item 1 (subject of the in-flight gap1-wormhole-resolved-fix unit), or any other section's substance.",
+  "criteria": [
+    {
+      "text": "design/DESIGN-READINESS.md Section 5's tooling list contains one new bullet each for tools/sync-characters-to-jaina.js, tools/sync-races-to-jaina.js, tools/sync-star-atlas-to-jaina.js, and tools/sync-lore-eras-to-jaina.js, alongside the existing sync-cards-to-jaina.js bullet",
+      "provenance": "inferred",
+      "held_out": false
+    },
+    {
+      "text": "Section 6 item 3 no longer contains the sentence claiming characters, races, world/lore, or the star atlas 'remain markdown-only prose with no Jaina schema or sync path yet'",
+      "provenance": "inferred",
+      "held_out": false
+    },
+    {
+      "text": "Section 6 item 3's rewritten text names design/world.md's Cosmology/Founts content as still lacking a sync tool, and references the founts sync as in-flight rather than shipped",
+      "provenance": "paraphrase",
+      "held_out": true
+    },
+    {
+      "text": "Section 4's art-brief coverage bullets and Section 6 item 1's wormhole/art-brief text are present byte-for-byte unchanged",
+      "provenance": "inferred",
+      "held_out": false
+    },
+    {
+      "text": "test/design-readiness.test.js and test/design-readiness-gap2-resolved.test.js's existing assertions pass unmodified against the edited file",
+      "provenance": "paraphrase",
+      "held_out": false
+    }
+  ],
+  "touches": [
+    "design/DESIGN-READINESS.md",
+    "test/design-readiness-gap3-jaina-sync-fix.test.js"
+  ],
+  "test_cmd": "node --test",
+  "id": "ms7g1abx-cardgame-design-readiness-gap3-jaina-sync-fix",
+  "filed_at": "2026-07-30T11:41:52.653Z",
+  "window_expires": "2026-07-30T15:41:52.655Z",
+  "status": "promoted",
+  "promoted_at": "2026-07-30T15:54:27.173Z"
+}

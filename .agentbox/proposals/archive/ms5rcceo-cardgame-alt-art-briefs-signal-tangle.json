@@ -1,0 +1,49 @@
+{
+  "name": "cardgame-alt-art-briefs-signal-tangle",
+  "title": "Alt-Art briefs for Signal and Tangle — closing the last 2-of-5 Fount gap in the shipped Alt-Art layer",
+  "project": "cardgame",
+  "pitch": "design/cards/alt-art-briefs.md ships alt-art briefs for exactly 3 of the game's 5 Founts (Bloom, Mass, Circuit) — add Foreknowledge Cipher (Signal) and Unwritten Hour (Tangle) so every Fount has a proven Alt-Art path through the shipped compositing tool.",
+  "why_now": "tools/composite-card-art.js (shipped) already treats alt-art-briefs.md as a first-class, optional second brief source and writes a <slug>-alt.svg for each of its 3 current entries — the mechanism is proven, but the content stops at Bloom (Sporeknit Warden), Mass (Salvage-Wrought Bastion), and Circuit (Replicant Foundry Core). Signal and Cyan/Tangle-Violet, the two colors named alongside Ash-grey/Green/Copper in every other Fount-identity proposal filed this cycle (wormhole-restrictions and character-signatures-wave-2 art briefs both enumerate all 5), have zero Alt-Art coverage. This leaves the shipped 5-Fount color-identity system asymmetric in the one place premium art actually exists today. Foreknowledge Cipher (2 Signal) and Unwritten Hour (3 Tangle) are both alpha-set.md cards that already carry a stable base brief in art-briefs.md — unlike fount-economy-set.md's Signal/Tangle Generators, whose own base briefs are not yet confirmed shipped — so this unit has zero dependency on any currently open or in-flight art-briefs work and zero touch-overlap with any of the 8 open cardgame proposals.",
+  "expected_outcome": "design/cards/alt-art-briefs.md gains 2 new '###' sections (Foreknowledge Cipher, Unwritten Hour), bringing it to 5 sections covering all 5 Founts; test/design-alt-art-briefs.test.js and test/composite-card-art-alt.test.js are updated from their hardcoded '3' expectations to 5; running node tools/composite-card-art.js (mock client) writes exactly 5 <slug>-alt.svg files, one per Fount; node --test is green.",
+  "risk_class": "standard",
+  "mission_intent": "I6",
+  "taste_citations": [
+    "T9",
+    "T8",
+    "T1"
+  ],
+  "intent": "design/cards/alt-art-briefs.md (shipped) and tools/composite-card-art.js's second, parallel compositing pass (shipped) together define and prove the Alt-Art layer card-anatomy.md's 'The Layers' section describes, but the brief file itself only ever named 3 cards — one from Bloom, Mass, and Circuit — leaving Signal and Tangle as the only two of the game's 5 Founts with no Alt-Art path at all. This unit adds one new '###' brief section each for Foreknowledge Cipher (2 Signal, Panoptic Concord, already base-briefed in art-briefs.md) and Unwritten Hour (3 Tangle, Starweave Communion, already base-briefed in art-briefs.md), following the identical Palette/Subject-Scene/Key-visual-elements/Composition template the 3 existing alt briefs use, with each Subject/Scene describing a genuinely different scene from that card's existing base brief (sharing fewer than half its significant words, matching test/design-alt-art-briefs.test.js's existing AC2 check) rather than a restatement. It updates the two existing test files that currently hardcode the count '3' — test/design-alt-art-briefs.test.js's EXPECTED_TITLES array and test/composite-card-art-alt.test.js's fixture sanity-check assertion — to reflect 5, the same kind of existing-test-count-bump the original alt-art-briefs-compositing unit itself made to composite-card-art.test.js. No card file, base brief, rules.md, or the compositing/rendering source code itself is touched — only alt-art-briefs.md grows and its two owning test files' hardcoded counts move from 3 to 5.",
+  "criteria": [
+    {
+      "text": "design/cards/alt-art-briefs.md gains exactly 2 new '###' sections, titled 'Foreknowledge Cipher' and 'Unwritten Hour' verbatim, bringing the file to 5 total sections (one per Fount: Sporeknit Warden/Bloom, Salvage-Wrought Bastion/Mass, Replicant Foundry Core/Circuit, Foreknowledge Cipher/Signal, Unwritten Hour/Tangle); no pre-existing alt brief section is removed, renamed, or altered.",
+      "provenance": "paraphrase",
+      "held_out": false
+    },
+    {
+      "text": "Each new alt brief has Palette/Subject-Scene/Key-visual-elements(2+ bullets)/Composition lines in the same shape the 3 existing alt briefs use, and its Subject/Scene line shares fewer than half its significant words with that same card's base brief Subject/Scene line in design/cards/art-briefs.md.",
+      "provenance": "paraphrase",
+      "held_out": false
+    },
+    {
+      "text": "test/design-alt-art-briefs.test.js's EXPECTED_TITLES list and 'exactly N sections' assertion, and test/composite-card-art-alt.test.js's 'exactly 3 alt briefs' sanity-check assertion, are updated to 5; running node tools/composite-card-art.js (mock client) writes exactly 5 <slug>-alt.svg files, one per alt brief, with each card's base <slug>.svg unchanged alongside it.",
+      "provenance": "inferred",
+      "held_out": false
+    },
+    {
+      "text": "No file other than design/cards/alt-art-briefs.md, test/design-alt-art-briefs.test.js, and test/composite-card-art-alt.test.js is created or modified; design/cards/art-briefs.md, every design/cards/*.md card file, and tools/composite-card-art.js remain byte-identical to before this unit; node --test is green.",
+      "provenance": "inferred",
+      "held_out": true
+    }
+  ],
+  "touches": [
+    "design/cards/alt-art-briefs.md",
+    "test/design-alt-art-briefs.test.js",
+    "test/composite-card-art-alt.test.js"
+  ],
+  "test_cmd": "node --test",
+  "id": "ms5rcceo-cardgame-alt-art-briefs-signal-tangle",
+  "filed_at": "2026-07-29T07:22:51.984Z",
+  "window_expires": "2026-07-29T08:22:51.986Z",
+  "status": "promoted",
+  "promoted_at": "2026-07-29T08:24:17.927Z"
+}

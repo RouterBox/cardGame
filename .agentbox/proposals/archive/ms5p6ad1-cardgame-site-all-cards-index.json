@@ -1,0 +1,47 @@
+{
+  "name": "cardgame-site-all-cards-index",
+  "title": "cardGame design-shelf site — one browsable All Cards index across every card-set file",
+  "project": "cardgame",
+  "pitch": "Add a site/cards-index.html page listing every printed card (name, Cost, Type, source page) across all design/cards/*.md files in one place, so browsing the card catalog on a phone doesn't mean opening 6+ separate per-file pages one at a time.",
+  "why_now": "tools/build-site.js (shipped) groups its index by document, one link per markdown file under design/cards/ — but that directory has grown from 1 file to 5 (alpha-set.md, frontier-set.md, character-signatures.md, character-signatures-wave-2.md, fount-economy-set.md) with 2 more currently window-open (spatial-race-identity-set.md, spatial-race-identity-set-wave-2.md) and 1 more building (fount-economy art briefs touches art-briefs.md, not a new card file, but wormhole-restriction-cards and wormhole-closure-cards in flight each add another). Finding one named card today means guessing which of 7+ files it lives in and opening each — reproducing, inside the site, exactly the 'picking through files and folders' problem T16's directive named for the filesystem. lib/parse-card-markdown.js's loadAllCards() (shipped) already parses every design/cards/*.md file into flat {name, costLine, typeLine, rulesText} records; build-site.js already walks these same files card-by-card per section to render each page (the in-flight cardgame-site-embeds-composited-card-art unit does exactly this per-card iteration to attach art). No open proposal or in-flight unit adds a cross-file card index — design-browser-site's index links per-file, site-embeds-composited-card-art only adds images to existing per-file pages, and card-catalog-collision-check only adds a lib-level duplicate-name test with no site output.",
+  "expected_outcome": "Running node tools/build-site.js produces site/cards-index.html listing every card returned by combining loadAllCards() across all design/cards/*.md files, each row showing the card's name, Cost line, and Type line and linking to its source page; site/index.html links to cards-index.html; a new test proves the row count matches the total card count and every link resolves inside site/.",
+  "risk_class": "standard",
+  "mission_intent": "I6",
+  "taste_citations": [
+    "T16",
+    "T8"
+  ],
+  "intent": "tools/build-site.js (shipped) renders one HTML page per markdown file and an index.html grouping those file-level links by shelf section (World, Races, Characters, Cards, Rules), but nothing in the generator ever produces a view of cards themselves — a reader has to already know which of the growing set of design/cards/*.md files holds the card they want. This unit adds a card-level index: while build-site.js renders each design/cards/*.md page (it already walks that directory file-by-file, and within each file section-by-section, per the same '###' card-heading iteration the in-flight site-embeds-composited-card-art unit relies on), it collects {name, costLine, typeLine, source page path} for every card it renders, then after all pages are built emits one new site/cards-index.html: a single table/list, one row per card, each row's name linking (via the same relative-href convention buildNav() already uses) to that card's source page. site/index.html gains one additional link to cards-index.html alongside its existing section links. The generator's existing determinism guarantee (AC5 of the shipped design-browser-site unit) extends to this new page. No design/cards/*.md file, art-briefs.md, lib/parse-card-markdown.js, or tools/composite-card-art.js is touched — only tools/build-site.js gains the collection-and-emit step and a new test file verifies it.",
+  "criteria": [
+    {
+      "text": "After running node tools/build-site.js, site/cards-index.html exists and contains exactly one entry per card across every design/cards/*.md file — the same total count loadAllCards() (or an equivalent full walk of design/cards/) returns for the current catalog.",
+      "provenance": "inferred",
+      "held_out": false
+    },
+    {
+      "text": "Each entry in cards-index.html shows that card's name, its Cost line text, and its Type line text, and its name links via a relative href to the generated page for the design/cards/*.md file it came from.",
+      "provenance": "paraphrase",
+      "held_out": false
+    },
+    {
+      "text": "site/index.html contains a link to cards-index.html; running node tools/build-site.js twice in a row produces byte-identical site/ output (including cards-index.html) on both runs.",
+      "provenance": "inferred",
+      "held_out": false
+    },
+    {
+      "text": "No pre-existing generated page's content changes as a result of this unit (per-file card pages render identically to before), and every existing assertion in test/build-site.test.js still passes.",
+      "provenance": "inferred",
+      "held_out": true
+    }
+  ],
+  "touches": [
+    "tools/build-site.js",
+    "test/build-site-cards-index.test.js"
+  ],
+  "test_cmd": "node --test",
+  "id": "ms5p6ad1-cardgame-site-all-cards-index",
+  "filed_at": "2026-07-29T06:22:10.165Z",
+  "window_expires": "2026-07-29T07:22:10.168Z",
+  "status": "promoted",
+  "promoted_at": "2026-07-29T07:23:57.643Z"
+}

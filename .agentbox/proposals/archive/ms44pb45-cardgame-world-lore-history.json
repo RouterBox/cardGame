@@ -1,0 +1,61 @@
+{
+  "name": "cardgame-world-lore-history",
+  "title": "cardGame design phase — world lore & history",
+  "pitch": "Write design/lore.md: a timeline of eras and a central multi-race conflict that gives the setting a narrative spine beyond the race files.",
+  "why_now": "design/rules.md and design/races/*.md are shipped and cardgame-alpha-set-starter-cards is already queued to write real cards, but nothing yet establishes the shared history/current-era context those cards' flavor text will lean on — I6 names lore as its own deliverable alongside world/races/rules/cards/art, and it's the one still missing.",
+  "expected_outcome": "design/lore.md exists in the cardGame repo with a named timeline of at least 4 eras and a central conflict involving 3+ of the 5 races, checkable by reading the file.",
+  "risk_class": "standard",
+  "mission_intent": "I6",
+  "taste_citations": [
+    "T8",
+    "T9",
+    "T1"
+  ],
+  "intent": "Fifth design deliverable for the cardGame pilot (gamePlan.md is the source of truth for scope). This is a DESIGN unit, not software (T8): output is a markdown document a human reads and reacts to. design/world.md and design/races/*.md establish setting and race identity; design/rules.md establishes mechanics through Section 9. What's missing is history — the lore layer I6 lists alongside world building and race identities. This unit writes design/lore.md: a timeline of eras and at least one central conflict tying multiple races together, grounded in terms already defined in world.md and rules.md rather than inventing new mechanics. It closes at full decided scope (T1) rather than treating races+rules as sufficient, and gives the in-flight alpha-set card unit (and any future set) a fixed narrative anchor for flavor text instead of each card inventing its own backstory.",
+  "criteria": [
+    {
+      "text": "design/lore.md exists in the cardGame repo.",
+      "provenance": "user",
+      "held_out": false
+    },
+    {
+      "text": "Contains a named timeline/history section listing at least 4 distinct eras or historical periods in the setting.",
+      "provenance": "paraphrase",
+      "held_out": false
+    },
+    {
+      "text": "Describes at least one central conflict or turning-point event that directly involves 3 or more of the 5 races named in design/races/*.md.",
+      "provenance": "inferred",
+      "held_out": false
+    },
+    {
+      "text": "References at least one Fount-related concept already defined in design/rules.md or design/world.md, so the history is grounded in existing game terms rather than inventing new mechanics.",
+      "provenance": "inferred",
+      "held_out": false
+    },
+    {
+      "text": "Ends with a short 'current era' section describing the state of the world at the point the Alpha card set is set, giving future card flavor text a fixed narrative anchor.",
+      "provenance": "inferred",
+      "held_out": false
+    },
+    {
+      "text": "The file opens with a summary paragraph naming how many eras/periods it covers and which races the central conflict(s) involve, so scope is checkable without reading the full document.",
+      "provenance": "inferred",
+      "held_out": true
+    },
+    {
+      "text": "No single era or event description exceeds roughly one page (about 500 words), keeping the document skimmable rather than turning into a novel.",
+      "provenance": "inferred",
+      "held_out": true
+    }
+  ],
+  "touches": [
+    "design/lore.md"
+  ],
+  "test_cmd": "node --test",
+  "id": "ms44pb45-cardgame-world-lore-history",
+  "filed_at": "2026-07-28T04:01:19.493Z",
+  "window_expires": "1970-01-01T00:00:00.000Z",
+  "status": "promoted",
+  "promoted_at": "2026-07-28T04:44:45.924Z"
+}

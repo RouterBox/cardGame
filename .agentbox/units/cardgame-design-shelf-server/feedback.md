@@ -1,0 +1,2 @@
+
+- [2026-07-28T11:59:42.693Z] Resolved by orchestrator hand-recovery WITH a code fix (T18: reviewer finding was real, unlike the DA blanks). The breaker fired legitimately: reviewer found a genuine crash bug � malformed percent-encoding in any request URL threw an uncaught URIError inside the request listener and killed the whole LAN server process. I fixed it on the branch (undecodable paths now return 404; regression test drives a raw-socket GET /% and verifies the server survives), suite went 358/358 including the new test, merged fdc09b1, branch pruned.

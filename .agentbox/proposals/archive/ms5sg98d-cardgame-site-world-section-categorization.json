@@ -1,0 +1,53 @@
+{
+  "name": "cardgame-site-world-section-categorization",
+  "title": "Design-shelf site buries lore.md and star-atlas.md in a generic 'Other' bucket instead of grouping them with World — fix sectionFor()",
+  "project": "cardgame",
+  "pitch": "tools/build-site.js's sectionFor() explicitly classifies design/world.md as 'World' but has no case for design/lore.md or design/star-atlas.md, so both fall through to the catch-all 'Other' section on the phone-browsable design shelf even though they are core world-building content, not leftovers.",
+  "why_now": "The ideas-inbox entry that unlocked this whole site tool is RouterBox's own verbatim want, quoted in design/ideas-inbox.md: 'I think we also need a simple website to browse the game plans and concepts generated... I need to be able to see what we got without going over to my computer and picking through files and folders' — the site's whole job is making world/races/characters/rules/cards easy to find on the phone (T16). Reading the current tools/build-site.js confirms the gap directly: sectionFor() has explicit cases for design/world.md ('World'), design/rules.md ('Rules'), design/races/*, design/characters/*, design/cards/*, design/ideas-inbox.md, and gamePlan.md — but design/lore.md (the shipped 7-era history document) and design/star-atlas.md (the shipped homeworlds/frontier-worlds atlas) match none of those cases and silently fall to the final `return 'Other';`. Both are exactly the kind of world content the site's own SECTION_ORDER puts 'World' first to surface, yet on the actual generated index.html they sit in a generic bucket instead. Checked both currently-promoted site units (cardgame-site-all-cards-index adds a new cards-index.html page; cardgame-site-embeds-composited-card-art — whose cardArtImgHtml logic is already live in the current build-site.js — only changes card-page image rendering) and all 8 open proposals: none touches sectionFor(), SECTION_ORDER, or any section-categorization logic, so this has zero overlap with anything in flight.",
+  "expected_outcome": "Running node tools/build-site.js, site/index.html's 'World' section lists three links — World, Lore, and Star Atlas (in that source-sorted order) — instead of one; no generated page for design/lore.md or design/star-atlas.md appears under an 'Other' heading; every other section's membership (Races, Characters, Cards, Rules, Plans & Ideas) is unchanged; node --test is green including an updated test/build-site.test.js.",
+  "risk_class": "standard",
+  "mission_intent": "I6",
+  "taste_citations": [
+    "T16",
+    "T1",
+    "T8"
+  ],
+  "intent": "tools/build-site.js (shipped) generates the phone-browsable design-shelf site that exists specifically because RouterBox needs to 'see what we got without going over to my computer and picking through files and folders' (design/ideas-inbox.md, incorporated by cardgame-design-browser-site). Its sectionFor() function is the sole router deciding which of SECTION_ORDER's named buckets (World, Races, Characters, Cards, Rules, Plans & Ideas, Other) each design doc lands in on the generated index.html, and it currently has an explicit case for design/world.md ('World') but none for design/lore.md or design/star-atlas.md — both shipped, both core world-building documents (a 7-era history timeline and a 5-homeworld-plus-frontier-worlds atlas respectively) — so both fall through to the generic `return 'Other';` at the end of the function. This unit adds two more explicit cases to sectionFor() so relPath === 'design/lore.md' and relPath === 'design/star-atlas.md' both return 'World', grouping them on index.html with design/world.md exactly as their content already belongs. It leaves every other classification untouched: design/playtest-full-game.md, design/playtest-spatial.md, and any other unclassified doc continue to fall to 'Other' (explicitly out of scope for this unit), design/ideas-inbox.md and gamePlan.md keep their existing 'Plans & Ideas' mapping, and Races/Characters/Cards/Rules are untouched. Only tools/build-site.js's sectionFor() function and its owning test/build-site.test.js change — no design/*.md content, no rendering logic (renderMarkdown/renderBlocks/cardArtImgHtml), and no other tool is touched.",
+  "criteria": [
+    {
+      "text": "sectionFor('design/lore.md') and sectionFor('design/star-atlas.md') both return 'World' — verified by running node tools/build-site.js and checking that the generated site/index.html's World section contains links to both lore.html and star-atlas.html alongside world.html.",
+      "provenance": "paraphrase",
+      "held_out": false
+    },
+    {
+      "text": "No generated page for design/lore.md or design/star-atlas.md appears under an 'Other' section heading in site/index.html after this unit.",
+      "provenance": "paraphrase",
+      "held_out": false
+    },
+    {
+      "text": "Every other existing section's membership (Races, Characters, Cards, Rules, Plans & Ideas) is unchanged from before this unit, and design/playtest-full-game.md and design/playtest-spatial.md remain classified as 'Other' (not moved by this unit).",
+      "provenance": "inferred",
+      "held_out": false
+    },
+    {
+      "text": "Running node tools/build-site.js twice in a row produces byte-identical site/ output on both runs, matching the existing determinism guarantee already covered by test/build-site.test.js.",
+      "provenance": "inferred",
+      "held_out": true
+    },
+    {
+      "text": "test/build-site.test.js is updated to assert the new World-section membership against the real, current design/lore.md and design/star-atlas.md files, and every pre-existing assertion in that file still passes.",
+      "provenance": "inferred",
+      "held_out": true
+    }
+  ],
+  "touches": [
+    "tools/build-site.js",
+    "test/build-site.test.js"
+  ],
+  "test_cmd": "node --test",
+  "id": "ms5sg98d-cardgame-site-world-section-categorization",
+  "filed_at": "2026-07-29T07:53:54.109Z",
+  "window_expires": "2026-07-29T08:53:54.112Z",
+  "status": "promoted",
+  "promoted_at": "2026-07-29T08:54:18.343Z"
+}

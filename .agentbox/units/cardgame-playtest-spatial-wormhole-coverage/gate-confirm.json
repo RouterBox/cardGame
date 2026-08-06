@@ -1,0 +1,8 @@
+{
+  "gate": "confirm",
+  "question": "Planner self-assessed this unit as risky/ambiguous. Approve the plan to continue.",
+  "raised_at": "2026-07-30T21:44:03.975Z",
+  "decision": "approve",
+  "comment": "Approved as planned: insert the new step after Step 9, renumber downstream steps (body text byte-identical, only leading digits change � the same convention the spatial-race-identity-refresh insertion used), and bump the five hardcoded step numbers in test/design-playtest-spatial-race-identity-refresh.test.js mechanically. Touching that one extra test file is authorized; \"Step 11 unchanged\" means the CONTENT currently numbered 11, per precedent.",
+  "decided_at": "2026-07-30T22:44:37.032Z"
+}

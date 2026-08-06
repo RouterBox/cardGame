@@ -1,0 +1,48 @@
+{
+  "name": "cardgame-playtest-spatial-closure-refresh",
+  "title": "Fix playtest-spatial.md Step 9 — it narrates closing a Wormhole with no card at all, but Chokepoint Demolition Charge shipped and does exactly that",
+  "project": "cardgame",
+  "pitch": "design/playtest-spatial.md Step 9 ('Close a Wormhole') has playtesters cross out a line and just narrate that closure happened, with no card cited, even though design/cards/wormhole-closure-cards.md has since shipped 5 real cards that do exactly this.",
+  "why_now": "design/rules.md Section 8.5 (Wormhole Closure) states plainly that 'this rulebook defines no default action that Closes a Wormhole on its own; Closure is a capability granted to card design, not a base action any challenger may always take' — so Step 9's instruction to 'pick a different drawn line, cross it out fully, and note that the two Planets it connected are no longer adjacent' with no card named is not just informal, it silently contradicts Section 8.5's own rule that Closure requires a card. design/cards/wormhole-closure-cards.md (shipped) has since printed Chokepoint Demolition Charge (Wrought Assembly, 2 Circuit, Fast): 'choose a Wormhole with an endpoint at a Planet you control; it undergoes Closure (Section 8.5, which defines Closure) and is removed from the battlefield graph' — a direct match for the exact action Step 9 already walks. This is the identical stale-doc-after-new-cards-shipped pattern the currently window-open cardgame-playtest-spatial-restriction-refresh proposal fixes for the same file's Step 8 (Add a Restriction to a Wormhole, citing Bastion Lockdown Line) — but that proposal's own intent paragraph explicitly scopes itself to Step 8 only and states 'Steps 1-7 and 9-12 ... are untouched,' so Step 9 is the one adjacent gap it deliberately leaves open. Checked all 8 currently window-open proposals and the full ready queue (units/): none names playtest-spatial.md's Step 9, Wormhole Closure, or Chokepoint Demolition Charge, and this unit's new test file doesn't touch test/design-map-setup-playtest.test.js or the restriction-refresh proposal's own new test file, so there is zero touch-overlap.",
+  "expected_outcome": "design/playtest-spatial.md Step 9 no longer narrates closing a Wormhole with no card cited; it names Chokepoint Demolition Charge (Wrought Assembly, 2 Circuit) as the real card producing the Closure it walks, still ending with the same cross-out-the-line action and the same aloud-confirmation that the line may never be redrawn; Steps 1-8 and 10-12 and the 'What to watch for' section are byte-identical to before; node --test is green including a new test/design-playtest-spatial-closure-refresh.test.js.",
+  "risk_class": "standard",
+  "mission_intent": "I6",
+  "taste_citations": [
+    "T9",
+    "T1",
+    "T8"
+  ],
+  "intent": "design/playtest-spatial.md (shipped) is a step-by-step on-paper procedure that cites exact rules.md sections for every action so playtesters can cross-check physical actions against rule text — but Step 9 ('Close a Wormhole') was written before any card existed that actually grants Closure, so it has playtesters cross out a line and narrate that Closure happened with no card named at all, even though rules.md Section 8.5 itself states Closure 'is a capability granted to card design, not a base action any challenger may always take.' design/cards/wormhole-closure-cards.md has since shipped with Chokepoint Demolition Charge, a real Wrought Assembly card (2 Circuit, Fast) whose Rules text is 'choose a Wormhole with an endpoint at a Planet you control; it undergoes Closure (Section 8.5, which defines Closure) and is removed from the battlefield graph' — exactly the action Step 9 already walks. This unit rewrites Step 9's setup sentence to name Chokepoint Demolition Charge as the concrete card being played instead of narrating an uncarded action, keeping every physical action in the step (crossing out the line, confirming aloud the line may never be redrawn) exactly as written. It adds one new, independent test/design-playtest-spatial-closure-refresh.test.js verifying Step 9 names a real card that exists by exact name and Cost line in design/cards/wormhole-closure-cards.md and no longer narrates Closure without naming one. Only design/playtest-spatial.md and this new test file change — Steps 1-8 and 10-12, the Materials list, and the 'What to watch for' section are untouched, and neither test/design-map-setup-playtest.test.js nor the sibling restriction-refresh proposal's own new test file is touched.",
+  "criteria": [
+    {
+      "text": "design/playtest-spatial.md Step 9 no longer instructs playtesters to cross out a line and narrate Wormhole Closure without naming any card producing it.",
+      "provenance": "paraphrase",
+      "held_out": false
+    },
+    {
+      "text": "Step 9 names 'Chokepoint Demolition Charge' and its Cost line (2 Circuit) as the card being played to Close the Wormhole it walks.",
+      "provenance": "paraphrase",
+      "held_out": false
+    },
+    {
+      "text": "Step 9 still ends with the same physical action (crossing out the line fully) and the same aloud-confirmation that the line may never be redrawn and a new Discovery action would be required to reconnect those Planets, unchanged from before this unit.",
+      "provenance": "paraphrase",
+      "held_out": false
+    },
+    {
+      "text": "Steps 1-8 and 10-12, the Materials list, and the 'What to watch for while playtesting' section of playtest-spatial.md are byte-identical to their content before this unit, and every existing assertion in test/design-map-setup-playtest.test.js still passes.",
+      "provenance": "inferred",
+      "held_out": true
+    }
+  ],
+  "touches": [
+    "design/playtest-spatial.md",
+    "test/design-playtest-spatial-closure-refresh.test.js"
+  ],
+  "test_cmd": "node --test",
+  "id": "ms5skfst-cardgame-playtest-spatial-closure-refresh",
+  "filed_at": "2026-07-29T07:57:09.245Z",
+  "window_expires": "2026-07-29T08:57:09.248Z",
+  "status": "promoted",
+  "promoted_at": "2026-07-29T09:09:18.336Z"
+}

@@ -1,0 +1,57 @@
+{
+  "name": "cardgame-design-shelf-server",
+  "title": "Design Shelf LAN Server",
+  "pitch": "Serve the already-generated design-shelf static site (tools/build-site.js output) over the local network so it's browsable from a phone.",
+  "why_now": "T16's second named want — browsing world/races/characters/rules/cards without going to the computer — is only half-built: build-site.js generates site/ but nothing serves it off-machine; RouterBox still has to pick through files.",
+  "expected_outcome": "Run `npm run site:serve`, then load http://<lan-ip>:<port>/ from a phone on the same wifi and see the design-shelf index (World/Races/Characters/Cards/Rules) render and navigate.",
+  "risk_class": "standard",
+  "mission_intent": "I6",
+  "taste_citations": [
+    "T16",
+    "T9"
+  ],
+  "intent": "Add a zero-dependency static file server that serves the design-shelf site (already produced by tools/build-site.js into site/) bound to 0.0.0.0 by default, exposed via an npm script, so the existing design content is reachable from a phone on the local network without any file/folder spelunking on the desktop.",
+  "criteria": [
+    {
+      "text": "tools/serve-site.js exists and starts a Node http server that serves files from the site/ directory",
+      "provenance": "paraphrase",
+      "held_out": false
+    },
+    {
+      "text": "An npm script named site:serve runs tools/serve-site.js",
+      "provenance": "inferred",
+      "held_out": false
+    },
+    {
+      "text": "The server binds host 0.0.0.0 by default (overridable) so it is reachable from other devices on the same LAN, not just localhost",
+      "provenance": "paraphrase",
+      "held_out": false
+    },
+    {
+      "text": "GET / returns HTTP 200 and the design-shelf index.html body",
+      "provenance": "inferred",
+      "held_out": false
+    },
+    {
+      "text": "Requests for a nonexistent path return HTTP 404 instead of crashing the server process",
+      "provenance": "inferred",
+      "held_out": true
+    },
+    {
+      "text": "Served .html and .svg files include correct Content-Type response headers",
+      "provenance": "inferred",
+      "held_out": true
+    }
+  ],
+  "touches": [
+    "tools/serve-site.js",
+    "package.json",
+    "test/serve-site.test.js"
+  ],
+  "test_cmd": "node --test",
+  "id": "ms4fq86j-cardgame-design-shelf-server",
+  "filed_at": "2026-07-28T09:09:58.123Z",
+  "window_expires": "2026-07-28T10:09:58.126Z",
+  "status": "promoted",
+  "promoted_at": "2026-07-28T10:14:28.249Z"
+}

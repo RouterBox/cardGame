@@ -1,0 +1,48 @@
+{
+  "name": "cardgame-sync-cards-to-jaina-live",
+  "title": "Live Jaina card sync — replace the --live stub with a mocked-upsert path",
+  "project": "cardgame",
+  "pitch": "Extend tools/sync-cards-to-jaina.js so --live actually upserts card records to Jaina through an injectable, mockable client, replacing today's exit-1 'not yet implemented' stub.",
+  "why_now": "T17 explicitly directed the Producer to re-file this exact live-sync step once cardgame-jaina-card-sync-dryrun merged and specced it as an extension of the existing tool rather than a competing script; the dry-run path (18 cards, slugify parity, byte-identical reruns) already merged and shipped, so the stub is the only piece left unfinished.",
+  "expected_outcome": "`JAINA_API_URL=... JAINA_API_KEY=... node tools/sync-cards-to-jaina.js --live` exits 0 and prints one upsert result per card; `npm test` proves this against a mocked HTTP client with zero real outbound network calls.",
+  "risk_class": "security",
+  "mission_intent": "I6",
+  "taste_citations": [
+    "T17",
+    "T16",
+    "T9"
+  ],
+  "intent": "tools/sync-cards-to-jaina.js currently only supports --dry-run (print-only preview) and exits 1 with a 'not yet implemented' message for any other invocation, per the scope decision in T17 that sequenced dry-run before live writes. This unit implements the --live path: for every card record already produced by the existing loadAllCards()/buildRecord() pipeline, perform one upsert against Jaina through an injectable HTTP client so tests can substitute a mock and never touch the real network. This is a content-authoring/sync tool, not gameplay software, so it stays inside the T16 bright line; it handles a live API credential (JAINA_API_KEY) and performs real external writes when actually run, which is why this unit carries the security risk class and should default to a Validate gate.",
+  "criteria": [
+    {
+      "text": "Given JAINA_API_URL and JAINA_API_KEY env vars and a mocked HTTP client, `node tools/sync-cards-to-jaina.js --live` performs one upsert request per card under design/cards/, using the same record shape (name, slug, costLine, typeLine, rulesText, statsLine) that --dry-run already prints.",
+      "provenance": "paraphrase",
+      "held_out": false
+    },
+    {
+      "text": "The upsert client is injectable/mockable (e.g. an exported function or overridable module), so `npm test` never makes a real network call while still exercising the --live path.",
+      "provenance": "inferred",
+      "held_out": false
+    },
+    {
+      "text": "--dry-run keeps its existing exit-0, print-only, no-upsert behavior unchanged — the pre-existing AC1/AC2/AC4 tests in test/sync-cards-to-jaina.test.js still pass without modification to their assertions.",
+      "provenance": "paraphrase",
+      "held_out": false
+    },
+    {
+      "text": "If a mocked upsert rejects or returns a non-2xx status for any card, the script prints which card failed to stderr and exits non-zero rather than silently reporting success for that card.",
+      "provenance": "inferred",
+      "held_out": true
+    }
+  ],
+  "touches": [
+    "tools/sync-cards-to-jaina.js",
+    "test/sync-cards-to-jaina.test.js"
+  ],
+  "test_cmd": "node --test",
+  "id": "ms4lnqn0-cardgame-sync-cards-to-jaina-live",
+  "filed_at": "2026-07-28T11:55:59.772Z",
+  "window_expires": null,
+  "status": "vetoed",
+  "veto_reason": "Duplicate of ms4l0xre-cardgame-jaina-card-sync-live (the canonical live-sync step, correctly filed as security-risk since it writes to RouterBox's real Jaina account). Four re-filings of the same step accumulated because the security gate keeps it pending � that is the gate WORKING; do not re-file the live sync again until RouterBox decides ms4l0xre."
+}

@@ -1,0 +1,47 @@
+{
+  "name": "cardgame-spatial-map-setup-and-playtest-procedure",
+  "title": "cardGame rules — Map Setup section + playtest-on-paper procedure for the Spatial Battlefield",
+  "pitch": "Add the Section 8 'Map Setup' rules (fixed vs drafted vs symmetric, starting Planet count and placement) and a numbered playtest-on-paper procedure, closing a gap the spatial-layer directive named but the shipped spatial unit never delivered.",
+  "why_now": "design/ideas-inbox.md's 2026-07-26 spatial-layer entry is tagged [incorporated: cardgame-spatial-battlefield-rules], but its own implications list says 'Map setup is part of game setup (fixed maps? drafted maps? symmetric?) — needs a rules.md section and playtest-on-paper procedures.' rules.md Section 8 (Planets & Wormholes through the worked example, 8.1-8.7) defines the graph mechanics in full MTG-CR-style rigor but never states how a game's starting map is actually assembled, and no playtest-on-paper procedure exists anywhere in the repo — so the directive's own checklist is only partly done despite the incorporated tag.",
+  "expected_outcome": "design/rules.md gains a new '8.8 Map Setup' subsection answering fixed/drafted/symmetric explicitly and specifying starting Planet count and placement relative to each Homeworld, and a new design/playtest-spatial.md walks two humans through a full game on paper (grid, tokens, index cards) in numbered steps that cite Section 8.1-8.7 rule numbers — reviewable as the missing setup procedure before any further spatial card design.",
+  "risk_class": "standard",
+  "mission_intent": "I6",
+  "taste_citations": [
+    "T9",
+    "T1"
+  ],
+  "intent": "design/ideas-inbox.md's spatial-layer directive (2026-07-26, verbatim: 'planets are nodes on a graph connected by wormholes of variable lengths. Generators are built on planets.') listed five implications to design through, including: 'Map setup is part of game setup (fixed maps? drafted maps? symmetric?) — needs a rules.md section and playtest-on-paper procedures.' The shipped cardgame-spatial-battlefield-rules unit delivered Section 8's graph mechanics (Planets, Wormholes, Discovery, Restrictions, Closure, Blockade & Capture, a worked example) at MTG-Comprehensive-Rules-level rigor (T9) but stopped short of this specific implication — there is no rule anywhere stating how a game's starting battlefield graph is assembled, and no playtest-on-paper walkthrough exists in the repo. T1 holds that MVP means the full decided scope, not the first working slice; this unit finishes the decided scope the spatial directive already named rather than letting the [incorporated] tag stand for partial delivery. This is pure rules-writing and a procedural document — no code, no game software — squarely inside the design phase (T8/T9) and I6.",
+  "criteria": [
+    {
+      "text": "design/rules.md contains a numbered '### 8.8 Map Setup' heading (or equivalent numbered subsection under Section 8) that explicitly states whether the starting map is fixed, drafted, or symmetric, and specifies the starting Planet count and their placement relative to each Homeworld.",
+      "provenance": "paraphrase",
+      "held_out": false
+    },
+    {
+      "text": "design/playtest-spatial.md exists and contains a numbered step-by-step procedure that two humans can follow with physical materials (e.g. a drawn graph, tokens, index cards) to set up and play a full game using the Spatial Battlefield rules.",
+      "provenance": "paraphrase",
+      "held_out": false
+    },
+    {
+      "text": "design/playtest-spatial.md's steps cite specific rules.md Section 8 subsection numbers (8.1 through 8.7, plus the new 8.8) at the points where each spatial mechanic first comes into play, so a playtester can cross-check any step against the exact rule text.",
+      "provenance": "inferred",
+      "held_out": false
+    },
+    {
+      "text": "The new 8.8 Map Setup section does not silently redefine any term already defined in Section 2's Glossary (per rules.md's own stated convention that later sections may repeat but not redefine a term).",
+      "provenance": "inferred",
+      "held_out": true
+    }
+  ],
+  "touches": [
+    "design/rules.md",
+    "design/playtest-spatial.md",
+    "test/design-spatial-map-setup.test.js"
+  ],
+  "test_cmd": "node --test",
+  "id": "ms4e8wz2-cardgame-spatial-map-setup-and-playtest-procedure",
+  "filed_at": "2026-07-28T08:28:30.830Z",
+  "window_expires": "2026-07-28T09:28:30.831Z",
+  "status": "promoted",
+  "promoted_at": "2026-07-28T09:32:28.306Z"
+}

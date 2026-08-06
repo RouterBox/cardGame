@@ -1,0 +1,53 @@
+{
+  "name": "cardgame-jaina-character-sync-dryrun",
+  "title": "cardGame tool — dry-run sync of character records into Jaina (content backbone, slice 2)",
+  "project": "cardgame",
+  "pitch": "A dry-run script that parses design/characters/*.md into structured records and prints the exact Jaina payloads a future live sync would write, extending the content backbone from cards to characters.",
+  "why_now": "design/DESIGN-READINESS.md Open Gap 4 (Section 6) states plainly that only card records are wired to Jaina today — characters, races, world/lore remain markdown-only prose with no schema or sync path, even though design/ideas-inbox.md's 2026-07-28 directive asked for Jaina 'the whole way.' Both open proposals in the current queue (art-briefs for spatial-race-identity and wormhole-closure) close Gap 1; nothing targets Gap 4 yet, and characters are its smallest, most self-contained slice — 20 named characters across exactly 5 files, each already following one consistent '## Name — Title' + bio + optional Threads convention.",
+  "expected_outcome": "Running `node tools/sync-characters-to-jaina.js --dry-run` exits 0 and prints exactly 20 JSON record payloads (4 per race across design/characters/{cindral-reach,mireth-bloom,panoptic-concord,starweave-communion,wrought-assembly}.md), each with name/slug/race/title/bio/threads fields — reviewable as the proposed Jaina 'character' schema shape before any live write is built.",
+  "risk_class": "standard",
+  "mission_intent": "I6",
+  "taste_citations": [
+    "T16",
+    "T1"
+  ],
+  "intent": "design/DESIGN-READINESS.md's Open Gap 4 names the hole directly: tools/sync-cards-to-jaina.js only syncs card records, while design/characters/ (20 named characters, 4 per race) has no Jaina schema or sync path. This unit is the next narrow slice under the same 2026-07-28 ideas-inbox directive that produced cardgame-jaina-card-sync-dryrun (T1 discipline: no live write, no claim on the full 'races/world/lore' scope in one shot — characters only). Add lib/parse-character-markdown.js, a shared parser mirroring lib/parse-card-markdown.js's conventions, that reads each design/characters/{race}.md file (excluding design/characters/web.md, which is a cross-race narrative index, not per-character content) and extracts one record per '## Name — Title' section: name, slug (same slugify algorithm as the card parser), race (derived from the source filename), title (the text after the em-dash in the heading), bio (the section's prose paragraph), and threads (the '**Threads:**' bullet list, or an empty array when absent). tools/sync-characters-to-jaina.js prints one JSON payload per record in --dry-run mode and, mirroring sync-cards-to-jaina.js exactly, makes no live Jaina API calls in this unit — printing a 'not yet implemented' message and exiting 1 without --dry-run, so no credentials or network access are required by node --test. This is content-authoring tooling under the T16 partial software-gate opening, not game implementation.",
+  "criteria": [
+    {
+      "text": "node tools/sync-characters-to-jaina.js --dry-run exits 0 and prints exactly 20 JSON objects, one per character found across design/characters/cindral-reach.md, mireth-bloom.md, panoptic-concord.md, starweave-communion.md, and wrought-assembly.md (4 each), with design/characters/web.md excluded entirely",
+      "provenance": "paraphrase",
+      "held_out": false
+    },
+    {
+      "text": "Each printed record has name, slug, race, title, bio, and threads fields; slug is computed with the identical slugify(name) algorithm already used by lib/parse-card-markdown.js and tools/render-card.js, so the same character name produces the same slug anywhere else in the repo",
+      "provenance": "paraphrase",
+      "held_out": false
+    },
+    {
+      "text": "Each record's race field matches the source filename's race (e.g. every character parsed from design/characters/mireth-bloom.md has race 'Mireth Bloom'), and threads is an array of the character's '**Threads:**' bullet strings verbatim, or an empty array for a character with no Threads section",
+      "provenance": "inferred",
+      "held_out": true
+    },
+    {
+      "text": "Without --dry-run, the script makes no Jaina API calls, no network access, and no credentials are required by node --test — it prints a message that live sync is not yet implemented and exits 1, exactly mirroring tools/sync-cards-to-jaina.js's existing no-flag behavior",
+      "provenance": "inferred",
+      "held_out": false
+    },
+    {
+      "text": "Running the dry-run twice in a row against unchanged markdown produces byte-identical stdout output (deterministic: no timestamps, no randomness, stable character and field ordering matching each race file's on-disk order)",
+      "provenance": "inferred",
+      "held_out": false
+    }
+  ],
+  "touches": [
+    "lib/parse-character-markdown.js",
+    "tools/sync-characters-to-jaina.js",
+    "test/sync-characters-to-jaina.test.js"
+  ],
+  "test_cmd": "node --test",
+  "id": "ms736hl2-cardgame-jaina-character-sync-dryrun",
+  "filed_at": "2026-07-30T05:42:00.326Z",
+  "window_expires": "2026-07-30T09:42:00.328Z",
+  "status": "promoted",
+  "promoted_at": "2026-07-30T09:54:26.929Z"
+}

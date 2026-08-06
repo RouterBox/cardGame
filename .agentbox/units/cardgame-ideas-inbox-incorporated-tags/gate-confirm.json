@@ -1,0 +1,8 @@
+{
+  "gate": "confirm",
+  "question": "Planner self-assessed this unit as risky/ambiguous. Approve the plan to continue.",
+  "raised_at": "2026-07-28T11:46:38.188Z",
+  "decision": "approve",
+  "comment": "Orchestrator approval under plan-gate delegation. Planner is right: the file has 7 ## headings, not 6 � AC4 miscounted (six entries named in the Intent, plus the Jaina entry that AC3 itself requires to survive untagged). Proceed with the planner's reading: assertions use the file's real 7-heading count; AC4 is treated as satisfied when heading COUNT is preserved by the edit (no additions, no deletions), which is the criterion's evident purpose.",
+  "decided_at": "2026-07-28T11:54:06.493Z"
+}

@@ -1,0 +1,58 @@
+{
+  "name": "cardgame-card-authoring-engine",
+  "title": "cardGame tool — deterministic card layout renderer",
+  "pitch": "A zero-dependency Node script that renders every text/frame zone of a card (name, cost pips, frame color, type line, rules text, stats corner) straight from card data, per the skeleton spec, leaving only the art window as an empty slot for a future compositing step.",
+  "why_now": "T16 named this as want #1 under the newly-opened partial software gate, and its stated input contract — the card-anatomy skeleton spec — shipped as cardgame-card-anatomy-skeleton with worked examples ready to serve as test fixtures; the alpha-set cards it renders already exist in design/cards/alpha-set.md, so this is buildable today without new content work.",
+  "expected_outcome": "Running `node tools/render-card.js` exits 0 and writes one SVG per card parsed from design/cards/alpha-set.md into renders/cards/ — including a visibly split-color frame for the multi-Fount Signal-Wrought Prototype card and a solid single-color frame for the single-Fount Sporeknit Warden card, viewable directly as image files.",
+  "risk_class": "standard",
+  "mission_intent": "I6",
+  "taste_citations": [
+    "T16",
+    "T9",
+    "T8",
+    "T2"
+  ],
+  "intent": "Build the deterministic card authoring engine named in T16: layout code that renders every structured element of a card (frame/border, name slot, cost slot, art window, type line, rules-text box, stats corner) from card data, per design/cards/card-anatomy.md's skeleton, variables, and worked examples. This unit covers layout only — no image generation or art compositing; the Art Window renders as a placeholder rectangle, holding the slot that a future unit will fill by compositing a generated illustration. A single Node script, zero npm dependencies (matching tools/build-site.js's existing pattern), parses card records from design/cards/*.md using the field-prefix convention already used in alpha-set.md (Cost line / Type line / Rules text / Stats/counters line, under ### card-name headings), and renders each as a deterministic, self-contained SVG file. Frame/Border color(s) follow the Fount identity table in card-anatomy.md, split into ordered vertical bands for multi-Fount costs. The Stats Corner is present only for Permanents whose template carries a Stats/counters line, and is omitted entirely (not blank) otherwise, per the anatomy doc's explicit rule. This is authoring/presentation tooling under the T16 bright line — it renders card data, it does not implement or simulate any game rule.",
+  "criteria": [
+    {
+      "text": "Running `node tools/render-card.js` exits 0 and produces exactly one SVG file under renders/cards/ for every card entry found in design/cards/alpha-set.md.",
+      "provenance": "inferred",
+      "held_out": false
+    },
+    {
+      "text": "The rendered SVG for Signal-Wrought Prototype (Cost line '1 Signal, 1 Circuit') shows a Frame/Border split into two equal vertical bands, cyan then copper left-to-right, matching card-anatomy.md's worked example.",
+      "provenance": "paraphrase",
+      "held_out": false
+    },
+    {
+      "text": "The rendered SVG for Sporeknit Warden (Cost line '3 Bloom') shows a single solid green Frame/Border band and a Cost Slot pip reading '3'.",
+      "provenance": "paraphrase",
+      "held_out": false
+    },
+    {
+      "text": "A Permanent card whose template includes a Stats/counters line (e.g. Sporeknit Warden) renders that text in a Stats Corner element; a Permanent card with no Stats/counters line (e.g. Signal-Wrought Prototype) contains no Stats Corner element at all, not an empty one.",
+      "provenance": "paraphrase",
+      "held_out": false
+    },
+    {
+      "text": "The Art Window in every rendered card is a placeholder rectangle only — no illustration, no call to any image-generation service, and no game-rule logic anywhere in the script.",
+      "provenance": "inferred",
+      "held_out": false
+    },
+    {
+      "text": "The generator is deterministic: running it twice in a row produces byte-identical SVG output for every file, verifiable by hashing.",
+      "provenance": "inferred",
+      "held_out": true
+    }
+  ],
+  "touches": [
+    "tools/render-card.js",
+    "test/render-card.test.js"
+  ],
+  "test_cmd": "node --test",
+  "id": "ms49jejl-cardgame-card-authoring-engine",
+  "filed_at": "2026-07-28T06:16:42.081Z",
+  "window_expires": "1970-01-01T00:00:00.000Z",
+  "status": "promoted",
+  "promoted_at": "2026-07-28T07:07:43.841Z"
+}

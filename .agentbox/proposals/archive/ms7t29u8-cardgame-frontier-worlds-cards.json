@@ -1,0 +1,56 @@
+{
+  "name": "cardgame-frontier-worlds-cards",
+  "title": "Add a Frontier Worlds card set naming Halvorne Junction, Kelmourn Drift, and Tallowfen — the only 3 named worlds in star-atlas.md with zero card representation",
+  "project": "cardgame",
+  "pitch": "design/star-atlas.md names 3 Frontier & Contested Worlds explicitly framed as Discovery targets (Section 8.3), but across all 54 cards in the 9 shipped sets, none ever names Halvorne Junction, Kelmourn Drift, or Tallowfen.",
+  "why_now": "Verified live: grepping design/cards/*.md for the 3 literal world names returns zero hits (grep across design/ returns only design/star-atlas.md and design/DESIGN-READINESS.md's own citation of star-atlas.md). design/star-atlas.md's own 'Frontier & Contested Worlds' section frames these worlds explicitly as 'the kind of Unexplored or contested Planets a battlefield graph's Discovery action (playtest-spatial.md Section 6, rules.md Section 8.3) exists to turn into named places at the table' — an open invitation the card sets never answered. The 5 Homeworlds (Ashkeel, Fenwreath, Vantaris, Ansareth, Corewright) are implicitly each race's own turf across every set; these 3 neutral worlds are the one named piece of the setting no card has ever grounded. Checked memory and all 6 currently window-open proposals (character-signatures-wave-3, alt-art-briefs-character-signatures, character-markdown-slugify-dedup, jaina-sync-tools-dryrun-cli-dedup, playtest-spatial-wormhole-coverage, lore-docs-game-name-references) plus all 5 in-flight units (art-briefs-spatial-race-identity-wave-2, design-readiness-gap3-jaina-sync-fix, lib-markdown-section-parser-dedup, playtest-character-signatures-wave-2-refresh, playtest-second-deck-pairing, playtest-spatial-race-identity-refresh) first per T24: none creates a card file naming these 3 worlds, and none touches design/cards/frontier-worlds-set.md. The one adjacent proposal touching design/star-atlas.md (lore-docs-game-name-references) only adds a single 'Wreck Tangle' sentence to its opening paragraph and explicitly excludes design/cards/*.md from its own scope, so there is no file overlap. This unit's one required touch to design/DESIGN-READINESS.md is confined to Section 3's card-set citation list (a single additive bullet, mirroring how every prior new-set unit satisfies test/design-readiness.test.js's AC3/AC6 live-derived citation check) — it does not touch Section 6's Open Gaps text, which is what the in-flight gap3-jaina-sync-fix unit is currently changing, so there is no line-level collision with that unit either.",
+  "expected_outcome": "design/cards/frontier-worlds-set.md exists with 5 new cards, one per race, following the Section 9.1 template (Name, Cost line, Type line, Rules text, flavor text); across the 5 cards, all 3 Frontier & Contested Worlds (Halvorne Junction, Kelmourn Drift, Tallowfen) are named at least once by exact name, each card's Rules text mechanically exercises a Discovery-family mechanic already defined in rules.md Section 8.3 (Frontier Discovery, Contested Discovery, or Neutral Planet); design/DESIGN-READINESS.md's Section 3 gains one new bullet citing the file, with no other section touched; site/design/cards/frontier-worlds-set.html and the regenerated site/design/DESIGN-READINESS.html exist via tools/build-site.js; a new test mechanically confirms all 3 world names appear, confirms 5 cards one per race, and confirms design/star-atlas.md and every other design/cards/*.md file are byte-for-byte unchanged.",
+  "risk_class": "standard",
+  "mission_intent": "I6",
+  "taste_citations": [
+    "T8",
+    "T9",
+    "T24"
+  ],
+  "intent": "design/star-atlas.md's 'Frontier & Contested Worlds' section names Halvorne Junction (a wormhole-transit world valuable for its tangle of cheap wormholes, seized by Starweave Communion oath-sworn during the Cinderglass War and still contested with the Cindral Reach), Kelmourn Drift (a debris-field world where First Weave wreckage keeps resurfacing, reopening the same discovery-claim argument that started the Cinderglass War), and Tallowfen (a resource-poor world whose only value is a single chokepoint wormhole, held and re-held by whoever last had the fleet to spare) — and frames all 3 explicitly as Discovery-action targets (rules.md Section 8.3). No card in any of the 9 shipped card-set files has ever named any of them. Write design/cards/frontier-worlds-set.md with 5 cards, one per race (following the same 'one per race' structure as frontier-set.md, wormhole-restrictions-set.md, wormhole-closure-cards.md, and spatial-race-identity-set.md), distributing the 3 worlds across the 5 cards so every world is named by at least one card's Rules text and flavor text (at least one world will be named by two cards). Ground each card's mechanic in rules.md Section 8.3's existing vocabulary (Frontier Discovery, Contested Discovery, Neutral Planet) or another already-defined Section 8 mechanic (Blockade, Wormhole Length) the way frontier-set.md's own 5 cards already cite Section 8.x mechanics generically — but this time naming the specific world instead of leaving it abstract, consistent with each world's own lore detail already written in star-atlas.md (e.g. a card exercising Contested Discovery whose flavor text names Kelmourn Drift's resurfacing-wreckage claims; a card referencing Wormhole Length or cheap-wormhole Discovery whose flavor text names Halvorne Junction; a card referencing Blockade or a chokepoint Wormhole whose flavor text names Tallowfen). Add exactly one new bullet to design/DESIGN-READINESS.md's Section 3 card-set list citing 'frontier-worlds-set.md' by filename, matching the existing bullet format for every other set, and touch no other section or line of that file. Do not touch design/star-atlas.md, design/cards/frontier-set.md, or any other existing design/cards/*.md file — this unit only adds one new card-set file and one citation bullet. Regenerate site/ via tools/build-site.js. Art briefs for these 5 cards are out of scope for this unit, matching the established precedent (art-brief coverage for a new set ships as its own later unit).",
+  "criteria": [
+    {
+      "text": "design/cards/frontier-worlds-set.md exists with exactly 5 cards, one per race under design/races/, each following the Section 9.1 template field order (Name, Cost line, Type line, Rules text, flavor text)",
+      "provenance": "inferred",
+      "held_out": false
+    },
+    {
+      "text": "Across the 5 cards, the exact strings 'Halvorne Junction', 'Kelmourn Drift', and 'Tallowfen' each appear at least once",
+      "provenance": "inferred",
+      "held_out": false
+    },
+    {
+      "text": "Each card's Rules text names a Discovery-family or other Section 8 mechanic (Frontier Discovery, Contested Discovery, Neutral Planet, Blockade, or Wormhole Length) already defined in rules.md, not an invented mechanic",
+      "provenance": "paraphrase",
+      "held_out": true
+    },
+    {
+      "text": "design/DESIGN-READINESS.md's Section 3 contains exactly one new bullet citing 'frontier-worlds-set.md', and every other section of that file, design/star-atlas.md, and every other design/cards/*.md file are byte-for-byte unchanged",
+      "provenance": "inferred",
+      "held_out": false
+    },
+    {
+      "text": "site/design/cards/frontier-worlds-set.html exists and site/design/DESIGN-READINESS.html is regenerated via tools/build-site.js, and a new test file mechanically asserts all of the above",
+      "provenance": "paraphrase",
+      "held_out": false
+    }
+  ],
+  "touches": [
+    "design/cards/frontier-worlds-set.md",
+    "design/DESIGN-READINESS.md",
+    "site/design/cards/frontier-worlds-set.html",
+    "site/design/DESIGN-READINESS.html",
+    "test/design-cards-frontier-worlds-set.test.js"
+  ],
+  "test_cmd": "node --test",
+  "id": "ms7t29u8-cardgame-frontier-worlds-cards",
+  "filed_at": "2026-07-30T17:46:33.680Z",
+  "window_expires": "2026-07-30T21:46:33.683Z",
+  "status": "promoted",
+  "promoted_at": "2026-07-30T21:54:29.717Z"
+}

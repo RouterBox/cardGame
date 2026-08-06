@@ -1,0 +1,18 @@
+name: cardgame-design-readiness-gap3-live-derived-check
+title: DESIGN-READINESS.md Gap 3's heading still claims 'Jaina is wired up for card records only' — its own body says otherwise; make the citation live-derived so it can't drift again
+project: cardgame
+risk_class: standard
+mode: autopilot
+test_cmd: node --test
+
+## Intent
+
+design/DESIGN-READINESS.md exists to make the software-gate judgment call (I6) an informed one (T9's structural-rigor bar: every claim carries a file citation). Section 6's numbered Gap 3 currently reads '3. **Jaina is wired up for card records only.**' as its heading, then spends its whole body proving that claim false — six more sync tools have shipped since, and the paragraph's own final sentence already says 'tools/sync-world-narrative-to-jaina.js closes this gap.' This is the same class of self-contradicting stale claim Gap 1 had before it was closed (Gap 1's heading was rewritten to 'Resolved — art-brief coverage for the wormhole-closure and spatial-race-identity sets is complete' when that gap closed); Gap 3 never got the equivalent rewrite even after cardgame-design-readiness-gap3-jaina-sync-fix and cardgame-jaina-world-narrative-sync-dryrun both merged. Reword Gap 3's heading sentence (only the heading, e.g. to something like 'Resolved — Jaina's content-backbone sync tooling now covers card, character, race, star-atlas, lore-era, Fount-cosmology, and world-narrative records.') without altering the body paragraph's existing prose beyond what the reword requires for grammatical consistency (e.g. removing a now-redundant closing 'closes this gap' clause if the reworded heading already states resolution — keep this edit minimal). Then, per T28 (frozen snapshots of growing content are the dominant escalation source; count/list claims about growing content must be live-derived, never pinned), add ONE new test in test/design-readiness.test.js: glob tools/sync-*-to-jaina.js off disk (mirroring the AC7 pattern in this same test file, which already globs design/cards/*.md and art-briefs.md headings rather than hand-typing a list), and for every filename found, assert it appears somewhere in Gap 3's section text (using the file's existing parseSections/sectionText helpers, matched against the 'Open Gaps & Unresolved Questions' section, scoped to the Gap 3 paragraph specifically). This makes any future sync tool that ships without a Gap 3 citation fail the suite instead of silently going stale again. Do not touch Gap 1, Gap 2, Section 3, Section 4, Section 5, any design/cards/*.md file, any tools/sync-*-to-jaina.js file, or any other test file. Regenerate site/ via tools/build-site.js.
+
+## Acceptance Criteria
+
+- AC1 [paraphrase]: design/DESIGN-READINESS.md Section 6 Gap 3's heading sentence no longer claims Jaina sync coverage is limited to card records; it is reworded to reflect the resolved state its own body already describes, following the same 'Resolved — ...' heading pattern Gap 1 uses.
+- AC2 [paraphrase]: test/design-readiness.test.js gains a new test that globs tools/sync-*-to-jaina.js off disk and asserts every resulting filename is named in Gap 3's section text.
+- AC3 [inferred] (held_out): The new test fails if a future tools/sync-*-to-jaina.js file is added without updating Gap 3's citation list — verified by the test's own construction (disk-derived, not a hand-typed literal list).
+- AC4 [inferred] (held_out): Gap 1, Gap 2, Section 3, Section 4, and Section 5 of DESIGN-READINESS.md are byte-for-byte unchanged.
+- AC5 [paraphrase]: node --test passes for the whole cardGame suite, including the new assertion, and site/design/DESIGN-READINESS.html is regenerated via tools/build-site.js.

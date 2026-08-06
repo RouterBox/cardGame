@@ -1,0 +1,18 @@
+name: cardgame-playtest-spatial-race-identity-refresh
+title: Add a Spatial Race Identity worked example to design/playtest-spatial.md — its 5 cards have never appeared in any playtest procedure
+project: cardgame
+risk_class: standard
+mode: autopilot
+test_cmd: node --test
+
+## Intent
+
+design/playtest-spatial.md's Procedure already follows the precedent set by cardgame-playtest-spatial-restriction-refresh (step 8, Bastion Lockdown Line) and cardgame-playtest-spatial-closure-refresh (step 9, Chokepoint Demolition Charge): narrate a specific named card being played, cite the rules.md section it exercises, and give the two playtesters a concrete physical action. The 5-card Spatial Race Identity family (design/cards/spatial-race-identity-set.md's Preemptive Survey/Unbound Passage/Chokepoint Garrison, plus spatial-race-identity-set-wave-2.md's Bloom Fount/Circuit Fount) exists specifically to ground race identity in this same battlefield graph, per both files' own Summary sections citing design/ideas-inbox.md's 2026-07-26 spatial-layer entries, yet no playtest procedure ever narrates any of them. Add a new step (after the existing step 10 Assault action, before the current step 11 worked-example replay — renumbering subsequent steps) or an additional 'Worked Example: Race Identity on the Graph' subsection that walks through all 5 cards in turn: Preemptive Survey (1 Signal, Section 8.3) reducing the cost of a Discovery already narrated in step 6; Unbound Passage (2 Tangle, Sections 8.4/8.6) letting an Assault ignore a Restriction like the one step 8 wrote onto a Wormhole; Chokepoint Garrison (2 Mass, Section 8.5) placing a Fortification counter that blocks the Closure step 9 just performed; Bloom Fount (2 Bloom, Section 4.6) building a Generator onto a Planet the builder does not control; and Circuit Fount (2 Circuit, Section 8.3) costing 1 less Circuit when built on a Discovery-added Planet. Each card's exact Cost line and Type line must match its source file verbatim (no invented numbers). Add a 'What to watch for' bullet noting that a playtester's instinct to skip these interactions (treating them as generic Discovery/Assault/Closure) is the signal this coverage gap existed. Regenerate site/design/playtest-spatial.html via the existing tools/build-site.js so the design-shelf twin matches. Do not touch playtest-full-game.md, rules.md, or any card file's own content — this unit only adds a playtest-procedure narration of already-shipped cards.
+
+## Acceptance Criteria
+
+- AC1 [inferred]: design/playtest-spatial.md's Procedure contains a new step or worked-example subsection naming all 5 Spatial Race Identity cards verbatim: Preemptive Survey, Unbound Passage, Chokepoint Garrison, Bloom Fount, Circuit Fount
+- AC2 [paraphrase]: Each of the 5 cards' Cost line as narrated in the new text matches its Cost line exactly as printed in its source file (spatial-race-identity-set.md or spatial-race-identity-set-wave-2.md): Preemptive Survey 1 Signal, Unbound Passage 2 Tangle, Chokepoint Garrison 2 Mass, Bloom Fount 2 Bloom, Circuit Fount 2 Circuit
+- AC3 [inferred] (held_out): The new text cites rules.md Section 8.3 for Preemptive Survey and Circuit Fount, Sections 8.4 and 8.6 for Unbound Passage, Section 8.5 for Chokepoint Garrison, and Section 4.6 for Bloom Fount
+- AC4 [inferred]: The existing steps 1-10 procedure text, the Materials section, and the existing 'What to watch for' bullets are all still present unchanged (only additive changes: a new step/subsection and at least one new 'What to watch for' bullet)
+- AC5 [paraphrase]: site/design/playtest-spatial.html is regenerated from the updated markdown via tools/build-site.js and contains the same 5 card names

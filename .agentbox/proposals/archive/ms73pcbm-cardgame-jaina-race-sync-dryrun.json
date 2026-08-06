@@ -1,0 +1,53 @@
+{
+  "name": "cardgame-jaina-race-sync-dryrun",
+  "title": "cardGame tool — dry-run sync of race records into Jaina (content backbone, slice 3)",
+  "project": "cardgame",
+  "pitch": "A dry-run script that parses design/races/*.md into structured records and prints the exact Jaina payloads a future live sync would write, extending the content backbone from cards and characters to races.",
+  "why_now": "design/DESIGN-READINESS.md Open Gap 4 names races, world/lore, and the star atlas as the remaining markdown-only content with no Jaina schema or sync path. The card slice already shipped (cardgame-jaina-card-sync-dryrun) and the character slice is already filed as the sibling open proposal cardgame-jaina-character-sync-dryrun; races is the next self-contained slice nothing yet targets — exactly 5 files, one per race, each already following one consistent Identity/Strengths-Weaknesses/Signature-Hooks/Visual-Identity structure.",
+  "expected_outcome": "Running `node tools/sync-races-to-jaina.js --dry-run` exits 0 and prints exactly 5 JSON record payloads, one per design/races/*.md file (cindral-reach, mireth-bloom, panoptic-concord, starweave-communion, wrought-assembly), each with name/slug/identity/primaryStrength/complementaryStrengths/counteringWeaknesses/signatureHooks/visualIdentity fields — reviewable as the proposed Jaina 'race' schema shape before any live write is built.",
+  "risk_class": "standard",
+  "mission_intent": "I6",
+  "taste_citations": [
+    "T16",
+    "T1"
+  ],
+  "intent": "design/DESIGN-READINESS.md's Open Gap 4 names the hole directly: only card records (and, once its sibling proposal merges, character records) are wired to Jaina, while design/races/ (5 files, one per race) remains markdown-only prose with no Jaina schema or sync path. This is the next narrow slice under the same 2026-07-28 ideas-inbox directive that produced cardgame-jaina-card-sync-dryrun and cardgame-jaina-character-sync-dryrun (T1 discipline: no live write, races only, not the full remaining scope in one shot). Add lib/parse-race-markdown.js, a shared parser mirroring lib/parse-card-markdown.js's conventions, that reads each design/races/{race}.md file and extracts one record: name (the H1 heading text, e.g. 'The Cindral Reach'), slug (the identical slugify algorithm used by lib/parse-card-markdown.js), identity (the '## Identity' section's prose paragraph), primaryStrength (the 'Primary strength:' bullet value), complementaryStrengths and counteringWeaknesses (the two-item lists from their respective bullets), signatureHooks (an array of {name, description} pairs parsed from the '## Signature Hooks' bold-name-plus-description bullets), and visualIdentity (the '## Visual Identity' section's prose paragraph). tools/sync-races-to-jaina.js prints one JSON payload per record in --dry-run mode; without --dry-run it makes no Jaina API calls or network access, printing a message that live sync is not yet implemented for races and exiting 1, so no credentials are required by node --test. This is content-authoring tooling under the T16 partial software-gate opening, not game implementation.",
+  "criteria": [
+    {
+      "text": "node tools/sync-races-to-jaina.js --dry-run exits 0 and prints exactly 5 JSON objects, one per file in design/races/: cindral-reach.md, mireth-bloom.md, panoptic-concord.md, starweave-communion.md, and wrought-assembly.md",
+      "provenance": "paraphrase",
+      "held_out": false
+    },
+    {
+      "text": "Each printed record has name, slug, identity, primaryStrength, complementaryStrengths, counteringWeaknesses, signatureHooks, and visualIdentity fields; slug is computed with the identical slugify(name) algorithm already used by lib/parse-card-markdown.js, so the same race name produces the same slug anywhere else in the repo",
+      "provenance": "paraphrase",
+      "held_out": false
+    },
+    {
+      "text": "complementaryStrengths and counteringWeaknesses are each arrays of exactly 2 strings matching that race file's own bullets, and signatureHooks is an array of exactly 5 {name, description} objects matching that race file's own '## Signature Hooks' bullet list verbatim",
+      "provenance": "inferred",
+      "held_out": true
+    },
+    {
+      "text": "Without --dry-run, the script makes no Jaina API calls, no network access, and no credentials are required by node --test — it prints a message that live sync is not yet implemented for races and exits 1",
+      "provenance": "inferred",
+      "held_out": false
+    },
+    {
+      "text": "Running the dry-run twice in a row against unchanged markdown produces byte-identical stdout output (deterministic: no timestamps, no randomness, stable record ordering: cindral-reach, mireth-bloom, panoptic-concord, starweave-communion, wrought-assembly)",
+      "provenance": "inferred",
+      "held_out": false
+    }
+  ],
+  "touches": [
+    "lib/parse-race-markdown.js",
+    "tools/sync-races-to-jaina.js",
+    "test/sync-races-to-jaina.test.js"
+  ],
+  "test_cmd": "node --test",
+  "id": "ms73pcbm-cardgame-jaina-race-sync-dryrun",
+  "filed_at": "2026-07-30T05:56:39.970Z",
+  "window_expires": "2026-07-30T09:56:39.972Z",
+  "status": "promoted",
+  "promoted_at": "2026-07-30T10:09:26.946Z"
+}

@@ -1,0 +1,2 @@
+
+- [2026-07-28T04:42:03.587Z] Resolved by orchestrator hand-recovery (not retry/abandon): the escalation was a test bug, not bad work. The RED test listed design/characters/web.md as if it were a race roster file, but web.md is the plan's own sibling deliverable (the interlink map), so AC1 could never pass. Excluded web.md from the roster listing, materialized the plan's complete file blocks, suite went 131/131 green, merged to cardGame master (merge 2fc7b22). Branch and diagnosis worktree pruned.

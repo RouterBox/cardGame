@@ -1,0 +1,53 @@
+{
+  "name": "cardgame-art-briefs-spatial-race-identity",
+  "title": "Art briefs for the Spatial Race Identity Set (3 cards)",
+  "project": "cardgame",
+  "pitch": "Write the missing art briefs for design/cards/spatial-race-identity-set.md's 3 cards, closing the spatial-race-identity slice of DESIGN-READINESS.md's Open Gap 1.",
+  "why_now": "DESIGN-READINESS.md Open Gap 1 names this hole explicitly and tools/composite-card-art.js already surfaces it live via its own 'no art brief for \"<name>\"' warning; the wormhole-closure-cards half of the same gap is already in-flight as the sibling unit cardgame-art-briefs-wormhole-closure, leaving this 3-card set the one piece of Gap 1 nothing yet targets.",
+  "expected_outcome": "design/cards/art-briefs.md gains exactly 3 new '###' sections — 'Preemptive Survey', 'Unbound Passage', 'Chokepoint Garrison' — each with a Palette line naming its card's Fount color, a 'Key visual elements:' list of >=2 card-specific bullets, and a Composition line with a rectangular/landscape aspect ratio; running tools/composite-card-art.js (mock mode) no longer prints 'no art brief for' for any of these 3 names.",
+  "risk_class": "standard",
+  "mission_intent": "I6",
+  "taste_citations": [
+    "T8",
+    "T9",
+    "T16"
+  ],
+  "intent": "design/cards/art-briefs.md documents an art brief for every card in most shipped card sets, but design/cards/spatial-race-identity-set.md's 3 cards (Preemptive Survey — Panoptic Concord, Unbound Passage — Starweave Communion, Chokepoint Garrison — Cindral Reach) have none. DESIGN-READINESS.md's Open Gap 1 names this hole explicitly, and tools/composite-card-art.js already surfaces it live via its own 'no art brief for \"<name>\"' warning on every run. Add one brief per card, following the established format every prior art-briefs unit has used (Palette, Subject/Scene, Key visual elements, Composition), naming the Fount-driven palette color for each card's own Cost line (Signal→Cyan, Tangle→Violet, Mass→Ash-grey per card-anatomy.md's Fount identity table) and a Composition line citing the Art Window's rectangular/landscape shape and aspect ratio — so these 3 cards can go through the compositing pipeline like every other shipped card set.",
+  "criteria": [
+    {
+      "text": "design/cards/art-briefs.md contains exactly one '###' section titled verbatim 'Preemptive Survey', one titled 'Unbound Passage', and one titled 'Chokepoint Garrison' (the 3 card titles in design/cards/spatial-race-identity-set.md), with no pre-existing brief sections removed, renamed, or altered",
+      "provenance": "paraphrase",
+      "held_out": false
+    },
+    {
+      "text": "The 'Preemptive Survey' brief's Palette line names Cyan (Signal), the 'Unbound Passage' brief's Palette line names Violet (Tangle), and the 'Chokepoint Garrison' brief's Palette line names Ash-grey (Mass), matching each card's own Cost line per card-anatomy.md's Fount identity table",
+      "provenance": "paraphrase",
+      "held_out": false
+    },
+    {
+      "text": "Each of the 3 new briefs has a 'Key visual elements:' list of at least 2 bullets that share at least 2 significant words with that card's own Type line/Rules text, and none of the bullets use generic filler phrases like 'epic composition' or 'stunning artwork'",
+      "provenance": "paraphrase",
+      "held_out": true
+    },
+    {
+      "text": "Each of the 3 new briefs has a 'Composition:' line naming the Art Window's rectangular/landscape shape and an explicit aspect ratio (e.g. '5:3'), consistent with card-anatomy.md's Art Window description",
+      "provenance": "paraphrase",
+      "held_out": false
+    },
+    {
+      "text": "Running tools/composite-card-art.js in its default (mock) mode no longer prints 'no art brief for \"Preemptive Survey\"', 'no art brief for \"Unbound Passage\"', or 'no art brief for \"Chokepoint Garrison\"'",
+      "provenance": "inferred",
+      "held_out": false
+    }
+  ],
+  "touches": [
+    "design/cards/art-briefs.md",
+    "test/design-art-briefs-spatial-race-identity.test.js"
+  ],
+  "test_cmd": "node --test",
+  "id": "ms724jc2-cardgame-art-briefs-spatial-race-identity",
+  "filed_at": "2026-07-30T05:12:29.666Z",
+  "window_expires": "2026-07-30T09:12:29.668Z",
+  "status": "promoted",
+  "promoted_at": "2026-07-30T09:24:26.908Z"
+}

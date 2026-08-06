@@ -1,0 +1,51 @@
+{
+  "name": "cardgame-card-types-templating-rules",
+  "title": "Card Types & Templating Rules (Amaranth Expanse rules v3)",
+  "pitch": "Define the five card types (Magic/Technology/Intelligence/Biology/Materials), their templating structure, and multi-type/cost rules in design/rules.md.",
+  "why_now": "cardgame-world-races and cardgame-spatial-battlefield-rules shipped the world, races, turn structure, and battlefield graph, but gamePlan.md's five card types and its note that \"cards can have multiple types/costs\" are still undefined in rules.md — nothing states what a card of each type is, how it's templated, or how multi-type costs are computed, so no Alpha card can yet be checked against a template. This is the last rules-layer gap before card design and Leonardo art briefs can start.",
+  "expected_outcome": "design/rules.md gains a new numbered Card Types & Templating section naming all five card types tied to their Founts, a canonical template, one worked example per type, and a worked multi-type/multi-cost example — checkable by grepping the section for all five type names plus five templated example blocks.",
+  "risk_class": "standard",
+  "mission_intent": "I6",
+  "taste_citations": [
+    "T1",
+    "T8",
+    "T9"
+  ],
+  "intent": "Extend design/rules.md with a Card Types & Templating section that formally defines the five card types named in gamePlan.md (Magic, Technology, Intelligence, Biology, Materials), ties each to the Fount it draws cost from, and specifies the templating structure and multi-type/cost rules every future Alpha card must conform to — the last rules gap identified before card design and Leonardo art briefs can begin under I6, keeping the design phase at full decided scope rather than skipping ahead to cards without a template.",
+  "criteria": [
+    {
+      "text": "design/rules.md gains a new numbered section defining all five card types from gamePlan.md — Magic, Technology, Intelligence, Biology, Materials — each naming which Fount it draws cost from and its behavior class (instant/sorcery-speed resolving vs. permanent), consistent with gamePlan.md's original descriptions.",
+      "provenance": "user",
+      "held_out": false
+    },
+    {
+      "text": "The section defines a canonical card template (name, cost line, type line, rules text, and for permanents an optional stats/counters line) and gives one fully worked example card for each of the five types, each naming its Fount cost, its type(s), and its rules text.",
+      "provenance": "user",
+      "held_out": false
+    },
+    {
+      "text": "The section states the rule for cards with multiple types/costs (gamePlan.md: \"cards can have multiple types/costs\") — how total cost is computed across multiple Founts and which type-specific rules apply — with at least one worked multi-type example.",
+      "provenance": "paraphrase",
+      "held_out": false
+    },
+    {
+      "text": "New terms introduced (e.g. \"type line,\" \"rules text\") are added to the Section 2 glossary before substantive use, consistent with the document's existing glossary-first discipline.",
+      "provenance": "inferred",
+      "held_out": false
+    },
+    {
+      "text": "No existing numbered rule in Sections 1-8 is contradicted or restated differently by the new section — it cross-references Section 4 (Resources/Founts) rather than redefining Fount Point costs from scratch.",
+      "provenance": "inferred",
+      "held_out": true
+    }
+  ],
+  "touches": [
+    "design/rules.md"
+  ],
+  "test_cmd": "node --test",
+  "id": "ms3yszt1-cardgame-card-types-templating-rules",
+  "filed_at": "2026-07-28T01:16:13.765Z",
+  "window_expires": "1970-01-01T00:00:00.000Z",
+  "status": "promoted",
+  "promoted_at": "2026-07-28T01:37:01.522Z"
+}

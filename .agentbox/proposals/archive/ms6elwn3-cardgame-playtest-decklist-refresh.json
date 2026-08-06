@@ -1,0 +1,59 @@
+{
+  "name": "cardgame-playtest-decklist-refresh",
+  "title": "Full-game playtest decklists still build from cards the file itself now says are no longer dead",
+  "project": "cardgame",
+  "pitch": "design/playtest-full-game.md's Step 1 still builds Ada's and Kestrel's 40-card decks entirely from 'dead' Bloom/Signal/Tangle cards and claims only 10 of 28 cards are ever payable, even though the same file's own 'What This Playtest Surfaced' section (fixed by cardgame-playtest-fount-economy-refresh) already says every Fount has a payable Generator and cheap follow-up card via fount-economy-set.md.",
+  "why_now": "cardgame-playtest-fount-economy-refresh (merged 2026-07-29) explicitly fixed the stale analysis table and added Worked Example 3, but its own scope note says it deliberately left 'the two existing 40-card decklists (Ada's Mass deck, Kestrel's Circuit deck) and every other already-correct step of the numbered Procedure' untouched — so Step 1 (lines 45-88) now contradicts the corrected section later in the very same document: it still lists 14 'dead' card lines per deck and the sentence 'Only 10 of the 28 cards currently named across the three card files can ever be paid for.' This is the next, previously out-of-scope half of the same fix, following the identical refresh pattern already proven three times on this repo (fount-economy-refresh, spatial-closure-refresh, spatial-restriction-refresh).",
+  "expected_outcome": "design/playtest-full-game.md Step 1 lists two legal 40-card decks that each include at least one card from design/cards/fount-economy-set.md, drops every 'dead'/'can never be paid' annotation, and replaces the stale '10 of the 28' sentence with a count consistent with the current four-file card pool — demoable as a diff of Step 1 plus a passing `node --test` run of the updated test/design-full-game-playtest.test.js.",
+  "risk_class": "standard",
+  "mission_intent": "I6",
+  "taste_citations": [
+    "T9",
+    "T11",
+    "T12"
+  ],
+  "intent": "design/playtest-full-game.md's numbered Procedure Step 1 (lines 45-88) constructs two 40-card decklists — Deck A ('Ada', Mass-leaning) and Deck B ('Kestrel', Circuit-leaning) — using only cards that predate design/cards/fount-economy-set.md, and explicitly labels 14 of the 28 lines per deck as 'dead' (uncastable) because, at the time that text was written, Bloom, Signal, and Tangle had no Generator. cardgame-playtest-fount-economy-refresh has since corrected the 'What This Playtest Surfaced' section later in the same file to reflect that fount-economy-set.md now gives every Fount a Generator plus a cheap follow-up card, but its own stated scope explicitly left Step 1's decklists and the 'Only 10 of the 28 cards ... can ever be paid for' sentence untouched, so the document now contradicts itself within a few thousand words. This unit rewrites Step 1 only: it swaps in at least one fount-economy-set.md card per previously-dead Fount in each decklist (keeping both decks at exactly 40 cards and no more than 3 copies of any one Name, per Section 11.1/11.2), removes every 'dead'/'can never be paid' annotation that is no longer true, and replaces the stale payable-card count with one matching the current four-file pool (alpha-set.md, frontier-set.md, character-signatures.md, fount-economy-set.md). It updates test/design-full-game-playtest.test.js to mechanically parse both decklists from the document and assert deck-legality (Section 11.1/11.2) plus at least one payable card per Fount, and regenerates the matching site/design/playtest-full-game.html build artifact. It does not touch the Worked Examples, the 'What This Playtest Surfaced' table, rules.md, or any card file — only Step 1, its owning test, and the site twin change.",
+  "criteria": [
+    {
+      "text": "Deck A and Deck B in Step 1 each name at least one card from design/cards/fount-economy-set.md",
+      "provenance": "inferred",
+      "held_out": false
+    },
+    {
+      "text": "No line in either decklist in Step 1 is annotated 'dead' or 'can never be paid'",
+      "provenance": "inferred",
+      "held_out": false
+    },
+    {
+      "text": "The 'Only 10 of the 28 cards currently named across the three card files can ever be paid for' sentence is replaced with a count consistent with the current pool across alpha-set.md, frontier-set.md, character-signatures.md, and fount-economy-set.md",
+      "provenance": "inferred",
+      "held_out": false
+    },
+    {
+      "text": "Both decklists still total exactly 40 cards with no more than 3 copies of any one card Name (Section 11.1, Section 11.2)",
+      "provenance": "inferred",
+      "held_out": false
+    },
+    {
+      "text": "test/design-full-game-playtest.test.js parses both decklists from the document and asserts at least one payable card per Fount is present in at least one deck",
+      "provenance": "inferred",
+      "held_out": true
+    },
+    {
+      "text": "No file other than design/playtest-full-game.md, site/design/playtest-full-game.html, and test/design-full-game-playtest.test.js is modified",
+      "provenance": "inferred",
+      "held_out": true
+    }
+  ],
+  "touches": [
+    "design/playtest-full-game.md",
+    "site/design/playtest-full-game.html",
+    "test/design-full-game-playtest.test.js"
+  ],
+  "test_cmd": "node --test",
+  "id": "ms6elwn3-cardgame-playtest-decklist-refresh",
+  "filed_at": "2026-07-29T18:14:09.279Z",
+  "window_expires": "2026-07-29T22:14:09.281Z",
+  "status": "promoted",
+  "promoted_at": "2026-07-29T22:24:21.774Z"
+}

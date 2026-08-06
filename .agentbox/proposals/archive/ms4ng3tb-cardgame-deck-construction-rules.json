@@ -1,0 +1,48 @@
+{
+  "name": "cardgame-deck-construction-rules",
+  "title": "cardGame rules — Section 11: Deck Construction",
+  "project": "cardgame",
+  "pitch": "Add a numbered Deck Construction section to design/rules.md defining minimum Archive size and per-card copy limits, closing the one core-loop rule (\"build your deck, and play\") that rules.md never actually states.",
+  "why_now": "rules.md now runs ten rigorously-numbered sections (Zones through Winning & Losing) but never defines how a deck/Archive is built — yet Section 10.1's loss condition (\"required to draw and Archive holds no card\") is unformalizable without a stated deck size, and gamePlan.md's core loop explicitly says \"build your deck, and play.\" Both open proposals in the queue (live Jaina sync, live Leonardo client) are stuck on pending human security decisions per the pending-decision rule, so this ticket advances different, unblocked design work in parallel rather than re-filing either.",
+  "expected_outcome": "design/rules.md gains a new numbered top-level 'Deck Construction' section (Section 11, appended after Section 10 with Sections 1-10 unchanged and unrenumbered) stating a fixed minimum Archive size and a maximum copy count per uniquely-named card, cross-referencing Section 10.1's draw-loss condition by section number; `node --test` run from cardGame passes a new test/design-deckbuilding.test.js asserting all of the above via markdown parsing, alongside the full existing suite still green.",
+  "risk_class": "standard",
+  "mission_intent": "I6",
+  "taste_citations": [
+    "T9",
+    "T8",
+    "T1"
+  ],
+  "intent": "Extend design/rules.md with a new numbered top-level section, Deck Construction, giving the Amaranth Expanse rulebook the one core-loop rule gamePlan.md names (\"build your deck, and play\") but rules.md has never stated: a fixed minimum Archive size and a maximum number of copies of any single named card permitted in one deck. The section is appended after the existing Section 10 (Winning & Losing Conditions) so no already-numbered section is renumbered, matching the pattern every prior rules-extension unit (spatial-battlefield-rules, map-setup-and-playtest-procedure, winning-losing) has followed. It must explicitly cross-reference Section 10.1's 'required to draw with an empty Archive' elimination condition by section number, since that condition is currently unformalizable without a stated deck size — this closes that gap rather than leaving it implicit. This continues I6's MTG-Comprehensive-Rules-rigor bar (T9) and the decided full scope of the design phase (T1), with acceptance criteria as mechanical document checks per T8.",
+  "criteria": [
+    {
+      "text": "design/rules.md contains a new numbered top-level section titled 'Deck Construction', and it is the sole new section — Sections 1 through 10 remain present, in order, with their original numbers and titles unchanged.",
+      "provenance": "paraphrase",
+      "held_out": false
+    },
+    {
+      "text": "The Deck Construction section states a single fixed minimum number of cards an Archive/deck must contain at the start of a game.",
+      "provenance": "inferred",
+      "held_out": false
+    },
+    {
+      "text": "The Deck Construction section states a maximum number of copies of any one uniquely-named card permitted in a single deck.",
+      "provenance": "inferred",
+      "held_out": false
+    },
+    {
+      "text": "The Deck Construction section cross-references Section 10.1's draw-with-empty-Archive elimination condition by section number rather than restating its wording, and a new test/design-deckbuilding.test.js asserts this cross-reference alongside the numbering and content checks above.",
+      "provenance": "inferred",
+      "held_out": true
+    }
+  ],
+  "touches": [
+    "design/rules.md",
+    "test/design-deckbuilding.test.js"
+  ],
+  "test_cmd": "node --test",
+  "id": "ms4ng3tb-cardgame-deck-construction-rules",
+  "filed_at": "2026-07-28T12:46:02.831Z",
+  "window_expires": "1970-01-01T00:00:00.000Z",
+  "status": "promoted",
+  "promoted_at": "2026-07-28T13:37:10.101Z"
+}

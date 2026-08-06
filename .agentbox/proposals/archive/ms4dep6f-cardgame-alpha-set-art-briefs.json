@@ -1,0 +1,47 @@
+{
+  "name": "cardgame-alpha-set-art-briefs",
+  "title": "cardGame design — Leonardo art briefs for the Alpha set (words before art, T9)",
+  "pitch": "Write a Leonardo-ready art brief for each of the 18 Alpha set cards — subject, Fount palette, key visual elements, Art Window composition — the design deliverable T9 requires before any image generation starts.",
+  "why_now": "The card-authoring engine shipped with its Art Window rendering as an explicit placeholder rectangle, deferring 'a later Leonardo compositing pass' per its own intent; T9 draws the bright line that words precede art, and no unit has yet written the briefs that pass would need. This is the only undone step between the shipped renderer and the first real Leonardo art, and it is pure design (markdown), so it fits inside T14's game-only, cardgame-design-only window.",
+  "expected_outcome": "design/cards/art-briefs.md exists with 18 brief sections (one per Alpha set card), each naming a Fount palette, 2+ card-specific visual elements, and an Art Window composition note — reviewable by RouterBox as the exact prompts a future Leonardo pass would use, before any image is generated.",
+  "risk_class": "standard",
+  "mission_intent": "I6",
+  "taste_citations": [
+    "T9",
+    "T16",
+    "T1"
+  ],
+  "intent": "T9 states 'Compelling world/art/card design precedes any code ... Art briefs precede art; Leonardo passes come after the words are approved.' The shipped cardgame-card-authoring-engine renders every Alpha set card's Art Window as an empty placeholder rectangle, explicitly deferring 'a later Leonardo compositing pass.' This unit is the design deliverable that must exist before that compositing pass can start: a written art brief for every card in design/cards/alpha-set.md (18 cards), each brief giving a human or a Leonardo prompt-writer enough to generate a single Art Window illustration — subject/scene, the card's Fount-driven mood and palette, key visual elements pulled from the card's own rules text/type line, and a composition note matching the Art Window's shape from design/cards/card-anatomy.md. This is a DESIGN unit (T8): the deliverable is markdown a human reads and approves before any image generation happens; it makes zero Leonardo API calls and contains no code. It directly unblocks the next authoring-engine unit (art compositing) without skipping ahead of the words-first discipline (T9).",
+  "criteria": [
+    {
+      "text": "design/cards/art-briefs.md exists and contains exactly one brief section for each of the 18 cards in design/cards/alpha-set.md, matched by name/heading.",
+      "provenance": "user",
+      "held_out": false
+    },
+    {
+      "text": "Each brief names the card's Fount-driven color/mood palette (matching the Fount identity table in design/cards/card-anatomy.md) and lists at least 2 concrete visual elements drawn from the card's own rules text or type line, not generic filler.",
+      "provenance": "paraphrase",
+      "held_out": false
+    },
+    {
+      "text": "Each brief includes a one-line composition note referencing the Art Window's aspect ratio/shape as defined in design/cards/card-anatomy.md, so a future compositing pass can generate art that actually fits the slot.",
+      "provenance": "inferred",
+      "held_out": false
+    },
+    {
+      "text": "design/cards/art-briefs.md contains no code, API calls, or references to a specific image-generation implementation — pure creative-brief prose, keeping this a words-first design deliverable per T9.",
+      "provenance": "inferred",
+      "held_out": true
+    }
+  ],
+  "touches": [
+    "design/cards/art-briefs.md",
+    "test/design-card-art-briefs.test.js"
+  ],
+  "test_cmd": "node --test",
+  "id": "ms4dep6f-cardgame-alpha-set-art-briefs",
+  "filed_at": "2026-07-28T08:05:01.047Z",
+  "window_expires": "2026-07-28T09:05:01.049Z",
+  "status": "promoted",
+  "promoted_at": "2026-07-28T09:08:28.161Z"
+}

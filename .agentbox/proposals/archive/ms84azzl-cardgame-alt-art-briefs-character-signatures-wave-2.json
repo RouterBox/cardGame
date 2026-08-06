@@ -1,0 +1,53 @@
+{
+  "name": "cardgame-alt-art-briefs-character-signatures-wave-2",
+  "title": "Add 5 Alt-Art briefs for character-signatures-wave-2.md's cards — the Alt-Art layer covers wave-1 signatures and the 5 Generators, never wave-2",
+  "project": "cardgame",
+  "pitch": "design/cards/alt-art-briefs.md's own opening sentence says it briefs \"ten cards already briefed in art-briefs.md\" — the 5 Fount Generators plus the 5 wave-1 character-signatures.md cards — and character-signatures-wave-2.md's 5 cards, whose base briefs already shipped, have never gotten an Alt-Art brief.",
+  "why_now": "Verified live: read design/cards/alt-art-briefs.md in full — its 10 \"###\" sections are exactly the 5 alpha-set.md Generators (Sporeknit Warden, Salvage-Wrought Bastion, Replicant Foundry Core, Foreknowledge Cipher, Unwritten Hour) and the 5 character-signatures.md wave-1 cards (Kordelia Vess, Mother-Thread Ilvex, Selin Vashti Corr, Meridian Aule, Unit 0-Prime), added by the merged cardgame-alt-art-briefs-signal-tangle and cardgame-alt-art-briefs-character-signatures units (memory/cardgame-alt-art-briefs-character-signatures.md confirms the latter closed with exactly these 5 wave-1 titles). Grepped all 5 wave-2 card names (Torel Ashgrave, Rathe Ossuary-Kin, Doran Vex Amaranthine, Ysolde Thane, Foreman-Prime Yssa Ductile) against alt-art-briefs.md: zero matches. Confirmed each already has a base brief in design/cards/art-briefs.md (lines 552-628, under its own \"## Character Signatures, Wave 2\" heading) — alt-art-briefs.md's own precondition (\"cards already briefed in art-briefs.md\") is satisfied today, with no dependency on any in-flight unit. Read test/design-alt-art-briefs.test.js in full: it hardcodes an EXPECTED_TITLES array of exactly the current 10, asserts each section has Palette/Subject-Scene/Key-visual-elements/Composition fields, and asserts (AC2) each alt brief's Subject/Scene shares fewer than half its significant words with that same card's base-brief Subject/Scene — the exact template this unit repeats for wave-2. Checked memory and all 6 currently window-open proposals (jaina-world-narrative-sync-dryrun, rules-restriction-movement-contradiction-fix, art-briefs-character-signatures-wave-3, design-readiness-section4-live-derived-check, playtest-character-signatures-wave-3-refresh, game-name-card-set-docs) plus both in-flight units (cardgame-frontier-worlds-cards, cardgame-playtest-spatial-wormhole-coverage): none touches design/cards/alt-art-briefs.md or test/design-alt-art-briefs.test.js — genuinely untouched ground this cycle, unlike design/rules.md and design/DESIGN-READINESS.md, which already have 2-3 open proposals apiece.",
+  "expected_outcome": "design/cards/alt-art-briefs.md gains exactly 5 new \"###\" sections (titled verbatim with each wave-2 card's exact name), each with Palette/Subject-Scene/Key-visual-elements/Composition fields whose Palette names the Fount-identity color matching that card's Cost line and whose Subject/Scene depicts a genuinely different scene from that card's existing base brief; test/design-alt-art-briefs.test.js's EXPECTED_TITLES array is extended from 10 to 15 and its existing AC1/AC2 assertions apply unmodified to all 15; tools/composite-card-art.js's --live run composites an alt-art window for all 5 wave-2 cards with no missing-brief warning.",
+  "risk_class": "standard",
+  "mission_intent": "I6",
+  "taste_citations": [
+    "T8",
+    "T9",
+    "T24"
+  ],
+  "intent": "design/cards/alt-art-briefs.md implements the Alt-Art layer design/cards/card-anatomy.md's \"The Layers\" section defines: swap only the Art Window's illustration for an alternate illustration of the same subject matter, every other zone unchanged. It currently briefs the 5 alpha-set.md Fount Generators and the 5 character-signatures.md wave-1 cards — character-signatures-wave-2.md's 5 cards (Torel Ashgrave, Line-Captain of the Ember Vanguard, 2 Mass; Rathe Ossuary-Kin, Spore-Hound of the Sprawl, 3 Bloom; Doran Vex Amaranthine, Ledger-Warden of the Foreknowledge Archive, 2 Signal; Ysolde Thane, Pilgrim of the Unwritten Sign, 2 Tangle; Foreman-Prime Yssa Ductile, Keeper of the First Pattern, 4 Circuit), already fully briefed in art-briefs.md, have none. Add one new \"###\" section per wave-2 card to alt-art-briefs.md, appended after the existing 10 sections, using the identical Palette/Subject-Scene/Key-visual-elements/Composition template the file already establishes. Each Palette line must name the card-anatomy.md Fount-identity color matching that card's own Cost line, exactly as the base briefs already do: Torel Ashgrave -> Ash-grey, Rathe Ossuary-Kin -> Green, Doran Vex Amaranthine -> Cyan, Ysolde Thane -> Violet, Foreman-Prime Yssa Ductile -> Copper. Each Subject/Scene must describe a genuinely different moment than that card's base brief (mirroring the wave-1 alt pattern of shifting to before/after/private/aftermath rather than the base brief's active moment) so it satisfies test/design-alt-art-briefs.test.js's own word-overlap check once extended: e.g. Torel Ashgrave before she commanded the line rather than leading the formation; Rathe Ossuary-Kin in the Sprawl's quiet aftermath rather than mid-wound; Doran Vex Amaranthine cataloguing his own already-gathered ledger rather than actively reading an opponent's Archive; Ysolde Thane on pilgrimage before any Archive-reading rather than mid-working; Foreman-Prime Yssa Ductile at the First Pattern's founding moment rather than mid-production. Extend test/design-alt-art-briefs.test.js's EXPECTED_TITLES array to include the 5 new titles (10 -> 15) — its existing AC1 (section-shape) and AC2 (Subject/Scene overlap-vs-base) tests already generalize over EXPECTED_TITLES with no other code change needed. Do not touch character-signatures-wave-2.md, art-briefs.md's existing content, card-anatomy.md, or any of the 10 existing alt-art-briefs.md sections — this unit only appends 5 new sections and extends one array in the existing test file.",
+  "criteria": [
+    {
+      "text": "design/cards/alt-art-briefs.md gains exactly 5 new \"###\" sections, titled verbatim: \"Torel Ashgrave, Line-Captain of the Ember Vanguard\", \"Rathe Ossuary-Kin, Spore-Hound of the Sprawl\", \"Doran Vex Amaranthine, Ledger-Warden of the Foreknowledge Archive\", \"Ysolde Thane, Pilgrim of the Unwritten Sign\", \"Foreman-Prime Yssa Ductile, Keeper of the First Pattern\", with none of the 10 pre-existing sections altered or removed",
+      "provenance": "inferred",
+      "held_out": false
+    },
+    {
+      "text": "Each new section has Palette:, Subject/Scene:, a \"Key visual elements:\" bulleted list of 2 or more items, and Composition: fields, matching the existing sections' shape",
+      "provenance": "inferred",
+      "held_out": false
+    },
+    {
+      "text": "Each new section's Palette line names the Fount-identity color matching that card's own Cost line: Torel Ashgrave -> Ash-grey, Rathe Ossuary-Kin -> Green, Doran Vex Amaranthine -> Cyan, Ysolde Thane -> Violet, Foreman-Prime Yssa Ductile -> Copper",
+      "provenance": "paraphrase",
+      "held_out": true
+    },
+    {
+      "text": "Each new alt brief's Subject/Scene line shares fewer than half its significant words with that same card's existing base brief's Subject/Scene line in design/cards/art-briefs.md",
+      "provenance": "paraphrase",
+      "held_out": false
+    },
+    {
+      "text": "test/design-alt-art-briefs.test.js's EXPECTED_TITLES array is extended to 15 entries and all of its existing tests pass unmodified against the extended file; character-signatures-wave-2.md and every pre-existing section of alt-art-briefs.md are byte-for-byte unchanged",
+      "provenance": "inferred",
+      "held_out": false
+    }
+  ],
+  "touches": [
+    "design/cards/alt-art-briefs.md",
+    "test/design-alt-art-briefs.test.js"
+  ],
+  "test_cmd": "node --test",
+  "id": "ms84azzl-cardgame-alt-art-briefs-character-signatures-wave-2",
+  "filed_at": "2026-07-30T23:01:16.593Z",
+  "window_expires": "2026-07-31T03:01:16.595Z",
+  "status": "promoted",
+  "promoted_at": "2026-07-31T03:09:34.460Z"
+}

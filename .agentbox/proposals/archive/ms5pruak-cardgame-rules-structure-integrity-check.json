@@ -1,0 +1,52 @@
+{
+  "name": "cardgame-rules-structure-integrity-check",
+  "title": "One mechanical test that design/rules.md's section numbering is sequential and has no leftover `//` review notes, replacing per-proposal repeated promises",
+  "project": "cardgame",
+  "pitch": "Add test/design-rules-structure.test.js: a read-only structural check that design/rules.md's top-level sections run sequentially with no gaps/duplicates, every decimal subsection nests correctly under its parent, and no line anywhere in the file still begins with a raw `//` review-note marker.",
+  "why_now": "The two rules.md-editing proposals currently open (cardgame-conflict-phase-movement-rules on Section 5.4, cardgame-graph-driven-generation adding Section 4.7) each independently assert, as their own held-out criterion, that 'section numbering remains strictly sequential' and 'contains no line beginning with a `//` inline comment' — the exact per-proposal-promise-instead-of-shared-mechanism pattern T11 already flagged once (which motivated the currently-open cardgame-card-catalog-name-collision-check for card names). Every rules.md unit going forward — and there will be more, since Section 8's four notes are still being reconciled in the in-flight cardgame-spatial-rules-notes-reconciliation unit — will keep re-promising the same two structural facts by hand instead of a real, shared, automated check verifying them. This unit is read-only (it only adds a new test file and touches nothing else), so it has zero ordering dependency or file-overlap with either open rules.md proposal or the in-flight reconciliation unit — it can land before, during, or after any of them.",
+  "expected_outcome": "test/design-rules-structure.test.js exists and, run today against the real, current design/rules.md, passes with zero violations reported; introducing a synthetic gap, duplicate, or misnested subsection number into a fixture copy of the heading list makes the same check fail with a specific, named violation; `node --test` is green with no other file touched.",
+  "risk_class": "standard",
+  "mission_intent": "I6",
+  "taste_citations": [
+    "T9",
+    "T3",
+    "T11"
+  ],
+  "intent": "design/rules.md (shipped) uses MTG-Comprehensive-Rules-style numbered sections and decimal subsections per the T9 structural bar (Section 4.6, 5.2, 5.4, 8.1, 8.3, 8.4, 8.6, 12 are all referenced by number across already-filed proposals) — but nothing in the repo ever mechanically verifies that numbering stays sequential and well-formed, or that RouterBox's raw `//` review-note markers get fully removed as sections are finished. Instead, each rules-editing proposal writes its own held-out promise re-asserting these two facts by hand (T11's exact pattern: N proposals, N repeated manual promises, zero shared mechanism). This unit adds one new, independent test/design-rules-structure.test.js that parses design/rules.md's heading structure and asserts: (a) top-level section numbers run strictly sequentially starting at 1 with no gaps or duplicates; (b) within each top-level section, decimal subsection numbers (e.g. 4.6, 4.7) are strictly increasing with no duplicates and correctly nest under their parent number; (c) no line anywhere in the file begins with a raw `//` comment marker. The test is purely diagnostic and read-only — it does not modify design/rules.md, does not touch test/design-rules.test.js or any other existing test file, and has no dependency on which rules.md proposal lands first. This gives every current and future rules.md-editing unit a real, mechanical safety net (T3: enforcement should be mechanical, not prompt doctrine) instead of a per-proposal manual promise, directly following the same reasoning already applied to card names in the open card-catalog-collision-check proposal.",
+  "criteria": [
+    {
+      "text": "test/design-rules-structure.test.js exists and, run against the real, current design/rules.md, asserts that top-level section numbers appear in strictly sequential order starting at 1 with no gaps or duplicates.",
+      "provenance": "inferred",
+      "held_out": false
+    },
+    {
+      "text": "The same test asserts that every decimal subsection number (e.g. 4.6, 4.7, 8.1, 8.3) is strictly increasing with no duplicates within its parent top-level section, and correctly shares that parent's leading number.",
+      "provenance": "inferred",
+      "held_out": false
+    },
+    {
+      "text": "The same test asserts design/rules.md contains no line beginning with a raw `//` comment marker anywhere in the file.",
+      "provenance": "paraphrase",
+      "held_out": false
+    },
+    {
+      "text": "The test's checking logic is exercised against fixture data containing an injected numbering gap, an injected duplicate section number, and an injected leftover `//` line, and fails with a specific, named violation for each — not just a generic assertion failure.",
+      "provenance": "inferred",
+      "held_out": true
+    },
+    {
+      "text": "No file other than test/design-rules-structure.test.js is created or modified by this unit; design/rules.md and every pre-existing test file remain byte-identical to before.",
+      "provenance": "inferred",
+      "held_out": false
+    }
+  ],
+  "touches": [
+    "test/design-rules-structure.test.js"
+  ],
+  "test_cmd": "node --test",
+  "id": "ms5pruak-cardgame-rules-structure-integrity-check",
+  "filed_at": "2026-07-29T06:38:55.772Z",
+  "window_expires": "2026-07-29T07:38:55.775Z",
+  "status": "promoted",
+  "promoted_at": "2026-07-29T07:41:57.811Z"
+}

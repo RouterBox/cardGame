@@ -1,0 +1,56 @@
+{
+  "name": "cardgame-jaina-character-web-threads-sync-dryrun",
+  "title": "Add a dry-run Jaina sync tool for design/characters/web.md's Overview + 9 interlinking-thread narratives — the one character file every sync tool explicitly excludes",
+  "project": "cardgame",
+  "pitch": "lib/parse-character-markdown.js hardcodes EXCLUDED_FILES = new Set(['web.md']) and each character record's own \"threads\" field is just a list of bare thread-name strings, so web.md's actual thread prose and participant lists (10 H2 sections: 1 Overview + 9 named threads) have never reached Jaina in any form.",
+  "why_now": "Verified live: read lib/parse-character-markdown.js in full — line 8 declares EXCLUDED_FILES = new Set(['web.md']), and loadAllCharacters() filters it out before parsing (line 133). Each character's own threads field (parseCharacterBody, lines 66-80) only captures bullet TEXT under '**Threads:**' in that character's own file (e.g. Kordelia Vess's file lists 'The Cinderglass Bargain' as a bare string) — never the thread's own prose or its full participant roster, both of which live only in design/characters/web.md. Read design/characters/web.md in full: 1 '## Overview' H2 (pure narrative, no character list) plus 9 named thread H2 sections (The Cinderglass Bargain, The Ledger War, The Chokepoint Duel, The Brokered Debt, The Spared Patrol, The Hunt for Cast-Aside, The Reclamation of the Shrine, Two Kinds of Foresight, The Covered-Up Flaw), each with a prose paragraph followed by a '**Characters:**' bulleted list naming 2-7 participants with race and one-line role. Read lib/parse-world-narrative-markdown.js, tools/sync-world-narrative-to-jaina.js, and lib/markdown-sections.js in full as the exact structural template (splitIntoH2Sections + extractParagraph from the shared lib, runDryRunSyncCli from lib/run-jaina-dryrun-cli.js) already used for design/world.md's two orphaned narrative H2s. Unlike that precedent's hardcoded NARRATIVE_SECTION_TITLES array (only 2 of world.md's many H2s are narrative territory), every H2 in web.md is narrative territory with nothing else sharing the file, so this unit parses ALL of web.md's H2 sections generically instead of hardcoding 9 thread names — avoiding the exact staleness class T12 named (a 10th thread added later would otherwise need a second unit just to add its title to a hardcoded list). Checked memory and all 6 currently window-open proposals (design-readiness-section4-live-derived-check, playtest-character-signatures-wave-3-refresh, game-name-card-set-docs, alt-art-briefs-character-signatures-wave-2, character-markdown-section-splitter-dedup, jaina-lore-narrative-sync-dryrun) plus the 2 in-flight units (art-briefs-character-signatures-wave-3, rules-restriction-movement-contradiction-fix, the latter escalated and awaiting a human decision): none touches design/characters/web.md, lib/parse-character-markdown.js's EXCLUDED_FILES set, or any character-web sync tool. One flag: jaina-lore-narrative-sync-dryrun also appends a bullet to DESIGN-READINESS.md Section 5's tooling list and extends Section 6 Gap 3's closing sentence — this unit makes the identical disjoint-content append (a different tool name, a different file's coverage clause) to the same two spots, mirroring how Section 5 already accumulated 7 prior bullets from 7 separate units one at a time with no collision.",
+  "expected_outcome": "A new lib/parse-character-web-markdown.js exports loadCharacterWebSections(), returning one record per H2 section in design/characters/web.md ({ title, slug, body, characters }, characters an array of the bolded names under that section's '**Characters:**' bullets, empty for Overview) via the shared lib/markdown-sections.js splitIntoH2Sections. A new tools/sync-character-web-threads-to-jaina.js prints all 10 records' dry-run payloads via lib/run-jaina-dryrun-cli.js's runDryRunSyncCli and exits 1 with a not-yet-implemented message on --live. design/DESIGN-READINESS.md Section 5 gains one new tooling bullet and Section 6 Gap 3's closing sentence names web.md's thread narratives as now covered. New test/parse-character-web-markdown.test.js and test/sync-character-web-threads-to-jaina.test.js pass; all existing character/web-related tests continue to pass unmodified.",
+  "risk_class": "standard",
+  "mission_intent": "I6",
+  "taste_citations": [
+    "T9",
+    "T12",
+    "T16"
+  ],
+  "intent": "design/ideas-inbox.md's 'use Jaina as the content backbone' directive (2026-07-28) asked structured game content to become schema-backed Jaina records; cards, characters, races, star-atlas worlds, lore eras, Fount cosmology, and world.md's free-form narrative prose all now have their own dry-run sync tool. design/characters/web.md is the one character file every existing tool explicitly excludes (lib/parse-character-markdown.js's EXCLUDED_FILES = new Set(['web.md'])) because its '## Name — Title' character-record parser can't make sense of web.md's '## Overview' / '## <Thread Name>' heading shape — so its Overview paragraph and all 9 thread narratives (with their own participant rosters) have never reached Jaina in any form, even though each character's own 'threads' field already references these thread names as bare strings. Add lib/parse-character-web-markdown.js exporting parseCharacterWebMarkdown(markdown) and loadCharacterWebSections(), following lib/parse-world-narrative-markdown.js's shape: use lib/markdown-sections.js's splitIntoH2Sections (imported by reference, not reimplemented) to get every H2 section in design/characters/web.md, in document order. For each section, split its lines at the '**Characters:**' marker line: everything before it becomes the record's body via lib/markdown-sections.js's extractParagraph; everything after it (bulleted lines matching '- **<Name>** ...') becomes the record's characters array of bare names, in bullet order, with an empty array for sections with no such marker (i.e. Overview). Use lib/parse-card-markdown.js's slugify for each record's slug, imported by reference. Return one record per H2 section — do not hardcode the 9 thread titles; parse whatever H2 sections exist so a future 10th thread needs no follow-up unit. Add tools/sync-character-web-threads-to-jaina.js mirroring tools/sync-world-narrative-to-jaina.js's structure precisely: import loadCharacterWebSections, define buildRecord(section) returning { title, slug, body, characters }, define a NOT_IMPLEMENTED_MESSAGE naming 'Character Web Threads', and call lib/run-jaina-dryrun-cli.js's runDryRunSyncCli({ loadItems, buildRecord, notImplementedMessage, argv: process.argv }). Add one new bullet to design/DESIGN-READINESS.md Section 5's tooling list, matching the existing bullet format/placement (immediately after the tools/sync-world-narrative-to-jaina.js bullet), and extend Section 6 Gap 3's closing sentence to also name design/characters/web.md's thread narratives as now covered, citing the new tool by filename. Touch no other line of DESIGN-READINESS.md. Do not touch design/characters/web.md itself, lib/parse-character-markdown.js (including its EXCLUDED_FILES set — web.md stays excluded from the character-record parser; this is a separate, additional parser, not a change to that one), lib/markdown-sections.js, lib/parse-world-narrative-markdown.js, lib/run-jaina-dryrun-cli.js, lib/parse-card-markdown.js, or any existing tools/sync-*-to-jaina.js file or its test. Add two new, independent test files: test/parse-character-web-markdown.test.js (mirroring test/parse-world-narrative-markdown.test.js's shape: record count/order/shape, body text matching an independently-derived expectation, characters array matching the bolded bullet names, slug-matches-slugify) and test/sync-character-web-threads-to-jaina.test.js (mirroring test/sync-world-narrative-to-jaina.test.js's shape: dry-run JSON-per-line output, exact-4-fields-per-record, no-flag exits 1 with a 'not yet implemented'/'Character Web Threads'/'--dry-run' message, no network/subprocess/jaina-client usage, no JAINA_API_KEY needed, deterministic repeat output).",
+  "criteria": [
+    {
+      "text": "lib/parse-character-web-markdown.js exports loadCharacterWebSections(), returning exactly one record per H2 section in design/characters/web.md (10 records: 'Overview' plus the 9 named threads), each shaped { title, slug, body, characters }",
+      "provenance": "inferred",
+      "held_out": false
+    },
+    {
+      "text": "Each record's characters array holds exactly the bolded names from that section's '**Characters:**' bullet list in order, and is an empty array for 'Overview' (which has no such marker)",
+      "provenance": "paraphrase",
+      "held_out": false
+    },
+    {
+      "text": "splitIntoH2Sections, extractParagraph, and slugify are imported by reference from lib/markdown-sections.js and lib/parse-card-markdown.js respectively, not reimplemented in the new file",
+      "provenance": "paraphrase",
+      "held_out": true
+    },
+    {
+      "text": "tools/sync-character-web-threads-to-jaina.js calls lib/run-jaina-dryrun-cli.js's runDryRunSyncCli, prints all 10 records as dry-run JSON by default, and exits 1 with a not-yet-implemented message naming 'Character Web Threads' when run without --dry-run",
+      "provenance": "paraphrase",
+      "held_out": false
+    },
+    {
+      "text": "design/DESIGN-READINESS.md Section 5 gains exactly one new tooling bullet and Section 6 Gap 3's text is extended to name web.md's thread narratives as covered; no other section changes; lib/parse-character-markdown.js's EXCLUDED_FILES set and all pre-existing character/world-narrative tests remain unmodified and passing",
+      "provenance": "inferred",
+      "held_out": true
+    }
+  ],
+  "touches": [
+    "lib/parse-character-web-markdown.js",
+    "tools/sync-character-web-threads-to-jaina.js",
+    "test/parse-character-web-markdown.test.js",
+    "test/sync-character-web-threads-to-jaina.test.js",
+    "design/DESIGN-READINESS.md"
+  ],
+  "test_cmd": "node --test",
+  "id": "ms87ycx3-cardgame-jaina-character-web-threads-sync-dryrun",
+  "filed_at": "2026-07-31T00:43:25.287Z",
+  "window_expires": "2026-07-31T04:43:25.290Z",
+  "status": "promoted",
+  "promoted_at": "2026-07-31T04:54:34.496Z"
+}

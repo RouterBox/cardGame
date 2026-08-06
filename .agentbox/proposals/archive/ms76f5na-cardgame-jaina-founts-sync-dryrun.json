@@ -1,0 +1,53 @@
+{
+  "name": "cardgame-jaina-founts-sync-dryrun",
+  "title": "cardGame tool — dry-run sync of the Five Founts cosmology records into Jaina (content backbone, slice 6)",
+  "project": "cardgame",
+  "pitch": "A dry-run script that parses design/world.md's Cosmology: The Five Founts section into structured records and prints the exact Jaina payloads a future live sync would write, extending the content backbone from cards/characters/races/star-atlas/lore to the game's core cosmology.",
+  "why_now": "DESIGN-READINESS.md Open Gap 4 names characters, races, world/lore, and the star atlas as the remaining markdown-only content with no Jaina schema or sync path. Characters, races, the star atlas, and lore eras are already covered by open sibling proposals (cardgame-jaina-character-sync-dryrun, cardgame-jaina-race-sync-dryrun, cardgame-jaina-star-atlas-sync-dryrun, cardgame-jaina-lore-sync-dryrun); design/world.md's 'Cosmology: The Five Founts' section is the one remaining structured slice nothing yet targets — its 5 '###' Fount headings (The Mass, The Bloom, The Signal, The Circuit, The Tangle), each exactly one name plus one prose paragraph, are as parseable today as lore.md's eras. world.md's other two sections ('The Setting', 'A History in Brief') are free-form narrative prose with no per-item structure and are explicitly left out of scope here, matching how the star-atlas and lore proposals each deferred non-parseable prose sections to their own future slices.",
+  "expected_outcome": "Running `node tools/sync-founts-to-jaina.js --dry-run` exits 0 and prints exactly 5 JSON record payloads, one per '###' Fount heading in design/world.md's Cosmology section, in file order (The Mass, The Bloom, The Signal, The Circuit, The Tangle), each with name/slug/domain/description fields — reviewable as the proposed Jaina 'fount' schema shape before any live write is built.",
+  "risk_class": "standard",
+  "mission_intent": "I6",
+  "taste_citations": [
+    "T16",
+    "T1"
+  ],
+  "intent": "design/DESIGN-READINESS.md's Open Gap 4 names the hole directly: tools/sync-cards-to-jaina.js only syncs card records, and while characters, races, the star atlas, and lore eras are already in flight as open sibling proposals, design/world.md's 'Cosmology: The Five Founts' section — the five currents (Mass, Bloom, Signal, Circuit, Tangle) every race, generator, and card Cost line in the game is built on — remains markdown-only prose with no Jaina schema or sync path. This is the next narrow slice under the same 2026-07-28 ideas-inbox 'use Jaina as the content backbone' directive that produced cardgame-jaina-card-sync-dryrun (T1 discipline: no live write, Founts only — not world.md's 'The Setting' or 'A History in Brief' sections, which are free-form narrative prose with no per-item structure and are explicitly out of scope, matching how the star-atlas and lore proposals each deferred non-parseable prose). Add lib/parse-founts-markdown.js, a shared parser mirroring lib/parse-card-markdown.js's conventions (reusing its exported slugify), that reads design/world.md, locates the '## Cosmology: The Five Founts' section, and extracts one record per '###' subheading inside it: name (the heading text after the em-dash, e.g. '### The Mass — materials' -> 'The Mass'), slug (slugify(name)), domain (the heading text after the em-dash, e.g. 'materials'), and description (that section's full prose paragraph, verbatim). tools/sync-founts-to-jaina.js prints one JSON payload per record in --dry-run mode and, mirroring its sibling dry-run-only proposals, makes no live Jaina API calls in this unit — printing a 'not yet implemented' message and exiting 1 without --dry-run, so no credentials or network access are required by node --test. This is content-authoring tooling under the T16 partial software-gate opening, not game implementation.",
+  "criteria": [
+    {
+      "text": "node tools/sync-founts-to-jaina.js --dry-run exits 0 and prints exactly 5 JSON objects, one per '###' heading inside design/world.md's 'Cosmology: The Five Founts' section, in file order: The Mass, The Bloom, The Signal, The Circuit, The Tangle",
+      "provenance": "paraphrase",
+      "held_out": false
+    },
+    {
+      "text": "Each printed record has name, slug, domain, and description fields; slug is computed with the identical slugify(name) function already exported by lib/parse-card-markdown.js, so the same Fount name produces the same slug anywhere else in the repo",
+      "provenance": "paraphrase",
+      "held_out": false
+    },
+    {
+      "text": "Each record's domain field matches the word(s) after the em-dash in that Fount's own heading (The Mass -> 'materials', The Bloom -> 'biology', The Signal -> 'intelligence', The Circuit -> 'technology', The Tangle -> 'magic'), and description is non-empty and does not contain the literal heading text of any other Fount (no bleed-through from an adjacent section)",
+      "provenance": "inferred",
+      "held_out": true
+    },
+    {
+      "text": "Without --dry-run, the script makes no Jaina API calls, no network access, and no credentials are required by node --test — it prints a message that live sync is not yet implemented for Founts and exits 1",
+      "provenance": "inferred",
+      "held_out": false
+    },
+    {
+      "text": "Running the dry-run twice in a row against unchanged markdown produces byte-identical stdout output (deterministic: no timestamps, no randomness, stable record ordering matching the section's own heading order)",
+      "provenance": "inferred",
+      "held_out": false
+    }
+  ],
+  "touches": [
+    "lib/parse-founts-markdown.js",
+    "tools/sync-founts-to-jaina.js",
+    "test/sync-founts-to-jaina.test.js"
+  ],
+  "test_cmd": "node --test",
+  "id": "ms76f5na-cardgame-jaina-founts-sync-dryrun",
+  "filed_at": "2026-07-30T07:12:43.606Z",
+  "window_expires": "2026-07-30T11:12:43.609Z",
+  "status": "promoted",
+  "promoted_at": "2026-07-30T11:24:26.971Z"
+}

@@ -1,0 +1,54 @@
+{
+  "name": "cardgame-jaina-sync-tools-dedup",
+  "title": "Extract the duplicated dry-run/not-implemented CLI boilerplate shared by cardGame's Jaina sync tools into one lib helper",
+  "project": "cardgame",
+  "pitch": "tools/sync-characters-to-jaina.js and tools/sync-races-to-jaina.js share near-byte-identical dry-run/not-implemented main() boilerplate (only the loader call and buildRecord mapping differ); extract it into one lib helper both call, before three more sync tools of the exact same shape (star-atlas, lore, founts — one promoted, two window-open) copy-paste it a third, fourth, and fifth time.",
+  "why_now": "Verified live: tools/sync-characters-to-jaina.js and tools/sync-races-to-jaina.js are functionally identical apart from their loader import, buildRecord() field mapping, and the tool-specific words in NOT_IMPLEMENTED_MESSAGE — the --dry-run flag check, the 'not yet implemented, exit 1' branch, and the per-record console.log(JSON.stringify(...)) loop are copy-pasted verbatim in both. The Jaina-backbone family is actively growing: cardgame-jaina-star-atlas-sync-dryrun is already promoted and cardgame-jaina-lore-sync-dryrun / cardgame-jaina-founts-sync-dryrun sit window-open, and each one's own proposal text commits to the identical 'not yet implemented, exit 1 without --dry-run' shape. Consolidating now, on the 2 tools that already exist, gives the next 3 tools a helper to call instead of a fourth and fifth copy-paste, and matches this repo's own precedent for exactly this kind of unit (cardgame-tools-loader-dedup, cardgame-tools-shared-parser-dedup, cardgame-tools-fs-lock-dedup all shipped previously as pure dedup units). This is disjoint from every open proposal in the queue: none of the 4 window-open proposals touch tools/sync-characters-to-jaina.js, tools/sync-races-to-jaina.js, or any new lib file — checked memory and the full open-proposal list first per T24.",
+  "expected_outcome": "node tools/sync-characters-to-jaina.js --dry-run and node tools/sync-races-to-jaina.js --dry-run each print byte-identical stdout to today's output, both tools' existing test suites (test/sync-characters-to-jaina.test.js, test/sync-races-to-jaina.test.js) pass unmodified, and each tool's own file shrinks to its loader import, its buildRecord()/message constants, and a single call into a new shared lib/run-jaina-dryrun-cli.js helper — reviewable as a smaller diff than either tool's current main().",
+  "risk_class": "standard",
+  "mission_intent": "I6",
+  "taste_citations": [
+    "T16",
+    "T24"
+  ],
+  "intent": "tools/sync-characters-to-jaina.js and tools/sync-races-to-jaina.js each hand-roll the identical control flow: check process.argv for --dry-run; if absent, console.error a 'not yet implemented' message naming --dry-run and exit 1; if present, load records and console.log(JSON.stringify(buildRecord(item))) once per record. Nothing about this flow is tool-specific except the loader function, the buildRecord() field mapping, and the wording of the not-implemented message. Add lib/run-jaina-dryrun-cli.js exporting a single function, runDryRunSyncCli({ loadItems, buildRecord, notImplementedMessage, argv }), that performs exactly this shared flow and returns/sets the appropriate exit code; have both tools/sync-characters-to-jaina.js and tools/sync-races-to-jaina.js import it and call it from main(), keeping their own buildRecord() and loader imports (lib/parse-character-markdown.js, lib/parse-race-markdown.js) untouched so record shape and field mapping cannot drift. Do not touch tools/sync-cards-to-jaina.js — it already has a real credential-gated live-sync path (resolveLiveClient/runLiveSync) that is a materially different shape, not a copy of this stub pattern, and its live-sync decision (ms4l0xre) is still pending per T19/T20 — leave it alone. Do not create tools/sync-star-atlas-to-jaina.js, tools/sync-lore-eras-to-jaina.js, or tools/sync-founts-to-jaina.js in this unit; those are separately promoted/queued and may adopt the new helper on their own schedule.",
+  "criteria": [
+    {
+      "text": "lib/run-jaina-dryrun-cli.js exports a single function that both tools/sync-characters-to-jaina.js and tools/sync-races-to-jaina.js call from their main(), replacing each tool's own duplicated --dry-run check, not-implemented/exit-1 branch, and per-record JSON.stringify console.log loop",
+      "provenance": "inferred",
+      "held_out": false
+    },
+    {
+      "text": "node tools/sync-characters-to-jaina.js --dry-run still prints exactly 20 JSON records (name/slug/race/title/bio/threads) in the same file order as before the refactor, and node tools/sync-races-to-jaina.js --dry-run still prints the same race records as before, both byte-identical to pre-refactor output",
+      "provenance": "paraphrase",
+      "held_out": false
+    },
+    {
+      "text": "test/sync-characters-to-jaina.test.js and test/sync-races-to-jaina.test.js pass unmodified against the refactored tools, including each suite's AC4 check that the tool's own source file contains no jaina-client/network/subprocess references",
+      "provenance": "paraphrase",
+      "held_out": false
+    },
+    {
+      "text": "Without --dry-run, each tool still exits 1 and prints its own tool-specific not-implemented message (mentioning 'characters' or 'races' by name, not a generic shared string that loses the per-tool wording), and still requires no JAINA_API_KEY/JAINA_PROJECT_ID in the environment",
+      "provenance": "inferred",
+      "held_out": true
+    },
+    {
+      "text": "lib/run-jaina-dryrun-cli.js has its own direct unit test exercising both branches (dry-run mode prints one JSON line per input record in order; non-dry-run mode prints the passed-in message and yields exit code 1) independent of either sync tool",
+      "provenance": "inferred",
+      "held_out": false
+    }
+  ],
+  "touches": [
+    "lib/run-jaina-dryrun-cli.js",
+    "tools/sync-characters-to-jaina.js",
+    "tools/sync-races-to-jaina.js",
+    "test/run-jaina-dryrun-cli.test.js"
+  ],
+  "test_cmd": "node --test",
+  "id": "ms7egc6a-cardgame-jaina-sync-tools-dedup",
+  "filed_at": "2026-07-30T10:57:35.650Z",
+  "window_expires": "2026-07-30T14:57:35.651Z",
+  "status": "promoted",
+  "promoted_at": "2026-07-30T15:09:27.167Z"
+}

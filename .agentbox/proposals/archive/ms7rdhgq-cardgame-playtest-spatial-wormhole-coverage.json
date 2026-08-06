@@ -1,0 +1,54 @@
+{
+  "name": "cardgame-playtest-spatial-wormhole-coverage",
+  "title": "Extend playtest-spatial.md with a new step narrating the 8 Wormhole Restriction/Closure cards Steps 8-9 still leave unplayed",
+  "project": "cardgame",
+  "pitch": "design/playtest-spatial.md's Step 8 and Step 9 each name exactly one card from their 5-card set (Bastion Lockdown Line, Chokepoint Demolition Charge) after the restriction-refresh and closure-refresh units shipped 2026-07-29 — the other 8 cards across wormhole-restrictions-set.md and wormhole-closure-cards.md have never appeared in any playtest procedure.",
+  "why_now": "Verified live: design/playtest-spatial.md Step 8 narrates only Bastion Lockdown Line (Cindral Reach) and Step 9 only Chokepoint Demolition Charge (Wrought Assembly); the other 4 Wormhole Restrictions cards (Conveyance Directive, Rootbound Corridor, Vector Interdiction, Pilgrim's Right of Way) and 4 Wormhole Closure cards (Bastion Seal Detachment, Withering Conduit Rot, Severance Directive, Rite of the Sealed Tangle) are absent from playtest-spatial.md entirely (grepped both card files against the playtest doc). This is the same coverage-gap pattern memory/cardgame-playtest-spatial-restriction-refresh.md and memory/cardgame-playtest-spatial-closure-refresh.md already closed for one card each per set, and the same pattern cardgame-playtest-character-signatures-wave-2-refresh (in-flight) is closing for character-signatures-wave-2.md against playtest-full-game.md. Checked memory/ and all 4 window-open proposals (character-signatures-wave-3, alt-art-briefs-character-signatures, character-markdown-slugify-dedup, jaina-sync-tools-dryrun-cli-dedup) plus all 4 in-flight units (design-readiness-gap3-jaina-sync-fix, lib-markdown-section-parser-dedup, playtest-character-signatures-wave-2-refresh, playtest-second-deck-pairing) per T24: none touches design/playtest-spatial.md, and this unit deliberately avoids design/cards/alt-art-briefs.md and test/design-alt-art-briefs.test.js — the two files the pending alt-art-briefs-character-signatures proposal already claims — sidestepping the T17-style same-file conflict a second alt-art proposal would create right now.",
+  "expected_outcome": "design/playtest-spatial.md gains one new numbered step (after the existing Step 9, before the current Assault step, renumbering as needed) narrating all 8 remaining cards, each tied to a distinct physical action on the table (a Restriction note or a Closure cross-out) exactly as Steps 8, 9, and 11 already do for their own cards; site/design/playtest-spatial.html is regenerated to match; a new test file mechanically confirms all 8 card names and Cost lines appear.",
+  "risk_class": "standard",
+  "mission_intent": "I6",
+  "taste_citations": [
+    "T8",
+    "T9",
+    "T24"
+  ],
+  "intent": "design/playtest-spatial.md is the on-paper Spatial Battlefield Playtest Procedure that cites exact rules.md sections for every physical action so playtesters can cross-check the table against rule text. Its Step 8 ('Add a Restriction to a Wormhole') narrates only Bastion Lockdown Line (2 Mass, Cindral Reach) from design/cards/wormhole-restrictions-set.md's 5 cards, and Step 9 ('Close a Wormhole') narrates only Chokepoint Demolition Charge (2 Circuit, Wrought Assembly) from design/cards/wormhole-closure-cards.md's 5 cards — both refreshed from a card-less placeholder to a named card by the already-merged cardgame-playtest-spatial-restriction-refresh and cardgame-playtest-spatial-closure-refresh units. The other 8 cards across those two files — Conveyance Directive (2 Circuit, Wrought Assembly), Rootbound Corridor (2 Bloom, Mireth Bloom), Vector Interdiction (1 Signal, Panoptic Concord), and Pilgrim's Right of Way (2 Tangle, Starweave Communion) from wormhole-restrictions-set.md; Bastion Seal Detachment (2 Mass, Cindral Reach), Withering Conduit Rot (2 Bloom, Mireth Bloom), Severance Directive (1 Signal, Panoptic Concord), and Rite of the Sealed Tangle (2 Tangle, Starweave Communion) from wormhole-closure-cards.md — have never been named in any playtest procedure. Add a new numbered step to design/playtest-spatial.md's Procedure, positioned after the existing Step 9 and before the existing Assault step, following Step 11's own established pattern for narrating multiple cards against the graph already on the table: for each of the 4 remaining Restriction cards, write the same 'one-way' or Team-claim note Step 8 already teaches, naming that specific card and its Cost line; for each of the 4 remaining Closure cards, cross out a different line the same way Step 9 already teaches, naming that specific card and its Cost line. Do not alter the existing text of Steps 1-9, Step 11, the Materials list, or the 'What to watch for' section — this unit is purely additive. Add one new, independent test file verifying the new step names all 8 cards by exact name and Cost line as printed in their source files. Regenerate site/design/playtest-spatial.html via tools/build-site.js.",
+  "criteria": [
+    {
+      "text": "design/playtest-spatial.md's new step names all 4 remaining Wormhole Restrictions Set cards by exact name and Cost line: Conveyance Directive (2 Circuit), Rootbound Corridor (2 Bloom), Vector Interdiction (1 Signal), Pilgrim's Right of Way (2 Tangle)",
+      "provenance": "inferred",
+      "held_out": false
+    },
+    {
+      "text": "design/playtest-spatial.md's new step names all 4 remaining Wormhole Closure Cards cards by exact name and Cost line: Bastion Seal Detachment (2 Mass), Withering Conduit Rot (2 Bloom), Severance Directive (1 Signal), Rite of the Sealed Tangle (2 Tangle)",
+      "provenance": "inferred",
+      "held_out": false
+    },
+    {
+      "text": "For each of the 8 newly narrated cards, the new step ties its narration to a distinct physical action matching that card's Rules text (a Restriction note for the 4 restriction cards, a crossed-out line for the 4 closure cards), not a generic restatement of Step 8 or Step 9's own action",
+      "provenance": "paraphrase",
+      "held_out": true
+    },
+    {
+      "text": "Steps 1 through 9 and Step 11 of design/playtest-spatial.md, the Materials list, and the 'What to watch for' section are present byte-for-byte unchanged from before this unit",
+      "provenance": "inferred",
+      "held_out": false
+    },
+    {
+      "text": "site/design/playtest-spatial.html is regenerated via tools/build-site.js from the updated markdown and contains all 8 newly narrated card names; the new test file mechanically asserts all 8 card names and Cost lines appear in design/playtest-spatial.md",
+      "provenance": "paraphrase",
+      "held_out": false
+    }
+  ],
+  "touches": [
+    "design/playtest-spatial.md",
+    "site/design/playtest-spatial.html",
+    "test/design-playtest-spatial-wormhole-coverage.test.js"
+  ],
+  "test_cmd": "node --test",
+  "id": "ms7rdhgq-cardgame-playtest-spatial-wormhole-coverage",
+  "filed_at": "2026-07-30T16:59:17.546Z",
+  "window_expires": "2026-07-30T20:59:17.549Z",
+  "status": "promoted",
+  "promoted_at": "2026-07-30T21:09:29.700Z"
+}

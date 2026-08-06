@@ -1,0 +1,52 @@
+{
+  "name": "cardgame-rules-game-start-procedure",
+  "title": "Formalize the game-start procedure — shuffling, first-player determination, opening hand, mulligan — a section rules.md has never actually written, despite already depending on it",
+  "project": "cardgame",
+  "pitch": "Add a new Section 15 (Starting the Game) to rules.md defining shuffling, first-turn determination, a specific opening hand size, and a mulligan procedure, closing the one MTG-Comprehensive-Rules-tier gap the document has left informal since Section 5 was written.",
+  "why_now": "Section 11.1's own opening line ('Each challenger's Archive MUST contain at least 40 cards at the start of a game, before shuffling and before that challenger's opening hand is drawn from it') and Section 5.1 ('the challenger who takes the very first turn of the game does not draw during their first Dawn Phase') both reference 'shuffling', 'the opening hand', and 'the first turn' as if a game-start procedure already exists somewhere in the document — it doesn't. No section anywhere states how many cards an opening hand holds, how a mulligan works, or how the game decides who takes the first turn at all. Sections 1-14 all reached the MTG Comprehensive Rules structural bar T9 sets (numbered, cross-referenced, edge cases resolved on paper) for turn structure, spatial rules, card types, win conditions, deck construction, combat, targeting, and keywords — but the very first moment of a game, the one every other section implicitly assumes already happened, was never itself written. Checked all 7 currently window-open proposals (art-briefs-wormhole-restrictions, main-phase-discovery-crossref, playtest-fount-economy-refresh, playtest-spatial-restriction-refresh, alt-art-briefs-signal-tangle, art-brief-test-helper-dedup, art-briefs-wormhole-closure) and the full units/ directory (including in-flight cardgame-spatial-rules-notes-reconciliation on Section 8, and queued cardgame-conflict-phase-movement-rules on Section 5.4, cardgame-graph-driven-generation on Section 5.2) — none touch game start, shuffling, mulligans, or first-player determination. This is also a deliberate portfolio counterweight: this cycle's open proposals are dominated by catch-up art-briefs and stale-doc refreshes; this unit adds genuinely new rules content instead.",
+  "expected_outcome": "design/rules.md gains a new '## 15. Starting the Game' section after Section 14, stating: each challenger shuffles their Archive (cross-referencing Section 3 and Section 11.1's 40-card minimum) before the game begins; a specific numbered procedure for determining which challenger takes the first turn; a specific numeric opening hand size; and a mulligan procedure with an explicit cap on how many times a challenger may take it, plus a Worked Example subsection in the same style as Sections 8.7/10.3/11.3. Sections 1-14 remain byte-identical. test/design-rules-game-start.test.js is green; node --test is green.",
+  "risk_class": "standard",
+  "mission_intent": "I6",
+  "taste_citations": [
+    "T9",
+    "T8"
+  ],
+  "intent": "design/rules.md (shipped) already reached the MTG Comprehensive Rules structural bar T9 names — numbered sections, defined vocabulary, cross-referenced edge cases — across Sections 1 through 14, but two of those sections already presuppose a game-start procedure that was never itself written: Section 11.1 says a challenger's Archive must hold 40+ cards 'before shuffling and before that challenger's opening hand is drawn from it,' and Section 5.1 carves out an exception for 'the challenger who takes the very first turn of the game,' both treating shuffling, opening hands, and first-turn determination as already-defined concepts when no section defines any of them. This unit adds a new '## 15. Starting the Game' section — appended after Section 14 rather than inserted earlier, matching the precedent set by Sections 11-14 themselves each being appended in turn without renumbering anything before them — that states, in numbered rules prose: (1) each challenger shuffles their Archive (Section 3, Section 11.1) before the game begins; (2) a specific procedure for determining who takes the first turn; (3) a specific numeric opening hand size drawn before the first Dawn Phase; (4) a mulligan procedure letting a dissatisfied challenger shuffle their hand back and redraw the same size, capped at a stated number of times, written to stay consistent with Section 5.1's existing first-turn-doesn't-draw exception rather than contradict it. It closes with a Worked Example subsection, in the same cited, section-numbered style as Sections 8.7, 10.3, and 11.3, walking two challengers through shuffling, first-player determination, opening hands, and one challenger taking a mulligan. Only design/rules.md (adding Section 15; Sections 1-14 untouched) and a new test/design-rules-game-start.test.js change — no card file, no other design doc, and no in-flight or open proposal's claimed section is touched.",
+  "criteria": [
+    {
+      "text": "design/rules.md gains a new top-level section '## 15. Starting the Game' appearing immediately after Section 14 (Keyword Abilities) ends; every existing Section 1-14 heading and its numbering is byte-identical to before this unit.",
+      "provenance": "paraphrase",
+      "held_out": false
+    },
+    {
+      "text": "The new section states, in rules prose, that each challenger shuffles their Archive before the game begins, cross-referencing Section 3 (Zones) and Section 11.1's 40-card minimum, and states a specific, unambiguous numbered procedure for determining which challenger takes the first turn of the game.",
+      "provenance": "paraphrase",
+      "held_out": false
+    },
+    {
+      "text": "The new section states a specific numeric opening hand size and a mulligan procedure (shuffle the hand back into the Archive, redraw the same size) with an explicit stated cap on how many times a single challenger may take it, and that procedure is written to remain consistent with Section 5.1's existing 'first-turn challenger does not draw during their first Dawn Phase' exception rather than contradict it.",
+      "provenance": "paraphrase",
+      "held_out": false
+    },
+    {
+      "text": "A Worked Example subsection, in the same cited, numbered style as the file's existing Worked Examples (e.g. Sections 8.7, 10.3, 11.3), walks through game start for two challengers — shuffling, first-player determination, opening hands dealt, one challenger taking a mulligan — citing exact section numbers throughout.",
+      "provenance": "paraphrase",
+      "held_out": false
+    },
+    {
+      "text": "test/design-rules-game-start.test.js exists and enforces all of the above against the real, current design/rules.md content; every pre-existing test file's assertions still pass unchanged.",
+      "provenance": "inferred",
+      "held_out": true
+    }
+  ],
+  "touches": [
+    "design/rules.md",
+    "test/design-rules-game-start.test.js"
+  ],
+  "test_cmd": "node --test",
+  "id": "ms5s5iwu-cardgame-rules-game-start-procedure",
+  "filed_at": "2026-07-29T07:45:33.438Z",
+  "window_expires": "2026-07-29T08:45:33.442Z",
+  "status": "promoted",
+  "promoted_at": "2026-07-29T08:54:18.339Z"
+}

@@ -1,0 +1,47 @@
+{
+  "name": "cardgame-art-live-leonardo-client",
+  "title": "Real Leonardo art client for the card compositing tool",
+  "project": "cardgame",
+  "pitch": "Give tools/composite-card-art.js a real, opt-in Leonardo-backed art-generation client behind the injectable generateArt() seam the mock dry-run just built, so the 18 approved Alpha-set art briefs can produce actual illustrated card art instead of mock color swatches.",
+  "why_now": "cardgame-art-compositing-dryrun is merging with a deterministic mock client and explicitly scoped a real client out as later work; the injectable seam it built (generateArt({cardName, brief}) -> {href}) is the exact contract this unit fills in, and RouterBox's Leonardo API key is already configured for this project and unused here.",
+  "expected_outcome": "Running `node tools/composite-card-art.js --live` with LEONARDO_API_KEY set drives a real LeonardoArtClient (its HTTP call intercepted by an injectable mock transport in tests, so no real spend happens in CI) and produces 18 composited SVGs whose <image href> differs per card and is built from that card's own art-briefs.md text; running with no flag is byte-identical to today's mock output and needs no API key.",
+  "risk_class": "security",
+  "mission_intent": "I6",
+  "taste_citations": [
+    "T9",
+    "T16"
+  ],
+  "intent": "Extend the Alpha set's card-art compositing tool with a real, opt-in Leonardo-backed art-generation client behind the same injectable generateArt seam the dry-run unit built, so the 18 approved art briefs in design/cards/art-briefs.md can produce actual illustrated card art instead of mock color swatches, while the default (no-flag) path keeps making zero network calls and needing no API key.",
+  "criteria": [
+    {
+      "text": "Passing --live to tools/composite-card-art.js constructs a LeonardoArtClient that sends one image-generation request per brief using LEONARDO_API_KEY; tests inject a mock HTTP transport (no real network call, no real spend) and assert the request is well-formed.",
+      "provenance": "inferred",
+      "held_out": false
+    },
+    {
+      "text": "With no --live flag, behavior is unchanged from the merged dry-run: the deterministic mock client runs, no LEONARDO_API_KEY is read, and output is byte-identical to the existing renders/cards-composited/ baseline.",
+      "provenance": "paraphrase",
+      "held_out": false
+    },
+    {
+      "text": "If --live is passed but LEONARDO_API_KEY is unset, the script exits non-zero with an error naming the missing env var instead of attempting a malformed request.",
+      "provenance": "inferred",
+      "held_out": false
+    },
+    {
+      "text": "The live client's prompt for each card is built from that specific card's art-briefs.md section (palette, subject/scene, key visual elements) rather than a generic template, so each of the 18 cards yields a distinct prompt.",
+      "provenance": "inferred",
+      "held_out": true
+    }
+  ],
+  "touches": [
+    "tools/composite-card-art.js",
+    "test/composite-card-art-live.test.js"
+  ],
+  "test_cmd": "node --test",
+  "id": "ms4n1pvi-cardgame-art-live-leonardo-client",
+  "filed_at": "2026-07-28T12:34:51.582Z",
+  "window_expires": "1970-01-01T00:00:00.000Z",
+  "status": "promoted",
+  "promoted_at": "2026-07-28T16:16:15.712Z"
+}

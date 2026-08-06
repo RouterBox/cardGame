@@ -1,0 +1,17 @@
+name: cardgame-art-briefs-fount-economy
+title: Art briefs for the Fount Economy Set — the one card file composite-card-art.js can never render
+project: cardgame
+risk_class: standard
+mode: autopilot
+test_cmd: node --test
+
+## Intent
+
+design/cards/art-briefs.md (shipped) states its own purpose as giving 'one written art brief per card' so illustration work can be approved before it starts (T8) — but today it only covers design/cards/alpha-set.md's 18 cards, and tools/composite-card-art.js's loadBriefs() drives its whole compositing loop off exactly that file's '###' sections, meaning any card absent from art-briefs.md is permanently un-renderable regardless of how many times the tool is run. design/cards/fount-economy-set.md (shipped) added 6 named cards — Cradle-Root Colony (Mireth Bloom, Bloom Fount), Sporeling Latch (Mireth Bloom, Bloom Fount), Panoptic Relay Spire (Panoptic Concord, Signal+Circuit dual), Communion Waystone (Starweave Communion, Tangle+Mass dual), Whispered Rite (Starweave Communion, Tangle Fount), Stamped Chassis Unit (Wrought Assembly, Circuit Fount) — with no corresponding briefs ever added. This unit adds one new '###' brief section per fount-economy-set.md card to art-briefs.md, following the identical Palette/Subject-Scene/Key-visual-elements/Composition template the file already uses for alpha-set.md, with each Palette line naming the card-anatomy.md Fount-identity color(s) matching every Fount in that card's own Cost line (Cyan for Signal, Copper for Circuit, Violet for Tangle, Ash-grey for Mass, Green for Bloom), and each Key-visual-elements bullet list drawing concretely on that card's own Type line/Rules text rather than generic filler. It adds a new, independent test/design-art-briefs-fount-economy.test.js mirroring the assertion shape of the existing test/design-art-briefs.test.js (which this unit does not modify, avoiding any overlap with the in-flight frontier/signatures unit's edits to that shared file). No card file, rules.md, or the compositing/rendering code itself is touched — only art-briefs.md grows and a new test file is added.
+
+## Acceptance Criteria
+
+- AC1 [paraphrase]: design/cards/art-briefs.md gains exactly 6 new '###' sections, titled exactly 'Cradle-Root Colony', 'Sporeling Latch', 'Panoptic Relay Spire', 'Communion Waystone', 'Whispered Rite', and 'Stamped Chassis Unit' verbatim, with none of the pre-existing brief sections (alpha-set.md's 18, plus any already added for frontier-set.md/character-signatures.md) removed, renamed, or altered.
+- AC2 [paraphrase]: Each of the 6 new briefs' Palette line names the Fount-driven color from card-anatomy.md's Fount identity table for every Fount named in that card's own Cost line — e.g. Panoptic Relay Spire (Cost: 1 Signal, 1 Circuit) names both Cyan and Copper; Communion Waystone (Cost: 1 Tangle, 1 Mass) names both Violet and Ash-grey.
+- AC3 [paraphrase]: Each of the 6 new briefs has a 'Key visual elements:' list of at least 2 bullets sharing at least 2 significant words with that card's own Type line or Rules text (not generic filler phrasing), and a 'Composition:' line naming the Art Window's rectangular/landscape shape and an aspect ratio.
+- AC4 [inferred] (held_out): test/design-art-briefs-fount-economy.test.js exists and enforces the above against the real, current fount-economy-set.md and art-briefs.md content; design/cards/alpha-set.md, frontier-set.md, character-signatures.md, and fount-economy-set.md, plus the pre-existing test/design-art-briefs.test.js, remain byte-identical to before this unit.

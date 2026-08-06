@@ -1,0 +1,58 @@
+{
+  "name": "cardgame-playtest-fount-economy-refresh",
+  "title": "Correct playtest-full-game.md's stale 'only Mass and Circuit are sustainable' finding now that fount-economy-set.md closed that exact gap, and add a worked Bloom-economy Combat example",
+  "project": "cardgame",
+  "pitch": "design/playtest-full-game.md's own 'What This Playtest Surfaced' section states, with a table, that Bloom/Signal/Tangle have no Generator and Combat is unreachable with 'the 28 cards currently named' — but design/cards/fount-economy-set.md has since shipped a Generator for all three Founts specifically to close that gap, and the playtest doc was never updated to say so.",
+  "why_now": "design/playtest-full-game.md lines 249-288 ('What This Playtest Surfaced') carry a table and a hard conclusion: 'Bloom | none | ... | N/A — nothing ever produces Bloom', 'Signal | none | ... N/A', 'Tangle | none | ... N/A', and 'Combat ... cannot occur through ordinary play with the 28 cards currently named across the three card files.' design/cards/fount-economy-set.md's own Summary states in plain language that it exists to close exactly this: 'This file contains 6 named cards that close the Fount-economy gap documented in design/playtest-full-game.md's \"What This Playtest Surfaced\" section ... This file adds exactly what that section's own recommendation names — a Generator permanent attuned to the Bloom (the Mireth Bloom), the Signal (the Panoptic Concord), and the Tangle (the Starweave Communion).' Cradle-Root Colony (2 Bloom Generator), Panoptic Relay Spire (Signal Generator), and Communion Waystone (Tangle Generator) are all printed and committed today, but playtest-full-game.md still reads as if they don't exist — a design doc contradicting a card file that explicitly cites it by name. No open proposal (checked all nine: the two art-briefs-in-flight for fount-economy and wormhole-restrictions, character-signatures-wave-2 art briefs, graph-driven-generation, conflict-phase-movement-rules, site-all-cards-index, art-brief-coverage-warning, rules-structure-integrity-check, main-phase-discovery-crossref) touches playtest-full-game.md or test/design-full-game-playtest.test.js. This is finishing already-decided scope (T1): fount-economy-set.md already made the design call and named its own purpose; this unit just makes the playtest doc stop contradicting it.",
+  "expected_outcome": "design/playtest-full-game.md's 'What This Playtest Surfaced' table no longer lists 'none' in the Generator column for Bloom, Signal, or Tangle — each row names Cradle-Root Colony, Panoptic Relay Spire, or Communion Waystone respectively — and the surrounding prose no longer claims Combat is unreachable outright; a new Worked Example subsection, in the same cited, section-numbered style as the file's existing Combat and Capture Worked Examples, walks a Bloom-Fount economy from Cradle-Root Colony's Generation Phase output through to Feral Bloomcaller or Rootbind Thicket being declared as an attacker in the Conflict Phase. `node --test` is green, including test/design-full-game-playtest.test.js.",
+  "risk_class": "standard",
+  "mission_intent": "I6",
+  "taste_citations": [
+    "T9",
+    "T1",
+    "T8"
+  ],
+  "intent": "design/playtest-full-game.md's 'What This Playtest Surfaced' section (lines 249-288) documents a real limitation it found by actually playing the game on paper with the card pool that existed at the time: Bloom, Signal, and Tangle had no Generator card, capping every deck at Mass or Circuit and making Combat, Discovery past Length 1, and Capture unreachable through ordinary play. design/cards/fount-economy-set.md was written specifically to close that gap — its Summary quotes the finding and names the fix — and is already committed to the repo with a Generator for each of the three previously-dead Founts (Cradle-Root Colony for Bloom, Panoptic Relay Spire for Signal, Communion Waystone for Tangle) plus cheap 1-cost follow-up cards. What was never done is going back to playtest-full-game.md and updating the analysis that motivated fount-economy-set.md in the first place: the table still says 'none' and 'N/A' for all three Founts, and the prose still asserts Combat can't happen with 'the 28 cards currently named' even though 44 are now named across the card files. This unit corrects that table and its surrounding conclusion to reflect the current card pool, and proves the fix in the same load-bearing way the rest of the document already proves everything else — a new, section-cited Worked Example (matching the style of the existing Combat and Capture Worked Examples later in the same file) that plays a Bloom-Fount economy from Cradle-Root Colony's first Generation Phase output through to a Bloom Unit (Feral Bloomcaller or Rootbind Thicket, both already printed in alpha-set.md) being declared an attacker in the Conflict Phase. Only design/playtest-full-game.md and its owning test file, test/design-full-game-playtest.test.js, change; the two existing 40-card decklists (Ada's Mass deck, Kestrel's Circuit deck) and every other already-correct step of the numbered Procedure are left untouched — this unit fixes the stale analysis and adds proof, it does not rewrite the whole document or touch rules.md or any card file.",
+  "criteria": [
+    {
+      "text": "design/playtest-full-game.md's 'What This Playtest Surfaced' table no longer states 'none' in the Generator column for the Bloom, Signal, or Tangle rows; each names an actual Generator card (Cradle-Root Colony, Panoptic Relay Spire, Communion Waystone respectively).",
+      "provenance": "paraphrase",
+      "held_out": false
+    },
+    {
+      "text": "The prose in 'What This Playtest Surfaced' no longer claims Combat cannot occur through ordinary play with 'the 28 cards currently named' unqualified by the existence of fount-economy-set.md's 6 additional cards.",
+      "provenance": "paraphrase",
+      "held_out": false
+    },
+    {
+      "text": "A new Worked Example subsection demonstrates a Bloom-Fount economy: Cradle-Root Colony producing Bloom Points across Generation Phases until Feral Bloomcaller or Rootbind Thicket is played and later declared as an attacker in the Conflict Phase, citing exact rules.md section numbers throughout, in the same style as the file's pre-existing Combat and Capture Worked Examples.",
+      "provenance": "paraphrase",
+      "held_out": false
+    },
+    {
+      "text": "Every card named in the new Worked Example exists by exact name in design/cards/alpha-set.md or design/cards/fount-economy-set.md.",
+      "provenance": "inferred",
+      "held_out": false
+    },
+    {
+      "text": "The file's two pre-existing 40-card decklists (Ada's Mass deck, Kestrel's Circuit deck) and every numbered Procedure step outside 'What This Playtest Surfaced' and the Worked Examples area are left unchanged.",
+      "provenance": "inferred",
+      "held_out": true
+    },
+    {
+      "text": "`node --test` passes, including every pre-existing assertion in test/design-full-game-playtest.test.js.",
+      "provenance": "inferred",
+      "held_out": true
+    }
+  ],
+  "touches": [
+    "design/playtest-full-game.md",
+    "test/design-full-game-playtest.test.js"
+  ],
+  "test_cmd": "node --test",
+  "id": "ms5qrkom-cardgame-playtest-fount-economy-refresh",
+  "filed_at": "2026-07-29T07:06:42.934Z",
+  "window_expires": "2026-07-29T08:06:42.937Z",
+  "status": "promoted",
+  "promoted_at": "2026-07-29T08:24:17.922Z"
+}

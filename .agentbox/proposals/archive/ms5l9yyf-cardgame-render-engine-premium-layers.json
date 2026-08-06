@@ -1,0 +1,53 @@
+{
+  "name": "cardgame-render-engine-premium-layers",
+  "title": "Render engine: implement the Borderless, Foil, and Extended-Art premium layers from card-anatomy.md",
+  "project": "cardgame",
+  "pitch": "tools/render-card.js only ever renders the Base Treatment; extend it to also render the Borderless, Foil, and Extended-Art layer swaps that design/cards/card-anatomy.md's shipped 'Layers' section already fully specifies.",
+  "why_now": "card-anatomy.md (shipped) is the card authoring engine's own input contract per T16, and its 'The Layers' section defines five treatments — Base, Borderless, Foil, Alt-Art, Extended Art — with an explicit Cohesion rule (five rules-relevant zones must render byte-identical across every treatment). tools/render-card.js, the deterministic engine T16 named as the first want, implements only Base; test/render-card.test.js's AC5 confirms the script contains no per-treatment logic at all. The spec has been decided and shipped for two cycles with the code never catching up — this is finishing already-decided scope (T1), not new design, and it is authoring tooling explicitly inside T16's open half of the software gate, not game implementation.",
+  "expected_outcome": "tools/render-card.js's renderCardSvg accepts a treatment argument ('base'|'borderless'|'foil'|'extended-art'); running it for all four treatments on the same card produces four SVGs where Name/Cost/Type/Rules-text/Stats content is byte-identical across all four (the Cohesion rule enforced in code) while Frame/Border and Art Window geometry differ per treatment exactly as card-anatomy.md describes; `node --test` is green.",
+  "risk_class": "standard",
+  "mission_intent": "I6",
+  "taste_citations": [
+    "T16",
+    "T9",
+    "T1"
+  ],
+  "intent": "design/cards/card-anatomy.md (shipped)'s 'The Layers' section defines Base Treatment plus four premium layer swaps — Borderless, Foil, Alt-Art, Extended Art — each stating precisely what 'may change' and 'may not change' relative to Base, plus a Cohesion rule that the Name Slot, Cost Slot, Type Line, Rules-Text Box, and Stats Corner must carry identical content across every treatment. tools/render-card.js (shipped as part of cardgame-card-authoring-engine) is the deterministic layout engine T16 called for, reading card-anatomy.md's zone geometry as its input contract — but its renderCardSvg only ever produces the Base Treatment; there is no treatment parameter, CLI flag, or per-layer branch anywhere in the file, confirmed by test/render-card.test.js's AC5 asserting the script is layout-only. This unit adds a treatment parameter to renderCardSvg (default 'base', preserving today's exact output with no regression) plus 'borderless', 'foil', and 'extended-art' branches implementing exactly the mechanical rules card-anatomy.md already states: Borderless removes/shrinks the frame-band elements to a thin edge and expands the Art Window rect to the card's outer edge; Foil marks each frame-band element with a data-foil=\"true\" attribute while leaving its x/y/width/height/fill identical to Base; Extended Art enlarges the Art Window rect upward to bleed behind the Name Slot's and Type Line's background bands while their text elements keep identical position and content. Alt-Art is explicitly out of scope — it swaps which illustration is composited, a concern of tools/composite-card-art.js's brief-selection step, not this deterministic layout engine, and is left for a follow-on unit. No card file, rules.md, or composite-card-art.js is touched; composite-card-art.js's own call sites keep calling renderCardSvg with no treatment argument and so keep producing Base Treatment output, unaffected by this change.",
+  "criteria": [
+    {
+      "text": "tools/render-card.js's renderCardSvg function accepts a treatment argument with values 'base' (default when omitted), 'borderless', 'foil', and 'extended-art'; calling it with 'base' or with no treatment argument at all produces byte-identical SVG output, for every card currently loaded by loadAllCards(), to what renderCardSvg(card) produces today.",
+      "provenance": "paraphrase",
+      "held_out": false
+    },
+    {
+      "text": "For the 'borderless' treatment, the rendered SVG contains no frame-band rect element with a width equal to its base-treatment width (each frame-band is either absent or rendered at a fixed thin-edge width materially smaller than the base treatment's), and the art-window element's width and height equal the full card width and height (CARD_WIDTH/CARD_HEIGHT) rather than the base treatment's margin-inset Art Window dimensions.",
+      "provenance": "paraphrase",
+      "held_out": false
+    },
+    {
+      "text": "For the 'foil' treatment, every frame-band element carries a data-foil=\"true\" attribute, and for the same card each frame-band's x, y, width, height, and fill values are identical between the 'foil' and 'base' treatment outputs.",
+      "provenance": "paraphrase",
+      "held_out": false
+    },
+    {
+      "text": "For the 'extended-art' treatment, the art-window element's rendered height is greater than its base-treatment height (it bleeds upward into the Name Slot/Type Line region), while the Name Slot's and Type Line's text elements are present with the exact same text content and the exact same x/y coordinates as in the base treatment.",
+      "provenance": "paraphrase",
+      "held_out": false
+    },
+    {
+      "text": "Across all four treatments ('base', 'borderless', 'foil', 'extended-art') rendered for the same card, the Name Slot text, Cost Slot pip values and order, Type Line text, Rules-Text Box text, and Stats Corner presence-and-content (when the card has one) are byte-identical in every treatment's SVG output, and design/cards/*.md and tools/composite-card-art.js remain byte-identical to before this unit.",
+      "provenance": "inferred",
+      "held_out": true
+    }
+  ],
+  "touches": [
+    "tools/render-card.js",
+    "test/render-card-premium-layers.test.js"
+  ],
+  "test_cmd": "node --test",
+  "id": "ms5l9yyf-cardgame-render-engine-premium-layers",
+  "filed_at": "2026-07-29T04:33:03.543Z",
+  "window_expires": "2026-07-29T05:33:03.545Z",
+  "status": "promoted",
+  "promoted_at": "2026-07-29T05:35:56.251Z"
+}

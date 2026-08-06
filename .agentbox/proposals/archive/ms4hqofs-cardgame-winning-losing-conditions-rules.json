@@ -1,0 +1,52 @@
+{
+  "name": "cardgame-winning-losing-conditions-rules",
+  "title": "Winning & Losing Conditions Rules (Amaranth Expanse rules — game-end conditions)",
+  "pitch": "Extend design/rules.md with the one foundational rules gap none of the eleven queued cardgame units cover: how a player actually loses and a game actually ends.",
+  "why_now": "The shipped Spatial Battlefield section (Section 8) already defines Homeworld Capture, and in-flight units (core-rules, card-types-templating, spatial-map-setup) build turn structure, resources, templating, and map setup on top of it — but no document anywhere states what capturing a Homeworld does to the game, or how a game concludes. Per T1, MVP means full decided scope; shipping cards and a playtest procedure without a win/loss rule leaves the design phase one load-bearing gap short of playable.",
+  "expected_outcome": "design/rules.md contains a new numbered 'Winning & Losing Conditions' section stating the elimination condition tied to Section 8's Capture rule (by cross-reference, not restatement), plus a worked example resolving a concrete game-end edge case.",
+  "risk_class": "standard",
+  "mission_intent": "I6",
+  "taste_citations": [
+    "T9",
+    "T1",
+    "T8"
+  ],
+  "intent": "Fifth-plus design deliverable for the cardGame pilot: design/rules.md establishes Turn Structure, Resources, Priority & Timing, Zones, and (Section 8) the Spatial Battlefield's Capture mechanic, but no section anywhere states what happens when a Homeworld is captured or how a game ends. This unit adds a Winning & Losing Conditions section defining player elimination and game-end conditions, cross-referencing Section 8's existing Capture rule rather than redefining it, at the MTG-Comprehensive-Rules structural bar (T9) — numbered subsection, glossary-first terms, at least one worked edge-case example. Pure design/rules text; no code, no game software (T8).",
+  "criteria": [
+    {
+      "text": "design/rules.md gains a new numbered 'Winning & Losing Conditions' section defining at least one player-elimination condition, tied explicitly to the Homeworld Capture rule already defined in Section 8 by cross-referencing its section number rather than restating the mechanic",
+      "provenance": "inferred",
+      "held_out": false
+    },
+    {
+      "text": "The section states what ends the game (a single remaining un-eliminated player, or an explicit draw condition) and how remaining players' turns proceed once another player is eliminated",
+      "provenance": "inferred",
+      "held_out": false
+    },
+    {
+      "text": "The section includes at least one numbered worked example resolving a concrete game-end edge case (e.g. two players eliminated in the same turn), matching the MTG-Comprehensive-Rules-level rigor bar (T9) used by the shipped Spatial Battlefield section",
+      "provenance": "paraphrase",
+      "held_out": false
+    },
+    {
+      "text": "New terms introduced by this section (e.g. 'eliminated', 'game end') are added to the Section 2 glossary before substantive use, consistent with rules.md's existing glossary-first discipline",
+      "provenance": "inferred",
+      "held_out": false
+    },
+    {
+      "text": "The new section does not redefine or contradict the existing Section 8 Capture rule — it only adds the game-end consequence of capture, cross-referencing rather than restating the mechanic",
+      "provenance": "inferred",
+      "held_out": true
+    }
+  ],
+  "touches": [
+    "design/rules.md",
+    "test/rules-winning-losing.test.js"
+  ],
+  "test_cmd": "node --test",
+  "id": "ms4hqofs-cardgame-winning-losing-conditions-rules",
+  "filed_at": "2026-07-28T10:06:18.424Z",
+  "window_expires": "2026-07-28T11:06:18.427Z",
+  "status": "promoted",
+  "promoted_at": "2026-07-28T11:08:28.300Z"
+}
