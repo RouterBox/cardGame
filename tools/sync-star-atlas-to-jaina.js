@@ -32,6 +32,16 @@ function main() {
     buildRecord,
     notImplementedMessage: NOT_IMPLEMENTED_MESSAGE,
     argv: process.argv,
+    // Live path (RouterBox approved 2026-08-06): active only when the
+    // environment carries Jaina credentials — see lib/run-jaina-dryrun-cli.js.
+    // The `world` schema stores the owning race as plain text (race_name),
+    // not a reference — cross-record references are a follow-up.
+    live: {
+      schemaSlug: 'world',
+      packageSlug: 'main',
+      label: 'world',
+      toWire: (r) => ({ name: r.name, world_type: r.type, race_name: r.race, description: r.description }),
+    },
   });
 }
 

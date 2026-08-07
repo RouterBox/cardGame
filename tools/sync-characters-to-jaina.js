@@ -33,6 +33,20 @@ function main() {
     buildRecord,
     notImplementedMessage: NOT_IMPLEMENTED_MESSAGE,
     argv: process.argv,
+    // Live path (RouterBox approved 2026-08-06): active only when the
+    // environment carries Jaina credentials — see lib/run-jaina-dryrun-cli.js.
+    // The character schema's `race` field is a reference (record UUID), so
+    // it is omitted here; the race name stays readable inside identity via
+    // the source doc. Wiring real references is a follow-up.
+    live: {
+      schemaSlug: 'character',
+      packageSlug: 'alpha',
+      label: 'character',
+      // Jaina json fields require an OBJECT ("Threads must be an object",
+      // VALIDATION_FAILED on a bare array, verified live 2026-08-06) — so
+      // the thread list ships wrapped as { entries: [...] }.
+      toWire: (r) => ({ name: r.name, role: r.title, identity: r.bio, threads: { entries: r.threads } }),
+    },
   });
 }
 

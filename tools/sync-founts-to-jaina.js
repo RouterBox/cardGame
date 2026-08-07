@@ -31,6 +31,14 @@ function main() {
     buildRecord,
     notImplementedMessage: NOT_IMPLEMENTED_MESSAGE,
     argv: process.argv,
+    // Live path (RouterBox approved 2026-08-06): active only when the
+    // environment carries Jaina credentials — see lib/run-jaina-dryrun-cli.js.
+    live: {
+      schemaSlug: 'fount',
+      packageSlug: 'main',
+      label: 'fount',
+      toWire: (r) => ({ name: r.name, domain: r.domain, description: r.description }),
+    },
   });
 }
 
